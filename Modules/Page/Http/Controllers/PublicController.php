@@ -47,6 +47,7 @@ class PublicController extends BasePublicController
         $template = $this->getTemplateForPage($page);
 
         $alternate = $this->getAlternateMetaData($page);
+        dd($alternate);
 
         return view($template, compact('page', 'alternate'));
     }

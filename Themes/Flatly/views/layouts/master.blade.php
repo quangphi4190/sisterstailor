@@ -35,5 +35,7 @@
 {!! Setting::get('core::analytics-script') !!}
 <?php endif; ?>
 @stack('js-stack')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://iamrohit.in/lab/js/location.js"></script>
 </body>
 </html>
