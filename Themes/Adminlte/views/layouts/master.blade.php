@@ -17,7 +17,11 @@
         <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset($css) }}">
     @endforeach
     <link media="all" type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
-    {!! Theme::script('vendor/jquery/jquery.min.js') !!}    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {!! Theme::script('vendor/jquery/jquery.min.js') !!} 
+    {!! Theme::style('css/style.css') !!}  
     @include('partials.asgard-globals')
     @section('styles')
     @show

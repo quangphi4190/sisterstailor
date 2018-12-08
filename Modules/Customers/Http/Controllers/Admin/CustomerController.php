@@ -45,8 +45,6 @@ class CustomerController extends AdminBaseController
     public function create()
     {
         $countries = DB::table('countries')->get();
-        $states = DB::table('states')->get();
-        $cities = DB::table('cities')->get();
         return view('customers::admin.customers.create', compact('countries','states','cities'));
     }
 
@@ -58,7 +56,6 @@ class CustomerController extends AdminBaseController
      */
     public function store(CreateCustomerRequest $request)
     {
-      
         $this->customer->create($request->all());
 
         return redirect()->route('admin.customers.customer.index')
@@ -76,13 +73,14 @@ class CustomerController extends AdminBaseController
         $countries = DB::table('countries')->get();
         $states = DB::table('states')->get();
         $cities = DB::table('cities')->get();
-           
+        $status = $customer->status ? $customer->status : '' ;
+        $gender_id = $customer->gender ? $customer->gender : '' ;
         $country_id = $customer->country_id ? $customer->country_id : '' ;
         $state_id = $customer->state_id ? $customer->state_id : '';
         $citi_id = $customer->city_id ? $customer->city_id :'';
         $starteofContry = DB::table('states')->where('states.country_id', '=' ,$country_id)->get();
         $cityOfState = DB::table('cities')->where('cities.state_id', '=' ,$state_id)->get(); 
-        return view('customers::admin.customers.edit', compact('customer','countries','starteofContry','cityOfState','country_id','state_id','citi_id'));
+        return view('customers::admin.customers.edit', compact('customer','countries','starteofContry','cityOfState','country_id','state_id','citi_id','gender_id','status'));
     }
 
     /**
@@ -94,6 +92,7 @@ class CustomerController extends AdminBaseController
      */
     public function update(Customer $customer, UpdateCustomerRequest $request)
     {
+      
         $this->customer->update($customer, $request->all());
 
         return redirect()->route('admin.customers.customer.index')

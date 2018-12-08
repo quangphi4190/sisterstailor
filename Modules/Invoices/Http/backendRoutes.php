@@ -37,6 +37,34 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'uses' => 'InvoiceController@destroy',
         'middleware' => 'can:invoices.invoices.destroy'
     ]);
+   
+    $router->post('invoices/{get_id_customer}', [
+        'as' => 'admin.invoices.invoices.get_id_customer',
+        'uses' => 'InvoiceController@get_id_customer'
+    ]);
+    $router->post('invoices/modal/{get_id_customer}', [
+        'as' => 'admin.invoices.invoices.get_id_modal',
+        'uses' => 'InvoiceController@get_id_modal'
+    ]);
+    $router->post('invoices/get_info/info', [
+        'as' => 'admin.invoices.invoice.modal-info-customer',
+        'uses' => 'InvoiceController@get_info'
+    ]);
+
+    $router->post('invoices/get_info/edit-info', [
+        'as' => 'admin.invoices.invoice.modal-edit-customer',
+        'uses' => 'InvoiceController@edit_info'
+    ]);
+
+    
+    $router->post('invoices/insert/inser_form', [
+        'as' => 'admin.invoices.inser_form',
+        'uses' => 'InvoiceController@inser_form'
+    ]);
+    Route::post('insert/inser_form',[
+        'uses' => 'InvoiceController@inser_form',
+        'as' => 'admin.invoices.inser_form']);
+   
 // append
 
 });

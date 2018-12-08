@@ -29,49 +29,43 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Gender</th>
-                                <th>Mail</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>STT</th>
+                                <th>Họ tên</th>
+                                <th>Giới tính</th>
+                                <th>Địa chỉ</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>                                
+                                <th>Loại khách hàng</th>
+                                <th>Trạng thái</th>
+                                <th data-sortable="false">Chức năng</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($customers)): ?>
+                            <?php if (isset($customers)):
+                             $stt=1;   
+                             ?>
                             <?php foreach ($customers as $customer): ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->id }}
+                                        {{ $stt++ }}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->firstname }}
+                                        {{ $customer->firstname.' '.$customer->lastname }}
                                     </a>
-                                </td>
+                                </td>                               
                                 <td>
                                     <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->lastname }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->gender }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->mail }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->phone }}
+                                       <?php if( $customer->gender == 1) {
+                                           echo 'Nam';
+                                        } elseif ($customer->gender == 2) {
+                                               echo 'Nữ';
+                                         } else {
+                                               echo 'N/A';
+                                         }
+                                           ?>
                                     </a>
                                 </td>
                                 <td>
@@ -81,7 +75,22 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->created_at }}
+                                        {{ $customer->phone }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
+                                        {{ $customer->mail }}
+                                    </a>
+                                </td>                               
+                                <td>
+                                    <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
+                                        {{ $customer->customer_type }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
+                                        {{ $customer->status == 1 ? 'Đang hoạt động' : 'Chưa kích hoạt'}}
                                     </a>
                                 </td>
                                 <td>

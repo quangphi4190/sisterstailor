@@ -12,17 +12,17 @@ class UpdateCustomerRequest extends BaseFormRequest
             'customer_type' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
-            'gender' => 'required',
-            'mail' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'country_id' => 'required',
-            'state_id' => 'required',
-            'city_id' => 'required',
-            'status' => 'required',
-            'custom_field1' => 'required',
-            'custom_field2' => 'required',
-            'custom_field3' => 'required'
+            //  'gender' => 'required',
+            // 'mail' => 'required',
+             'phone' => 'required',
+             'address' => 'required',
+            // 'country_id' => 'required',
+            // 'state_id' => 'required',
+            // 'city_id' => 'required',
+            // 'status' => 'required',
+            // 'custom_field1' => 'required',
+            // 'custom_field2' => 'required',
+            // 'custom_field3' => 'required'
         ];
     }
 

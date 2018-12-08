@@ -27,8 +27,8 @@
                     @endforeach
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.invoices.invoice.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                        <button type="submit" class="btn btn-primary btn-flat">Cập nhật</button>
+                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.invoices.invoice.index')}}"><i class="fa fa-times"></i> Hủy</a>
                     </div>
                 </div>
             </div> {{-- end nav-tabs-custom --}}
