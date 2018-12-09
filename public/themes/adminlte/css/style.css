@@ -1,0 +1,51 @@
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+.c-header {
+    background: #186795;
+    color: #fff;
+    text-transform: uppercase;
+}
+.c-text {
+    font-size: 2rem;
+    text-align: center;
+}
+.c-close {
+    top: 15px;
+    position: absolute;
+    right: 10px;
+    font-size: 32px;
+    color: #ffffff;
+    opacity: .5;
+}
+.info-cusomer {
+    background: #ecf0f5;
+    height: 70px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.d-flex {
+    display: flex!important;
+}
+.flex-row {
+    -ms-flex-direction: row!important;
+    flex-direction: row!important;
+}
+.p-t10 {
+    padding-top: 10px;
+}
+.m-b10 {
+    margin-bottom: 10px;
+}
+.d-none {
+    display: none;
+}
+
+input.icon {
+    font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}

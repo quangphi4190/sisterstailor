@@ -22,13 +22,14 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
+                        <input hidden name = "id" value ="<?php echo $customer->id?>">
                             @include('customers::admin.customers.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.customers.customer.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                        <button type="submit" class="btn btn-primary btn-flat">Cập nhật</button>
+                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.customers.customer.index')}}"><i class="fa fa-times"></i> Hủy</a>
                     </div>
                 </div>
             </div> {{-- end nav-tabs-custom --}}
@@ -48,6 +49,8 @@
 @stop
 
 @push('js-stack')
+{!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
+{!! Theme::style('css/chosen.css') !!}
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({
@@ -64,5 +67,32 @@
                 radioClass: 'iradio_flat-blue'
             });
         });
+    </script>
+
+    <script type="text/javascript">  
+        $('select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "Không tìm thấy", width: "100%", search_contains:true});
+    
+        $('select[name="country_id"]').change(function () {
+                var url = "{{ url('en/backend/customers/customers/get_id') }}";
+                var token = '{{ csrf_token() }}';
+    
+                $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Chọn tỉnh', }, function(data){
+                    
+                    $('select[name="state_id"]').html(data);
+                    $('select[name="state_id"]').trigger("chosen:updated");
+                });
+            });
+            // Get state
+        $('select[name="state_id"]').change(function () {
+            var url = "{{ url('en/backend/customers/customers/state/get_id_state') }}";
+            var token = '{{ csrf_token() }}';
+
+            $.post(url, {state_id:$(this).val(), _token:token, emptyOption:'Chọn thành phố', }, function(data){
+                
+                $('select[name="city_id"]').html(data);
+                $('select[name="city_id"]').trigger("chosen:updated");
+            });
+        });
+            
     </script>
 @endpush
