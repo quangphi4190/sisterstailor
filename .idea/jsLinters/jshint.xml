@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="JSHintConfiguration" version="2.9.5" use-config-file="true" use-custom-config-file="true" custom-config-file-path="$PROJECT_DIR$/public/themes/adminlte/vendor/jquery/.jshintrc">
+=======
+  <component name="JSHintConfiguration" version="2.9.5" use-config-file="true" use-custom-config-file="true" custom-config-file-path="$PROJECT_DIR$/public/themes/adminlte/vendor/jquery-ui/tests/.jshintrc">
+>>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
     <option bitwise="true" />
     <option browser="true" />
     <option curly="true" />

@@ -11,5 +11,21 @@ class TourGuide extends Model
 
     protected $table = 'tourguide__tourguides';
     public $translatedAttributes = [];
-    protected $fillable = [];
+    protected $fillable = [
+        'tour_guide_type',
+        'firstname',
+        'lastname',
+        'gender',
+        'email',
+        'phone',
+        'address',
+        'country_id',
+        'state_id',
+        'city_id',
+        'company',
+        'status',
+        'custom_field1',
+        'custom_field2',
+        'custom_field3',
+    ];
 }

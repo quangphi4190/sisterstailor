@@ -17,10 +17,10 @@ class CreateTourGuideTourGuideTranslationsTable extends Migration
             $table->increments('id');
             // Your translatable fields
 
-            $table->integer('tourguide_id')->unsigned();
+            $table->integer('tour_guide_id')->unsigned();
             $table->string('locale')->index();
-            $table->unique(['tourguide_id', 'locale']);
-            $table->foreign('tourguide_id')->references('id')->on('tourguide__tourguides')->onDelete('cascade');
+            $table->unique(['tour_guide_id', 'locale']);
+            $table->foreign('tour_guide_id')->references('id')->on('tourguide__tourguides')->onDelete('cascade');
         });
     }
 
@@ -32,7 +32,7 @@ class CreateTourGuideTourGuideTranslationsTable extends Migration
     public function down()
     {
         Schema::table('tourguide__tourguide_translations', function (Blueprint $table) {
-            $table->dropForeign(['tourguide_id']);
+            $table->dropForeign(['tour_guide_id']);
         });
         Schema::dropIfExists('tourguide__tourguide_translations');
     }

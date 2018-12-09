@@ -16,17 +16,6 @@ class CreateHotelHotelTranslationsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             // Your translatable fields
-            $table->string('name');
-            $table->string('phone');
-            $table->string('email');
-            $table->text('address');
-            $table->text('country_id');
-            $table->text('state_id');
-            $table->text('city_id');
-            $table->text('contact_name');
-            $table->text('contact_phone');
-            $table->text('contact_mail');
-            $table->text('status');
 
             $table->integer('hotel_id')->unsigned();
             $table->string('locale')->index();

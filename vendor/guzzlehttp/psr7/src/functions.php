@@ -853,16 +853,11 @@ function get_message_body_summary(MessageInterface $message, $truncateAt = 120)
 {
     $body = $message->getBody();
 
-    if (!$body->isSeekable() || !$body->isReadable()) {
+    if (!$body->isSeekable()) {
         return null;
     }
 
     $size = $body->getSize();
-
-    if ($size === 0) {
-        return null;
-    }
-
     $summary = $body->read($truncateAt);
     $body->rewind();
 

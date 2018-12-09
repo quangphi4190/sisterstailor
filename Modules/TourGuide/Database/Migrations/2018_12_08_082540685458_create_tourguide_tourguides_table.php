@@ -15,7 +15,21 @@ class CreateTourGuideTourGuidesTable extends Migration
         Schema::create('tourguide__tourguides', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your fields
+            $table->string('tour_guide_type');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('gender');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
+            $table->integer('country_id');
+            $table->integer('state_id');
+            $table->integer('city_id');
+            $table->string('company');
+            $table->string('status');
+            $table->string('custom_field1');
+            $table->string('custom_field2');
+            $table->string('custom_field3');
             $table->timestamps();
         });
     }

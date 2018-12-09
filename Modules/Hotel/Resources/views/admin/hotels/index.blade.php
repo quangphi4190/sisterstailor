@@ -29,7 +29,10 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Tên Khách Sạn</th>
+                                <th>Số Điện Thoại</th>
+                                <th>E-Mail</th>
+                                <th>Địa Chỉ</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -37,6 +40,18 @@
                             <?php if (isset($hotels)): ?>
                             <?php foreach ($hotels as $hotel): ?>
                             <tr>
+                                <td>
+                                        {{ $hotel->name }}                                    
+                                </td>
+                                <td>
+                                        {{ $hotel->phone }}
+                                </td>
+                                <td>
+                                        {{ $hotel->email }}
+                                </td>
+                                <td>
+                                        {{ $hotel->address }}
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
                                         {{ $hotel->created_at }}

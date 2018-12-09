@@ -8,7 +8,16 @@ class CreateHotelRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'name'  =>  'required',
+            'phone' =>  'required',
+            'email' =>  'required',
+            'address'   =>  'required',
+            'contact_name'  =>  'required',
+            'contact_phone' =>  'required',
+            'contact_mail'  =>  'required',
+            'status'        =>  'required'
+        ];
     }
 
     public function translationRules()

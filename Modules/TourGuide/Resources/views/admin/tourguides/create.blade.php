@@ -48,6 +48,8 @@
 @stop
 
 @push('js-stack')
+{!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
+{!! Theme::style('css/chosen.css') !!}
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({
@@ -65,4 +67,32 @@
             });
         });
     </script>
+    
+    <script type="text/javascript">  
+        $('select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "{{trans('common.txt_not_found')}}", width: "100%", search_contains:true});
+    
+        $('select[name="country_id"]').change(function () {
+                var url = "{{ url('en/backend/customers/customers/get_id') }}";
+                var token = '{{ csrf_token() }}';
+    
+                $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Select State', }, function(data){
+                    
+                    $('select[name="state_id"]').html(data);
+                    $('select[name="state_id"]').trigger("chosen:updated");
+                });
+            });
+            // Get state
+        $('select[name="state_id"]').change(function () {
+            var url = "{{ url('en/backend/customers/customers/state/get_id_state') }}";
+            var token = '{{ csrf_token() }}';
+
+            $.post(url, {state_id:$(this).val(), _token:token, emptyOption:'Select City', }, function(data){
+                
+                $('select[name="city_id"]').html(data);
+                $('select[name="city_id"]').trigger("chosen:updated");
+            });
+        });
+            
+    </script>
+
 @endpush

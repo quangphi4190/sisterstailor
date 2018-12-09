@@ -1,7 +1,38 @@
 <div class="box-body">
-    {!! Form::i18nInput('name', trans('hotel::hotels.form.name'), $errors, $lang,$hotel) !!}
-    {!! Form::i18nInput('phone', trans('hotel::hotels.form.phone'), $errors, $lang,$hotel) !!}
-    {!! Form::i18nInput('email', trans('hotel::hotels.form.email'), $errors, $lang,$hotel) !!}
-    {!! Form::i18nInput('address', trans('hotel::hotels.form.address'), $errors, $lang,$hotel) !!}
-    {!! Form::i18nInput('status', trans('hotel::hotels.form.status'), $errors, $lang,$hotel) !!}
+    {!! Form::normalInput('name', trans('hotel::hotels.form.name'), $errors,$hotel) !!}
+    {!! Form::normalInput('phone', trans('hotel::hotels.form.phone'), $errors,$hotel) !!}
+    {!! Form::normalInput('email', trans('hotel::hotels.form.email'), $errors,$hotel) !!}
+    {!! Form::normalInput('address', trans('hotel::hotels.form.address'), $errors,$hotel) !!}
+    <div class="form-group dropdown">
+        <label for="country_id">Country</label>
+        <select id="country_id" name="country_id" class="form-control">
+            <option value="">Select country</option>
+            <?php foreach ($countries as $countrie) {?>
+                <option value="{{$countrie->id}}" <?php echo $country_id == $countrie->id ? 'selected' : '' ?>>{{$countrie->name}}</option>
+            <?php }?>
+        </select>
+    </div>
+
+    <div class="form-group dropdown">
+        <label for="state_id">State</label>
+        <select name="state_id" class="form-control">
+        <option value="">Select state</option>
+            <?php foreach ($starteofContry as $state) {?>
+                <option value="{{$state->id}}" <?php echo $state_id == $state->id ? 'selected' : '' ?>>{{$state->name}}</option>
+            <?php }?>
+        </select>
+    </div>
+    <div class="form-group dropdown">
+        <label for="city_id">City</label>
+        <select name="city_id" class="form-control">
+            <option value="">Select city</option>
+            <?php foreach ($cityOfState as $citi) {?>
+                <option value="{{$citi->id}}" <?php echo $citi_id == $citi->id ? 'selected' : '' ?>>{{$citi->name}}</option>
+            <?php }?>
+        </select>
+    </div>
+    {!! Form::normalInput('contact_name', trans('hotel::hotels.form.contact_name'), $errors,$hotel) !!}
+    {!! Form::normalInput('contact_phone', trans('hotel::hotels.form.contact_phone'), $errors,$hotel) !!}
+    {!! Form::normalInput('contact_mail', trans('hotel::hotels.form.contact_mail'), $errors,$hotel) !!}
+    {!! Form::normalInput('status', trans('hotel::hotels.form.status'), $errors,$hotel) !!}
 </div>

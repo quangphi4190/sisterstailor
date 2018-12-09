@@ -29,6 +29,12 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>Họ Và Tên</th>
+                                <th>Giới Tính</th>
+                                <th>Số Điện Thoại</th>
+                                <th>E-Mail</th>
+                                <th>Địa Chỉ</th>
+                                <th>Tên Công Ty</th>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
@@ -37,6 +43,24 @@
                             <?php if (isset($tourguides)): ?>
                             <?php foreach ($tourguides as $tourguide): ?>
                             <tr>
+                                <td>
+                                    {{($tourguide->firstname).' '.($tourguide->lastname)}}
+                                </td>
+                                <td>
+                                    {{$tourguide->gender}}
+                                </td>
+                                <td>
+                                    {{$tourguide->phone}}
+                                </td>
+                                <td>
+                                    {{$tourguide->email}}
+                                </td>
+                                <td>
+                                    {{$tourguide->address}}
+                                </td>
+                                <td>
+                                    {{$tourguide->company}}
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
                                         {{ $tourguide->created_at }}
