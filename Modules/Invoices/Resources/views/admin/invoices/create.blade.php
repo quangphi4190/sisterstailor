@@ -37,11 +37,22 @@
     {!! Form::close() !!}
 @stop
 
+
+
+@section('footer')
+    <a data-toggle="modal" data-target="#keyboardShortcutsModal"><i class="fa fa-keyboard-o"></i></a> &nbsp;
+@stop
+@section('shortcuts')
+    <dl class="dl-horizontal">
+        <dt><code>b</code></dt>
+        <dd>{{ trans('core::core.back to index') }}</dd>
+    </dl>
+@stop
 <!-- Model popup create cumtomes -->
 <div class="modal fade bd-example-modal-lg" id="insertform" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-    {!! Form::open(['method' => 'post','id'=>'insert_form']) !!}     
+    <form method ="post" id ="insert_form">
       <div class="modal-header c-header">
         <h5 class="modal-title c-text" id="exampleModalLongTitle">Thêm khách hàng</h5>
         <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
@@ -57,22 +68,39 @@
         <button type="submit" class="btn btn-primary">Thêm mới</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>        
       </div>
-      {!! Form::close() !!}
+      </form>
     </div>
   </div>
 </div>
-
-@section('footer')
-    <a data-toggle="modal" data-target="#keyboardShortcutsModal"><i class="fa fa-keyboard-o"></i></a> &nbsp;
-@stop
-@section('shortcuts')
-    <dl class="dl-horizontal">
-        <dt><code>b</code></dt>
-        <dd>{{ trans('core::core.back to index') }}</dd>
-    </dl>
-@stop
-
+<div class="modal fade modalEditInfo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    <form method ="post" id ="edit_form">
+      <div class="modal-header c-header">
+        <h5 class="modal-title c-text" id="exampleModalLongTitle">Chỉnh sửa thông tin khách hàng</h5>
+        <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+        <div class="modal-body">
+         
+        </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cập nhật</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End modal Edit Info -->
 @push('js-stack')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- Optional theme -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 {!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
 {!! Theme::style('css/chosen.css') !!}
 <!-- {!! Theme::script('vendor/jquery/jquery-ui.min.js') !!} -->
@@ -80,7 +108,229 @@
 {!! Theme::style('css/easy-autocomplete.min.css') !!}
 {!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
 {!! Theme::style('css/chosen.css') !!}
+
     <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker1').datetimepicker({
+            defaultDate: new Date(),
+            showTodayButton: true,
+            format: 'DD/MM/YYYY',
+            sideBySide: true,
+            minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
+        });
+
+        $('#datetimepicker2').datetimepicker({
+            defaultDate: new Date(),
+            showTodayButton: true,
+            format: 'DD/MM/YYYY',
+            sideBySide: true,
+            minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
+        });
+
+    });
+    </script>
+
+  <script type="text/javascript">
+   $('#insert_form').on('submit',function (e) { 
+       e.preventDefault();
+    var firstname = $('#firstname').val();
+    var lastname = $('#lastname').val();
+    var mail = $('#mail').val();
+    var phone = $('#phone').val();
+    var gender = $('#gender').val();
+    var address = $('#address').val();
+    var status = $('#status').val(); 
+    var customer_type = $('#customer_type').val();
+    var country_id = $('#country_id').val();
+    var state_id = $('#state_id').val();
+    var city_id = $('#city_id').val();
+    var custom_field1 = $('#custom_field1').val();
+    var custom_field2 = $('#custom_field2').val();
+    var custom_field3 = $('#custom_field3').val();
+    if(firstname =='') {
+     swal({
+        title: "Vui lòng nhập họ",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    } else if (lastname =='') {
+        swal({
+        title: "Vui lòng nhập tên",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    } else if (mail =='') {
+        swal({
+        title: "Vui lòng nhập email",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    } else if (phone == '') {
+        swal({
+        title: "Vui lòng nhập số điện thoại",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    } else if (address == '') {
+        swal({
+        title: "Vui lòng nhập địa chỉ",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    }
+    else {
+        $.ajax({
+        type: 'POST',
+        url: '{{url('en/backend/invoices/invoices/add/inser_form')}}',
+        data: {
+            _token: '{{ csrf_token() }}',
+            firstname: firstname,
+            lastname: lastname,
+            mail: mail,
+            phone: phone,
+            gender: gender,
+            address: address,
+            status: status,
+            customer_type: customer_type,
+            country_id: country_id,
+            state_id: state_id,
+            city_id: city_id,
+            custom_field1: custom_field1,
+            custom_field2: custom_field2,
+            custom_field3: custom_field3           
+        },
+        success: function(data) {              
+            // var $el = $("select#customer_id");
+            //     $el.empty();
+            //     $el.append("<option>Please Select</option>");
+            //      $.each(data, function(k, v) {
+            //          $el.append("<option value='" + v.id + "'>" + v.firstname + "</option>");
+            //     // });
+
+            // var options;
+            // $.each(data, function(index, object) {
+            //     options += '<option value="' + object.id + '">' + object.id + '</option>';
+            // });
+
+            // $('#customer_id').html(options);
+
+            swal("Thêm mới thành công!", "", "success");
+            $('.bd-example-modal-lg').modal('hide');
+        },
+        error: function () {
+            swal({
+                title: "Thêm mới khách hàng lỗi",
+                text: "",
+                icon: "warning",
+                button: "Đồng ý",
+            });
+        }
+    });
+    }
+   
+    
+    });      
+  </script>
+  <script type="text/javascript">
+   $('#edit_form').on('submit',function (e) { 
+       e.preventDefault();   
+    
+    var firstname = $('#firstname').val();alert(firstname);
+    var lastname = $('#lastname').val();
+    var mail = $('#mail').val();
+    var phone = $('#phone').val();
+    var gender = $('#gender').val();
+    var address = $('#address').val();
+    var status = $('#status').val(); 
+    var customer_type = $('#customer_type').val();
+    var country_id = $('#country_id').val();
+    var state_id = $('#state_id').val();
+    var city_id = $('#city_id').val();
+    var custom_field1 = $('#custom_field1').val();
+    var custom_field2 = $('#custom_field2').val();
+    var custom_field3 = $('#custom_field3').val();
+    if(firstname =='') {
+     swal({
+        title: "Vui lòng nhập họ",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    } else if (lastname =='') {
+        swal({
+        title: "Vui lòng nhập tên",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    } else if (mail =='') {
+        swal({
+        title: "Vui lòng nhập email",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    } else if (phone == '') {
+        swal({
+        title: "Vui lòng nhập số điện thoại",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    } else if (address == '') {
+        swal({
+        title: "Vui lòng nhập địa chỉ",
+        text: "",
+        icon: "warning",
+        button: "Đồng ý",
+    });
+    }
+    else {
+        $.ajax({
+        type: 'POST',
+        url: '{{url('en/backend/invoices/invoices/edit/edit_form')}}',
+        data: {
+            _token: '{{ csrf_token() }}',
+            firstname: firstname,
+            lastname: lastname,
+            mail: mail,
+            phone: phone,
+            gender: gender,
+            address: address,
+            status: status,
+            customer_type: customer_type,
+            country_id: country_id,
+            state_id: state_id,
+            city_id: city_id,
+            custom_field1: custom_field1,
+            custom_field2: custom_field2,
+            custom_field3: custom_field3           
+        },
+        success: function(data) {
+           // $("#khachhang").html(data);
+            swal("Cập nhật thông tin khách hàng thành công!", "", "success");
+            $('.bd-example-modal-lg').modal('hide');
+        },
+        error: function () {
+            swal({
+                title: "Cập nhật thông tin khách hàng lỗi",
+                text: "",
+                icon: "warning",
+                button: "Đồng ý",
+            });
+        }
+    });
+    }
+   
+    
+    });      
+  </script>
+  <script type="text/javascript">
     var options = {
 	data: <?php echo json_encode($arrInvoi) ?>,
 
@@ -100,7 +350,12 @@
         url = '{{url('en/backend/invoices/invoices/get_info/info')}}';
         var id = $('.view-customer').val();
         if (id == ''){
-           alert('Vui lòng chọn khách khàng');
+            swal({
+                title: "Vui lòng chọn khách hàng",
+                text: "",
+                icon: "warning",
+                button: "Đồng ý",
+            });
           return false;
         }else {
             var token = '{{ csrf_token() }}';
@@ -120,14 +375,19 @@
         url = '{{url('en/backend/invoices/invoices/get_info/edit-info')}}';
         var id = $('.view-customer').val();
         if (id == ''){
-           alert('Vui lòng chọn khách khàng');
+            swal({
+                title: "Vui lòng chọn khách hàng",
+                text: "",
+                icon: "warning",
+                button: "Đồng ý",
+            });
            return false;
         }else {
         var token = '{{ csrf_token() }}';
             $.post(url,{'id':id,'_token':token}, function(data) {
-                $('.modalEditInfo .modal-content').html(data);
+                $('.modalEditInfo .modal-body').html(data);
 
-                $('.modalEditInfo .modal-content').show();
+                $('.modalEditInfo .modal-body').show();
                 $('.modalEditInfo').modal('show');
             });
         }
@@ -168,7 +428,7 @@
     </script>
 
     <script type="text/javascript">  
-    $('select[name="customer_id"], select[name="tour_guide_id"], select[name="hotel_id"],select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "{{trans('common.txt_not_found')}}", width: "100%", search_contains:true});
+    $('select[name="customer_id"], select[name="tour_guide_id"], select[name="hotel_id"],select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "Không tìm thấy", width: "100%", search_contains:true});
 
     $('select[name="country_id"]').change(function () {
             var url = "{{ url('en/backend/customers/customers/get_id') }}";
@@ -188,25 +448,6 @@
             $('select[name="city_id"]').html(data);
             $('select[name="city_id"]').trigger("chosen:updated");
         });
-    });
-            
-
-      $('#insert_form').submit(function (e) {
-        e.preventDefault();
-        var formData = new FormData($('#insert_form')[0]);
-
-        $.ajax({
-            url: '{{ url('en/backend/customers/customers/insert/inser_form') }}',
-            type: 'POST',
-            data: formData,
-            success: function(msg){
-                alert(msg);
-            }
-            contentType: false,
-            processData: false
-
-        });
-        });
-
+    });     
     </script>
 @endpush

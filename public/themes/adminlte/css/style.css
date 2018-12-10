@@ -49,3 +49,12 @@ input.icon {
     font-weight: normal;
     text-decoration: inherit;
 }
+.modal-danger .modal-header, .modal-danger .modal-footer {
+    background-color:#3c8dbc !important;
+}
+.easy-autocomplete {
+    width: auto!important;
+}
+.h-btn {
+    height: 35px;
+}

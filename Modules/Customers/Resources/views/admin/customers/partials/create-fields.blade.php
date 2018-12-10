@@ -8,7 +8,7 @@
         {!! Form::normalInput('phone', 'Số điện thoại', $errors) !!}
 
         <div class="form-group dropdown">
-            <label for="country_id">Giới tính</label>
+            <label for="gender">Giới tính</label>
             <select id="gender" name="gender" class="form-control">
                 <option value="">Chọn giới tính</option>
                 <option value="1">Nam</option>
@@ -40,13 +40,13 @@
 
         <div class="form-group dropdown">
             <label for="state_id">Tỉnh</label>
-            <select name="state_id" class="form-control">
+            <select id="state_id" name="state_id" class="form-control">
             <option value="">Chọn tỉnh</option>
             </select>
         </div>
         <div class="form-group dropdown">
             <label for="city_id">Thành phố</label>
-            <select name="city_id" class="form-control">
+            <select id="city_id" name="city_id" class="form-control">
                 <option value="">Chọn thành phố</option>
             </select>
         </div>    

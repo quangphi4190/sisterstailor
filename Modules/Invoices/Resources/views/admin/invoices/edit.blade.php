@@ -48,6 +48,30 @@
 @stop
 
 @push('js-stack')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- Optional theme -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+      $(function () {
+        $('#datetimepicker1').datetimepicker({
+            // defaultDate: new Date(),
+            showTodayButton: true,
+            format: 'YYYY/MM/DD HH:mm:ss',
+            sideBySide: true,
+            minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
+        });
+
+        $('#datetimepicker2').datetimepicker({
+            // defaultDate: new Date(),
+            showTodayButton: true,
+            format: 'YYYY/MM/DD HH:mm:ss',
+            sideBySide: true,
+            minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
+        });
+
+    });
+    </script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({

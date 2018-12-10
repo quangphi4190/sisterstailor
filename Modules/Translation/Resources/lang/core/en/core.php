@@ -2,8 +2,8 @@
 
 return [
     'modal' => [
-        'title' => 'Confirmation',
-        'confirmation-message' => 'Are you sure you want to delete this record?',
+        'title' => 'Thông báo',
+        'confirmation-message' => 'Bạn có chắc chắc muốn xóa?',
     ],
     'table' => [
         'created at' => 'Created at',
@@ -30,10 +30,10 @@ return [
         'hungarian' => 'Magyar',
     ],
     'button' => [
-        'cancel' => 'Cancel',
-        'create' => 'Create',
-        'update' => 'Update',
-        'delete' => 'Delete',
+        'cancel' => 'Hủy',
+        'create' => 'Tạo',
+        'update' => 'Cập nhật',
+        'delete' => 'Xóa',
         'reset' => 'Reset',
         'see' => 'See',
         'visualize' => 'Visualize',

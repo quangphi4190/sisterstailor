@@ -61,7 +61,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ $invoice->note }}
+                                        <?php echo $invoice->note; ?>
                                     </a>
                                 </td>
                                 <td>

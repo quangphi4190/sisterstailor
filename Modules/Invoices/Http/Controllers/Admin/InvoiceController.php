@@ -12,7 +12,7 @@ use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use DB;
 use Modules\Customers\Entities\Customer;
 use Illuminate\Support\Facades\Input;
-
+use Modules\Customers\Http\Requests\CreateCustomerRequest;
 class InvoiceController extends AdminBaseController
 {
     /**
@@ -45,7 +45,7 @@ class InvoiceController extends AdminBaseController
      * @return Response
      */
     public function create()
-    {
+    { 
         $invoices_auto = Invoice::groupBy('customer_id')->pluck('customer_id')->toArray();
         $customers = Customer::select('customers__customers.phone','customers__customers.lastname','customers__customers.address')->whereIn('customers__customers.id',$invoices_auto)->get()->toArray();
         $customers_select = Customer::select('customers__customers.id','customers__customers.lastname','customers__customers.address','customers__customers.phone','customers__customers.firstname')->get();
@@ -81,7 +81,15 @@ class InvoiceController extends AdminBaseController
      */
     public function edit(Invoice $invoice)
     {
-        return view('invoices::admin.invoices.edit', compact('invoice'));
+        $customers_select = Customer::select('customers__customers.id','customers__customers.lastname','customers__customers.address','customers__customers.phone','customers__customers.firstname')->get();
+        $tourguides = DB::table('tourguide__tourguides')->get();
+        $hotels = DB::table('hotel__hotels')->get();
+        $status = $invoice->status ? $invoice->status : '' ;
+        $customer_id = $invoice->customer_id ? $invoice->customer_id : '' ;
+        $tour_guide_id = $invoice->tour_guide_id ? $invoice->tour_guide_id : '' ;
+        $hotel_id = $invoice->hotel_id ? $invoice->hotel_id : '' ;
+        //dd($invoice->order_date);
+        return view('invoices::admin.invoices.edit', compact('invoice','customers_select','tourguides','hotels','status','tour_guide_id','hotel_id','customer_id'));
     }
 
     /**
@@ -92,7 +100,7 @@ class InvoiceController extends AdminBaseController
      * @return Response
      */
     public function update(Invoice $invoice, UpdateInvoiceRequest $request)
-    {die('sdasdads');
+    {
         $this->invoice->update($invoice, $request->all());
 
         return redirect()->route('admin.invoices.invoice.index')
@@ -174,8 +182,28 @@ class InvoiceController extends AdminBaseController
 
         return view('invoices::admin.invoices.modal-edit-customer', compact('customer','countries','status','states','cities','country_id','gender_id','state_id','cityOfState','starteofContry','citi_id'));
     }
-    
-    public function inser_form () {
-        die('áddddddddddd');
+     public function inser_form (){       
+        $inputs = Input::all();
+        $custumer = new Customer();
+        $custumer->firstname = $inputs['firstname'] ? $inputs['firstname'] :'';
+        $custumer->lastname = $inputs['lastname'] ? $inputs['lastname'] :'';
+        $custumer->mail = $inputs['mail'] ? $inputs['mail'] :'';
+        $custumer->phone = $inputs['phone'] ? $inputs['phone'] :'';
+        $custumer->gender = $inputs['gender']? $inputs['gender'] :'';
+        $custumer->address = $inputs['address'] ? $inputs['address'] :'';
+        $custumer->status = $inputs['status'] ? $inputs['status'] : 1;
+        $custumer->customer_type = $inputs['customer_type'] ? $inputs['customer_type'] :'';
+        $custumer->country_id = $inputs['country_id'] ? $inputs['country_id']:'';
+        $custumer->state_id = $inputs['state_id'] ? $inputs['state_id']:'';
+        $custumer->country_id = $inputs['city_id'] ? $inputs['city_id']:'';
+        $custumer->custom_field1 = $inputs['custom_field1'] ? $inputs['custom_field1']:'';
+        $custumer->custom_field2 = $inputs['custom_field2'] ? $inputs['custom_field2']:'';
+        $custumer->custom_field3 = $inputs['custom_field3'] ? $inputs['custom_field3']:'';
+        $custumer->save();
+        $customers_select = Customer::select('customers__customers.id','customers__customers.lastname','customers__customers.address','customers__customers.phone','customers__customers.firstname')->get();
+        die(json_encode($customers_select));
+    }
+    public function edit_form (){
+        $inputs = Input::all();dd( $inputs);
     }
 }

@@ -9,23 +9,23 @@ class CreateInvoiceRequest extends BaseFormRequest
     public function rules()
     {
         return [
-        'customer_id' => 'required',
-        'tour_guide_id' => 'required',
-        'hotel_id' => 'required',
-        'order_date' => 'required',
+        // 'customer_id' => 'required',
+        // 'tour_guide_id' => 'required',
+        // 'hotel_id' => 'required',
+        // 'order_date' => 'required',
         'product' => 'required',
         'price' => 'required',
         'discount' => 'required',
         'payment_type' => 'required',
-        'delivery_date' => 'required',
+        // 'delivery_date' => 'required',
         'delivery_address' => 'required',
         'delivery_name' => 'required',
         'delivery_phone' => 'required',
         'delivery_note' => 'required',
         'billing_name' => 'required',
         'billing_phone' => 'required',
-        'status' => 'required',
-        'note' => 'required'
+        // 'status' => 'required',
+        // 'note' => 'required'
         ];
     }
 

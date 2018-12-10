@@ -28,16 +28,23 @@ $status = [
     
     <div class ="col-sm-2" style = "padding-top:25px;">
         <div class="btn-group" name="btngroupModal" role="group" aria-label="Basic example">
-            <button type="button" id="editInfoCusomer" class="btn btn-secondary" data-toggle="modal" data-target=".modalEditInfo"><i class="fa fa-pencil" aria-hidden="true"></i></button>            
-            <button type="button" id="viewInfoCusomer" class="btn btn-secondary" data-toggle="modal" data-target=".modalInfo"><i class="fa fa-eye" aria-hidden="true">
+            <button type="button" id="editInfoCusomer" class="btn btn-secondary h-btn" data-toggle="modal" data-target=".modalEditInfo"><i class="fa fa-pencil" aria-hidden="true"></i></button>            
+            <button type="button" id="viewInfoCusomer" class="btn btn-secondary h-btn" data-toggle="modal" data-target=".modalInfo"><i class="fa fa-eye" aria-hidden="true">
                 </i></button>
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">
+            <button type="button" class="btn btn-secondary h-btn" data-toggle="modal" data-target=".bd-example-modal-lg">
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
         </div>
     </div>
     <div class ="col-sm-6">
-        {!! Form::normalInput('delivery_date', 'Ngày giao hàng', $errors) !!}
+        <div class="form-group "><label for="order_date">Ngày giao hàng</label>
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control c-form-date datetime-picker" name="delivery_date" id="delivery_date"/>
+                <span class="input-group-addon c-input-addon">
+                    <span class="glyphicon glyphicon-calendar c-icon"></span>
+                </span>
+            </div>      
+        </div>
     </div>
 </div>
 <div class = "row">
@@ -65,7 +72,15 @@ $status = [
             <?php }?>
         </select>
     </div> 
-    {!! Form::normalInput('order_date', 'Ngày đặt hàng', $errors) !!}
+    
+    <div class="form-group "><label for="order_date">Ngày đặt hàng</label>
+        <div class='input-group date' id='datetimepicker2'>
+             <input type='text' class="form-control c-form-date datetime-picker" name="order_date" id="order_date"/>
+              <span class="input-group-addon c-input-addon">
+                <span class="glyphicon glyphicon-calendar c-icon"></span>
+              </span>
+        </div>   
+    </div>
     {!! Form::normalInput('product', 'Sản phẩm', $errors) !!}
     {!! Form::normalInput('price', 'Giá', $errors) !!}
     {!! Form::normalInput('discount', 'Giảm giá', $errors) !!}
@@ -112,11 +127,4 @@ $status = [
 </div>
 <!-- model end view -->
 <!-- modal Edit Info -->
-<div class="modal fade modalEditInfo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      
-    </div>
-  </div>
-</div>
-<!-- End modal Edit Info -->
+

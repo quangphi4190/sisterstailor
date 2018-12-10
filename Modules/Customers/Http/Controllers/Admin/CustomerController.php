@@ -116,7 +116,7 @@ class CustomerController extends AdminBaseController
     public function get_id()
     { 
         $countryId = Input::get('country_id', ''); 
-        $strSelectorOption = '<option value="">'.trans('Select State').'</option>';
+        $strSelectorOption = '<option value="">'.trans('Chọn tỉnh thành').'</option>';
         
         // get state id
         if (!$countryId) {
@@ -135,7 +135,7 @@ class CustomerController extends AdminBaseController
     public function get_id_state()
     { 
         $state_id = Input::get('state_id', ''); 
-        $strSelectorOption = '<option value="">'.trans('Select city').'</option>';
+        $strSelectorOption = '<option value="">'.trans('Chọn thành phố').'</option>';
         
         // get city id
         if (!$state_id) {
