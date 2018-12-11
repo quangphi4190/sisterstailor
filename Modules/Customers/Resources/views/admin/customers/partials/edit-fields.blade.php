@@ -19,7 +19,7 @@
             <label for="status">Trạng thái</label>
             <select id="status" name="status" class="form-control">
                 <option value="">Chọn trạng thái</option>
-                <option value="1"  <?php echo $status== 1 ? 'selected' : ''?>>Đã kích hoạt</option>
+                <option value="1"  <?php echo $status == 1 ? 'selected' : ''?>>Đã kích hoạt</option>
                 <option value="2"  <?php echo $status == 2 ? 'selected' : ''?>>Chưa kích hoạt</option>           
             </select>
         </div> 
@@ -39,7 +39,7 @@
 
         <div class="form-group dropdown">
             <label for="state_id">Tỉnh</label>
-            <select name="state_id" class="form-control">
+            <select name="state_id" id ="state_id" class="form-control">
             <option value="">Chọn tỉnh</option>
                 <?php foreach ($starteofContry as $state) {?>
                     <option value="{{$state->id}}" <?php echo $state_id == $state->id ? 'selected' : '' ?>>{{$state->name}}</option>
@@ -48,7 +48,7 @@
         </div>
         <div class="form-group dropdown">
             <label for="city_id">Thành phố</label>
-            <select name="city_id" class="form-control">
+            <select name="city_id" id="city_id" class="form-control">
                 <option value="">Chọn thành phố</option>
                 <?php foreach ($cityOfState as $citi) {?>
                     <option value="{{$citi->id}}" <?php echo $citi_id == $citi->id ? 'selected' : '' ?>>{{$citi->name}}</option>

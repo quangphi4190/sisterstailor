@@ -14,10 +14,9 @@ $status = [
 <p hidden class="view-customer"></p>
 <div class = "row">
     <div class ="col-sm-4">
-        <!-- {!! Form::normalInput('customer_id', 'Customer', $errors) !!} -->
         <div class="form-group dropdown" id="khachhang">
             <label for="customer_id">Khách hàng</label>
-            <select name="customer_id" id="customer_id" class="form-control">
+            <select name="customer_id" id="customer_id" class="form-control blah">
                 <option value="">Chọn khách hàng</option>
                 <?php foreach ($customers_select as $c) {?>
                     <option data-id-custumer="{{$c->id}}" value="{{$c->id}}">{{$c->firstname .' '.$c->lastname}} </option>

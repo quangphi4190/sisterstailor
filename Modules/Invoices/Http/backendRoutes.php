@@ -61,7 +61,7 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'as' => 'admin.invoices.invoices.inser_form',
         'uses' => 'InvoiceController@inser_form'
     ]);
-    $router->post('invoices/edit/edit_form', [
+    $router->put('invoices/edit/edit_form', [
         'as' => 'admin.invoices.invoices.edit_form',
         'uses' => 'InvoiceController@edit_form'
     ]);

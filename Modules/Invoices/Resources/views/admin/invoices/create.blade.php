@@ -88,7 +88,7 @@
         </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cập nhật</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal">Cập nhật</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>        
       </div>
       </form>
@@ -205,20 +205,18 @@
             custom_field3: custom_field3           
         },
         success: function(data) {              
-            // var $el = $("select#customer_id");
-            //     $el.empty();
-            //     $el.append("<option>Please Select</option>");
-            //      $.each(data, function(k, v) {
-            //          $el.append("<option value='" + v.id + "'>" + v.firstname + "</option>");
-            //     // });
-
-            // var options;
-            // $.each(data, function(index, object) {
-            //     options += '<option value="' + object.id + '">' + object.id + '</option>';
-            // });
-
-            // $('#customer_id').html(options);
-
+            var $el = $("select#customer_id");
+                $el.empty();
+                $el.append("<option>Chọn khách hàng</option>");
+                data = $.parseJSON(data);console.log(data);
+                let i = 0, l = data.length;
+                for(i; i < l; i++) {
+                    let v = data[i];
+                  $el.append("<option value='" + v.id + "'>" + v.firstname +' '+ v.lastname+ "</option>");
+                  $('.blah').trigger("chosen:updated");
+                }
+                     
+               
             swal("Thêm mới thành công!", "", "success");
             $('.bd-example-modal-lg').modal('hide');
         },
@@ -239,21 +237,13 @@
   <script type="text/javascript">
    $('#edit_form').on('submit',function (e) { 
        e.preventDefault();   
-    
-    var firstname = $('#firstname').val();alert(firstname);
-    var lastname = $('#lastname').val();
-    var mail = $('#mail').val();
-    var phone = $('#phone').val();
-    var gender = $('#gender').val();
-    var address = $('#address').val();
-    var status = $('#status').val(); 
-    var customer_type = $('#customer_type').val();
-    var country_id = $('#country_id').val();
-    var state_id = $('#state_id').val();
-    var city_id = $('#city_id').val();
-    var custom_field1 = $('#custom_field1').val();
-    var custom_field2 = $('#custom_field2').val();
-    var custom_field3 = $('#custom_field3').val();
+    var id = $('#edit_form').find('input[name="id"]').val();
+   var firstname = $('#edit_form').find('input[name="firstname"]').val();
+   var lastname = $('#edit_form').find('input[name="lastname"]').val();
+   var mail = $('#edit_form').find('input[name="mail"]').val();
+   var phone = $('#edit_form').find('input[name="phone"]').val();
+   var address = $('#edit_form').find('input[name="address"]').val();
+   
     if(firstname =='') {
      swal({
         title: "Vui lòng nhập họ",
@@ -296,23 +286,15 @@
         url: '{{url('en/backend/invoices/invoices/edit/edit_form')}}',
         data: {
             _token: '{{ csrf_token() }}',
+            id: id,
             firstname: firstname,
             lastname: lastname,
             mail: mail,
             phone: phone,
             gender: gender,
-            address: address,
-            status: status,
-            customer_type: customer_type,
-            country_id: country_id,
-            state_id: state_id,
-            city_id: city_id,
-            custom_field1: custom_field1,
-            custom_field2: custom_field2,
-            custom_field3: custom_field3           
+            address: address,          
         },
         success: function(data) {
-           // $("#khachhang").html(data);
             swal("Cập nhật thông tin khách hàng thành công!", "", "success");
             $('.bd-example-modal-lg').modal('hide');
         },

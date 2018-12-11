@@ -204,6 +204,6 @@ class InvoiceController extends AdminBaseController
         die(json_encode($customers_select));
     }
     public function edit_form (){
-        $inputs = Input::all();dd( $inputs);
+        $inputs = Input::all();
     }
 }
