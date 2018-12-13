@@ -13,10 +13,10 @@ class CreateHotelRequest extends BaseFormRequest
             'phone' =>  'required',
             'email' =>  'required',
             'address'   =>  'required',
-            'contact_name'  =>  'required',
-            'contact_phone' =>  'required',
-            'contact_mail'  =>  'required',
-            'status'        =>  'required'
+            'status'        =>  'required',
+            'country_id'    =>  'required',
+            'state_id'      =>  'required',
+            'city_id'       =>  'required',
         ];
     }
 
@@ -32,7 +32,16 @@ class CreateHotelRequest extends BaseFormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            'name.required'     =>  'Bạn Chưa Nhập Tên Khách Sạn',
+            'phone.required'    =>  'Bạn Chưa Nhập Số Điện Thoại',
+            'email.required'    =>  'Bạn Chưa Nhập E-Mail',
+            'address.required'           =>  'Bạn Chưa Nhập Địa Chỉ Khách Sạn',
+            'status.required'            =>  'Bạn Chưa Chọn Trạng Thái',
+            'country_id.required'       =>  'Bạn Chưa Nhập Quốc Gia',
+            'state_id.required'         =>  'Bạn Chưa Nhập Tỉnh',
+            'city_id.required'          =>  'Bạn Chưa Nhập Thành Phố'
+        ];
     }
 
     public function translationMessages()

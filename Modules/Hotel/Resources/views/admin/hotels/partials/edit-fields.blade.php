@@ -31,8 +31,16 @@
             <?php }?>
         </select>
     </div>
+    <div class="form-group dropdown">
+            <label for="status">Trạng thái</label>
+            <select id="status" name="status" class="form-control">
+                <option value="">Chọn trạng thái</option>
+                <option value="1" <?php echo $status== 1 ? 'selected' : ''?>>Kích hoạt</option>
+                <option value="2" <?php echo $status== 2 ? 'selected' : ''?>>Chưa kích hoạt</option>           
+            </select>
+    </div>
     {!! Form::normalInput('contact_name', trans('hotel::hotels.form.contact_name'), $errors,$hotel) !!}
     {!! Form::normalInput('contact_phone', trans('hotel::hotels.form.contact_phone'), $errors,$hotel) !!}
     {!! Form::normalInput('contact_mail', trans('hotel::hotels.form.contact_mail'), $errors,$hotel) !!}
-    {!! Form::normalInput('status', trans('hotel::hotels.form.status'), $errors,$hotel) !!}
+    
 </div>

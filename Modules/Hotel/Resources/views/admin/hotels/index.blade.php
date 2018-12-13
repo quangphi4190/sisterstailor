@@ -33,6 +33,7 @@
                                 <th>Số Điện Thoại</th>
                                 <th>E-Mail</th>
                                 <th>Địa Chỉ</th>
+                                <th>{{ trans('core::core.table.created at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>

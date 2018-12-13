@@ -12,11 +12,7 @@ class UpdateHotelRequest extends BaseFormRequest
             'name'  =>  'required',
             'phone' =>  'required',
             'email' =>  'required',
-            'address'   =>  'required',
-            'contact_name'  =>  'required',
-            'contact_phone' =>  'required',
-            'contact_mail'  =>  'required',
-            'status'        =>  'required'
+            'address'   =>  'required'
         ];
     }
 
@@ -32,7 +28,12 @@ class UpdateHotelRequest extends BaseFormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            'name.required'     =>  'Bạn Chưa Nhập Tên Khách Sạn Cần Thay Đổi',
+            'phone.required'    =>  'Bạn Chưa Nhập Số Điện Thoại Cần Thay Đổi',
+            'email.required'    =>  'Bạn Chưa Nhập E-Mail Cần Thay Đổi',
+            'address.required'  =>  'Bạn Chưa Nhập Địa Chỉ Cần Thay Đổi'
+        ];
     }
 
     public function translationMessages()

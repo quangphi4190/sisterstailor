@@ -76,12 +76,13 @@ class TourGuideController extends AdminBaseController
         $countries = DB::table('countries')->get();
         $states = DB::table('states')->get();
         $cities = DB::table('cities')->get();
+        $status = $tourguide->status ? $tourguide->status: '';
         $country_id = $tourguide->country_id ? $tourguide->country_id : '' ;
         $state_id = $tourguide->state_id ? $tourguide->state_id : '';
         $citi_id = $tourguide->city_id ? $tourguide->city_id :'';
         $starteofContry = DB::table('states')->where('states.country_id', '=' ,$country_id)->get();
         $cityOfState = DB::table('cities')->where('cities.state_id', '=' ,$state_id)->get();
-        return view('tourguide::admin.tourguides.edit', compact('tourguide','countries','starteofContry','cityOfState','country_id','state_id','citi_id'));
+        return view('tourguide::admin.tourguides.edit', compact('tourguide','status','countries','starteofContry','cityOfState','country_id','state_id','citi_id'));
     }
 
     /**

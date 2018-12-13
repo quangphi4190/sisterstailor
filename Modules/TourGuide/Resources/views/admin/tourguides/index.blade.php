@@ -116,6 +116,7 @@
                 ]
             });
         });
+        
     </script>
     <?php $locale = locale(); ?>
     <script type="text/javascript">

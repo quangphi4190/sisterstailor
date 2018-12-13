@@ -1,11 +1,11 @@
 <div class="modal fade modal-danger" id="modal-delete-confirmation" tabindex="-1" role="dialog" aria-labelledby="delete-confirmation-title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="border-color:#ffffff!important;">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="delete-confirmation-title">{{ trans('core::core.modal.title') }}</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background: #f5f7fa!important;color:black!important;">
                 <div class="default-message">
                     @isset($message)
                         {!! $message !!}
@@ -15,10 +15,10 @@
                 </div>
                 <div class="custom-message"></div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline btn-flat" data-dismiss="modal">{{ trans('core::core.button.cancel') }}</button>
-                {!! Form::open(['method' => 'delete', 'class' => 'pull-left']) !!}
-                <button type="submit" class="btn btn-outline btn-flat"><i class="fa fa-trash"></i> {{ trans('core::core.button.delete') }}</button>
+            <div class="modal-footer" style="background: #f5f7fa!important;border-color: #f5f7fa!important;">
+                <button type="button" style="background: #8d8787;" class="btn btn-outline btn-flat pull-right" data-dismiss="modal">{{ trans('core::core.button.cancel') }}</button>
+                {!! Form::open(['method' => 'delete', 'class' => 'pull-right']) !!}
+                <button type="submit" style="background:#dd4b39;" class="btn btn-outline btn-flat"><i class="fa fa-trash"></i> {{ trans('core::core.button.delete') }}</button>
                 {!! Form::close() !!}
             </div>
         </div>

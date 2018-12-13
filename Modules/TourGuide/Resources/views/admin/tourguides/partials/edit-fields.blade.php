@@ -57,7 +57,14 @@
         </select>
     </div>
     {!! Form::normalInput('company', 'Tên Công Ty', $errors, $tourguide) !!}
-    {!! Form::normalInput('status', 'Trạng Thái', $errors, $tourguide) !!}
+        <div class="form-group dropdown">
+            <label for="status">Trạng thái</label>
+            <select id="status" name="status" class="form-control">
+                <option value="">Chọn trạng thái</option>
+                <option value="1" <?php echo $status== 1 ? 'selected' : ''?>>Kích hoạt</option>
+                <option value="2" <?php echo $status== 2 ? 'selected' : ''?>>Chưa kích hoạt</option>           
+            </select>
+        </div>
     {!! Form::normalInput('custom_field1', 'Custom Field 1', $errors, $tourguide) !!}
     {!! Form::normalInput('custom_field2', 'Custom Field 2', $errors, $tourguide) !!}
     {!! Form::normalInput('custom_field3', 'Custom Field 3', $errors, $tourguide) !!}    

@@ -1977,12 +1977,27 @@
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
 =======
     <list default="true" id="ef7500cf-fa99-4033-8905-5c15863c7c03" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/jsLinters/jshint.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/debugbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/debugbar.php" afterDir="false" />
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Core/Resources/views/partials/delete-modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Core/Resources/views/partials/delete-modal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Customers/Http/Controllers/Admin/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Customers/Http/Controllers/Admin/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Customers/Resources/views/admin/customers/partials/create-fields.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Customers/Resources/views/admin/customers/partials/create-fields.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Invoices/Http/Controllers/Admin/InvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Invoices/Http/Controllers/Admin/InvoiceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Invoices/Http/backendRoutes.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Invoices/Http/backendRoutes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/modal-edit-customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/modal-edit-customer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/partials/create-fields.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/partials/create-fields.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Translation/Resources/lang/core/en/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Translation/Resources/lang/core/en/core.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Themes/Adminlte/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Themes/Adminlte/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/themes/adminlte/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/themes/adminlte/css/style.css" afterDir="false" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -1998,6 +2013,7 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <entry key="project.closed" value="4" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.35" value="1" />
@@ -2010,6 +2026,14 @@
           <entry key="project.open.time.8" value="1" />
           <entry key="project.opened" value="2" />
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
+=======
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="5" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -2087,6 +2111,7 @@
 =======
         <entry file="file://$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1190">
               <caret line="70" column="59" selection-start-line="70" selection-start-column="59" selection-end-line="70" selection-end-column="59" />
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
@@ -2109,6 +2134,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="646">
               <caret line="38" column="61" lean-forward="true" selection-start-line="38" selection-start-column="61" selection-end-line="38" selection-end-column="61" />
+=======
+            <state relative-caret-position="1156">
+              <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
             </state>
           </provider>
         </entry>
@@ -2121,13 +2150,19 @@
 =======
         <entry file="file://$PROJECT_DIR$/Modules/Customers/Resources/views/admin/customers/partials/create-fields.blade.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="289">
               <caret line="17" column="28" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="28" />
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
+=======
+            <state relative-caret-position="697">
+              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
 <<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/Modules/Hotel/Resources/lang/en/hotels.php">
@@ -2140,8 +2175,20 @@
             <state relative-caret-position="503">
               <caret line="73" column="157" selection-start-line="73" selection-start-column="157" selection-end-line="73" selection-end-column="157" />
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Customers/Resources/views/admin/customers/create.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1530">
+              <caret line="90" column="111" selection-start-line="90" selection-start-column="111" selection-end-line="90" selection-end-column="111" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/storage/framework/views/cb4b34f504135089fb9a43637ab2f166689017d3.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -2153,8 +2200,8 @@
 =======
         <entry file="file://$PROJECT_DIR$/Modules/Customers/Http/Controllers/Admin/CustomerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="76" column="103" selection-start-line="76" selection-start-column="103" selection-end-line="76" selection-end-column="103" />
+            <state relative-caret-position="1139">
+              <caret line="75" column="62" selection-start-line="75" selection-start-column="62" selection-end-line="75" selection-end-column="62" />
               <folding>
                 <element signature="e#60#88#0#PHP" expanded="true" />
               </folding>
@@ -2173,9 +2220,11 @@
     </findStrings>
 =======
       <find>app</find>
+      <find>die(json_encode</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\sisterstailor\app</dir>
+      <dir>C:\xampp\htdocs\sisterstailor</dir>
     </dirStrings>
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
   </component>
@@ -2741,6 +2790,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="C:/xampp5/htdocs/foster" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="C:\xampp\htdocs\sisterstailor\node_modules\eslint" />
@@ -2751,11 +2801,11 @@
 <<<<<<< HEAD
 =======
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sisterstailor\public\themes\adminlte\css" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sisterstailor\Modules\Customers\Entities" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sisterstailor\public\themes\adminlte\css" />
     </key>
   </component>
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
@@ -2794,11 +2844,18 @@
       <updated>1543945980212</updated>
       <workItem from="1543945985027" duration="4229000" />
       <workItem from="1543984879077" duration="8611000" />
+<<<<<<< HEAD
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
+=======
+      <workItem from="1544200500886" duration="39000" />
+      <workItem from="1544410687096" duration="272000" />
+      <workItem from="1544429747507" duration="76000" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="11467000" />
   </component>
@@ -2808,12 +2865,19 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
 =======
     <option name="totallyTimeSpent" value="12840000" />
+=======
+    <option name="totallyTimeSpent" value="13227000" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
     <layout>
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25285044" />
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26291078" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -3100,48 +3164,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Customers/Entities/Country.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#46#83#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Customers/Http/Controllers/Admin/CustomerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="76" column="103" selection-start-line="76" selection-start-column="103" selection-end-line="76" selection-end-column="103" />
-          <folding>
-            <element signature="e#60#88#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/chosen.jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="597" column="8" selection-start-line="597" selection-start-column="8" selection-end-line="597" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="59" selection-start-line="70" selection-start-column="59" selection-end-line="70" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Customers/Entities/Country.php" />
+    <entry file="file://$PROJECT_DIR$/public/js/chosen.jquery.js" />
     <entry file="file://$PROJECT_DIR$/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <folding>
-            <element signature="e#162212#162351#2" expanded="true" />
-            <element signature="e#165758#165897#2" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-357" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/themes/adminlte/css/style.css">
@@ -3154,13 +3181,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Customers/Resources/views/admin/customers/partials/create-fields.blade.php">
+    <entry file="file://$PROJECT_DIR$/Modules/Invoices/Resources/views/admin/invoices/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="28" />
+        <state relative-caret-position="1156">
+          <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Customers/Resources/views/admin/customers/partials/create-fields.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Customers/Resources/views/admin/customers/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="90" column="111" selection-start-line="90" selection-start-column="111" selection-end-line="90" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Customers/Http/Controllers/Admin/CustomerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="75" column="62" selection-start-line="75" selection-start-column="62" selection-end-line="75" selection-end-column="62" />
+          <folding>
+            <element signature="e#60#88#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Modules/Customers/Resources/views/admin/customers/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="503">
@@ -3168,6 +3220,10 @@
 >>>>>>> b7370a3167a8c356e54f3634617e5659b9433823
         </state>
       </provider>
+=======
+    <entry file="file://$PROJECT_DIR$/storage/framework/views/cb4b34f504135089fb9a43637ab2f166689017d3.php">
+      <provider selected="true" editor-type-id="text-editor" />
+>>>>>>> 50a64c78afee99c46152282478c715e0da950fcb
     </entry>
   </component>
 </project>

@@ -8,7 +8,14 @@ class UpdateTourGuideRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+            'firstname'         =>  'required',
+            'lastname'          =>  'required',
+            'email'             =>  'required',
+            'phone'             =>  'required',
+            'address'           =>  'required',
+            'company'           =>  'required'
+        ];
     }
 
     public function translationRules()
@@ -23,7 +30,14 @@ class UpdateTourGuideRequest extends BaseFormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            'firstname.required'      =>  'Bạn Chưa Nhập Thông Tin Họ Cần Thay Đổi',
+            'lastname.required'       =>  'Bạn Chưa Nhập Thông Tin Tên Cần Thay Đổi',
+            'email.required'          =>  'Bạn Chưa Nhập Thông Tin E-Mail Cần Thay Đổi',
+            'phone.required'          =>  'Bạn Chưa Nhập Thông Tin Số Điện Thoại Cần Thay Đổi',
+            'address.required'        =>  'Bạn Chưa Nhập Thông Tin Địa Chỉ Cần Thay Đổi',
+            'company.required'        =>  'Bạn Chưa Nhập Thông Tin Công Ty Cần Thay Đổi'
+        ];
     }
 
     public function translationMessages()

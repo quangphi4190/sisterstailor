@@ -69,7 +69,7 @@
     </script>
     
     <script type="text/javascript">  
-        $('select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "{{trans('common.txt_not_found')}}", width: "100%", search_contains:true});
+        $('select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "Thông Tin Bạn Nhập Không Có", width: "100%", search_contains:true});
     
         $('select[name="country_id"]').change(function () {
                 var url = "{{ url('en/backend/customers/customers/get_id') }}";

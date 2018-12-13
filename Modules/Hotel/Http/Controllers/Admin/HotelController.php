@@ -76,13 +76,13 @@ class HotelController extends AdminBaseController
         $countries = DB::table('countries')->get();
         $states = DB::table('states')->get();
         $cities = DB::table('cities')->get();
-
+        $status = $hotel->status ? $hotel->status : '' ;
         $country_id = $hotel->country_id ? $hotel->country_id : '' ;
         $state_id = $hotel->state_id ? $hotel->state_id : '';
         $citi_id = $hotel->city_id ? $hotel->city_id :'';
         $starteofContry = DB::table('states')->where('states.country_id', '=' ,$country_id)->get();
         $cityOfState = DB::table('cities')->where('cities.state_id', '=' ,$state_id)->get();
-        return view('hotel::admin.hotels.edit', compact('hotel','countries','starteofContry','cityOfState','country_id','state_id','citi_id'));
+        return view('hotel::admin.hotels.edit', compact('hotel','status','countries','starteofContry','cityOfState','country_id','state_id','citi_id'));
     }
 
     /**
