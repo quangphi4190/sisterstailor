@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\TourGuide\Http\Controllers\Admin;
+namespace Modules\Tourguide\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

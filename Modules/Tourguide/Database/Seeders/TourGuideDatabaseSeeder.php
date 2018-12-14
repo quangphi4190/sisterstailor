@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\TourGuide\Database\Seeders;
+namespace Modules\Tourguide\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;

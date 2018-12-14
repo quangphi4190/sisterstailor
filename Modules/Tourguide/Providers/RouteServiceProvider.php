@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\TourGuide\Providers;
+namespace Modules\Tourguide\Providers;
 
 use Modules\Core\Providers\RoutingServiceProvider as CoreRoutingServiceProvider;
 

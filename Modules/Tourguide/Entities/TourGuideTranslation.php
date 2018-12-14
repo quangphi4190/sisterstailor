@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\TourGuide\Entities;
+namespace Modules\Tourguide\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
