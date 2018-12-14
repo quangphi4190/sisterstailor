@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\TourGuide\Repositories;
+namespace Modules\Tourguide\Repositories;
 
 use Modules\Core\Repositories\BaseRepository;
 

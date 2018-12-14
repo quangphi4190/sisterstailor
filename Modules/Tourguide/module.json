@@ -7,8 +7,8 @@
 	"active": 1,
     "order": 1,
     "providers": [
-        "Modules\\TourGuide\\Providers\\TourGuideServiceProvider",
-        "Modules\\TourGuide\\Providers\\RouteServiceProvider"
+        "Modules\\Tourguide\\Providers\\TourGuideServiceProvider",
+        "Modules\\Tourguide\\Providers\\RouteServiceProvider"
     ],
     "aliases": {},
     "files": [

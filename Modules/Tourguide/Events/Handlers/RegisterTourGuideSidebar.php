@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\TourGuide\Events\Handlers;
+namespace Modules\Tourguide\Events\Handlers;
 
 use Maatwebsite\Sidebar\Group;
 use Maatwebsite\Sidebar\Item;

@@ -14,7 +14,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Modules\\TourGuide\\": ".",
+            "Modules\\Tourguide\\": ".",
             "Modules\\": "Modules/"
         }
     },
@@ -29,7 +29,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\TourGuide\\Providers\\TourGuideServiceProvider"
+                "Modules\\Tourguide\\Providers\\TourGuideServiceProvider"
             ],
             "aliases": {
                 
@@ -38,7 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\TourGuide\\": ""
+            "Modules\\Tourguide\\": ""
         }
     }
 }

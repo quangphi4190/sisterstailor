@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\TourGuide\Repositories\Cache;
+namespace Modules\Tourguide\Repositories\Cache;
 
-use Modules\TourGuide\Repositories\TourGuideRepository;
+use Modules\Tourguide\Repositories\TourGuideRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
 class CacheTourGuideDecorator extends BaseCacheDecorator implements TourGuideRepository

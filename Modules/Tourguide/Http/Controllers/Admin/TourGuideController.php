@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\TourGuide\Http\Controllers\Admin;
+namespace Modules\Tourguide\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\TourGuide\Entities\TourGuide;
-use Modules\TourGuide\Http\Requests\CreateTourGuideRequest;
-use Modules\TourGuide\Http\Requests\UpdateTourGuideRequest;
-use Modules\TourGuide\Repositories\TourGuideRepository;
+use Modules\Tourguide\Entities\TourGuide;
+use Modules\Tourguide\Http\Requests\CreateTourGuideRequest;
+use Modules\Tourguide\Http\Requests\UpdateTourGuideRequest;
+use Modules\Tourguide\Repositories\TourGuideRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use DB;
 use Illuminate\Support\Facades\Input;

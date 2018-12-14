@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\TourGuide\Http\Requests;
+namespace Modules\Tourguide\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
