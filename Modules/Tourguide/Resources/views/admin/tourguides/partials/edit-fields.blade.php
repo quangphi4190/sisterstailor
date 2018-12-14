@@ -14,30 +14,20 @@
     {!! Form::normalInput('email', 'E-Mail', $errors, $tourguide) !!}
     {!! Form::normalInput('phone', 'Số Điện Thoại', $errors, $tourguide) !!}
     {!! Form::normalInput('address', 'Địa Chỉ', $errors, $tourguide) !!}
-    	@if ($tourguide->gender === 'Nam')
-	    <div class="radio">    	
-	      <label><input type="radio" name="gender" value="{{$tourguide->gender}}" checked>{{$tourguide->gender}}</label>
-	    </div>
-	    <div class="radio">
-	      <label><input type="radio" name="gender" value="Nữ">Nữ</label>      
-	    </div>
-    	@else	    
-	    <div class="radio">
-	      <label><input type="radio" name="gender" value="Nam">Nam</label>      
-	    </div>
-	    <div class="radio">    	
-	      <label><input type="radio" name="gender" value="{{$tourguide->gender}}" checked>{{$tourguide->gender}}</label>
-	    </div>
-	    @endif
-
-    
+    <div class="form-group dropdown">
+            <label for="country_id">Giới tính</label>
+            <select id="gender" name="gender" class="form-control">
+                <option value="1" <?php echo $gender_id == 1 ? 'selected' : ''?>>Nam</option>
+                <option value="2" <?php echo $gender_id == 2 ? 'selected' : ''?>>Nữ</option>           
+            </select>
+    </div>
     {!! Form::normalInput('company', 'Tên Công Ty', $errors, $tourguide) !!}
     </div>
     <div class="col-sm-6">
     <div class="form-group dropdown">
-        <label for="country_id">Country</label>
+        <label for="country_id">Quốc Gia</label>
         <select id="country_id" name="country_id" class="form-control">
-            <option value="">Select country</option>
+            <option value="">Chọn Quốc Gia</option>
             <?php foreach ($countries as $countrie) {?>
                 <option value="{{$countrie->id}}" <?php echo $country_id == $countrie->id ? 'selected' : '' ?>>{{$countrie->name}}</option>
             <?php }?>
@@ -45,18 +35,18 @@
     </div>
 
     <div class="form-group dropdown">
-        <label for="state_id">State</label>
+        <label for="state_id">Tỉnh</label>
         <select name="state_id" class="form-control">
-        <option value="">Select state</option>
+        <option value="">Chọn Tỉnh</option>
             <?php foreach ($starteofContry as $state) {?>
                 <option value="{{$state->id}}" <?php echo $state_id == $state->id ? 'selected' : '' ?>>{{$state->name}}</option>
             <?php }?>
         </select>
     </div>
     <div class="form-group dropdown">
-        <label for="city_id">City</label>
+        <label for="city_id">Thành Phố</label>
         <select name="city_id" class="form-control">
-            <option value="">Select city</option>
+            <option value="">Chọn Thành Phố</option>
             <?php foreach ($cityOfState as $citi) {?>
                 <option value="{{$citi->id}}" <?php echo $citi_id == $citi->id ? 'selected' : '' ?>>{{$citi->name}}</option>
             <?php }?>

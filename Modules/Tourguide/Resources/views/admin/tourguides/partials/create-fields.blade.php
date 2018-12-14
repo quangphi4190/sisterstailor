@@ -13,19 +13,20 @@
     {!! Form::normalInput('email', 'E-Mail', $errors) !!}
     {!! Form::normalInput('phone', 'Số Điện Thoại', $errors) !!}
     {!! Form::normalInput('address', 'Địa Chỉ', $errors) !!}
-    <div class="radio">
-      <label><input type="radio" name="gender" value="Nam" checked>Nam</label>
-    </div>
-    <div class="radio">
-      <label><input type="radio" name="gender" value="Nữ">Nữ</label>
-    </div>    
+    <div class="form-group dropdown">
+            <label for="gender">Giới tính</label>
+            <select id="gender" name="gender" class="form-control">
+                <option value="1">Nam</option>
+                <option value="2">Nữ</option>           
+            </select>
+        </div>    
     {!! Form::normalInput('company', 'Tên Công Ty', $errors) !!}
     </div>
     <div class="col-sm-6">
     <div class="form-group dropdown">
-        <label for="country_id">Country</label>
+        <label for="country_id">Quốc Gia</label>
         <select id="country_id" name="country_id" class="form-control">
-            <option value="">Select country</option>
+            <option value="">Chọn Quốc Gia</option>
             <?php foreach ($countries as $countrie) {?>
             <option value="{{$countrie->id}}">{{$countrie->name}}</option>
             <?php }?>
@@ -33,16 +34,16 @@
     </div>
 
     <div class="form-group dropdown">
-        <label for="state_id">State</label>
+        <label for="state_id">Tỉnh</label>
         <select name="state_id" class="form-control">
-        <option value="">Select state</option>
+        <option value="">Chọn Tỉnh</option>
         </select>
     </div>
 
     <div class="form-group dropdown">
-        <label for="city_id">City</label>
+        <label for="city_id">Thành Phố</label>
         <select name="city_id" class="form-control">
-            <option value="">Select city</option>
+            <option value="">Chọn Thành Phố</option>
         </select>
     </div>
         <div class="form-group dropdown">

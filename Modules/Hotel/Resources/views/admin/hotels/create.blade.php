@@ -73,7 +73,7 @@
                 var url = route('admin.hotel.hotels.get_id');
                 var token = '{{ csrf_token() }}';
     
-                $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Chọn Tỉnh', }, function(data){
+                $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Chọn Tỉnh Thành', }, function(data){
                     
                     $('select[name="state_id"]').html(data);
                     $('select[name="state_id"]').trigger("chosen:updated");
