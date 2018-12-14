@@ -1,5 +1,3 @@
-
-<div class="modal-body">
 <?php $i = 0; ?>
 @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
     <?php $i++; ?>
@@ -8,8 +6,6 @@
         @include('customers::admin.customers.partials.edit-fields', ['lang' => $locale])
     </div>
 @endforeach
-</div>
-
 
 
 

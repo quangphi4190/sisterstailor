@@ -31,21 +31,22 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>Id</th>                                
-                                <th>Billing Name</th>
-                                <th>Delivery Phone</th>
-                                <th>Note</th>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>STT</th>                                
+                                <th>Tên người đứng hóa đơn</th>
+                                <th>Số điện thoại thanh toán</th>
+                                <th>Ghi chú</th>
+                                <th data-sortable="false">Chức năng</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($invoices)): ?>
+                            <?php if (isset($invoices)): 
+                                  $stt=1;  
+                                ?>
                             <?php foreach ($invoices as $invoice): ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ $invoice->id }}
+                                        {{ $stt ++}}
                                     </a>
                                 </td>
                                
@@ -63,12 +64,7 @@
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
                                         <?php echo $invoice->note; ?>
                                     </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ $invoice->created_at }}
-                                    </a>
-                                </td>
+                                </td>                               
                                
                                 <td>
                                     <div class="btn-group">

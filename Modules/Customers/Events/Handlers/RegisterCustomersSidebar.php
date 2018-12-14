@@ -55,6 +55,8 @@ class RegisterCustomersSidebar implements \Maatwebsite\Sidebar\SidebarExtender
 // append
 
             });
+
+
         });
 
         return $menu;

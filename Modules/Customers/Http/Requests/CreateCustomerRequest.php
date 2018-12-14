@@ -39,7 +39,12 @@ class CreateCustomerRequest extends BaseFormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            'firstname.required'     =>  'Vui lòng họ',
+            'lastname.required'    =>  'Vui lòng tên',
+            'phone.required'           =>  'Vui lòng nhập số điện thoại',
+            'address.required'            =>  'Vui lòng nhập địa chỉ',
+        ];
     }
 
     public function translationMessages()
