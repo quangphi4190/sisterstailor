@@ -72,10 +72,10 @@
         $('select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "Thông Tin Bạn Nhập Không Có", width: "100%", search_contains:true});
     
         $('select[name="country_id"]').change(function () {
-                var url = "{{ url('en/backend/customers/customers/get_id') }}";
+                var url = route('admin.tourguide.tourguides.get_id');
                 var token = '{{ csrf_token() }}';
     
-                $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Select State', }, function(data){
+                $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Chọn Tỉnh', }, function(data){
                     
                     $('select[name="state_id"]').html(data);
                     $('select[name="state_id"]').trigger("chosen:updated");
@@ -83,10 +83,10 @@
             });
             // Get state
         $('select[name="state_id"]').change(function () {
-            var url = "{{ url('en/backend/customers/customers/state/get_id_state') }}";
+            var url =  route('admin.tourguide.tourguides.get_id_state');
             var token = '{{ csrf_token() }}';
 
-            $.post(url, {state_id:$(this).val(), _token:token, emptyOption:'Select City', }, function(data){
+            $.post(url, {state_id:$(this).val(), _token:token, emptyOption:'Chọn Thành Phố', }, function(data){
                 
                 $('select[name="city_id"]').html(data);
                 $('select[name="city_id"]').trigger("chosen:updated");

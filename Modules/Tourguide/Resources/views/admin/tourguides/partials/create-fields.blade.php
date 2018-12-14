@@ -1,4 +1,6 @@
 <div class="box-body">
+<div class="row">
+<div class="col-sm-6">
     <div class="form-group dropdown">
         <label >Cấp Độ Hướng Dẫn Viên</label>
         <select  name="tour_guide_type" class="form-control">
@@ -16,8 +18,10 @@
     </div>
     <div class="radio">
       <label><input type="radio" name="gender" value="Nữ">Nữ</label>
+    </div>    
+    {!! Form::normalInput('company', 'Tên Công Ty', $errors) !!}
     </div>
-
+    <div class="col-sm-6">
     <div class="form-group dropdown">
         <label for="country_id">Country</label>
         <select id="country_id" name="country_id" class="form-control">
@@ -41,7 +45,6 @@
             <option value="">Select city</option>
         </select>
     </div>
-    {!! Form::normalInput('company', 'Tên Công Ty', $errors) !!}
         <div class="form-group dropdown">
             <label for="status">Trạng thái</label>
             <select id="status" name="status" class="form-control">
@@ -52,5 +55,7 @@
         </div>
     {!! Form::normalInput('custom_field1', 'Custom Field 1', $errors) !!}
     {!! Form::normalInput('custom_field2', 'Custom Field 2', $errors) !!}
-    {!! Form::normalInput('custom_field3', 'Custom Field 3', $errors) !!}    
+    {!! Form::normalInput('custom_field3', 'Custom Field 3', $errors) !!} 
+    </div>
+    </div>   
 </div>

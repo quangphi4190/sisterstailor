@@ -1,4 +1,6 @@
 <div class="box-body">
+<div class="row">
+    <div class="col-sm-6">
     <div class="form-group dropdown">
         <label >Cấp Độ Hướng Dẫn Viên</label>
         <select  name="tour_guide_type" class="form-control">
@@ -28,6 +30,10 @@
 	    </div>
 	    @endif
 
+    
+    {!! Form::normalInput('company', 'Tên Công Ty', $errors, $tourguide) !!}
+    </div>
+    <div class="col-sm-6">
     <div class="form-group dropdown">
         <label for="country_id">Country</label>
         <select id="country_id" name="country_id" class="form-control">
@@ -56,7 +62,6 @@
             <?php }?>
         </select>
     </div>
-    {!! Form::normalInput('company', 'Tên Công Ty', $errors, $tourguide) !!}
         <div class="form-group dropdown">
             <label for="status">Trạng thái</label>
             <select id="status" name="status" class="form-control">
@@ -67,5 +72,7 @@
         </div>
     {!! Form::normalInput('custom_field1', 'Custom Field 1', $errors, $tourguide) !!}
     {!! Form::normalInput('custom_field2', 'Custom Field 2', $errors, $tourguide) !!}
-    {!! Form::normalInput('custom_field3', 'Custom Field 3', $errors, $tourguide) !!}    
+    {!! Form::normalInput('custom_field3', 'Custom Field 3', $errors, $tourguide) !!}
+    </div> 
+    </div>   
 </div>
