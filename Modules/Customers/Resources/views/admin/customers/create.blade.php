@@ -74,7 +74,7 @@
         $('select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "Không tìm thấy", width: "100%", search_contains:true});
     
         $('select[name="country_id"]').change(function () {
-                var url = "{{ url('backend/customers/customers/get_id') }}";
+                var url= route('admin.customers.customer.get_id');
                 var token = '{{ csrf_token() }}';
     
                 $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Chọn tỉnh', }, function(data){
@@ -85,7 +85,7 @@
             });
             // Get state
         $('select[name="state_id"]').change(function () {
-            var url = "{{ url('backend/customers/customers/state/get_id_state') }}";
+            var url= route('admin.customers.customer.get_id_state');
             var token = '{{ csrf_token() }}';
 
             $.post(url, {state_id:$(this).val(), _token:token, emptyOption:'Chọn thành phố', }, function(data){
