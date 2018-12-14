@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\TourGuide\Providers;
+namespace Modules\Tourguide\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
-use Modules\TourGuide\Events\Handlers\RegisterTourGuideSidebar;
+use Modules\Tourguide\Events\Handlers\RegisterTourGuideSidebar;
 
 class TourGuideServiceProvider extends ServiceProvider
 {
@@ -55,15 +55,15 @@ class TourGuideServiceProvider extends ServiceProvider
     private function registerBindings()
     {
         $this->app->bind(
-            'Modules\TourGuide\Repositories\TourGuideRepository',
+            'Modules\Tourguide\Repositories\TourGuideRepository',
             function () {
-                $repository = new \Modules\TourGuide\Repositories\Eloquent\EloquentTourGuideRepository(new \Modules\TourGuide\Entities\TourGuide());
+                $repository = new \Modules\Tourguide\Repositories\Eloquent\EloquentTourGuideRepository(new \Modules\Tourguide\Entities\TourGuide());
 
                 if (! config('app.cache')) {
                     return $repository;
                 }
 
-                return new \Modules\TourGuide\Repositories\Cache\CacheTourGuideDecorator($repository);
+                return new \Modules\Tourguide\Repositories\Cache\CacheTourGuideDecorator($repository);
             }
         );
 // add bindings

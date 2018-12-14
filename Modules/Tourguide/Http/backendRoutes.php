@@ -5,7 +5,7 @@ use Illuminate\Routing\Router;
 
 $router->group(['prefix' =>'/tourguide'], function (Router $router) {
     $router->bind('tourguide', function ($id) {
-        return app('Modules\TourGuide\Repositories\TourGuideRepository')->find($id);
+        return app('Modules\Tourguide\Repositories\TourGuideRepository')->find($id);
     });
     $router->get('tourguides', [
         'as' => 'admin.tourguide.tourguide.index',

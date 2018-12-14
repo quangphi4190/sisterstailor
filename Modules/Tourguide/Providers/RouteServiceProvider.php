@@ -10,7 +10,7 @@ class RouteServiceProvider extends CoreRoutingServiceProvider
      * The root namespace to assume when generating URLs to actions.
      * @var string
      */
-    protected $namespace = 'Modules\TourGuide\Http\Controllers';
+    protected $namespace = 'Modules\Tourguide\Http\Controllers';
 
     /**
      * @return string
