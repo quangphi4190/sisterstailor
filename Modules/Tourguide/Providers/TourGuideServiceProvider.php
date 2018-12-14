@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Tourguide\Providers;
+namespace Modules\TourGuide\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
