@@ -175,12 +175,13 @@ class InvoiceController extends AdminBaseController
         $status = $customer->status ? $customer->status : '' ;
         $gender_id = $customer->gender ? $customer->gender : '' ;
         $country_id = $customer->country_id ? $customer->country_id : '' ;
+        $customer_type = $customer->customer_type ? $customer->customer_type : '' ;
         $state_id = $customer->state_id ? $customer->state_id : '';
         $citi_id = $customer->city_id ? $customer->city_id :'';
         $starteofContry = DB::table('states')->where('states.country_id', '=' ,$country_id)->get();
         $cityOfState = DB::table('cities')->where('cities.state_id', '=' ,$state_id)->get(); 
 
-        return view('invoices::admin.invoices.modal-edit-customer', compact('customer','countries','status','states','cities','country_id','gender_id','state_id','cityOfState','starteofContry','citi_id'));
+        return view('invoices::admin.invoices.modal-edit-customer', compact('customer','countries','customer_type','status','states','cities','country_id','gender_id','state_id','cityOfState','starteofContry','citi_id'));
     }
      public function inser_form (){       
         $inputs = Input::all();

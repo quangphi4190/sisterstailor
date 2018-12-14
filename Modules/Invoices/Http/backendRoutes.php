@@ -38,11 +38,11 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'middleware' => 'can:invoices.invoices.destroy'
     ]);
    
-    $router->post('invoices/{get_id_customer}', [
+    $router->post('invoices/get_id_customer', [
         'as' => 'admin.invoices.invoices.get_id_customer',
         'uses' => 'InvoiceController@get_id_customer'
     ]);
-    $router->post('invoices/modal/{get_id_customer}', [
+    $router->post('invoices/modal/get_id_customer', [
         'as' => 'admin.invoices.invoices.get_id_modal',
         'uses' => 'InvoiceController@get_id_modal'
     ]);
@@ -51,7 +51,7 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'uses' => 'InvoiceController@get_info'
     ]);
 
-    $router->post('invoices/get_info/edit-info', [
+    $router->post('invoices/get_info/edit_info', [
         'as' => 'admin.invoices.invoice.modal-edit-customer',
         'uses' => 'InvoiceController@edit_info'
     ]);

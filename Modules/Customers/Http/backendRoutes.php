@@ -38,11 +38,11 @@ $router->group(['prefix' =>'/customers'], function (Router $router) {
         'middleware' => 'can:customers.customers.destroy'
     ]);
 
-    $router->post('customers/{get_id}', [
+    $router->post('customers/get_id', [
         'as' => 'admin.customers.customer.get_id',
         'uses' => 'CustomerController@get_id'
     ]);
-    $router->post('customers/state/{get_id_state}', [
+    $router->post('customers/state/get_id_state', [
         'as' => 'admin.customers.customer.get_id_state',
         'uses' => 'CustomerController@get_id_state'
     ]);
