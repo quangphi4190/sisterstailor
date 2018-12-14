@@ -37,6 +37,14 @@ $router->group(['prefix' =>'/hotel'], function (Router $router) {
         'uses' => 'HotelController@destroy',
         'middleware' => 'can:hotel.hotels.destroy'
     ]);
+    $router->post('hotels/get_id', [
+        'as' => 'admin.hotel.hotels.get_id',
+        'uses' => 'HotelController@get_id'
+    ]);
+    $router->post('hotels/state/get_id_state', [
+        'as' => 'admin.hotel.hotels.get_id_state',
+        'uses' => 'HotelController@get_id_state'
+    ]);
 // append
 
 });

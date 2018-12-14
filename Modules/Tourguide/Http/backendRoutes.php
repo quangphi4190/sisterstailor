@@ -37,6 +37,14 @@ $router->group(['prefix' =>'/tourguide'], function (Router $router) {
         'uses' => 'TourGuideController@destroy',
         'middleware' => 'can:tourguide.tourguides.destroy'
     ]);
+    $router->post('tourguides/get_id', [
+        'as' => 'admin.tourguide.tourguides.get_id',
+        'uses' => 'TourGuideController@get_id'
+    ]);
+    $router->post('tourguides/state/get_id_state', [
+        'as' => 'admin.tourguide.tourguides.get_id_state',
+        'uses' => 'TourGuideController@get_id_state'
+    ]);
 // append
 
 });

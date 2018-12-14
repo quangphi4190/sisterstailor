@@ -11,11 +11,7 @@ class CreateTourGuideRequest extends BaseFormRequest
         return [
             'firstname'         =>  'required',
             'lastname'          =>  'required',
-            'email'             =>  'required',
             'phone'             =>  'required',
-            'address'           =>  'required',
-            'company'           =>  'required',
-            'status'           =>  'required',
             'country_id'        =>  'required',
             'state_id'          =>  'required',
             'city_id'           =>  'required'
@@ -37,14 +33,10 @@ class CreateTourGuideRequest extends BaseFormRequest
         return [
             'firstname.required'      =>  'Bạn Chưa Nhập Thông Tin Họ',
             'lastname.required'       =>  'Bạn Chưa Nhập Thông Tin Tên',
-            'email.required'          =>  'Bạn Chưa Nhập Thông Tin E-Mail',
             'phone.required'          =>  'Bạn Chưa Nhập Thông Tin Số Điện Thoại',
-            'address.required'        =>  'Bạn Chưa Nhập Thông Tin Địa Chỉ',
-            'company.required'        =>  'Bạn Chưa Nhập Thông Tin Công Ty',
             'country_id.required'     =>  'Bạn Chưa Nhập Thông Tin Quốc Gia',
             'state_id.required'       =>  'Bạn Chưa Nhập Thông Tin Tỉnh',
             'city_id.required'        =>  'Bạn Chưa Nhập Thông Tin Thành Phố',
-            'status.required'         =>  'Bạn Chưa Chọn Trạng Thái'
         ];
     }
 
