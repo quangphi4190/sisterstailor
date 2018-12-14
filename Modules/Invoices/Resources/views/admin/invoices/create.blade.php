@@ -103,11 +103,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 {!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
 {!! Theme::style('css/chosen.css') !!}
-<!-- {!! Theme::script('vendor/jquery/jquery-ui.min.js') !!} -->
-{!! Theme::script('vendor/autocomplete/jquery.easy-autocomplete.min.js') !!} 
-{!! Theme::style('css/easy-autocomplete.min.css') !!}
-{!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
-{!! Theme::style('css/chosen.css') !!}
 
     <script type="text/javascript">
       $(function () {
@@ -186,7 +181,7 @@
     else {
         $.ajax({
         type: 'POST',
-        url: '{{url('en/backend/invoices/invoices/add/inser_form')}}',
+        url: '{{url('backend/invoices/invoices/add/inser_form')}}',
         data: {
             _token: '{{ csrf_token() }}',
             firstname: firstname,
@@ -283,7 +278,7 @@
     else {
         $.ajax({
         type: 'POST',
-        url: '{{url('en/backend/invoices/invoices/edit/edit_form')}}',
+        url: '{{url('backend/invoices/invoices/edit/edit_form')}}',
         data: {
             _token: '{{ csrf_token() }}',
             id: id,
@@ -313,23 +308,11 @@
     });      
   </script>
   <script type="text/javascript">
-    var options = {
-	data: <?php echo json_encode($arrInvoi) ?>,
-
-	getValue: "fullname",
-
-    template: {
-		type: "custom",
-		method: function(value, item) {
-			return value + " | " + item.phone + " | " + item.address;
-		}
-	}
     
-    };  
     // view info
      $('#viewInfoCusomer').click(function () {
         // lấy id
-        url = '{{url('en/backend/invoices/invoices/get_info/info')}}';
+        url = '{{url('backend/invoices/invoices/get_info/info')}}';
         var id = $('.view-customer').val();
         if (id == ''){
             swal({
@@ -354,7 +337,7 @@
     // editInfoCusomer
     $('#editInfoCusomer').click(function () {
         // lấy id
-        url = '{{url('en/backend/invoices/invoices/get_info/edit-info')}}';
+        url = '{{url('backend/invoices/invoices/get_info/edit-info')}}';
         var id = $('.view-customer').val();
         if (id == ''){
             swal({
@@ -377,7 +360,7 @@
     // get id custumer
     $('select[name="customer_id"]').change(function () {
               $('.c-customer').addClass('info-cusomer');             
-            var url = "{{ url('en/backend/invoices/invoices/get_id_customer') }}";
+            var url = "{{ url('backend/invoices/invoices/get_id_customer') }}";
             var token = '{{ csrf_token() }}';
             val = $(this).val();
             let view_customer = val;
@@ -389,7 +372,6 @@
             });
         });
 
-    $("#customer_id").easyAutocomplete(options);
     </script>
     <script type="text/javascript">
         $( document ).ready(function() {
@@ -413,7 +395,7 @@
     $('select[name="customer_id"], select[name="tour_guide_id"], select[name="hotel_id"],select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "Không tìm thấy", width: "100%", search_contains:true});
 
     $('select[name="country_id"]').change(function () {
-            var url = "{{ url('en/backend/customers/customers/get_id') }}";
+            var url = "{{ url('backend/customers/customers/get_id') }}";
             var token = '{{ csrf_token() }}';
 
             $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Select State', }, function(data){                
@@ -423,7 +405,7 @@
         });
         // Get state
     $('select[name="state_id"]').change(function () {
-        var url = "{{ url('en/backend/customers/customers/state/get_id_state') }}";
+        var url = "{{ url('backend/customers/customers/state/get_id_state') }}";
         var token = '{{ csrf_token() }}';
 
         $.post(url, {state_id:$(this).val(), _token:token, emptyOption:'Select City', }, function(data){            
