@@ -9,11 +9,11 @@ class CreateCustomerRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'customer_type' => 'required',
+            // 'customer_type' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
             //'gender' => 'required',
-            'mail' => 'required',
+            // 'mail' => 'required',
             'phone' => 'required',
             'address' => 'required',
             // 'country_id' => 'required',

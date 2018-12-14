@@ -85,7 +85,7 @@
                                 </td>                               
                                 <td>
                                     <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->customer_type }}
+                                        {{ $customer->customer_type == 1 ? 'Bình Thường' : 'VIP'}}
                                     </a>
                                 </td>
                                 <td>

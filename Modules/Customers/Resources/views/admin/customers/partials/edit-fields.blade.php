@@ -9,7 +9,6 @@
         <div class="form-group dropdown">
             <label for="country_id">Giới tính</label>
             <select id="gender" name="gender" class="form-control">
-                <option value="">Chọn giới tính</option>
                 <option value="1" <?php echo $gender_id == 1 ? 'selected' : ''?>>Nam</option>
                 <option value="2" <?php echo $gender_id == 2 ? 'selected' : ''?>>Nữ</option>           
             </select>
@@ -25,8 +24,13 @@
         </div> 
     </div>
     <div class ="col-sm-6">
-        {!! Form::normalInput('customer_type', 'Loại khách hàng', $errors, $customer) !!}
-
+        <div class="form-group dropdown">
+            <label for="customer_type">Loại khách hàng</label>
+            <select id="customer_type" name="customer_type" class="form-control">
+                <option value="1" <?php echo $customer_type == 1 ? 'selected' : ''?>>Bình thường</option>
+                <option value="2" <?php echo $customer_type == 2 ? 'selected' : ''?>>VIP</option>           
+            </select>
+        </div> 
         <div class="form-group dropdown">
             <label for="country_id">Quốc gia</label>
             <select id="country_id" name="country_id" class="form-control">

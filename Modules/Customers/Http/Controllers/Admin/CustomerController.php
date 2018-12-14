@@ -75,12 +75,13 @@ class CustomerController extends AdminBaseController
         $cities = DB::table('cities')->get();
         $status = $customer->status ? $customer->status : '' ;
         $gender_id = $customer->gender ? $customer->gender : '' ;
+        $customer_type = $customer->customer_type ? $customer->customer_type : '' ;
         $country_id = $customer->country_id ? $customer->country_id : '' ;
         $state_id = $customer->state_id ? $customer->state_id : '';
         $citi_id = $customer->city_id ? $customer->city_id :'';
         $starteofContry = DB::table('states')->where('states.country_id', '=' ,$country_id)->get();
         $cityOfState = DB::table('cities')->where('cities.state_id', '=' ,$state_id)->get(); 
-        return view('customers::admin.customers.edit', compact('customer','countries','starteofContry','cityOfState','country_id','state_id','citi_id','gender_id','status'));
+        return view('customers::admin.customers.edit', compact('customer','countries','customer_type','starteofContry','cityOfState','country_id','state_id','citi_id','gender_id','status'));
     }
 
     /**
