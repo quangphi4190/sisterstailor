@@ -9,7 +9,9 @@ use Modules\Thongke\Http\Requests\CreateThongkedayRequest;
 use Modules\Thongke\Http\Requests\UpdateThongkedayRequest;
 use Modules\Thongke\Repositories\ThongkedayRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
-
+use Modules\Invoices\Entities\Invoice;
+use Illuminate\Support\Facades\Input;
+use DB;
 class ThongkedayController extends AdminBaseController
 {
     /**
@@ -31,9 +33,25 @@ class ThongkedayController extends AdminBaseController
      */
     public function index()
     {
-        //$thongkedays = $this->thongkeday->all();
-
-        return view('thongke::admin.thongkedays.index', compact(''));
+        $thongkedays='';
+        $inputs = Input::all();
+        $day = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('order_date', date('Y-m-d')))));
+        if ($day != '') {
+            $thongkedays = Invoice::select('invoices__invoices.*','customers__customers.firstname','customers__customers.lastname','hotel__hotels.name','tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname')
+            ->leftJoin('customers__customers', 'invoices__invoices.customer_id', '=', 'customers__customers.id')
+            ->leftJoin('hotel__hotels', 'invoices__invoices.hotel_id', '=', 'hotel__hotels.id')
+            ->leftJoin('tourguide__tourguides', 'invoices__invoices.tour_guide_id', '=', 'tourguide__tourguides.id')
+            ->where(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"),'=',$day)->get();                
+           
+        }else { 
+            $thongkedays = Invoice::select('invoices__invoices.*','customers__customers.firstname','customers__customers.lastname','hotel__hotels.name','tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname')
+            ->leftJoin('customers__customers', 'invoices__invoices.customer_id', '=', 'customers__customers.id')
+            ->leftJoin('hotel__hotels', 'invoices__invoices.hotel_id', '=', 'hotel__hotels.id')
+            ->leftJoin('tourguide__tourguides', 'invoices__invoices.tour_guide_id', '=', 'tourguide__tourguides.id')
+            ->where(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"),'=',date('Y-m-d'))->get();
+        }
+     
+        return view('thongke::admin.thongkedays.index', compact('thongkedays','day'));
     }
 
     /**

@@ -12,16 +12,24 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12">
-            <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.thongke.thongkehotel.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('thongke::thongkehotels.button.create thongkehotel') }}
-                    </a>
-                </div>
-            </div>
+        <div class="col-xs-12">            
             <div class="box box-primary">
                 <div class="box-header">
+                {!! Form::open(['route' => ['admin.thongke.thongkehotel.index'], 'method' => 'get']) !!}         
+                    <div class="input-date-tk col-md-5 col-sm-12 d-flex flex-row">
+                        <div class="col-md-6 ">
+                        <select name="hotel_id" id="hotel_id" class="form-control">
+                                <option value="">Chọn khách sạn</option>
+                                <?php foreach ($hotels as $hotel) {?>
+                                    <option <?php echo $hotel_id == $hotel->id ? 'selected' : '' ?> value="{{$hotel->id}}">{{$hotel->name}} </option>
+                                 <?php }?>
+                                </select>                     
+                        </div>
+                        <div class="col-md-2 btn-thongke">
+                            <button type="submit" class="btn btn-info">Thống kê</button>
+                        </div>
+                    </div>
+                {!! Form::close() !!}
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -29,35 +37,53 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>STT</th>
+                                <th>{{ trans('customers::customers.title.name hotel') }}</th>
+                                <th>{{ trans('customers::customers.title.product') }}</th>
+                                <th>{{ trans('customers::customers.title.order date') }}</th>
+                                <th>{{ trans('customers::customers.title.delivery date') }}</th>
+                                <th>{{ trans('customers::customers.title.billing name') }}</th>
+                                <th>{{ trans('customers::customers.title.billing phone') }}</th>
+                                <th>{{ trans('customers::customers.title.status') }}</th>
+                                <th>{{ trans('customers::customers.title.note') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($thongkehotels)): ?>
+                            <?php if (isset($thongkehotels)):$stt=1; ?>
                             <?php foreach ($thongkehotels as $thongkehotel): ?>
                             <tr>
-                                <td>
-                                    <a href="{{ route('admin.thongke.thongkehotel.edit', [$thongkehotel->id]) }}">
-                                        {{ $thongkehotel->created_at }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{ route('admin.thongke.thongkehotel.edit', [$thongkehotel->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.thongke.thongkehotel.destroy', [$thongkehotel->id]) }}"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                </td>
+                            <td> {{ $stt++ }} </td>
+                                <td> {{ $thongkehotel->nameHotel }} </td>
+                                <td> {{ $thongkehotel->product }} </td>
+                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongkehotel->order_date)))  }} </td>
+                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongkehotel->delivery_date)))  }} </td>
+                                <td> {{ $thongkehotel->billing_name }} </td>
+                                <td> {{ $thongkehotel->billing_phone }} </td>
+                                <td>  
+                                    <?php
+                                    if($thongkehotel->status == 0) {
+                                         echo "Đơn hàng mới";   
+                                    }elseif($thongkehotel->status == 1) {
+                                        echo "Chờ xử lý";   
+                                    }elseif($thongkehotel->status == 2) {
+                                        echo "Đã xử lý"; 
+                                    }elseif($thongkehotel->status == 3) {
+                                        echo "Chờ thanh toán";
+                                    }elseif($thongkehotel->status == 4) {
+                                        echo "Đã thanh toán";
+                                    }elseif($thongkehotel->status == 5){
+                                        echo "Đã hoàn thành";
+                                    }else {
+                                        echo "Đã hủy";
+                                    }
+                                    ?>
+                                </td>       
+                                <td> {{ $thongkehotel->note }} </td>      
+                                
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
-                            </tfoot>
+                            </tbody>                            
                         </table>
                         <!-- /.box-body -->
                     </div>

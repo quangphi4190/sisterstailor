@@ -6,8 +6,8 @@ return [
     'edit resource' => 'Edit thongketourguides',
     'destroy resource' => 'Destroy thongketourguides',
     'title' => [
-        'thongketourguides' => 'Thống kê theo hướng dẫn viên',
-        'create thongketourguide' => 'Create a thongketourguide',
+        'thongketourguides' => 'Thống kê theo HDV',
+        'name tourguide' => 'Họ tên HDV',
         'edit thongketourguide' => 'Edit a thongketourguide',
     ],
     'button' => [

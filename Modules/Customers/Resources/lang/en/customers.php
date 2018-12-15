@@ -18,7 +18,8 @@ return [
         'billing phone' => 'Điện thoại thanh toán',
         'status' => 'Tình trạng',
         'note' => 'Ghi chú',
-        'no data' => 'Không có dữ liệu'
+        'no data' => 'Không có dữ liệu',
+        'name hotel' => 'Tên khách sạn'
     ],
     'button' => [
         'create customer' => 'Thêm mới khách hàng',

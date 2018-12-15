@@ -9,7 +9,9 @@ use Modules\Thongke\Http\Requests\CreateThongketimeRequest;
 use Modules\Thongke\Http\Requests\UpdateThongketimeRequest;
 use Modules\Thongke\Repositories\ThongketimeRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
-
+use Modules\Invoices\Entities\Invoice;
+use Illuminate\Support\Facades\Input;
+use DB;
 class ThongketimeController extends AdminBaseController
 {
     /**
@@ -31,9 +33,20 @@ class ThongketimeController extends AdminBaseController
      */
     public function index()
     {
-        //$thongketimes = $this->thongketime->all();
+        $fromDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('fromDate', date('Y-m-01', time())))));
+        $toDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('toDate', date('Y-m-d')))));
+        $thongketimes='';
+        $inputs = Input::all();
+        if ($fromDate && $toDate) {
+            $thongketimes = Invoice::select('invoices__invoices.*','customers__customers.firstname','customers__customers.lastname','hotel__hotels.name','tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname')
+            ->leftJoin('customers__customers', 'invoices__invoices.customer_id', '=', 'customers__customers.id')
+            ->leftJoin('hotel__hotels', 'invoices__invoices.hotel_id', '=', 'hotel__hotels.id')
+            ->leftJoin('tourguide__tourguides', 'invoices__invoices.tour_guide_id', '=', 'tourguide__tourguides.id')
+            ->whereBetween(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"), array($fromDate, $toDate))->orderBy('invoices__invoices.id', 'DESC')->get();           
+           
+        }
 
-        return view('thongke::admin.thongketimes.index', compact(''));
+        return view('thongke::admin.thongketimes.index', compact('thongketimes','fromDate','toDate'));
     }
 
     /**

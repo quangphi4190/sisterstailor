@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'list resource' => 'List thongketimes',
+    'thongketimes' => 'Thống kê theo thời gian',
     'create resource' => 'Create thongketimes',
     'edit resource' => 'Edit thongketimes',
     'destroy resource' => 'Destroy thongketimes',
     'title' => [
-        'thongketimes' => 'Thống kê theo thời gian',
+        'thongketimes' => 'Thống kê theo khoảng thời gian',
         'create thongketime' => 'Create a thongketime',
         'edit thongketime' => 'Edit a thongketime',
     ],

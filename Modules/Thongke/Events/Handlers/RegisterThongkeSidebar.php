@@ -52,7 +52,7 @@ class RegisterThongkeSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('thongke.thongkedays.index')
                     );
                 });
-                $item->item(trans('thongke::thongketimes.title.thongketimes'), function (Item $item) {
+                $item->item(trans('thongke::thongketimes.thongketimes'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
                     $item->append('admin.thongke.thongketime.create');

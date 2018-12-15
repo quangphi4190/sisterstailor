@@ -9,7 +9,9 @@ use Modules\Thongke\Http\Requests\CreateThongketourguideRequest;
 use Modules\Thongke\Http\Requests\UpdateThongketourguideRequest;
 use Modules\Thongke\Repositories\ThongketourguideRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
-
+use Modules\Invoices\Entities\Invoice;
+use Illuminate\Support\Facades\Input;
+use DB;
 class ThongketourguideController extends AdminBaseController
 {
     /**
@@ -31,9 +33,21 @@ class ThongketourguideController extends AdminBaseController
      */
     public function index()
     {
-        //$thongketourguides = $this->thongketourguide->all();
-
-        return view('thongke::admin.thongketourguides.index', compact(''));
+        $tourguides = DB::table('tourguide__tourguides')->get();
+       
+        $tourguideId =Input::get('tour_guide_id', '');
+        $thongketourguides = Invoice::select('invoices__invoices.*','customers__customers.firstname','customers__customers.lastname','hotel__hotels.name as nameHotel','tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname')
+        ->leftJoin('customers__customers', 'invoices__invoices.customer_id', '=', 'customers__customers.id')
+        ->leftJoin('hotel__hotels', 'invoices__invoices.hotel_id', '=', 'hotel__hotels.id')
+        ->leftJoin('tourguide__tourguides', 'invoices__invoices.tour_guide_id', '=', 'tourguide__tourguides.id');
+                        
+        
+        if($tourguideId) {
+            $thongketourguides = $thongketourguides->where('invoices__invoices.tour_guide_id', $tourguideId );
+        }
+        $tour_guide_id = $tourguideId ? $tourguideId : '' ;
+        $thongketourguides = $thongketourguides->get();
+        return view('thongke::admin.thongketourguides.index', compact('thongketourguides','tourguides','tour_guide_id'));
     }
 
     /**

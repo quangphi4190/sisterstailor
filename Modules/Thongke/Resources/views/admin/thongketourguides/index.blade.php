@@ -11,17 +11,25 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.thongke.thongketourguide.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('thongke::thongketourguides.button.create thongketourguide') }}
-                    </a>
-                </div>
-            </div>
+<div class="row">
+        <div class="col-xs-12">            
             <div class="box box-primary">
                 <div class="box-header">
+                {!! Form::open(['route' => ['admin.thongke.thongketourguide.index'], 'method' => 'get']) !!}         
+                    <div class="input-date-tk col-md-5 col-sm-12 d-flex flex-row">
+                        <div class="col-md-6 ">
+                        <select name="tour_guide_id" id="tour_guide_id" class="form-control">
+                            <option value="">Chọn hướng dẫn viên</option>
+                            <?php foreach ($tourguides as $tourguide) {?>
+                            <option <?php echo $tour_guide_id == $tourguide->id ? 'selected' : '' ?> value="{{$tourguide->id}}">{{$tourguide->firstname .' '.$tourguide->lastname}} </option>
+                            <?php }?>
+                        </select>                    
+                        </div>
+                        <div class="col-md-2 btn-thongke">
+                            <button type="submit" class="btn btn-info">Thống kê</button>
+                        </div>
+                    </div>
+                {!! Form::close() !!}
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -29,35 +37,53 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>STT</th>
+                                <th>{{ trans('thongke::thongketourguides.title.name tourguide') }}</th>
+                                <th>{{ trans('customers::customers.title.product') }}</th>
+                                <th>{{ trans('customers::customers.title.order date') }}</th>
+                                <th>{{ trans('customers::customers.title.delivery date') }}</th>
+                                <th>{{ trans('customers::customers.title.billing name') }}</th>
+                                <th>{{ trans('customers::customers.title.billing phone') }}</th>
+                                <th>{{ trans('customers::customers.title.status') }}</th>
+                                <th>{{ trans('customers::customers.title.note') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($thongketourguides)): ?>
+                            <?php if (isset($thongketourguides)):$stt=1; ?>
                             <?php foreach ($thongketourguides as $thongketourguide): ?>
                             <tr>
-                                <td>
-                                    <a href="{{ route('admin.thongke.thongketourguide.edit', [$thongketourguide->id]) }}">
-                                        {{ $thongketourguide->created_at }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{ route('admin.thongke.thongketourguide.edit', [$thongketourguide->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.thongke.thongketourguide.destroy', [$thongketourguide->id]) }}"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                </td>
+                            <td> {{ $stt++ }} </td>
+                                <td> {{ $thongketourguide->Tfirstname .' '.$thongketourguide->Tlastname }} </td>
+                                <td> {{ $thongketourguide->product }} </td>
+                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongketourguide->order_date)))  }} </td>
+                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongketourguide->delivery_date)))  }} </td>
+                                <td> {{ $thongketourguide->billing_name }} </td>
+                                <td> {{ $thongketourguide->billing_phone }} </td>
+                                <td>  
+                                    <?php
+                                    if($thongketourguide->status == 0) {
+                                         echo "Đơn hàng mới";   
+                                    }elseif($thongketourguide->status == 1) {
+                                        echo "Chờ xử lý";   
+                                    }elseif($thongketourguide->status == 2) {
+                                        echo "Đã xử lý"; 
+                                    }elseif($thongketourguide->status == 3) {
+                                        echo "Chờ thanh toán";
+                                    }elseif($thongketourguide->status == 4) {
+                                        echo "Đã thanh toán";
+                                    }elseif($thongketourguide->status == 5){
+                                        echo "Đã hoàn thành";
+                                    }else {
+                                        echo "Đã hủy";
+                                    }
+                                    ?>
+                                </td>       
+                                <td> {{ $thongketourguide->note }} </td>      
+                                
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
-                            </tfoot>
+                            </tbody>                            
                         </table>
                         <!-- /.box-body -->
                     </div>

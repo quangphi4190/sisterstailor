@@ -11,17 +11,36 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="row">
-                <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.thongke.thongketime.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('thongke::thongketimes.button.create thongketime') }}
-                    </a>
-                </div>
-            </div>
+<div class="row">
+        <div class="col-xs-12">            
             <div class="box box-primary">
                 <div class="box-header">
+                {!! Form::open(['route' => ['admin.thongke.thongketime.index'], 'method' => 'get']) !!}         
+                    <div class="input-date-tk col-md-8 col-sm-12 d-flex flex-row">
+                        <div class="col-md-8">
+                            <div class = "col-md-6">
+                                <div class='input-group date input-date' >
+                                    <input type="text" autocomplete="off" class="form-control" placeholder="Từ ngày" name="fromDate" value="{{ $fromDate? date('d/m/Y', strtotime(str_replace('/', '-', $fromDate))) : '' }}">
+                                    <span class="input-group-addon c-input-addon">
+                                        <span class="glyphicon glyphicon-calendar c-icon"></span>
+                                    </span>
+                                </div>      
+                                </div>
+                                <div class = "col-md-6">
+                                    <div class='input-group date input-date' >
+                                        <input type="text" autocomplete="off" class="form-control input-date" placeholder="Đến ngày" name="toDate" value="{{ $toDate? date('d/m/Y', strtotime(str_replace('/', '-', $toDate))) : '' }}">
+                                        <span class="input-group-addon c-input-addon">
+                                            <span class="glyphicon glyphicon-calendar c-icon"></span>
+                                        </span>
+                                    </div>  
+                                </div> 
+                         </div>
+                        
+                        <div class="col-md-2 btn-thongke">
+                            <button type="submit" class="btn btn-info">Thống kê</button>
+                        </div>
+                    </div>
+                {!! Form::close() !!}
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -29,35 +48,51 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>STT</th>
+                                <th>{{ trans('customers::customers.title.product') }}</th>
+                                <th>{{ trans('customers::customers.title.order date') }}</th>
+                                <th>{{ trans('customers::customers.title.delivery date') }}</th>
+                                <th>{{ trans('customers::customers.title.billing name') }}</th>
+                                <th>{{ trans('customers::customers.title.billing phone') }}</th>
+                                <th>{{ trans('customers::customers.title.status') }}</th>
+                                <th>{{ trans('customers::customers.title.note') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($thongketimes)): ?>
+                            <?php if (isset($thongketimes)):$stt=1; ?>
                             <?php foreach ($thongketimes as $thongketime): ?>
                             <tr>
-                                <td>
-                                    <a href="{{ route('admin.thongke.thongketime.edit', [$thongketime->id]) }}">
-                                        {{ $thongketime->created_at }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{ route('admin.thongke.thongketime.edit', [$thongketime->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.thongke.thongketime.destroy', [$thongketime->id]) }}"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                </td>
+                            <td> {{ $stt++ }} </td>
+                                <td> {{ $thongketime->product }} </td>
+                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongketime->order_date)))  }} </td>
+                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongketime->delivery_date)))  }} </td>
+                                <td> {{ $thongketime->billing_name }} </td>
+                                <td> {{ $thongketime->billing_phone }} </td>
+                                <td>  
+                                    <?php
+                                    if($thongketime->status == 0) {
+                                         echo "Đơn hàng mới";   
+                                    }elseif($thongketime->status == 1) {
+                                        echo "Chờ xử lý";   
+                                    }elseif($thongketime->status == 2) {
+                                        echo "Đã xử lý"; 
+                                    }elseif($thongketime->status == 3) {
+                                        echo "Chờ thanh toán";
+                                    }elseif($thongketime->status == 4) {
+                                        echo "Đã thanh toán";
+                                    }elseif($thongketime->status == 5){
+                                        echo "Đã hoàn thành";
+                                    }else {
+                                        echo "Đã hủy";
+                                    }
+                                    ?>
+                                </td>       
+                                <td> {{ $thongketime->note }} </td>      
+                                
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
-                            </tfoot>
+                            </tbody>                            
                         </table>
                         <!-- /.box-body -->
                     </div>
@@ -80,6 +115,10 @@
 @stop
 
 @push('js-stack')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- Optional theme -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({
@@ -105,5 +144,22 @@
                 }
             });
         });
+    </script>
+    <script type="text/javascript">
+      $(function () {
+       
+        $('.input-date').datetimepicker({
+            format: 'DD/MM/YYYY',
+            useCurrent: false,
+            // maxDate : 'now'
+        });
+        $('.input-date[name="fromDate"]').on("dp.change", function (e) {
+            $('.input-date[name="toDate"]').data("DateTimePicker").minDate(e.date);
+        });
+        $('.input-date[name="toDate"]').on("dp.change", function (e) {
+            $('.input-date[name="fromDate"]').data("DateTimePicker").maxDate(e.date);
+        });
+
+    });
     </script>
 @endpush
