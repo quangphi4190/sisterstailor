@@ -2,12 +2,12 @@
 
 @section('content-header')
     <h1>
-        {{ trans('hotel::hotels.title.edit hotel') }}
+        Chỉnh Sửa Thông Tin Khách Sạn
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li><a href="{{ route('admin.hotel.hotel.index') }}">{{ trans('hotel::hotels.title.hotels') }}</a></li>
-        <li class="active">{{ trans('hotel::hotels.title.edit hotel') }}</li>
+        <li><a href="{{ route('admin.hotel.hotel.index') }}">Danh Sách Khách Sạn</a></li>
+        <li class="active">Chỉnh Sửa Thông Tin Khách Sạn</li>
     </ol>
 @stop
 
