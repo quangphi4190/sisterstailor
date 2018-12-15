@@ -175,7 +175,7 @@
     else {
         $.ajax({
         type: 'POST',
-        var url= route('admin.invoices.invoices.inser_form');
+        url: route('admin.invoices.invoices.inser_form'),
         data: {
             _token: '{{ csrf_token() }}',
             firstname: firstname,
@@ -271,8 +271,9 @@
     }
     else {
         $.ajax({
-        type: 'POST',
-        var url= route('admin.invoices.invoices.edit_form');
+        type: 'POST',        
+        // url: '{{url('backend/invoices/invoices/edit/edit_form')}}',
+        url: route('admin.invoices.invoices.edit_form'),
         data: {
             _token: '{{ csrf_token() }}',
             id: id,
