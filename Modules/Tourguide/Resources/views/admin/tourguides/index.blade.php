@@ -2,11 +2,11 @@
 
 @section('content-header')
     <h1>
-        {{ trans('tourguide::tourguides.title.tourguides') }}
+    Danh Sách Hướng Dẫn Viên
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li class="active">{{ trans('tourguide::tourguides.title.tourguides') }}</li>
+        <li class="active">Danh Sách Hướng Dẫn Viên</li>
     </ol>
 @stop
 
@@ -16,8 +16,7 @@
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.tourguide.tourguide.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('tourguide::tourguides.button.create tourguide') }}
-                    </a>
+                        <i class="fa fa-pencil"></i>  Tạo Hướng Dẫn Viên Mới</a>
                 </div>
             </div>
             <div class="box box-primary">
@@ -36,7 +35,6 @@
                                 <th>E-Mail</th>
                                 <th>Địa Chỉ</th>
                                 <th>Tên Công Ty</th>
-                                <th>Thời Gian Tạo</th>
                                 <th data-sortable="false">Chức Năng</th>
                             </tr>
                             </thead>
@@ -77,11 +75,6 @@
                                 <td>
                                     <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
                                         {{$tourguide->company}}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
-                                        {{ $tourguide->created_at }}
                                     </a>
                                 </td>
                                 <td>

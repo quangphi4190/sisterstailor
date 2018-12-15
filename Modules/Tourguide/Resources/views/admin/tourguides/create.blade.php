@@ -2,12 +2,12 @@
 
 @section('content-header')
     <h1>
-        {{ trans('tourguide::tourguides.title.create tourguide') }}
+        Tạo Mới Hướng Dẫn Viên
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li><a href="{{ route('admin.tourguide.tourguide.index') }}">{{ trans('tourguide::tourguides.title.tourguides') }}</a></li>
-        <li class="active">{{ trans('tourguide::tourguides.title.create tourguide') }}</li>
+        <li><a href="{{ route('admin.tourguide.tourguide.index') }}">Danh Sách Hướng Dẫn Viên</a></li>
+        <li class="active">Tạo Mới Hướng Dẫn Viên</li>
     </ol>
 @stop
 

@@ -2,11 +2,11 @@
 
 @section('content-header')
     <h1>
-        {{ trans('hotel::hotels.title.hotels') }}
+        Danh Sách Khách Sạn
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li class="active">{{ trans('hotel::hotels.title.hotels') }}</li>
+        <li class="active">Danh Sách Khách Sạn</li>
     </ol>
 @stop
 
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.hotel.hotel.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('hotel::hotels.button.create hotel') }}
+                        <i class="fa fa-pencil"></i> Tạo Mới Khách Sạn
                     </a>
                 </div>
             </div>
@@ -35,7 +35,6 @@
                                 <th>E-Mail</th>
                                 <th>Địa Chỉ</th>
                                 <th>Trạng Thái</th>
-                                <th>Thời Giạn Tạo</th>
                                 <th data-sortable="false">Chức Năng</th>
                             </tr>
                             </thead>
@@ -72,11 +71,6 @@
                                 <td>
                                     <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
                                         {{ $hotel->status == 1 ? 'Đang hoạt động' : 'Chưa kích hoạt'}}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
-                                        {{ $hotel->created_at }}
                                     </a>
                                 </td>
                                 <td>
