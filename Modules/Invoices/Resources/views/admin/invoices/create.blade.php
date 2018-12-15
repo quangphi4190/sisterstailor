@@ -109,7 +109,7 @@
         $('#datetimepicker1').datetimepicker({
             defaultDate: new Date(),
             showTodayButton: true,
-            format: 'DD/MM/YYYY',
+            format: 'DD/MM/YYYY HH:mm:ss',
             sideBySide: true,
             minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
         });
@@ -117,7 +117,7 @@
         $('#datetimepicker2').datetimepicker({
             defaultDate: new Date(),
             showTodayButton: true,
-            format: 'DD/MM/YYYY',
+            format: 'DD/MM/YYYY HH:mm:ss',
             sideBySide: true,
             minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
         });

@@ -95,7 +95,6 @@ $status = [
     <div class="form-group dropdown">
         <label for="country_id">Trạng thái</label>
         <select id="status" name="status" class="form-control">
-            <option value="">Chọn trạng thái</option>
             <?php foreach ($status as $key => $value) { ?>     
                 <option value="{{$key}}">{{$value}}</option>
             <?php }?>     

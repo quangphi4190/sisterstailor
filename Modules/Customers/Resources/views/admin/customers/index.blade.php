@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.customers.customer.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('customers::customers.button.create customer') }}
+                        <i class="fa fa-plus"></i> {{ trans('customers::customers.button.create customer') }}
                     </a>
                 </div>
             </div>
@@ -95,6 +95,7 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
+                                        <a href="{{ route('admin.customers.customer.view', [$customer->id]) }}" title="{{ trans('customers::customers.title.view customer') }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.customers.customer.destroy', [$customer->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>

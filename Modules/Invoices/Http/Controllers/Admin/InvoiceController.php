@@ -66,8 +66,27 @@ class InvoiceController extends AdminBaseController
      * @return Response
      */
     public function store(CreateInvoiceRequest $request)
-    {
-        $this->invoice->create($request->all());
+    { 
+        // $this->invoice->create($request->all());
+        $invoice = new Invoice();
+        $invoice->customer_id = $request['customer_id'];
+        $invoice->tour_guide_id = $request['tour_guide_id'];
+        $invoice->hotel_id = $request['hotel_id'];
+        $invoice->order_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['order_date'])));
+        $invoice->product = $request['product'];
+        $invoice->price = $request['price'];
+        $invoice->discount = $request['discount'];
+        $invoice->payment_type = $request['payment_type'];
+        $invoice->delivery_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['delivery_date'])));
+        $invoice->delivery_address = $request['delivery_address'];
+        $invoice->delivery_name = $request['delivery_name'];
+        $invoice->delivery_note = $request['delivery_note'];
+        $invoice->delivery_phone = $request['delivery_phone'];
+        $invoice->billing_name = $request['billing_name'];
+        $invoice->billing_phone = $request['billing_phone'];
+        $invoice->status = $request['status'];
+        $invoice->note = $request['note'];
+        $invoice->save();
 
         return redirect()->route('admin.invoices.invoice.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('invoices::invoices.title.invoices')]));

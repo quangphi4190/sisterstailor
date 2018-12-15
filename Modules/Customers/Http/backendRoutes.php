@@ -27,6 +27,10 @@ $router->group(['prefix' =>'/customers'], function (Router $router) {
         'uses' => 'CustomerController@edit',
         'middleware' => 'can:customers.customers.edit'
     ]);
+    $router->get('customers/{customer}/view', [
+        'as' => 'admin.customers.customer.view',
+        'uses' => 'CustomerController@view'
+    ]);
     $router->put('customers/{customer}', [
         'as' => 'admin.customers.customer.update',
         'uses' => 'CustomerController@update',

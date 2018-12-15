@@ -43,7 +43,7 @@ class RegisterInvoicesSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->authorize(
                      /* append */
                 );
-                $item->item(trans('invoices::invoices.title.invoices'), function (Item $item) {
+                $item->item(trans('invoices::invoices.list resource'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
                     $item->append('admin.invoices.invoice.create');

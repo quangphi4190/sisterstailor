@@ -11,6 +11,8 @@ use Modules\Customers\Repositories\CustomerRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use DB;
 use Illuminate\Support\Facades\Input;
+use Modules\Invoices\Entities\Invoice;
+
 class CustomerController extends AdminBaseController
 {
     /**
@@ -150,5 +152,11 @@ class CustomerController extends AdminBaseController
         
        return $strSelectorOption;
 
+    }
+    public function view(Customer $customer)
+    {
+        
+      $list_invoice = Invoice::where('invoices__invoices.customer_id',$customer->id)->get();    
+        return view('customers::admin.customers.view', compact('list_invoice'));
     }
 }

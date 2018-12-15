@@ -1,17 +1,27 @@
 <?php
 
 return [
-    'list resource' => 'List customers',
-    'create resource' => 'Create customers',
-    'edit resource' => 'Edit customers',
-    'destroy resource' => 'Destroy customers',
+    'list resource' => 'Danh sách khách hàng',
+    'create resource' => 'Thêm khách hàng',
+    'edit resource' => 'Chỉnh sửa khách hàng',
+    'destroy resource' => 'Xóa khách hàng',
     'title' => [
-        'customers' => 'Customer',
-        'create customer' => 'Create a customer',
-        'edit customer' => 'Edit a customer',
+        'customers' => 'Khách hàng',
+        'create customer' => 'Thêm mới khách hàng',
+        'edit customer' => 'Chỉnh sửa khách hàng',
+        'view customer' => 'Xem đơn hàng',
+        'list invoice customer' => 'Danh sách đơn hàng',
+        'product' => 'Sản phẩm',
+        'order date' => 'Ngày đặt hàng',
+        'delivery date' => 'Ngày giao hàng',
+        'billing name' => 'Tên người đứng hóa đơn',
+        'billing phone' => 'Điện thoại thanh toán',
+        'status' => 'Tình trạng',
+        'note' => 'Ghi chú',
+        'no data' => 'Không có dữ liệu'
     ],
     'button' => [
-        'create customer' => 'Create a customer',
+        'create customer' => 'Thêm mới khách hàng',
     ],
     'table' => [
     ],

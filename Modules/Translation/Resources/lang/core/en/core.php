@@ -45,7 +45,7 @@ return [
     'widget' => 'Widget',
     'widgets' => 'Widgets',
     'breadcrumb' => [
-        'home' => 'Home',
+        'home' => 'Trang chủ',
     ],
     'title' => [
         'translatable fields' => 'Translatable fields',

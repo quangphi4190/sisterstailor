@@ -18,7 +18,7 @@
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.invoices.invoice.create') }}" class="btn btn-primary btn-flat"
                        style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('invoices::invoices.button.create invoice') }}
+                        <i class="fa fa-plus"></i> {{ trans('invoices::invoices.button.create invoice') }}
                     </a>
                 </div>
             </div>

@@ -43,7 +43,7 @@ class RegisterCustomersSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->authorize(
                      /* append */
                 );
-                $item->item(trans('customers::customers.title.customers'), function (Item $item) {
+                $item->item(trans('customers::customers.list resource'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
                     $item->append('admin.customers.customer.create');

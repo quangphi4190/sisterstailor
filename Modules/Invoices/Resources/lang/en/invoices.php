@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'list resource' => 'List invoices',
-    'create resource' => 'Create invoices',
-    'edit resource' => 'Edit invoices',
-    'destroy resource' => 'Destroy invoices',
+    'list resource' => 'Danh sách đơn hàng',
+    'create resource' => 'Thêm đơn hàng',
+    'edit resource' => 'Chỉnh sửa đơn hàng',
+    'destroy resource' => 'Xóa đơn hàng',
     'title' => [
-        'invoices' => 'Invoice',
-        'create invoice' => 'Create a invoice',
-        'edit invoice' => 'Edit a invoice',
+        'invoices' => 'Đơn hàng',
+        'create invoice' => 'Thêm mới đơn hàng',
+        'edit invoice' => 'Chỉnh sửa đơn hàng',
     ],
     'button' => [
-        'create invoice' => 'Create a invoice',
+        'create invoice' => 'Thêm đơn hàng',
     ],
     'table' => [
     ],
