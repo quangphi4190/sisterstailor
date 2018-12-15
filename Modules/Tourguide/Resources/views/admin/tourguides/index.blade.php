@@ -29,37 +29,55 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Họ Và Tên</th>
                                 <th>Giới Tính</th>
                                 <th>Số Điện Thoại</th>
                                 <th>E-Mail</th>
                                 <th>Địa Chỉ</th>
                                 <th>Tên Công Ty</th>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Thời Gian Tạo</th>
+                                <th data-sortable="false">Chức Năng</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($tourguides)): ?>
+                            <?php if (isset($tourguides)): $stt=1?>
                             <?php foreach ($tourguides as $tourguide): ?>
                             <tr>
                                 <td>
-                                    {{($tourguide->firstname).' '.($tourguide->lastname)}}
+                                    <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
+                                        {{$stt++}}
+                                    </a>
                                 </td>
                                 <td>
-                                    {{$tourguide->gender}}
+                                    <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
+                                        {{($tourguide->firstname).' '.($tourguide->lastname)}}
+                                    </a>
                                 </td>
                                 <td>
-                                    {{$tourguide->phone}}
+                                    <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
+                                        {{$tourguide->gender == 1 ? 'Nam' : 'Nữ'}}
+                                    </a>
                                 </td>
                                 <td>
-                                    {{$tourguide->email}}
+                                    <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
+                                        {{$tourguide->phone}}
+                                    </a>
                                 </td>
                                 <td>
-                                    {{$tourguide->address}}
+                                    <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
+                                        {{$tourguide->email}}
+                                    </a>
                                 </td>
                                 <td>
-                                    {{$tourguide->company}}
+                                    <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
+                                        {{$tourguide->address}}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
+                                        {{$tourguide->company}}
+                                    </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">

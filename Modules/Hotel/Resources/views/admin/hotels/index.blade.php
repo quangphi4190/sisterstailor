@@ -29,29 +29,50 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Tên Khách Sạn</th>
                                 <th>Số Điện Thoại</th>
                                 <th>E-Mail</th>
                                 <th>Địa Chỉ</th>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                                <th>Trạng Thái</th>
+                                <th>Thời Giạn Tạo</th>
+                                <th data-sortable="false">Chức Năng</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($hotels)): ?>
+                            <?php if (isset($hotels)): $stt=1?>
+                            
                             <?php foreach ($hotels as $hotel): ?>
-                            <tr>
+                            <tr>   
                                 <td>
-                                        {{ $hotel->name }}                                    
+                                    <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">                                
+                                        {{ $stt++ }}
+                                    </a>
                                 </td>
                                 <td>
+                                    <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
+                                        {{ $hotel->name }}
+                                    </a>                                    
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
                                         {{ $hotel->phone }}
+                                    </a>
                                 </td>
                                 <td>
+                                    <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
                                         {{ $hotel->email }}
+                                    </a>
                                 </td>
                                 <td>
+                                    <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
                                         {{ $hotel->address }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
+                                        {{ $hotel->status == 1 ? 'Đang hoạt động' : 'Chưa kích hoạt'}}
+                                    </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
