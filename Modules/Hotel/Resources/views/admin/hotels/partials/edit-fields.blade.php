@@ -1,15 +1,15 @@
 <div class="box-body">
 <div class="row">
     <div class="col-sm-6">
-    {!! Form::normalInput('name', trans('hotel::hotels.form.name'), $errors,$hotel) !!}
-    {!! Form::normalInput('phone', trans('hotel::hotels.form.phone'), $errors,$hotel) !!}
-    {!! Form::normalInput('email', trans('hotel::hotels.form.email'), $errors,$hotel) !!}
-    {!! Form::normalInput('address', trans('hotel::hotels.form.address'), $errors,$hotel) !!}
-    {!! Form::normalInput('contact_name', trans('hotel::hotels.form.contact_name'), $errors,$hotel) !!}
-    {!! Form::normalInput('contact_phone', trans('hotel::hotels.form.contact_phone'), $errors,$hotel) !!}    
+    {!! Form::normalInput('name', 'Tên Khách Sạn', $errors,$hotel) !!}
+    {!! Form::normalInput('phone', 'Số Điện Thoại', $errors,$hotel) !!}
+    {!! Form::normalInput('email', 'E-Mail', $errors,$hotel) !!}
+    {!! Form::normalInput('address', 'Địa Chỉ', $errors,$hotel) !!}
+    {!! Form::normalInput('contact_name', 'Tên Người Liên Hệ', $errors,$hotel) !!}
+    {!! Form::normalInput('contact_phone', 'Số Điện Thoại Người Liên Hệ', $errors,$hotel) !!}    
     </div>
     <div class="col-sm-6">
-    {!! Form::normalInput('contact_mail', trans('hotel::hotels.form.contact_mail'), $errors,$hotel) !!}    
+    {!! Form::normalInput('contact_mail', 'E-Mail Người Liên Hệ', $errors,$hotel) !!}    
     <div class="form-group dropdown">
         <label for="country_id">Quốc Gia</label>
         <select id="country_id" name="country_id" class="form-control">

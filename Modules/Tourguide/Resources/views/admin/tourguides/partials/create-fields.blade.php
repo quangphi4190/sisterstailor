@@ -54,9 +54,9 @@
                 <option value="2">Chưa kích hoạt</option>           
             </select>
         </div>
-    {!! Form::normalInput('custom_field1', 'Custom Field 1', $errors) !!}
-    {!! Form::normalInput('custom_field2', 'Custom Field 2', $errors) !!}
-    {!! Form::normalInput('custom_field3', 'Custom Field 3', $errors) !!} 
+    {!! Form::normalInput('custom_field1', 'Thông Tin Khác 1', $errors) !!}
+    {!! Form::normalInput('custom_field2', 'Thông Tin Khác 2', $errors) !!}
+    {!! Form::normalInput('custom_field3', 'Thông Tin Khác 3', $errors) !!} 
     </div>
     </div>   
 </div>
