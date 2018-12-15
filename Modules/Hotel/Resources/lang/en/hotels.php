@@ -6,7 +6,8 @@ return [
     'edit resource' => 'Edit hotels',
     'destroy resource' => 'Destroy hotels',
     'title' => [
-        'hotels' => 'Hotel',
+        'hotels' => 'Khách Sạn',
+        'hotelss'   =>  'Danh Sách Khách Sạn',
         'create hotel' => 'Create a hotel',
         'edit hotel' => 'Edit a hotel',
     ],

@@ -43,7 +43,7 @@ class RegisterTourGuideSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->authorize(
                      /* append */
                 );
-                $item->item(trans('tourguide::tourguides.title.tourguides'), function (Item $item) {
+                $item->item(trans('tourguide::tourguides.title.tourguidess'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
                     $item->append('admin.tourguide.tourguide.create');

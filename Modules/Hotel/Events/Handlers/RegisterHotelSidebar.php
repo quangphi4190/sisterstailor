@@ -43,7 +43,7 @@ class RegisterHotelSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->authorize(
                      /* append */
                 );
-                $item->item(trans('hotel::hotels.title.hotels'), function (Item $item) {
+                $item->item(trans('hotel::hotels.title.hotelss'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
                     $item->append('admin.hotel.hotel.create');
