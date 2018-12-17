@@ -10,12 +10,12 @@ class UpdateCustomerRequest extends BaseFormRequest
     {
         return [
             // 'customer_type' => 'required',
-            'firstname' => 'required',
-            'lastname' => 'required',
+            // 'firstname' => 'required',
+            // 'lastname' => 'required',
             //  'gender' => 'required',
             // 'mail' => 'required',
-             'phone' => 'required',
-             'address' => 'required',
+            //  'phone' => 'required',
+            //  'address' => 'required',
             // 'country_id' => 'required',
             // 'state_id' => 'required',
             // 'city_id' => 'required',
@@ -39,10 +39,10 @@ class UpdateCustomerRequest extends BaseFormRequest
     public function messages()
     {
         return [
-            'firstname.required'     =>  'Vui lòng họ',
-            'lastname.required'    =>  'Vui lòng tên',
-            'phone.required'           =>  'Vui lòng nhập số điện thoại',
-            'address.required'            =>  'Vui lòng nhập địa chỉ',
+            // 'firstname.required'     =>  'Vui lòng họ',
+            // 'lastname.required'    =>  'Vui lòng tên',
+            // 'phone.required'           =>  'Vui lòng nhập số điện thoại',
+            // 'address.required'            =>  'Vui lòng nhập địa chỉ',
         ];
     }
 

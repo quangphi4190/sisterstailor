@@ -34,8 +34,9 @@ class CustomerController extends AdminBaseController
      */
     public function index()
     {
-        $customers = $this->customer->all();
-        $countries = DB::table('countries')->get();
+        // $customers = $this->customer->all();
+        $customers = Customer::select('customers__customers.firstname','customers__customers.lastname','customers__customers.gender','customers__customers.mail','customers__customers.phone','countries.name' )
+        ->leftjoin('countries', 'countries.id', '=', 'customers__customers.country_id')->get();
         return view('customers::admin.customers.index', compact('customers','countries'));
     }
 
@@ -58,8 +59,17 @@ class CustomerController extends AdminBaseController
      */
     public function store(CreateCustomerRequest $request)
     {
-        $this->customer->create($request->all());
-
+        // $this->customer->create($request->all());
+        $custumer = new Customer();
+        $name = explode(' ', $request['fullname']);
+        $custumer->lastname = $name[count($name) - 1];;
+        $custumer->firstname = str_replace($name[count($name) - 1],'',$request['fullname']);
+        $custumer->mail = $request['mail'] ? $request['mail'] :'';
+        $custumer->phone = $request['phone'] ? $request['phone'] :'';
+        $custumer->gender = $request['gender']? $request['gender'] :'';
+        $custumer->status = $request['status'] ? $request['status'] : 1;
+        $custumer->country_id = $request['country_id'] ? $request['country_id']:'';
+        $custumer->save();
         return redirect()->route('admin.customers.customer.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('customers::customers.title.customers')]));
     }
