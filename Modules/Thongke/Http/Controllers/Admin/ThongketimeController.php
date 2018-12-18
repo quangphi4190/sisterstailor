@@ -42,7 +42,7 @@ class ThongketimeController extends AdminBaseController
 
         $inputs = Input::all();
         
-        $thongkes =Invoice::select('invoices__invoices.id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.note','invoices__invoices.order_date',
+        $thongkes =Invoice::select('invoices__invoices.id','invoices__invoices.tour_guide_id','invoices__invoices.hotel_id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.note','invoices__invoices.order_date',
         'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
         'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name' )
         ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')

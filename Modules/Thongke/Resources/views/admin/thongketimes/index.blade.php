@@ -90,8 +90,8 @@
                             <tr>
                             <td> {{ $stt++ }} </td>
                                 <td> {{ $thongke->firstname .' '.$thongke->lastname}} </td>
-                                <td> {{ $thongke->name}} </td>
-                                <td> {{ $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
+                                <td> {{ $thongke->hotel_id == 0 ? 'Khác' : $thongke->name}} </td>
+                                <td> {{ $thongke->tour_guide_id == 0 ? 'Khách lẻ' : $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
                                 <td> {{ $thongke->group_code}} </td>
                                 <td> {{ number_format($thongke->amount,0,',',',')}} </td>                               
                                 <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>

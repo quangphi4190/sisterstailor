@@ -41,7 +41,7 @@ class InvoiceController extends AdminBaseController
         $hotelId =Input::get('hotel_id','');
         $tourguides = DB::table('tourguide__tourguides')->get();
         $hotels = DB::table('hotel__hotels')->get();
-        $invoices = Invoice::select('invoices__invoices.id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.order_date',
+        $invoices = Invoice::select('invoices__invoices.id','invoices__invoices.tour_guide_id','invoices__invoices.hotel_id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.order_date',
         'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
         'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name' )
         ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')
@@ -263,6 +263,17 @@ class InvoiceController extends AdminBaseController
 
     public function edit_form (){
         $inputs = Input::all();
+        $name = explode(' ', $inputs['fullname']);
+        $lastname = $name[count($name) - 1];;
+        $firstname = str_replace($name[count($name) - 1],'',$inputs['fullname']);
+        $mail = $inputs['mail'] ? $inputs['mail'] :'';
+        $phone = $inputs['phone'] ? $inputs['phone'] :'';
+        $gender = $inputs['gender']? $inputs['gender'] :'';
+        $status = 1;
+        $country_id = $inputs['country_id'] ? $inputs['country_id']:'';
+        Customer::where('id', $inputs['id'])->update(array('lastname'=>$lastname,'firstname'=>$firstname,'mail'=>$mail,'phone'=>$phone,'gender'=>$gender,'country_id'=>$country_id,'status'=>$status));
+        $customers_select = Customer::select('customers__customers.id','customers__customers.lastname','customers__customers.address','customers__customers.phone','customers__customers.firstname')->get();
+        die(json_encode($customers_select));
     }
 
     public function updateGroupCode () {

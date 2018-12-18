@@ -116,12 +116,12 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ $invoice->name }}
+                                        {{ $invoice->hotel_id == 0 ? 'Khác' :$invoice->name }}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ $invoice->Tfirstname .' '.$invoice->Tlastname }}
+                                        {{ $invoice->tour_guide_id == 0 ? 'Khách lẻ' : $invoice->Tfirstname .' '.$invoice->Tlastname }}
                                     </a>
                                 </td>
                                 <td class="td-input">

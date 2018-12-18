@@ -146,7 +146,7 @@
   <script type="text/javascript">
    $('#insert_form').on('submit',function (e) { 
        e.preventDefault();
-    var firstname = $('#fullname').val();
+    var fullname = $('#fullname').val();
     var mail = $('#mail').val();
     var phone = $('#phone').val();
     var gender = $('#gender').val();
@@ -156,7 +156,7 @@
         url: route('admin.invoices.invoices.inser_form'),
         data: {
             _token: '{{ csrf_token() }}',
-            fullname: fullnamr,            
+            fullname: fullname,            
             mail: mail,
             phone: phone,
             gender: gender,           
@@ -196,23 +196,22 @@
    $('#edit_form').on('submit',function (e) { 
        e.preventDefault();   
     var id = $('#edit_form').find('input[name="id"]').val();
-   var firstname = $('#edit_form').find('input[name="firstname"]').val();
-   var lastname = $('#edit_form').find('input[name="lastname"]').val();
+   var fullname = $('#edit_form').find('input[name="fullname"]').val();
    var mail = $('#edit_form').find('input[name="mail"]').val();
    var phone = $('#edit_form').find('input[name="phone"]').val();
+   var gender = $('#edit_form').find('input[name="gender"]').val();
+   var country_id = $('#edit_form').find('input[name="country_id"]').val();
    $.ajax({
         type: 'POST',        
-        // url: '{{url('backend/invoices/invoices/edit/edit_form')}}',
         url: route('admin.invoices.invoices.edit_form'),
         data: {
             _token: '{{ csrf_token() }}',
             id: id,
-            firstname: firstname,
-            lastname: lastname,
+            fullname: fullname,            
             mail: mail,
             phone: phone,
-            gender: gender,
-            address: address,          
+            gender: gender,           
+            country_id: country_id          
         },
         success: function(data) {
             swal("Cập nhật thông tin khách hàng thành công!", "", "success");
