@@ -10,6 +10,7 @@ return [
         'tourguidess'   =>  'Danh Sách Hướng Dẫn Viên',
         'create tourguide' => 'Create a tourguide',
         'edit tourguide' => 'Edit a tourguide',
+        'no data'       =>  'Không có dữ liệu'
     ],
     'button' => [
         'create tourguide' => 'Create a tourguide',

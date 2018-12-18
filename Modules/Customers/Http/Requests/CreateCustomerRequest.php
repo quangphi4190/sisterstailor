@@ -9,6 +9,8 @@ class CreateCustomerRequest extends BaseFormRequest
     public function rules()
     {
         return [
+
+
             // 'customer_type' => 'required',
             // 'firstname' => 'required',
             // 'lastname' => 'required',
@@ -23,6 +25,7 @@ class CreateCustomerRequest extends BaseFormRequest
             // 'custom_field1' => 'required',
             // 'custom_field2' => 'required',
             // 'custom_field3' => 'required'
+
            
         ];
     }
@@ -40,6 +43,8 @@ class CreateCustomerRequest extends BaseFormRequest
     public function messages()
     {
         return [
+
+
             // 'firstname.required'     =>  'Vui lòng họ',
             // 'lastname.required'    =>  'Vui lòng tên',
             // 'phone.required'           =>  'Vui lòng nhập số điện thoại',

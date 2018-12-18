@@ -50,6 +50,7 @@ class CreateInvoiceRequest extends BaseFormRequest
             // 'delivery_phone.required'         =>  'Vui lòng nhập số điện thoại người giao hàng',
             // 'billing_name.required'       =>  'Vui lòng nhập tên người đứng hóa đơn',
             // 'billing_phone.required'         =>  'Vui lòng nhập số điện thoại người thanh toám'
+
         ];
     }
 

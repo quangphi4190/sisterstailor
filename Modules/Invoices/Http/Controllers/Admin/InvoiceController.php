@@ -211,7 +211,7 @@ class InvoiceController extends AdminBaseController
         $name_country ='';
         $name_state ='';
         $name_city ='';
-     
+      
         if($customer->country_id){
             $name_country = DB::table('countries')->where('countries.id', '=' ,$customer->country_id)->first();
         }

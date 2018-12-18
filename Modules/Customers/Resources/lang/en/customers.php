@@ -29,6 +29,7 @@ return [
     'form' => [
     ],
     'messages' => [
+        'resource created'  =>  'thêm mới thành công'
     ],
     'validation' => [
     ],

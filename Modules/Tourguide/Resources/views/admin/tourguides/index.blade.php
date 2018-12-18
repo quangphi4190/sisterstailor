@@ -33,8 +33,8 @@
                                 <th>Giới Tính</th>
                                 <th>Số Điện Thoại</th>
                                 <th>E-Mail</th>
-                                <th>Địa Chỉ</th>
                                 <th>Tên Công Ty</th>
+                                <th>Quốc Gia</th>
                                 <th data-sortable="false">Chức Năng</th>
                             </tr>
                             </thead>
@@ -69,13 +69,17 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
-                                        {{$tourguide->address}}
+                                    {{$tourguide->company}}
                                     </a>
                                 </td>
                                 <td>
+                                <?php foreach ($countries as $countri) {?>
+                                    <?php if ($tourguide->country_id == $countri->id) {?>
                                     <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
-                                        {{$tourguide->company}}
+                                        {{$countri->name}}
                                     </a>
+                                    <?php } ?>
+                                <?php }?>
                                 </td>
                                 <td>
                                     <div class="btn-group">
@@ -89,6 +93,10 @@
                                 </td>
                             </tr>
                             <?php endforeach; ?>
+                                <?php else:?>
+                                    <tr>
+                                        <td colspan="8">{{ trans('tourguide::tourguides.title.no data') }}</td>
+                                    </tr>
                             <?php endif; ?>
                             </tbody>
                         </table>
@@ -133,7 +141,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "asc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }

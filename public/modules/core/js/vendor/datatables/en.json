@@ -1,20 +1,20 @@
 {
-	"sEmptyTable":     "No data available in table",
-	"sInfo":           "Showing _START_ to _END_ of _TOTAL_ entries",
-	"sInfoEmpty":      "Showing 0 to 0 of 0 entries",
-	"sInfoFiltered":   "(filtered from _MAX_ total entries)",
+	"sEmptyTable":     "Không có dữ liệu",
+	"sInfo":           "Hiển thị _START_ to _END_ of _TOTAL_ mục",
+	"sInfoEmpty":      "Hiển thị 0 to 0 of 0 phần tử",
+	"sInfoFiltered":   "(filtered from _MAX_ total mục)",
 	"sInfoPostFix":    "",
 	"sInfoThousands":  ",",
-	"sLengthMenu":     "Show _MENU_ entries",
-	"sLoadingRecords": "Loading...",
+	"sLengthMenu":     "Hiển thị _MENU_ mục",
+	"sLoadingRecords": "Đang tải...",
 	"sProcessing":     "Processing...",
-	"sSearch":         "Search:",
+	"sSearch":         "Tìm Kiếm:",
 	"sZeroRecords":    "No matching records found",
 	"oPaginate": {
-		"sFirst":    "First",
-		"sLast":     "Last",
-		"sNext":     "Next",
-		"sPrevious": "Previous"
+		"sFirst":    "Đầu",
+		"sLast":     "Cuối",
+		"sNext":     "Tiếp Theo",
+		"sPrevious": "Quay Lại"
 	},
 	"oAria": {
 		"sSortAscending":  ": activate to sort column ascending",
