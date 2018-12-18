@@ -10,6 +10,7 @@ return [
         'hotelss'   =>  'Danh Sách Khách Sạn',
         'create hotel' => 'Create a hotel',
         'edit hotel' => 'Edit a hotel',
+        'no data'   =>  'Không có dữ liệu',
     ],
     'button' => [
         'create hotel' => 'Create a hotel',

@@ -81,7 +81,12 @@
                                 </td>
                             </tr>
                             <?php endforeach; ?>
+                                <?php else:?>
+                                <tr>
+                                    <td colspan="8">{{ trans('customers::customers.title.no data') }}</td>
+                                </tr>
                             <?php endif; ?>
+                            
                             </tbody>
                         </table>
                         <!-- /.box-body -->
@@ -124,7 +129,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "asc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }
