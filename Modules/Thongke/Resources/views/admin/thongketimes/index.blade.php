@@ -2,11 +2,11 @@
 
 @section('content-header')
     <h1>
-        {{ trans('thongke::thongketimes.title.thongketimes') }}
+        {{ trans('thongke::thongketimes.title.thong ke') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li class="active">{{ trans('thongke::thongketimes.title.thongketimes') }}</li>
+        <li class="active">{{ trans('thongke::thongketimes.title.thong ke') }}</li>
     </ol>
 @stop
 
@@ -16,28 +16,51 @@
             <div class="box box-primary">
                 <div class="box-header">
                 {!! Form::open(['route' => ['admin.thongke.thongketime.index'], 'method' => 'get']) !!}         
-                    <div class="input-date-tk col-md-8 col-sm-12 d-flex flex-row">
-                        <div class="col-md-8">
-                            <div class = "col-md-6">
-                                <div class='input-group date input-date' >
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="Từ ngày" name="fromDate" value="{{ $fromDate? date('d/m/Y', strtotime(str_replace('/', '-', $fromDate))) : '' }}">
+                <div class="input-date-tk ">
+                        <div class="col-md-12">
+                            <div class="col-md-3 row d-flex flex-row">
+                                <label class ="l-white-sp">Từ ngày</label>
+                                <div class='input-group date input-date'>
+                                    <input type="text" autocomplete="off" class="form-control" placeholder="Từ ngày"
+                                           name="fromDate"
+                                           value="{{ $fromDate? date('d/m/Y', strtotime(str_replace('/', '-', $fromDate))) : '' }}">
                                     <span class="input-group-addon c-input-addon">
                                         <span class="glyphicon glyphicon-calendar c-icon"></span>
                                     </span>
-                                </div>      
                                 </div>
-                                <div class = "col-md-6">
-                                    <div class='input-group date input-date' >
-                                        <input type="text" autocomplete="off" class="form-control input-date" placeholder="Đến ngày" name="toDate" value="{{ $toDate? date('d/m/Y', strtotime(str_replace('/', '-', $toDate))) : '' }}">
-                                        <span class="input-group-addon c-input-addon">
+                            </div>
+                            <div class="col-md-3 d-flex flex-row">
+                                <label class ="l-white-sp">Đến ngày</label>
+                                <div class='input-group date input-date'>
+                                    <input type="text" autocomplete="off" class="form-control input-date"
+                                           placeholder="Đến ngày" name="toDate"
+                                           value="{{ $toDate? date('d/m/Y', strtotime(str_replace('/', '-', $toDate))) : '' }}">
+                                    <span class="input-group-addon c-input-addon">
                                             <span class="glyphicon glyphicon-calendar c-icon"></span>
                                         </span>
-                                    </div>  
-                                </div> 
-                         </div>
-                        
-                        <div class="col-md-2 btn-thongke">
-                            <button type="submit" class="btn btn-info">Thống kê</button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <select name="tour_guide_id" id="tour_guide_id" class="form-control">
+                                    <option value="">Chọn hướng dẫn viên</option>
+                                    <?php foreach ($tourguides as $tourguide) {?>
+                                    <option
+                                        <?php echo $tourguideId == $tourguide->id ? 'selected' : '' ?> value="{{$tourguide->id}}">{{$tourguide->firstname .' '.$tourguide->lastname}} </option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <select name="hotel_id" id="hotel_id" class="form-control">
+                                    <option value="">Chọn khách sạn</option>
+                                    <?php foreach ($hotels as $hotel) {?>
+                                    <option
+                                        <?php echo $hotelId == $hotel->id ? 'selected' : '' ?> value="{{$hotel->id}}">{{$hotel->name}} </option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                            <div class="col-md-2 btn-thongke">
+                                <button type="submit" class="btn btn-info">Thống kê</button>
+                            </div>
                         </div>
                     </div>
                 {!! Form::close() !!}
@@ -49,50 +72,42 @@
                             <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>{{ trans('customers::customers.title.product') }}</th>
-                                <th>{{ trans('customers::customers.title.order date') }}</th>
-                                <th>{{ trans('customers::customers.title.delivery date') }}</th>
-                                <th>{{ trans('customers::customers.title.billing name') }}</th>
-                                <th>{{ trans('customers::customers.title.billing phone') }}</th>
-                                <th>{{ trans('customers::customers.title.status') }}</th>
-                                <th>{{ trans('customers::customers.title.note') }}</th>
+                                <th>{{ trans('thongke::thongketimes.title.name customer') }}</th>
+                                <th>{{ trans('thongke::thongketimes.title.name hotel') }}</th>
+                                <th>{{ trans('thongke::thongketimes.title.name tourguide') }}</th>
+                                <th>{{ trans('thongke::thongketimes.title.groud code') }}</th>
+                                <th>{{ trans('thongke::thongketimes.title.price') }}</th>
+                                <th>{{ trans('thongke::thongketimes.title.date order') }}</th>
+                                <th>{{ trans('thongke::thongketimes.title.date out') }}</th>
+                                <th>{{ trans('thongke::thongketimes.title.note') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($thongketimes)):$stt=1; ?>
-                            <?php foreach ($thongketimes as $thongketime): ?>
+                            <?php if (isset($thongkes)):$stt=1;   $tongtien=0;?>
+                            <?php foreach ($thongkes as $thongke):
+                                 $tongtien = $tongtien + $thongke->amount;
+                            ?>
                             <tr>
                             <td> {{ $stt++ }} </td>
-                                <td> {{ $thongketime->product }} </td>
-                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongketime->order_date)))  }} </td>
-                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongketime->delivery_date)))  }} </td>
-                                <td> {{ $thongketime->billing_name }} </td>
-                                <td> {{ $thongketime->billing_phone }} </td>
-                                <td>  
-                                    <?php
-                                    if($thongketime->status == 0) {
-                                         echo "Đơn hàng mới";   
-                                    }elseif($thongketime->status == 1) {
-                                        echo "Chờ xử lý";   
-                                    }elseif($thongketime->status == 2) {
-                                        echo "Đã xử lý"; 
-                                    }elseif($thongketime->status == 3) {
-                                        echo "Chờ thanh toán";
-                                    }elseif($thongketime->status == 4) {
-                                        echo "Đã thanh toán";
-                                    }elseif($thongketime->status == 5){
-                                        echo "Đã hoàn thành";
-                                    }else {
-                                        echo "Đã hủy";
-                                    }
-                                    ?>
-                                </td>       
-                                <td> {{ $thongketime->note }} </td>      
+                                <td> {{ $thongke->firstname .' '.$thongke->lastname}} </td>
+                                <td> {{ $thongke->name}} </td>
+                                <td> {{ $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
+                                <td> {{ $thongke->group_code}} </td>
+                                <td> {{ number_format($thongke->amount,0,',',',')}} </td>                               
+                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
+                                <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>  
+                                <td> {{ $thongke->note }} </td>      
                                 
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
-                            </tbody>                            
+                            </tbody>  
+                            <tfoot>
+                            <tr>
+                                <th>Tổng tiền</th>
+                                <th colspan="8">{{ number_format($tongtien,0,',',',')}} vnđ</th>                                
+                            </tr>
+                            </tfoot>                          
                         </table>
                         <!-- /.box-body -->
                     </div>

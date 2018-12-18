@@ -69,6 +69,10 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'as' => 'admin.invoices.invoice.updateGroupCode',
         'uses' => 'InvoiceController@updateGroupCode'
     ]);
+    $router->post('invoices/get_tour_guide_id', [
+        'as' => 'admin.invoices.invoices.get_tour_guide_id',
+        'uses' => 'InvoiceController@get_tour_guide_id'
+    ]);
 // append
 
 });

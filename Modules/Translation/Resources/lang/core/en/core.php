@@ -61,10 +61,11 @@ return [
         'sign out' => 'Sign out',
     ],
     'messages' => [
-        'resource created' => ':name successfully created.',
-        'resource not found' => ':name not found.',
-        'resource updated' => ':name successfully updated.',
-        'resource deleted' => ':name successfully deleted.',
+        'resource created' => ':name thêm mới thành công.',
+        'resource not found' => ':name không tồn tại.',
+        'resource updated' => ':name cập nhật thành công.',
+        'resource deleted' => ':name xóa thành công.',
+        'updated group_code' => ' Cập nhật mã đoàn thành công'
     ],
     'back' => 'Back',
     'back to index' => 'Back to :name index',

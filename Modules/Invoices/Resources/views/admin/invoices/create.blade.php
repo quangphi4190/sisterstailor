@@ -105,6 +105,24 @@
 {!! Theme::style('css/chosen.css') !!}
 
     <script type="text/javascript">
+        // amount
+        $(document).on('change', '.input-calc', function () {            
+            price = $('#price').val() ? $('#price').val() : 0;
+            discount = $('#discount').val() ? $('#discount').val() : 0;          
+            totalAmount =price-discount;
+            document.getElementById("amount").value = totalAmount;
+        });
+        // Get Mã đoàn
+        $('select[name="tour_guide_id"]').change(function () {                     
+            var url= route('admin.invoices.invoices.get_tour_guide_id');
+            var token = '{{ csrf_token() }}';
+           var group_code =$('#group_code');
+            $.post(url, {tour_guide_id:$(this).val(), _token:token }, function(data){               
+                data = $.parseJSON(data);
+                group_code.val(data);
+            });
+        });
+        //format date
       $(function () {
         $('#datetimepicker1').datetimepicker({
             defaultDate: new Date(),
@@ -124,74 +142,25 @@
 
     });
     </script>
-
+<!-- add custumer -->
   <script type="text/javascript">
    $('#insert_form').on('submit',function (e) { 
        e.preventDefault();
-    var firstname = $('#firstname').val();
-    var lastname = $('#lastname').val();
+    var firstname = $('#fullname').val();
     var mail = $('#mail').val();
     var phone = $('#phone').val();
     var gender = $('#gender').val();
-    var address = $('#address').val();
-    var status = $('#status').val(); 
-    var customer_type = $('#customer_type').val();
     var country_id = $('#country_id').val();
-    var state_id = $('#state_id').val();
-    var city_id = $('#city_id').val();
-    var custom_field1 = $('#custom_field1').val();
-    var custom_field2 = $('#custom_field2').val();
-    var custom_field3 = $('#custom_field3').val();
-    if(firstname =='') {
-     swal({
-        title: "Vui lòng nhập họ",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    } else if (lastname =='') {
-        swal({
-        title: "Vui lòng nhập tên",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    
-    } else if (phone == '') {
-        swal({
-        title: "Vui lòng nhập số điện thoại",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    } else if (address == '') {
-        swal({
-        title: "Vui lòng nhập địa chỉ",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    }
-    else {
-        $.ajax({
+    $.ajax({
         type: 'POST',
         url: route('admin.invoices.invoices.inser_form'),
         data: {
             _token: '{{ csrf_token() }}',
-            firstname: firstname,
-            lastname: lastname,
+            fullname: fullnamr,            
             mail: mail,
             phone: phone,
-            gender: gender,
-            address: address,
-            status: status,
-            customer_type: customer_type,
-            country_id: country_id,
-            state_id: state_id,
-            city_id: city_id,
-            custom_field1: custom_field1,
-            custom_field2: custom_field2,
-            custom_field3: custom_field3           
+            gender: gender,           
+            country_id: country_id      
         },
         success: function(data) {              
             var $el = $("select#customer_id");
@@ -218,11 +187,11 @@
             });
         }
     });
-    }
    
     
     });      
   </script>
+  <!-- edit custormer -->
   <script type="text/javascript">
    $('#edit_form').on('submit',function (e) { 
        e.preventDefault();   
@@ -231,46 +200,7 @@
    var lastname = $('#edit_form').find('input[name="lastname"]').val();
    var mail = $('#edit_form').find('input[name="mail"]').val();
    var phone = $('#edit_form').find('input[name="phone"]').val();
-   var address = $('#edit_form').find('input[name="address"]').val();
-   
-    if(firstname =='') {
-     swal({
-        title: "Vui lòng nhập họ",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    } else if (lastname =='') {
-        swal({
-        title: "Vui lòng nhập tên",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    } else if (mail =='') {
-        swal({
-        title: "Vui lòng nhập email",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    } else if (phone == '') {
-        swal({
-        title: "Vui lòng nhập số điện thoại",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    } else if (address == '') {
-        swal({
-        title: "Vui lòng nhập địa chỉ",
-        text: "",
-        icon: "warning",
-        button: "Đồng ý",
-    });
-    }
-    else {
-        $.ajax({
+   $.ajax({
         type: 'POST',        
         // url: '{{url('backend/invoices/invoices/edit/edit_form')}}',
         url: route('admin.invoices.invoices.edit_form'),
@@ -297,7 +227,7 @@
             });
         }
     });
-    }
+    
    
     
     });      

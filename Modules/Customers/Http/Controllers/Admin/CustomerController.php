@@ -67,7 +67,7 @@ class CustomerController extends AdminBaseController
         $custumer->mail = $request['mail'] ? $request['mail'] :'';
         $custumer->phone = $request['phone'] ? $request['phone'] :'';
         $custumer->gender = $request['gender']? $request['gender'] :'';
-        $custumer->status = $request['status'] ? $request['status'] : 1;
+        $custumer->status = 1;
         $custumer->country_id = $request['country_id'] ? $request['country_id']:'';
         $custumer->save();
         return redirect()->route('admin.customers.customer.index')

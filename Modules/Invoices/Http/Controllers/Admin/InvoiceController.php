@@ -35,14 +35,31 @@ class InvoiceController extends AdminBaseController
     public function index()
     {
         // $invoices = $this->invoice->all();
+        $fromDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('fromDate', date('Y-m-01', time())))));
+        $toDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('toDate', date('Y-m-d')))));
+        $tourguideId =Input::get('tour_guide_id', '');
+        $hotelId =Input::get('hotel_id','');
+        $tourguides = DB::table('tourguide__tourguides')->get();
+        $hotels = DB::table('hotel__hotels')->get();
         $invoices = Invoice::select('invoices__invoices.id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.order_date',
         'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
         'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name' )
         ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')
         ->leftjoin('hotel__hotels', 'hotel__hotels.id', '=', 'invoices__invoices.hotel_id')
         ->leftjoin('tourguide__tourguides', 'tourguide__tourguides.id', '=', 'invoices__invoices.tour_guide_id')
-        ->get();
-        return view('invoices::admin.invoices.index', compact('invoices'));
+        ;
+       
+        if ($fromDate && $toDate) {
+            $invoices = $invoices->whereBetween(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"), array($fromDate, $toDate));  
+        }
+        if ($tourguideId) {
+            $invoices = $invoices->where('invoices__invoices.tour_guide_id', $tourguideId );
+        }
+        if($hotelId) {
+            $invoices = $invoices->where('invoices__invoices.hotel_id',$hotelId);
+        }
+        $invoices =$invoices->get();
+        return view('invoices::admin.invoices.index', compact('invoices','fromDate','toDate','tourguides','tourguideId','hotels','hotelId'));
     }
 
     /**
@@ -73,7 +90,11 @@ class InvoiceController extends AdminBaseController
      */
     public function store(CreateInvoiceRequest $request)
     { 
+       
         // $this->invoice->create($request->all());
+        $is_group = Input::get('is_group',null);
+
+        $is_group = ($is_group) ? 1 : 0;
         $invoice = new Invoice();
         $invoice->customer_id = $request['customer_id'];
         $invoice->tour_guide_id = $request['tour_guide_id'];
@@ -85,7 +106,7 @@ class InvoiceController extends AdminBaseController
         $invoice->payment_type = $request['payment_type'];
         $invoice->delivery_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['delivery_date'])));
         $invoice->status = 1;
-        $invoice->is_group = $request['is_group'];
+        $invoice->is_group = $is_group;
         $invoice->group_code = $request['group_code'];
         $invoice->seller = $request['seller'];
         $invoice->amount = $request['amount'];
@@ -103,7 +124,7 @@ class InvoiceController extends AdminBaseController
      * @return Response
      */
     public function edit(Invoice $invoice)
-    {
+    { 
         $customers_select = Customer::select('customers__customers.id','customers__customers.lastname','customers__customers.address','customers__customers.phone','customers__customers.firstname')->get();
         $tourguides = DB::table('tourguide__tourguides')->get();
         $hotels = DB::table('hotel__hotels')->get();
@@ -111,7 +132,7 @@ class InvoiceController extends AdminBaseController
         $customer_id = $invoice->customer_id ? $invoice->customer_id : '' ;
         $tour_guide_id = $invoice->tour_guide_id ? $invoice->tour_guide_id : '' ;
         $hotel_id = $invoice->hotel_id ? $invoice->hotel_id : '' ;
-        //dd($invoice->order_date);
+        
         return view('invoices::admin.invoices.edit', compact('invoice','customers_select','tourguides','hotels','status','tour_guide_id','hotel_id','customer_id'));
     }
 
@@ -124,7 +145,24 @@ class InvoiceController extends AdminBaseController
      */
     public function update(Invoice $invoice, UpdateInvoiceRequest $request)
     {
-        $this->invoice->update($invoice, $request->all());
+        
+        $invoice = Invoice::find($request['id']);
+        $is_group = isset($request['is_group'])? 1 : 0;  
+        $customer_id = $request['customer_id'] ? $request['customer_id']:'';
+        $group_code = $request['group_code'] ? $request['group_code'] :'';
+        $tour_guide_id = $request['tour_guide_id'] ? $request['tour_guide_id'] :'';
+        $hotel_id = $request['hotel_id'] ? $request['hotel_id'] :'';
+        $order_date = $request['order_date'] ? date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['order_date']))) :'';
+        $delivery_date = $request['delivery_date'] ? date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['delivery_date']))) :'';
+        $payment_type = $request['payment_type'] ? $request['payment_type'] :'';
+        $seller = $request['seller'] ? $request['seller']: '';    
+        $product = $request['product'] ? $request['product'] :'';    
+        $price = $request['price'] ? $request['price'] : '';    
+        $discount = $request['discount'] ? $request['discount']:'';
+        $amount = $request['amount'] ?$request['amount']:'';     
+        $note = $request['note'] ?$request['note'] :'';     
+        // $this->invoice->update($invoice, $request->all());
+        Invoice::where('id', $request['id'])->update(array('is_group'=>$is_group,'customer_id'=>$customer_id,'group_code'=>$group_code,'tour_guide_id'=>$tour_guide_id,'hotel_id'=>$hotel_id,'order_date'=>$order_date,'delivery_date'=>$delivery_date,'payment_type'=>$payment_type,'status' => 1,'note'=> $note,'amount'=> $amount,'discount'=>$discount,'price'=>$price,'product'=>$product,'seller'=>$seller));
 
         return redirect()->route('admin.invoices.invoice.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('invoices::invoices.title.invoices')]));
@@ -209,21 +247,16 @@ class InvoiceController extends AdminBaseController
      public function inser_form (){       
         $inputs = Input::all();
         $custumer = new Customer();
-        $custumer->firstname = $inputs['firstname'] ? $inputs['firstname'] :'';
-        $custumer->lastname = $inputs['lastname'] ? $inputs['lastname'] :'';
+        $name = explode(' ', $inputs['fullname']);
+        $custumer->lastname = $name[count($name) - 1];;
+        $custumer->firstname = str_replace($name[count($name) - 1],'',$inputs['fullname']);
         $custumer->mail = $inputs['mail'] ? $inputs['mail'] :'';
         $custumer->phone = $inputs['phone'] ? $inputs['phone'] :'';
         $custumer->gender = $inputs['gender']? $inputs['gender'] :'';
-        $custumer->address = $inputs['address'] ? $inputs['address'] :'';
-        $custumer->status = $inputs['status'] ? $inputs['status'] : 1;
-        $custumer->customer_type = $inputs['customer_type'] ? $inputs['customer_type'] :'';
+        $custumer->status = 1;
         $custumer->country_id = $inputs['country_id'] ? $inputs['country_id']:'';
-        $custumer->state_id = $inputs['state_id'] ? $inputs['state_id']:'';
-        $custumer->country_id = $inputs['city_id'] ? $inputs['city_id']:'';
-        $custumer->custom_field1 = $inputs['custom_field1'] ? $inputs['custom_field1']:'';
-        $custumer->custom_field2 = $inputs['custom_field2'] ? $inputs['custom_field2']:'';
-        $custumer->custom_field3 = $inputs['custom_field3'] ? $inputs['custom_field3']:'';
         $custumer->save();
+
         $customers_select = Customer::select('customers__customers.id','customers__customers.lastname','customers__customers.address','customers__customers.phone','customers__customers.firstname')->get();
         die(json_encode($customers_select));
     }
@@ -242,4 +275,51 @@ class InvoiceController extends AdminBaseController
         return redirect()->route('admin.invoices.invoice.index')
         ->withSuccess(trans('core::core.messages.updated group_code', ['name' => trans('invoices::invoices.title.invoices')]));
     }
+    public function genUserName($fullname)
+    {
+      if (!$fullname) return '';
+      $str = str_replace(" ", "", $fullname);
+      $unicode = array(
+         'a' => array('á', 'à', 'ả', 'ã', 'ạ', 'ă', 'ắ', 'ặ', 'ằ', 'ẳ', 'ẵ', 'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ'),
+         'A' => array('Á', 'À', 'Ả', 'Ã', 'Ạ', 'Ă', 'Ắ', 'Ặ', 'Ằ', 'Ẳ', 'Ẵ', ' ', 'Ấ', 'Ầ', 'Ẩ', 'Ẫ', 'Ậ'),
+         'd' => array('đ'),
+         'D' => array('Đ'),
+         'e' => array('é', 'è', 'ẻ', 'ẽ', 'ẹ', 'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ'),
+         'E' => array('É', 'È', 'Ẻ', 'Ẽ', 'Ẹ', 'Ê', 'Ế', 'Ề', 'Ể', 'Ễ', 'Ệ'),
+         'i' => array('í', 'ì', 'ỉ', 'ĩ', 'ị'),
+         'I' => array('Í', 'Ì', 'Ỉ', 'Ĩ', 'Ị'),
+         'o' => array('ó', 'ò', 'ỏ', 'õ', 'ọ', 'ô', 'ố', 'ồ', 'ổ', 'ỗ', 'ộ', 'ơ', 'ớ', 'ờ', 'ở', 'ỡ', 'ợ'),
+         'O' => array('Ó', 'Ò', 'Ỏ', 'Õ', 'Ọ', 'Ô', 'Ố', 'Ồ', 'Ổ', 'Ỗ', 'Ộ', 'Ơ', 'Ớ', 'Ờ', 'Ở', 'Ỡ', 'Ợ'),
+         'u' => array('ú', 'ù', 'ủ', 'ũ', 'ụ', 'ư', 'ứ', 'ừ', 'ử', 'ữ', 'ự'),
+         'U' => array('Ú', 'Ù', 'Ủ', 'Ũ', 'Ụ', 'Ư', 'Ứ', 'Ừ', 'Ử', 'Ữ', 'Ự'),
+         'y' => array('ý', 'ỳ', 'ỷ', 'ỹ', 'ỵ'),
+         'Y' => array('Ý', 'Ỳ', 'Ỷ', 'Ỹ', 'Ỵ'),
+         '-' => array(' ', '&quot;', '.', '-–-')
+      );
+      foreach ($unicode as $nonUnicode => $uni) {
+         foreach ($uni as $value)
+            $str = @str_replace($value, $nonUnicode, $str);
+         $str = preg_replace("/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'| |\"|\&|\#|\[|\]|~|$|_/", "-", $str);
+         $str = preg_replace("/-+-/", "-", $str);
+         $str = preg_replace("/^\-+|\-+$/", "", $str);
+      }
+      return strtolower($str);
+    }
+    
+    function get_tour_guide_id()
+    { 
+        $tour_guide_id = Input::get('tour_guide_id', ''); 
+        $tour_guide = DB::table('tourguide__tourguides')->where('tourguide__tourguides.id', '=' ,$tour_guide_id)->first();
+       
+        $orderTour = DB::table('tourguide__tourguides')
+                ->orderBy('id', 'desc')
+                ->get();
+        $maso = "00".$orderTour[0]->id;
+        $fullname = $tour_guide->firstname.' '.$tour_guide->lastname;
+        $fullname = $this->genUserName($fullname);
+        $code =$fullname.$maso;
+        echo json_encode($code);
+   
+    }
+
 }

@@ -35,18 +35,31 @@ class ThongketimeController extends AdminBaseController
     {
         $fromDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('fromDate', date('Y-m-01', time())))));
         $toDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('toDate', date('Y-m-d')))));
-        $thongketimes='';
-        $inputs = Input::all();
-        if ($fromDate && $toDate) {
-            $thongketimes = Invoice::select('invoices__invoices.*','customers__customers.firstname','customers__customers.lastname','hotel__hotels.name','tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname')
-            ->leftJoin('customers__customers', 'invoices__invoices.customer_id', '=', 'customers__customers.id')
-            ->leftJoin('hotel__hotels', 'invoices__invoices.hotel_id', '=', 'hotel__hotels.id')
-            ->leftJoin('tourguide__tourguides', 'invoices__invoices.tour_guide_id', '=', 'tourguide__tourguides.id')
-            ->whereBetween(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"), array($fromDate, $toDate))->orderBy('invoices__invoices.id', 'DESC')->get();           
-           
-        }
+        $tourguideId =Input::get('tour_guide_id', '');
+        $hotelId =Input::get('hotel_id','');
+        $tourguides = DB::table('tourguide__tourguides')->get();
+        $hotels = DB::table('hotel__hotels')->get();
 
-        return view('thongke::admin.thongketimes.index', compact('thongketimes','fromDate','toDate'));
+        $inputs = Input::all();
+        
+        $thongkes =Invoice::select('invoices__invoices.id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.note','invoices__invoices.order_date',
+        'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
+        'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name' )
+        ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')
+        ->leftjoin('hotel__hotels', 'hotel__hotels.id', '=', 'invoices__invoices.hotel_id')
+        ->leftjoin('tourguide__tourguides', 'tourguide__tourguides.id', '=', 'invoices__invoices.tour_guide_id')
+        ;
+        if ($fromDate && $toDate) {
+            $thongkes = $thongkes->whereBetween(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"), array($fromDate, $toDate));  
+        }
+        if ($tourguideId) {
+            $thongkes = $thongkes->where('invoices__invoices.tour_guide_id', $tourguideId );
+        }
+        if($hotelId) {
+            $thongkes = $thongkes->where('invoices__invoices.hotel_id',$hotelId);
+        }
+        $thongkes =$thongkes->get();
+        return view('thongke::admin.thongketimes.index', compact('thongkes','fromDate','toDate','hotelId','tourguideId','hotels','tourguides'));
     }
 
     /**
@@ -112,4 +125,5 @@ class ThongketimeController extends AdminBaseController
         return redirect()->route('admin.thongke.thongketime.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('thongke::thongketimes.title.thongketimes')]));
     }
+    
 }
