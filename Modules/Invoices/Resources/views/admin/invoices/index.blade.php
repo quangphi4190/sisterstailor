@@ -28,13 +28,18 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="data-table table table-bordered table-hover">
+                    {!! Form::open(['route' => ['admin.invoices.invoice.updateGroupCode'], 'method' => 'get','id' => 'UpdateGroupCode']) !!}                 
+                        <table class="data-table table table-bordered table-hover table-input">
                             <thead>
                             <tr>
                                 <th>STT</th>                                
-                                <th>Tên người đứng hóa đơn</th>
-                                <th>Số điện thoại thanh toán</th>
-                                <th>Ghi chú</th>
+                                <th>Khách hàng</th>
+                                <th>Khách sạn</th>
+                                <th>Hướng dẫn viên</th>
+                                <th>Mã đoàn</th>
+                                <th>Số tiền</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Ngày khách rời</th>                                
                                 <th data-sortable="false">Chức năng</th>
                             </tr>
                             </thead>
@@ -48,21 +53,41 @@
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
                                         {{ $stt ++}}
                                     </a>
-                                </td>
+                                </td>                              
+                               
                                
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ $invoice->billing_name }}
+                                        {{ $invoice->firstname .' '.$invoice->lastname  }}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ $invoice->billing_phone }}
+                                        {{ $invoice->name }}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        <?php echo $invoice->note; ?>
+                                        {{ $invoice->Tfirstname .' '.$invoice->Tlastname }}
+                                    </a>
+                                </td>
+                                <td class ="td-input">
+                                     <input type="hidden" name="id[]" value="{{ $invoice->id }}">
+                                    <input type="text" class="input-w" name="group_code[]" value="{{ $invoice->group_code }}">                                   
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
+                                        {{ $invoice->amount }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
+                                        {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $invoice->order_date))) }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
+                                       {{date('d/m/Y', strtotime(str_replace('/', '-', $invoice->delivery_date))) }}
                                     </a>
                                 </td>                               
                                
@@ -87,6 +112,7 @@
                             </tr> -->
                             </tfoot>
                         </table>
+                        {!! Form::close() !!}
                         <!-- /.box-body -->
                     </div>
                 </div>
@@ -109,6 +135,11 @@
 
 @push('js-stack')
     <script type="text/javascript">
+        $(".input-w").change(function(){            
+            $('#UpdateGroupCode').submit();
+
+        });
+
         $(document).ready(function () {
             $(document).keypressAction({
                 actions: [

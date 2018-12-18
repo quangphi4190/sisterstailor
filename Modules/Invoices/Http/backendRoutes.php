@@ -65,7 +65,10 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'as' => 'admin.invoices.invoices.edit_form',
         'uses' => 'InvoiceController@edit_form'
     ]);
-   
+    $router->get('invoices/updateGroupCode', [
+        'as' => 'admin.invoices.invoice.updateGroupCode',
+        'uses' => 'InvoiceController@updateGroupCode'
+    ]);
 // append
 
 });

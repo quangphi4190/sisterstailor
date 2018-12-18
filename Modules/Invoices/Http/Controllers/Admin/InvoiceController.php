@@ -34,8 +34,14 @@ class InvoiceController extends AdminBaseController
      */
     public function index()
     {
-        $invoices = $this->invoice->all();
-
+        // $invoices = $this->invoice->all();
+        $invoices = Invoice::select('invoices__invoices.id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.order_date',
+        'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
+        'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name' )
+        ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')
+        ->leftjoin('hotel__hotels', 'hotel__hotels.id', '=', 'invoices__invoices.hotel_id')
+        ->leftjoin('tourguide__tourguides', 'tourguide__tourguides.id', '=', 'invoices__invoices.tour_guide_id')
+        ->get();
         return view('invoices::admin.invoices.index', compact('invoices'));
     }
 
@@ -78,13 +84,11 @@ class InvoiceController extends AdminBaseController
         $invoice->discount = $request['discount'];
         $invoice->payment_type = $request['payment_type'];
         $invoice->delivery_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['delivery_date'])));
-        $invoice->delivery_address = $request['delivery_address'];
-        $invoice->delivery_name = $request['delivery_name'];
-        $invoice->delivery_note = $request['delivery_note'];
-        $invoice->delivery_phone = $request['delivery_phone'];
-        $invoice->billing_name = $request['billing_name'];
-        $invoice->billing_phone = $request['billing_phone'];
-        $invoice->status = $request['status'];
+        $invoice->status = 1;
+        $invoice->is_group = $request['is_group'];
+        $invoice->group_code = $request['group_code'];
+        $invoice->seller = $request['seller'];
+        $invoice->amount = $request['amount'];
         $invoice->note = $request['note'];
         $invoice->save();
 
@@ -223,7 +227,19 @@ class InvoiceController extends AdminBaseController
         $customers_select = Customer::select('customers__customers.id','customers__customers.lastname','customers__customers.address','customers__customers.phone','customers__customers.firstname')->get();
         die(json_encode($customers_select));
     }
+
     public function edit_form (){
         $inputs = Input::all();
+    }
+
+    public function updateGroupCode () {
+        $inputs = Input::all();
+        $ids =Input::get('id','');
+        $group_code =Input::get('group_code','');
+        for($i=0; $i< sizeof($ids); $i++) {
+            Invoice::where('id', $ids[$i])->update(array('group_code' => $group_code[$i]));
+        }
+        return redirect()->route('admin.invoices.invoice.index')
+        ->withSuccess(trans('core::core.messages.updated group_code', ['name' => trans('invoices::invoices.title.invoices')]));
     }
 }

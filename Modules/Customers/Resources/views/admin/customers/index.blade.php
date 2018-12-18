@@ -31,24 +31,22 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Họ tên</th>
-                                <th>Giới tính</th>
-                                <th>Địa chỉ</th>
+                                <th>Giới tính</th>                              
                                 <th>Số điện thoại</th>
                                 <th>Email</th>                                
-                                <th>Loại khách hàng</th>
-                                <th>Trạng thái</th>
-                                <th data-sortable="false">Chức năng</th>
+                                <th>Quốc gia</th>                               
+                                <th>Chức năng</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($customers)):
                              $stt=1;   
                              ?>
-                            <?php foreach ($customers as $customer): ?>
+                            <?php foreach ($customers as $customer):  ?>
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $stt++ }}
+                                        {{ $stt }}
                                     </a>
                                 </td>
                                 <td>
@@ -68,11 +66,7 @@
                                            ?>
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->address }}
-                                    </a>
-                                </td>
+                               
                                 <td>
                                     <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
                                         {{ $customer->phone }}
@@ -85,14 +79,9 @@
                                 </td>                               
                                 <td>
                                     <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->customer_type == 1 ? 'Bình Thường' : 'VIP'}}
+                                        {{ $customer->name }}
                                     </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.customers.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->status == 1 ? 'Đang hoạt động' : 'Chưa kích hoạt'}}
-                                    </a>
-                                </td>
+                                </td> 
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.customers.customer.view', [$customer->id]) }}" title="{{ trans('customers::customers.title.view customer') }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
@@ -101,15 +90,10 @@
                                     </div>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
+                            <?php $stt++; endforeach; ?>
                             <?php endif; ?>
                             </tbody>
-                            <tfoot>
-                            {{--<tr>--}}
-                                {{--<th>{{ trans('core::core.table.created at') }}</th>--}}
-                                {{--<th>{{ trans('core::core.table.actions') }}</th>--}}
-                            {{--</tr>--}}
-                            </tfoot>
+                           
                         </table>
                         <!-- /.box-body -->
                     </div>
