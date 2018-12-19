@@ -1,18 +1,20 @@
 <div class="box-body">
 <div class="row">
 <div class="col-sm-6">
-    <div class="form-group dropdown">
+    <!-- <div class="form-group dropdown">
         <label >Cấp Độ Hướng Dẫn Viên</label>
         <select  name="tour_guide_type" class="form-control">
             <option value="Bình Thường">Bình Thường</option>
             <option value="Vip">Vip</option>
         </select>
-    </div>
-    {!! Form::normalInput('firstname', 'Họ', $errors) !!}
-    {!! Form::normalInput('lastname', 'Tên', $errors) !!}
+    </div> -->
+    {!! Form::normalInput('firstname', 'Họ và Tên', $errors) !!}
+    <!-- {!! Form::normalInput('lastname', 'Tên', $errors) !!} -->
     {!! Form::normalInput('email', 'E-Mail', $errors) !!}
     {!! Form::normalInput('phone', 'Số Điện Thoại', $errors) !!}
-    {!! Form::normalInput('address', 'Địa Chỉ', $errors) !!}
+    <!-- {!! Form::normalInput('address', 'Địa Chỉ', $errors) !!} -->
+    </div>
+    <div class="col-sm-6">
     <div class="form-group dropdown">
             <label for="gender">Giới tính</label>
             <select id="gender" name="gender" class="form-control">
@@ -33,7 +35,7 @@
         </select>
     </div>
 
-    <div class="form-group dropdown">
+    <!-- <div class="form-group dropdown">
         <label for="state_id">Tỉnh</label>
         <select name="state_id" class="form-control">
         <option value="">Chọn Tỉnh</option>
@@ -56,7 +58,7 @@
         </div>
     {!! Form::normalInput('custom_field1', 'Thông Tin Khác 1', $errors) !!}
     {!! Form::normalInput('custom_field2', 'Thông Tin Khác 2', $errors) !!}
-    {!! Form::normalInput('custom_field3', 'Thông Tin Khác 3', $errors) !!} 
+    {!! Form::normalInput('custom_field3', 'Thông Tin Khác 3', $errors) !!}  -->
     </div>
     </div>   
 </div>

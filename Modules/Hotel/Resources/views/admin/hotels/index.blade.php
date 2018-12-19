@@ -34,7 +34,7 @@
                                 <th>Số Điện Thoại</th>
                                 <th>E-Mail</th>
                                 <th>Địa Chỉ</th>
-                                <th>Trạng Thái</th>
+                                <!-- <th>Trạng Thái</th> -->
                                 <th data-sortable="false">Chức Năng</th>
                             </tr>
                             </thead>
@@ -68,11 +68,11 @@
                                         {{ $hotel->address }}
                                     </a>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}">
                                         {{ $hotel->status == 1 ? 'Đang hoạt động' : 'Chưa kích hoạt'}}
                                     </a>
-                                </td>
+                                </td> -->
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.hotel.hotel.edit', [$hotel->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
