@@ -49,7 +49,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.tourguide.tourguide.edit', [$tourguide->id]) }}">
-                                        {{($tourguide->firstname).' '.($tourguide->lastname)}}
+                                        {{($tourguide->firstname)}}
                                     </a>
                                 </td>
                                 <td>
