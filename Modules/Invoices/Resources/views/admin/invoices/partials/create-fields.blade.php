@@ -36,15 +36,15 @@ $status = [
         </div>
     </div>
     <div class ="col-sm-6">
-    <div class="form-group dropdown">
-        <label for="payment_type">Hình thức thanh toán</label>
-        <select name="payment_type" id="payment_type" class="form-control">           
-             <option value="Tiền mặt">Tiền mặt</option>
-             <option value="Thẻ">Thẻ </option>
-             <option value="Cả hai">Cả hai </option>
-             <option value="Khác">Khác </option>
-        </select>
-    </div> 
+        <div class="form-group dropdown">
+            <label for="payment_type">Hình thức thanh toán</label>
+            <select name="payment_type" id="payment_type" class="form-control">           
+                <option value="Tiền mặt">Tiền mặt</option>
+                <option value="Thẻ">Thẻ </option>
+                <option value="Cả hai">Cả hai </option>
+                <option value="Khác">Khác </option>
+            </select>
+        </div> 
     </div>
 </div>
 <div class = "row">
@@ -57,7 +57,7 @@ $status = [
         <div class="d-flex flex-row pd-t26">
             <div class ="col-sm-4 p_o">
                 <label class="containera">Khách đoàn
-                    <input type="checkbox" checked="checked">
+                    <input type="checkbox" name="is_group" checked="checked">
                     <span class="checkmark"></span>
                 </label>
             </div>
@@ -70,7 +70,7 @@ $status = [
         <div class="form-group dropdown">
                 <label for="tour_guide_id">Hướng dẫn viên</label>
                 <select name="tour_guide_id" id="tour_guide_id" class="form-control">
-                    <option value="">Chọn hướng dẫn viên</option>
+                    <option value="0">Khách lẻ</option>
                     <?php foreach ($tourguides as $tourguide) {?>
                         <option value="{{$tourguide->id}}">{{$tourguide->firstname .' '.$tourguide->lastname}} </option>
                     <?php }?>
@@ -79,7 +79,7 @@ $status = [
         <div class="form-group dropdown">
             <label for="hotel_id">Khách sạn</label>
             <select name="hotel_id" id="hotel_id" class="form-control">
-                <option value="">Chọn khách sạn</option>
+                <option value="0">Khác</option>
                 <?php foreach ($hotels as $hotel) {?>
                     <option value="{{$hotel->id}}">{{$hotel->name}} </option>
                 <?php }?>
@@ -110,14 +110,14 @@ $status = [
        
         <div class="form-group ">
             <label for="price">Giá</label>
-            <input placeholder="Giá" name="price" type="number" id="price" class="form-control">
+            <input placeholder="Giá" name="price" type="number"  id="price" class="form-control">
         </div>
         <div class="form-group ">
             <label for="discount">Giảm giá</label>
-            <input placeholder="Giảm giá" name="discount" type="number" id="discount" class="form-control">
+            <input placeholder="Giảm giá" name="discount" type="number" id="discount" class="input-calc form-control">
         </div>
-        <div class="form-group ">
-            <label for="discount">Thành tiền</label>
+        <div class="form-group">
+            <label for="amount">Thành tiền</label>
             <input placeholder="Thành tiền" name="amount" type="text" id="amount" class="form-control">
         </div>
     <!-- {!! Form::normalInput('delivery_address', 'Địa chỉ giao hàng', $errors) !!} -->

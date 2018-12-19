@@ -78,4 +78,109 @@ input.icon {
    
   }
 
- 
+  .table-input td input[type='number'] {
+    -moz-appearance:textfield;
+}
+.table-input td input::-webkit-outer-spin-button, .table-input td input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.table-input td.active .dynamid-data {
+    background-color: #E6E6E699;
+}
+.table-input .td-input {
+    position: relative;
+}
+.table-input .td-input:before {
+    font-family: FontAwesome;
+    content: "\f040";
+    display: inline-block;
+    position: absolute;
+    right: 12px;
+    bottom: 22px;
+    font-size: 10px;
+    color: #5D5D5D;
+}
+
+.table-input .td-input > input.kb-error {
+    box-shadow: 0px 0px 2px 1px red;
+}
+.table-input .tr-data.kb-error .model-data .change-choosed-model-colum {
+    background-color: rgba(255, 123, 123, 0.79);
+}
+.table-input .td-input > input:focus {
+    box-shadow: 0px 0px 2px 1px blue;
+}
+.td-input .input-w {
+    width: 100%;
+}
+
+
+
+  .p_o {
+      padding: 0!important;
+  }
+
+  .containera {
+      width: 200px;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    line-height: 36px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .containera input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  .checkmark {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+  }
+  .containera:hover input ~ .checkmark {
+    background-color: #ccc;
+  }  
+  .containera input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.containera input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .containera .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .l-white-sp {
+    white-space: nowrap;
+    margin-right: 10px;
+    line-height: 32px;
+  }
+  .pd-t26 {
+    padding-top: 26px;
+  }
+  

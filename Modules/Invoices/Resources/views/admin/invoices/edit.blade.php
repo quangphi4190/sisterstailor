@@ -22,6 +22,7 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
+                        <input hidden name = "id" value ="<?php echo $invoice->id?>">
                             @include('invoices::admin.invoices.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
@@ -54,18 +55,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
       $(function () {
+           // amount
+        $(document).on('change', '.input-calc', function () {            
+            price = $('#price').val() ? $('#price').val() : 0;
+            discount = $('#discount').val() ? $('#discount').val() : 0;          
+            totalAmount =price-discount;
+            document.getElementById("amount").value = totalAmount;
+        });
+        // Get Mã đoàn
+        $('select[name="tour_guide_id"]').change(function () {                     
+            var url= route('admin.invoices.invoices.get_tour_guide_id');
+            var token = '{{ csrf_token() }}';
+           var group_code =$('#group_code');
+            $.post(url, {tour_guide_id:$(this).val(), _token:token }, function(data){               
+                data = $.parseJSON(data);
+                group_code.val(data);
+            });
+        });
         $('#datetimepicker1').datetimepicker({
-            // defaultDate: new Date(),
+            defaultDate: new Date(),
             showTodayButton: true,
-            format: 'YYYY/MM/DD HH:mm:ss',
+            format: 'DD/MM/YYYY',
             sideBySide: true,
-            minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
+            minDate: new Date("{!! date('Y-m-d') !!}")
         });
 
         $('#datetimepicker2').datetimepicker({
-            // defaultDate: new Date(),
+            defaultDate: new Date(),
             showTodayButton: true,
-            format: 'YYYY/MM/DD HH:mm:ss',
+            format: 'DD/MM/YYYY HH:mm:ss',
             sideBySide: true,
             minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
         });

@@ -62,9 +62,10 @@ return [
     ],
     'messages' => [
         'resource created' => ':name thêm mới thành công.',
-        'resource not found' => ':name không tìm thấy.',
-        'resource updated' => ':name thay đổi thành công',
-        'resource deleted' => ':name đã được xóa thành công',
+        'resource not found' => ':name không tồn tại.',
+        'resource updated' => ':name cập nhật thành công.',
+        'resource deleted' => ':name xóa thành công.',
+        'updated group_code' => ' Cập nhật mã đoàn thành công',        
     ],
     'back' => 'Back',
     'back to index' => 'Back to :name index',

@@ -43,16 +43,16 @@ class RegisterThongkeSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->authorize(
                      /* append */
                 );
-                $item->item(trans('thongke::thongkedays.title.thongkedays'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.thongke.thongkeday.create');
-                    $item->route('admin.thongke.thongkeday.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('thongke.thongkedays.index')
-                    );
-                });
-                $item->item(trans('thongke::thongketimes.thongketimes'), function (Item $item) {
+                // $item->item(trans('thongke::thongkedays.title.thongkedays'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.thongke.thongkeday.create');
+                //     $item->route('admin.thongke.thongkeday.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('thongke.thongkedays.index')
+                //     );
+                // });
+                $item->item(trans('thongke::thongketimes.title.thong ke'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
                     $item->append('admin.thongke.thongketime.create');
@@ -61,24 +61,24 @@ class RegisterThongkeSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('thongke.thongketimes.index')
                     );
                 });
-                $item->item(trans('thongke::thongkehotels.title.thongkehotels'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.thongke.thongkehotel.create');
-                    $item->route('admin.thongke.thongkehotel.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('thongke.thongkehotels.index')
-                    );
-                });
-                $item->item(trans('thongke::thongketourguides.title.thongketourguides'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.thongke.thongketourguide.create');
-                    $item->route('admin.thongke.thongketourguide.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('thongke.thongketourguides.index')
-                    );
-                });
+                // $item->item(trans('thongke::thongkehotels.title.thongkehotels'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.thongke.thongkehotel.create');
+                //     $item->route('admin.thongke.thongkehotel.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('thongke.thongkehotels.index')
+                //     );
+                // });
+                // $item->item(trans('thongke::thongketourguides.title.thongketourguides'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.thongke.thongketourguide.create');
+                //     $item->route('admin.thongke.thongketourguide.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('thongke.thongketourguides.index')
+                //     );
+                // });
 // append
 
 
