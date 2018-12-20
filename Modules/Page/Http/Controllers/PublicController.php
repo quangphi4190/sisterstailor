@@ -125,4 +125,7 @@ class PublicController extends BasePublicController
 
         return $alternate;
     }
+    public function category(){
+        return view('Themes/Sisterstailor/views/category');
+    }
 }
