@@ -208,6 +208,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://www.jqueryscript.net/demo/Custom-Thousands-Separator-jQuery-number-divider/dist/number-divider.js"></script>
     <script type="text/javascript">
 
 
@@ -250,6 +251,18 @@
     <?php $locale = locale(); ?>
     <script type="text/javascript">
         $(function () {
+            function addCommas(nStr)
+            {
+                nStr += '';
+                var x = nStr.split('.');
+                var x1 = x[0];
+                var x2 = x.length > 1 ? '.' + x[1] : '';
+                var rgx = /(\d+)(\d{3})/;
+                while (rgx.test(x1)) {
+                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                }
+                return x1 + x2;
+            }
             var api;
             $('.data-table').dataTable({
                 "paginate": true,
@@ -291,7 +304,7 @@
 
                     // Update footer
                     $( api.column( 5 ).footer() ).html(
-                        '$'+pageTotal
+                        '$'+addCommas(pageTotal)
                     );
                 }
             });

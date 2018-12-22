@@ -41,16 +41,16 @@ class ThongketimeController extends AdminBaseController
         $hotels = DB::table('hotel__hotels')->get();
 
         $inputs = Input::all();
-        
+
         $thongkes =Invoice::select('invoices__invoices.id','invoices__invoices.tour_guide_id','invoices__invoices.hotel_id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.note','invoices__invoices.order_date',
-        'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
-        'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name','invoices__invoices.seller' )
-        ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')
-        ->leftjoin('hotel__hotels', 'hotel__hotels.id', '=', 'invoices__invoices.hotel_id')
-        ->leftjoin('tourguide__tourguides', 'tourguide__tourguides.id', '=', 'invoices__invoices.tour_guide_id')
+            'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
+            'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name','invoices__invoices.seller' )
+            ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')
+            ->leftjoin('hotel__hotels', 'hotel__hotels.id', '=', 'invoices__invoices.hotel_id')
+            ->leftjoin('tourguide__tourguides', 'tourguide__tourguides.id', '=', 'invoices__invoices.tour_guide_id')
         ;
         if ($fromDate && $toDate) {
-            $thongkes = $thongkes->whereBetween(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"), array($fromDate, $toDate));  
+            $thongkes = $thongkes->whereBetween(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"), array($fromDate, $toDate));
         }
         if ($tourguideId) {
             $thongkes = $thongkes->where('invoices__invoices.tour_guide_id', $tourguideId );
@@ -60,6 +60,32 @@ class ThongketimeController extends AdminBaseController
         }
         $thongkes =$thongkes->get();
         return view('thongke::admin.thongketimes.index', compact('thongkes','fromDate','toDate','hotelId','tourguideId','hotels','tourguides'));
+    }
+
+    function thong_ke_doanh_thu(){
+
+        $fromDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('fromDate', date('Y-m-01', time())))));
+        $toDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('toDate', date('Y-m-d')))));
+        $tourguideId =Input::get('tour_guide_id', '');
+        $tourguides = DB::table('tourguide__tourguides')->get();
+
+
+        $inputs = Input::all();
+
+        $thongkes =Invoice::select('invoices__invoices.id','invoices__invoices.tour_guide_id','invoices__invoices.hotel_id','invoices__invoices.amount','invoices__invoices.price','invoices__invoices.discount','invoices__invoices.order_date',
+            'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
+            'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','invoices__invoices.seller' )
+            ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')
+            ->leftjoin('tourguide__tourguides', 'tourguide__tourguides.id', '=', 'invoices__invoices.tour_guide_id')
+        ;
+        if ($fromDate && $toDate) {
+            $thongkes = $thongkes->whereBetween(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"), array($fromDate, $toDate));
+        }
+        if ($tourguideId) {
+            $thongkes = $thongkes->where('invoices__invoices.tour_guide_id', $tourguideId );
+        }
+        $thongkes =$thongkes->get();
+        return view('thongke::admin.thongketimes.doanhthu', compact('thongkes','fromDate','toDate','hotelId','tourguideId','hotels','tourguides'));
     }
 
     /**

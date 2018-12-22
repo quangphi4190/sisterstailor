@@ -8,4 +8,6 @@ $(document).ready(function () {
     Mousetrap.bind('f1', function() {
         window.open('https://asgardcms.com/docs', '_blank');
     });
+
 });
+

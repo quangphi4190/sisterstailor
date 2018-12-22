@@ -139,6 +139,9 @@ $router->group(['prefix' =>'/thongke'], function (Router $router) {
 // append
 
 
-
+    $router->get('thong-ke-doanh-thu', [
+        'as' => 'admin.thongke.thong_ke_doanh_thu',
+        'uses' => 'ThongketimeController@thong_ke_doanh_thu',
+    ]);
 
 });

@@ -1,5 +1,9 @@
 @extends('layouts.master')
-
+<style>
+    tfoot tr th{
+        text-align: right;
+    }
+</style>
 @section('content-header')
     <h1>
         {{ trans('thongke::thongketimes.title.thong ke') }}
@@ -40,7 +44,7 @@
                                         </span>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <select name="tour_guide_id" id="tour_guide_id" class="form-control">
                                     <option value="">Chọn hướng dẫn viên</option>
                                     <?php foreach ($tourguides as $tourguide) {?>
@@ -49,15 +53,7 @@
                                     <?php }?>
                                 </select>
                             </div>
-                            <div class="col-md-2">
-                                <select name="hotel_id" id="hotel_id" class="form-control">
-                                    <option value="">Chọn khách sạn</option>
-                                    <?php foreach ($hotels as $hotel) {?>
-                                    <option
-                                        <?php echo $hotelId == $hotel->id ? 'selected' : '' ?> value="{{$hotel->id}}">{{$hotel->name}} </option>
-                                    <?php }?>
-                                </select>
-                            </div>
+
                             <div class="col-md-2 btn-thongke">
                                 <button type="submit" class="btn btn-info">Thống kê</button>
                             </div>
@@ -72,36 +68,31 @@
                             <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>{{ trans('thongke::thongketimes.title.name customer') }}</th>
-                                <th>{{ trans('thongke::thongketimes.title.name hotel') }}</th>
-                                <th>{{ trans('thongke::thongketimes.title.name tourguide') }}</th>
-                                <th>{{ trans('thongke::thongketimes.title.groud code') }}</th>
-                                <th>{{ trans('thongke::thongketimes.title.price') }}</th>
+                                <th>Khách hàng</th>
                                 <th>Ngày đặt</th>
                                 <th>Giờ</th>
-                                <th>{{ trans('thongke::thongketimes.title.date out') }}</th>
+                                <th>Ngày rời</th>
+                                <th>Hướng dẫn</th>
                                 <th>Người bán</th>
-                                <th>{{ trans('thongke::thongketimes.title.note') }}</th>
+                                <th>Đơn giá</th>
+                                <th>Giảm giá</th>
+                                <th>Thành tiền</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($thongkes)):$stt=1;   $tongtien=0;?>
-                            <?php foreach ($thongkes as $thongke):
-
-                            ?>
+                            <?php foreach ($thongkes as $thongke):?>
                             <tr>
                                 <td align="center"> {{ $stt++ }} </td>
                                 <td > {{ $thongke->firstname .' '.$thongke->lastname}} </td>
-                                <td> {{ $thongke->hotel_id == 0 ? 'Khác' : $thongke->name}} </td>
-                                <td> {{ $thongke->tour_guide_id == 0 ? 'Khách lẻ' : $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
-                                <td> {{ $thongke->group_code}} </td>
-                                <td> $ {{ number_format($thongke->amount,0,',',',')}} </td>
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
                                 <td> {{ date('H:i', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>
+                                <td> {{ $thongke->tour_guide_id == 0 ? 'Khách lẻ' : $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
                                 <td> {{ $thongke->seller }} </td>
-                                <td> {{ $thongke->note }} </td>
-
+                                <td align="right"> $ {{ number_format($thongke->price,0,',',',')}} </td>
+                                <td align="right"> $ {{ number_format($thongke->discount,0,',',',')}} </td>
+                                <td align="right"> $ {{ number_format($thongke->amount,0,',',',')}} </td>
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
@@ -112,8 +103,7 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th align="right">Tổng tiền</th>
-                                <th>$ 0</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -203,25 +193,39 @@
                                 i : 0;
                     };
 
-                    // Total over all pages
-                    // total = api
-                    //     .column(5)
-                    //     .data()
-                    //     .reduce( function (a, b) {
-                    //         return intVal(a) + intVal(b);
-                    //     }, 0 );
 
-                    // Total over this page
-                    pageTotal = api
-                        .column( 5, { page: 'current'} )
+                    price = api
+                        .column( 7, { page: 'current'} )
                         .data()
                         .reduce( function (a, b) {
                             return intVal(a) + intVal(b);
                         }, 0 );
 
                     // Update footer
-                    $( api.column( 5 ).footer() ).html(
-                        '$'+addCommas(pageTotal)
+                    $( api.column( 7 ).footer() ).html(
+                        '$'+addCommas(price)
+                    );
+                    discount = api
+                        .column( 8, { page: 'current'} )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+
+                    // Update footer
+                    $( api.column( 8 ).footer() ).html(
+                        '$'+addCommas(discount)
+                    );
+                    amount = api
+                        .column( 9, { page: 'current'} )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+
+                    // Update footer
+                    $( api.column( 9 ).footer() ).html(
+                        '$'+addCommas(amount)
                     );
                 }
             });
