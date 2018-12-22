@@ -77,7 +77,8 @@
                                 <th>{{ trans('thongke::thongketimes.title.name tourguide') }}</th>
                                 <th>{{ trans('thongke::thongketimes.title.groud code') }}</th>
                                 <th>{{ trans('thongke::thongketimes.title.price') }}</th>
-                                <th>{{ trans('thongke::thongketimes.title.date order') }}</th>
+                                <th>Ngày đặt</th>
+                                <th>Giờ</th>
                                 <th>{{ trans('thongke::thongketimes.title.date out') }}</th>
                                 <th>{{ trans('thongke::thongketimes.title.note') }}</th>
                             </tr>
@@ -88,14 +89,15 @@
                                  $tongtien = $tongtien + $thongke->amount;
                             ?>
                             <tr>
-                            <td> {{ $stt++ }} </td>
-                                <td> {{ $thongke->firstname .' '.$thongke->lastname}} </td>
+                                <td align="center"> {{ $stt++ }} </td>
+                                <td > {{ $thongke->firstname .' '.$thongke->lastname}} </td>
                                 <td> {{ $thongke->hotel_id == 0 ? 'Khác' : $thongke->name}} </td>
                                 <td> {{ $thongke->tour_guide_id == 0 ? 'Khách lẻ' : $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
                                 <td> {{ $thongke->group_code}} </td>
-                                <td> {{ number_format($thongke->amount,0,',',',')}} </td>                               
-                                <td> {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
-                                <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>  
+                                <td> $ {{ number_format($thongke->amount,0,',',',')}} </td>
+                                <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
+                                <td> {{ date('H:i', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
+                                <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>
                                 <td> {{ $thongke->note }} </td>      
                                 
                             </tr>
@@ -104,8 +106,16 @@
                             </tbody>  
                             <tfoot>
                             <tr>
-                                <th>Tổng tiền</th>
-                                <th colspan="8">{{ number_format($tongtien,0,',',',')}} vnđ</th>                                
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th align="right">Tổng tiền</th>
+                                <th>$ {{ number_format($tongtien,0,',',',')}}</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             </tfoot>                          
                         </table>
@@ -134,6 +144,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({
@@ -156,7 +168,15 @@
                 "order": [[ 0, "asc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
-                }
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        messageTop: '<h4>60 Bạch Đằng</h4><h4>093 555 08 64</h4>',
+                        footer: true
+                    }
+                ]
             });
         });
     </script>

@@ -14,7 +14,7 @@ return [
         'name hotel' => 'Khách sạn',
         'price' => 'Giá tiền',
         'date order' => 'Ngày đặt hàng',
-        'date out' => 'Ngày khách rời',
+        'date out' => 'Ngày rời',
         'groud code' => 'Mã đoàn',
         'name tourguide' => 'Hướng dẫn viên',
         'note' =>'Ghi chú'
