@@ -151,8 +151,17 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
+                                        <?php
+                                            if ($invoice->status == 1){
+                                        ?>
                                         <a href="javascript:;"
-                                           class="btn btn-success btn-flat"><i class="fa fa-check"></i></a>
+                                           class="btn btn-warning btn-flat btn-paid" data-id="{{$invoice->id}}" title="Thanh toán"><i class="fa fa-dollar"></i></a>
+                                            <?php
+                                                }else{
+                                            ?>
+                                            <a href="javascript:;"
+                                               class="btn btn-success btn-flat"><i class="fa fa-check"></i></a>
+                                            <?php } ?>
                                         <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}"
                                            class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal"
@@ -221,6 +230,21 @@
                 }, 'json');
 
             });
+            $('.btn-paid').on('click', function () {
+                var btn = $(this);
+                var invoice_id = $(this).data('id');
+                $.get('{{url('backend/invoices/paid')}}/'+invoice_id, function (data) {
+                    if(data.successful){
+                        btn.removeClass('btn-paid');
+                        btn.removeClass('btn-warning');
+                        btn.addClass('btn-success');
+
+                        btn.html('<i class="fa fa-check"></i>')
+                    }else{
+                        alert(data.message);
+                    }
+                }, 'json');
+            })
         });
     </script>
     <?php $locale = locale(); ?>
