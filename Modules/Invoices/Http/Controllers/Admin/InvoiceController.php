@@ -4,6 +4,7 @@ namespace Modules\Invoices\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Hotel\Repositories\HotelRepository;
 use Modules\Invoices\Entities\Invoice;
 use Modules\Invoices\Http\Requests\CreateInvoiceRequest;
 use Modules\Invoices\Http\Requests\UpdateInvoiceRequest;
@@ -13,18 +14,24 @@ use DB;
 use Modules\Customers\Entities\Customer;
 use Illuminate\Support\Facades\Input;
 use Modules\Customers\Http\Requests\CreateCustomerRequest;
+use Modules\Tourguide\Repositories\TourGuideRepository;
+
 class InvoiceController extends AdminBaseController
 {
     /**
      * @var InvoiceRepository
      */
     private $invoice;
+    private $tour_guide;
+    private $hotel;
 
-    public function __construct(InvoiceRepository $invoice)
+    public function __construct(InvoiceRepository $invoice, TourGuideRepository $tourGuideRepository, HotelRepository $hotelRepository)
     {
         parent::__construct();
 
         $this->invoice = $invoice;
+        $this->tour_guide = $tourGuideRepository;
+        $this->hotel = $hotelRepository;
     }
 
     /**
@@ -35,7 +42,7 @@ class InvoiceController extends AdminBaseController
     public function index()
     {
         // $invoices = $this->invoice->all();
-        $fromDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('fromDate', date('Y-m-01', time())))));
+        $fromDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('fromDate', date('Y-m-d', time())))));
         $toDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('toDate', date('Y-m-d')))));
         $tourguideId =Input::get('tour_guide_id', '');
         $hotelId =Input::get('hotel_id','');
@@ -330,7 +337,65 @@ class InvoiceController extends AdminBaseController
         $fullname = $this->genUserName($fullname);
         $code =$fullname.$maso;
         echo json_encode($code);
-   
+    }
+
+    function get_group_info($id, $group_code = ''){
+        if($group_code=='remove'){
+            $invoice_selected = $this->invoice->find($id);
+            if ($invoice_selected == null)
+            {
+                echo json_encode([
+                    'successful'=>0,
+                    'message'=>'Đơn hàng không tồn tại hoặc đã bị xóa'
+                ]);
+                die();
+            }
+            $this->invoice->update($invoice_selected, [
+                'tour_guide_id'=>   0,
+                'hotel_id'=>0,
+                'group_code'=>'',
+                'is_group'=>0
+            ]);
+            echo json_encode([
+                'successful'=>1,
+                'hotel'=>'Khác',
+                'tour_guide'=>'Khách lẻ'
+            ]);
+            die();
+        }
+        $data = $this->invoice->findByAttributes([
+            'group_code'=>$group_code
+        ]);
+        if ($data == null){
+            echo json_encode([
+                'successful'=>0,
+                'message'=>'Mã đoàn không tồn tại'
+            ]);
+            die();
+        }
+        $invoice_selected = $this->invoice->find($id);
+        if ($invoice_selected == null)
+        {
+            echo json_encode([
+                'successful'=>0,
+                'message'=>'Đơn hàng không tồn tại hoặc đã bị xóa'
+            ]);
+            die();
+        }
+
+        $tourGuide = $this->tour_guide->find($data->tour_guide_id);
+        $hotel = $this->hotel->find($data->hotel_id);
+        $this->invoice->update($invoice_selected, [
+            'tour_guide_id'=>   $data->tour_guide_id,
+            'hotel_id'=>$data->hotel_id,
+            'group_code'=>$data->group_code,
+            'is_group'=>1
+        ]);
+        echo json_encode([
+            'successful'=>1,
+            'hotel'=>$hotel->name,
+            'tour_guide'=>$tourGuide->firstname . ' ' . $tourGuide->lastname
+        ]);
     }
 
 }

@@ -28,6 +28,8 @@ class Invoice extends Model
         'billing_name',
         'billing_phone',
         'status',
-        'note'
+        'note',
+        'group_code',
+        'is_group'
     ];
 }

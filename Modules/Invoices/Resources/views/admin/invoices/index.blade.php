@@ -87,13 +87,13 @@
                                 <th>Hướng dẫn viên</th>
                                 <th>Mã đoàn</th>
                                 <th>Số tiền</th>
-                                <th>Ngày đặt hàng</th>
+                                <th>Ngày đặt</th>
                                 <th>Ngày khách rời</th>
                                 <th data-sortable="false">Chức năng</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <!-- {!! Form::open(['route' => ['admin.invoices.invoice.updateGroupCode'], 'method' => 'get','id' => 'UpdateGroupCode']) !!} -->
+
                             <?php if (isset($invoices)):
                             $stt = 1;$tongtien = 0;
                             ?>
@@ -102,7 +102,7 @@
                             $tongtien = $tongtien + $invoice->amount;
                             ?>
                             <tr>
-                                <td>
+                                <td align="center">
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
                                         {{ $stt ++}}
                                     </a>
@@ -115,18 +115,17 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
+                                    <a class="hotel_{{$invoice->id}}" href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
                                         {{ $invoice->hotel_id == 0 ? 'Khác' :$invoice->name }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
+                                    <a class="tour_guide_{{$invoice->id}}" href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
                                         {{ $invoice->tour_guide_id == 0 ? 'Khách lẻ' : $invoice->Tfirstname .' '.$invoice->Tlastname }}
                                     </a>
                                 </td>
                                 <td class="td-input">
-                                    <input type="hidden" name="id[]" value="{{ $invoice->id }}">
-                                    <input type="text" class="input-w" name="group_code[]"
+                                    <input data-id="{{ $invoice->id }}" type="text" class="input-w group_code" name="group_code[]"
                                            value="{{ $invoice->group_code }}">
                                 </td>
                                 <td>
@@ -136,8 +135,12 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $invoice->order_date))) }}
+                                        {{ date('d/m/Y', strtotime(str_replace('/', '-', $invoice->order_date))) }}
                                     </a>
+                                    <span class="label label-lg label-info">
+                                        {{ date('H:i', strtotime(str_replace('/', '-', $invoice->order_date))) }}
+
+                                    </span>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
@@ -162,12 +165,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Tổng tiền</th>
-                                <th colspan="8">{{ number_format($tongtien,0,',',',')}} vnđ</th>
+                                <th colspan="5" style="text-align: right" >Tổng tiền</th>
+                                <th colspan="4" style="text-align: left">$ {{ number_format($tongtien,0,',',',')}}</th>
                             </tr>
                             </tfoot>
                         </table>
-                    <!-- {!! Form::close() !!} -->
                         <!-- /.box-body -->
                     </div>
                 </div>
@@ -196,22 +198,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript">
-        function
 
-        delete($clientId)
-        {
-
-        }
-        $(".input-w").change(function () {
-            $('#UpdateGroupCode').submit();
-
-        });
 
         $(document).ready(function () {
             $(document).keypressAction({
                 actions: [
                     {key: 'c', route: "<?= route('admin.invoices.invoice.create') ?>"}
                 ]
+            });
+            $(".group_code").change(function () {
+                var invoice_id = $(this).data('id');
+                var group_code = $(this).val().length == 0?'remove':$(this).val();
+                $.get('{{url('backend/invoices/invoices/get_group_info')}}/'+invoice_id + '/' + group_code, function (data) {
+                        if(data.successful){
+                            $('.hotel_'+invoice_id).text(data.hotel);
+                            $('.tour_guide_'+invoice_id).text(data.tour_guide);
+                        }else{
+                            alert(data.message);
+                        }
+                }, 'json');
+
             });
         });
     </script>

@@ -73,6 +73,11 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'as' => 'admin.invoices.invoices.get_tour_guide_id',
         'uses' => 'InvoiceController@get_tour_guide_id'
     ]);
+
+    $router->get('invoices/get_group_info/{id}/{group_code}/', [
+        'as' => 'admin.invoices.invoice.get_group_info',
+        'uses' => 'InvoiceController@get_group_info'
+    ]);
 // append
 
 });

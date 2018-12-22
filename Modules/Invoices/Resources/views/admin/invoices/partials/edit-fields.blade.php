@@ -101,7 +101,7 @@ $date = date("d/m/Y H:m:s");
        
         <div class="form-group">
             <label for="amount">Thành tiền</label>
-            <input placeholder="Thành tiền" name="amount" type="text" id="amount" class="form-control" value="{{$invoice->amount}}">
+            <input placeholder="Thành tiền" name="amount" type="text" readonly id="amount" class="form-control" value="{{$invoice->amount}}">
         </div>
     </div>
    

@@ -56,7 +56,7 @@
 <script type="text/javascript">
       $(function () {
            // amount
-        $(document).on('change', '.input-calc', function () {            
+        $(document).on('change', '.input-calc, #price', function () {
             price = $('#price').val() ? $('#price').val() : 0;
             discount = $('#discount').val() ? $('#discount').val() : 0;          
             totalAmount =price-discount;
