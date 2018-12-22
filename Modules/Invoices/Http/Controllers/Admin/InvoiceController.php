@@ -50,7 +50,7 @@ class InvoiceController extends AdminBaseController
         $hotels = DB::table('hotel__hotels')->get();
         $invoices = Invoice::select('invoices__invoices.id','invoices__invoices.tour_guide_id','invoices__invoices.hotel_id','invoices__invoices.group_code','invoices__invoices.amount','invoices__invoices.order_date',
         'invoices__invoices.delivery_date','customers__customers.firstname','customers__customers.lastname',
-        'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name' )
+        'tourguide__tourguides.firstname as Tfirstname','tourguide__tourguides.lastname as Tlastname','hotel__hotels.name', 'invoices__invoices.seller' )
         ->leftjoin('customers__customers', 'customers__customers.id', '=', 'invoices__invoices.customer_id')
         ->leftjoin('hotel__hotels', 'hotel__hotels.id', '=', 'invoices__invoices.hotel_id')
         ->leftjoin('tourguide__tourguides', 'tourguide__tourguides.id', '=', 'invoices__invoices.tour_guide_id')
@@ -398,4 +398,24 @@ class InvoiceController extends AdminBaseController
         ]);
     }
 
+    function paid($id){
+        $invoice = $this->invoice->find($id);
+        if($invoice==null){
+            echo json_encode([
+                'successful'=>0,
+                'message'=>'Đơn hàng không tồn tại hoặc bị xóa'
+            ]);
+            die();
+        }
+
+        $this->invoice->update($invoice,[
+            'status'=>2
+        ]);
+        echo json_encode([
+            'successful'=>1,
+            'message'=>'Thành công'
+        ]);
+        die();
+
+    }
 }

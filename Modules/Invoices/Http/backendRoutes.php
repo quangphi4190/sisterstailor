@@ -78,6 +78,10 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'as' => 'admin.invoices.invoice.get_group_info',
         'uses' => 'InvoiceController@get_group_info'
     ]);
+    $router->get('paid/{id}', [
+        'as' => 'admin.invoices.paid',
+        'uses' => 'InvoiceController@paid'
+    ]);
 // append
 
 });

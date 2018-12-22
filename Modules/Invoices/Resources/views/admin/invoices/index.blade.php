@@ -151,6 +151,8 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
+                                        <a href="javascript:;"
+                                           class="btn btn-success btn-flat"><i class="fa fa-check"></i></a>
                                         <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}"
                                            class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal"
