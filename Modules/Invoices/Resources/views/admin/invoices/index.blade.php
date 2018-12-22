@@ -177,7 +177,7 @@
                             <tfoot>
                             <tr>
                                 <th colspan="5" style="text-align: right" >Tổng tiền</th>
-                                <th colspan="4" style="text-align: left"></th>
+                                <th colspan="5" style="text-align: left"></th>
                             </tr>
                             </tfoot>
                         </table>
