@@ -56,7 +56,7 @@
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li><a href="{{route('homepage')}}">Home</a></li>
-                    <li><a href="{{route('category')}}">Category</a></li>
+                    <li><a href="#catagory">Category</a></li>
                     <li><a href="#men">Men</a></li>
                     <li><a href="#women">Women</a></li>
                     <li><a href="#latest">latest</a></li>
@@ -66,7 +66,7 @@
                             Pages
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="category.html">Category</a>
+                            <a class="dropdown-item" href="{{route('products.index')}}">Category</a>
                             <a class="dropdown-item" href="single.html">Single</a>
                             <a class="dropdown-item" href="cart.html">Cart</a>
                             <a class="dropdown-item" href="checkout.html">Checkout</a>
