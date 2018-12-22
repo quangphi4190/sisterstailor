@@ -1,5 +1,3 @@
 <div class="box-body">
-    <p>
-        Your fields //
-    </p>
+@mediaSingle('featured_image')
 </div>
