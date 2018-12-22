@@ -150,17 +150,33 @@
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
     <script type="text/javascript">
-        $( document ).ready(function() {
-            $(document).keypressAction({
-                actions: [
-                    { key: 'c', route: "<?= route('admin.thongke.thongketime.create') ?>" }
-                ]
-            });
+        var info = '';
+        $(document).on('change', '.dataTables_filter .form-control', function () {
+            $.get('{{url('backend/thongke/get-tour-guide/')}}/'+$(this).val(), function (data) {
+                if(data.successful){
+                    info = '<table width="100%">' +
+                        '<tr><td width="50%"><h4>60 Bạch Đằng</h4><h4>093 555 08 64</h4></td>' +
+                        '<td width="50%"><h4>'+data.name+'</h4><h4>'+data.phone+'</h4></td></tr>' +
+                        '</table>';
+                }else {
+                    info = '<table width="100%">' +
+                        '<tr><td width="50%"><h4>60 Bạch Đằng</h4><h4>093 555 08 64</h4></td>' +
+                        '<td width="50%"><h4></h4><h4></h4></td></tr>' +
+                        '</table>';
+                }
+            }, 'json');
         });
+        function get_info() {
+            return info;
+
+        }
     </script>
     <?php $locale = locale(); ?>
     <script type="text/javascript">
         $(function () {
+
+
+
             function addCommas(nStr)
             {
                 nStr += '';
@@ -188,8 +204,14 @@
                 buttons: [
                     {
                         extend: 'print',
-                        messageTop: '<h4>60 Bạch Đằng</h4><h4>093 555 08 64</h4>',
-                        footer: true
+                        messageTop: function () {
+                            return get_info();
+                        },
+                        footer: true,
+                        exportOptions: {
+                            columns: '1,2,5,6,7,8,9'
+                        },
+                        text:'In danh sách theo mã đoàn'
                     }
                 ],
                 "footerCallback": function ( row, data, start, end, display ) {
@@ -203,13 +225,6 @@
                                 i : 0;
                     };
 
-                    // Total over all pages
-                    // total = api
-                    //     .column(5)
-                    //     .data()
-                    //     .reduce( function (a, b) {
-                    //         return intVal(a) + intVal(b);
-                    //     }, 0 );
 
                     // Total over this page
                     pageTotal = api

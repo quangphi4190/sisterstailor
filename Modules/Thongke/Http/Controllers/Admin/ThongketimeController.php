@@ -4,6 +4,7 @@ namespace Modules\Thongke\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Invoices\Repositories\InvoiceRepository;
 use Modules\Thongke\Entities\Thongketime;
 use Modules\Thongke\Http\Requests\CreateThongketimeRequest;
 use Modules\Thongke\Http\Requests\UpdateThongketimeRequest;
@@ -12,18 +13,24 @@ use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Invoices\Entities\Invoice;
 use Illuminate\Support\Facades\Input;
 use DB;
+use Modules\Tourguide\Repositories\TourGuideRepository;
+
 class ThongketimeController extends AdminBaseController
 {
     /**
      * @var ThongketimeRepository
      */
     private $thongketime;
+    private $invoice;
+    private $tour_guide;
 
-    public function __construct(ThongketimeRepository $thongketime)
+    public function __construct(ThongketimeRepository $thongketime, InvoiceRepository $invoiceRepository, TourGuideRepository $tourGuideRepository)
     {
         parent::__construct();
 
         $this->thongketime = $thongketime;
+        $this->invoice = $invoiceRepository;
+        $this->tour_guide = $tourGuideRepository;
     }
 
     /**
@@ -150,6 +157,35 @@ class ThongketimeController extends AdminBaseController
 
         return redirect()->route('admin.thongke.thongketime.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('thongke::thongketimes.title.thongketimes')]));
+    }
+
+    function get_tour_guide($group_code){
+        $invoice = $this->invoice->findByAttributes([
+            'group_code'=>$group_code
+        ]);
+        if($invoice == null){
+            echo json_encode([
+                'successful'=>0,
+                'mes'=>''
+            ]);
+            die();
+        }
+
+        $guide = $this->tour_guide->find($invoice->tour_guide_id);
+        if($guide == null){
+            echo json_encode([
+                'successful'=>0,
+                'mes'=>''
+            ]);
+            die();
+        }
+
+        echo json_encode([
+            'successful'=>1,
+            'name'=>$guide->firstname . ' ' .$guide->lastname,
+            'phone'=>$guide->phone
+        ]);
+        die();
     }
     
 }

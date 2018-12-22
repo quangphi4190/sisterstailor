@@ -1,6 +1,6 @@
 @extends('layouts.master')
 <style>
-    tfoot tr th{
+    tfoot tr th {
         text-align: right;
     }
 </style>
@@ -9,21 +9,22 @@
         {{ trans('thongke::thongketimes.title.thong ke') }}
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
+        <li><a href="{{ route('dashboard.index') }}"><i
+                        class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
         <li class="active">{{ trans('thongke::thongketimes.title.thong ke') }}</li>
     </ol>
 @stop
 
 @section('content')
-<div class="row">
-        <div class="col-xs-12">            
+    <div class="row">
+        <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
-                {!! Form::open(['route' => ['admin.thongke.thongketime.index'], 'method' => 'get']) !!}         
-                <div class="input-date-tk ">
+                    {!! Form::open(['route' => ['admin.thongke.thongketime.index'], 'method' => 'get']) !!}
+                    <div class="input-date-tk ">
                         <div class="col-md-12">
                             <div class="col-md-3 row d-flex flex-row">
-                                <label class ="l-white-sp">Từ ngày</label>
+                                <label class="l-white-sp">Từ ngày</label>
                                 <div class='input-group date input-date'>
                                     <input type="text" autocomplete="off" class="form-control" placeholder="Từ ngày"
                                            name="fromDate"
@@ -34,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 d-flex flex-row">
-                                <label class ="l-white-sp">Đến ngày</label>
+                                <label class="l-white-sp">Đến ngày</label>
                                 <div class='input-group date input-date'>
                                     <input type="text" autocomplete="off" class="form-control input-date"
                                            placeholder="Đến ngày" name="toDate"
@@ -59,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                {!! Form::close() !!}
+                    {!! Form::close() !!}
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -80,11 +81,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($thongkes)):$stt=1;   $tongtien=0;?>
+                            <?php if (isset($thongkes)):$stt = 1;   $tongtien = 0;?>
                             <?php foreach ($thongkes as $thongke):?>
                             <tr>
                                 <td align="center"> {{ $stt++ }} </td>
-                                <td > {{ $thongke->firstname .' '.$thongke->lastname}} </td>
+                                <td> {{ $thongke->firstname .' '.$thongke->lastname}} </td>
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
                                 <td> {{ date('H:i', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>
@@ -96,7 +97,7 @@
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
-                            </tbody>  
+                            </tbody>
                             <tfoot>
                             <tr>
                                 <th></th>
@@ -110,7 +111,7 @@
                                 <th></th>
                                 <th></th>
                             </tr>
-                            </tfoot>                          
+                            </tfoot>
                         </table>
                         <!-- /.box-body -->
                     </div>
@@ -133,17 +134,19 @@
 @stop
 
 @push('js-stack')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- Optional theme -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
     <script type="text/javascript">
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $(document).keypressAction({
                 actions: [
-                    { key: 'c', route: "<?= route('admin.thongke.thongketime.create') ?>" }
+                    {key: 'c', route: "<?= route('admin.thongke.thongketime.create') ?>"}
                 ]
             });
         });
@@ -151,8 +154,7 @@
     <?php $locale = locale(); ?>
     <script type="text/javascript">
         $(function () {
-            function addCommas(nStr)
-            {
+            function addCommas(nStr) {
                 nStr += '';
                 var x = nStr.split('.');
                 var x1 = x[0];
@@ -163,14 +165,15 @@
                 }
                 return x1 + x2;
             }
-            $('.data-table').dataTable({
+
+            var table = $('.data-table').dataTable({
                 "paginate": true,
                 "lengthChange": true,
                 "filter": true,
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "asc" ]],
+                "order": [[0, "asc"]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 },
@@ -182,70 +185,71 @@
                         footer: true
                     }
                 ],
-                "footerCallback": function ( row, data, start, end, display ) {
-                    api  = this.api(), data;
+                "footerCallback": function (row, data, start, end, display) {
+                    api = this.api(), data;
 
                     // Remove the formatting to get integer data for summation
-                    var intVal = function ( i ) {
+                    var intVal = function (i) {
                         return typeof i === 'string' ?
-                            i.replace(/[\$,]/g, '')*1 :
+                            i.replace(/[\$,]/g, '') * 1 :
                             typeof i === 'number' ?
                                 i : 0;
                     };
 
 
                     price = api
-                        .column( 7, { page: 'current'} )
+                        .column(7, {page: 'current'})
                         .data()
-                        .reduce( function (a, b) {
+                        .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
-                        }, 0 );
+                        }, 0);
 
                     // Update footer
-                    $( api.column( 7 ).footer() ).html(
-                        '$'+addCommas(price)
+                    $(api.column(7).footer()).html(
+                        '$' + addCommas(price)
                     );
                     discount = api
-                        .column( 8, { page: 'current'} )
+                        .column(8, {page: 'current'})
                         .data()
-                        .reduce( function (a, b) {
+                        .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
-                        }, 0 );
+                        }, 0);
 
                     // Update footer
-                    $( api.column( 8 ).footer() ).html(
-                        '$'+addCommas(discount)
+                    $(api.column(8).footer()).html(
+                        '$' + addCommas(discount)
                     );
                     amount = api
-                        .column( 9, { page: 'current'} )
+                        .column(9, {page: 'current'})
                         .data()
-                        .reduce( function (a, b) {
+                        .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
-                        }, 0 );
+                        }, 0);
 
                     // Update footer
-                    $( api.column( 9 ).footer() ).html(
-                        '$'+addCommas(amount)
+                    $(api.column(9).footer()).html(
+                        '$' + addCommas(amount)
                     );
-                }
+                },
             });
+
         });
     </script>
     <script type="text/javascript">
-      $(function () {
-       
-        $('.input-date').datetimepicker({
-            format: 'DD/MM/YYYY',
-            useCurrent: false,
-            // maxDate : 'now'
-        });
-        $('.input-date[name="fromDate"]').on("dp.change", function (e) {
-            $('.input-date[name="toDate"]').data("DateTimePicker").minDate(e.date);
-        });
-        $('.input-date[name="toDate"]').on("dp.change", function (e) {
-            $('.input-date[name="fromDate"]').data("DateTimePicker").maxDate(e.date);
-        });
+        $(function () {
 
-    });
+            $('.input-date').datetimepicker({
+                format: 'DD/MM/YYYY',
+                useCurrent: false,
+                // maxDate : 'now'
+            });
+            $('.input-date[name="fromDate"]').on("dp.change", function (e) {
+                $('.input-date[name="toDate"]').data("DateTimePicker").minDate(e.date);
+            });
+            $('.input-date[name="toDate"]').on("dp.change", function (e) {
+                $('.input-date[name="fromDate"]').data("DateTimePicker").maxDate(e.date);
+            });
+
+        });
     </script>
 @endpush
