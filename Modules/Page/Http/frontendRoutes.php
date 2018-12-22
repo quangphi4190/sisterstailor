@@ -13,7 +13,3 @@ $router->any('{uri}', [
     'as' => 'page',
     'middleware' => config('asgard.page.config.middleware'),
 ])->where('uri', '.*');
-Route::get('/san-pham',[
-   'as' =>  'category',
-   'uses'   =>  'PublicController@category'
-]);
