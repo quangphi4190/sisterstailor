@@ -40,7 +40,7 @@ $date = date("d/m/Y H:m:s");
                 <select name="tour_guide_id" id="tour_guide_id" class="form-control">
                     <option value="">Chọn hướng dẫn viên</option>
                     <?php foreach ($tourguides as $tourguide) {?>
-                        <option <?php echo $tour_guide_id == $tourguide->id ? 'selected' : '' ?>  value="{{$tourguide->id}}">{{$tourguide->firstname .' '.$tourguide->lastname}} </option>
+                        <option <?php echo $tour_guide_id == $tourguide->id ? 'selected' : '' ?>  value="{{$tourguide->id}}">{{$tourguide->firstname .' '.$tourguide->lastname}} - {{$tourguide->phone}} </option>
                     <?php }?>
                 </select>
             </div> 

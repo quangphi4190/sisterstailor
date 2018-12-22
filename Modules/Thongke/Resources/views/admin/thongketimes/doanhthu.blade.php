@@ -177,14 +177,7 @@
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 },
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'print',
-                        messageTop: '<h4>60 Bạch Đằng</h4><h4>093 555 08 64</h4>',
-                        footer: true
-                    }
-                ],
+
                 "footerCallback": function (row, data, start, end, display) {
                     api = this.api(), data;
 

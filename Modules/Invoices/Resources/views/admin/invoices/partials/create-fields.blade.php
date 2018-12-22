@@ -72,7 +72,7 @@ $status = [
                 <select name="tour_guide_id" id="tour_guide_id" class="form-control">
                     <option value="0">Khách lẻ</option>
                     <?php foreach ($tourguides as $tourguide) {?>
-                        <option value="{{$tourguide->id}}">{{$tourguide->firstname .' '.$tourguide->lastname}} </option>
+                        <option value="{{$tourguide->id}}">{{$tourguide->firstname .' '.$tourguide->lastname}} - {{$tourguide->phone}} </option>
                     <?php }?>
                 </select>
         </div> 
