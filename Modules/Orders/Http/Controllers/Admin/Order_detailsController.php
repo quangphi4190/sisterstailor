@@ -32,8 +32,9 @@ class Order_detailsController extends AdminBaseController
     public function index()
     {
         //$order_details = $this->order_details->all();
-
-        return view('orders::admin.order_details.index', compact(''));
+        $order_details = Order_details::select('orders__order_details.*','products__products.name as product_name')
+        ->leftjoin('products__products', 'products__products.id', '=', 'orders__order_details.product_id')->get();
+        return view('orders::admin.order_details.index', compact('order_details'));
     }
 
     /**

@@ -6,10 +6,16 @@ return [
     'edit resource' => 'Edit orders',
     'destroy resource' => 'Destroy orders',
     'title' => [
-        'orders' => 'Order',
+        'orders' => 'Đơn đặt hàng',
         'create order' => 'Create a order',
         'edit order' => 'Edit a order',
-    ],
+        'name order' => 'Họ và tên',
+        'phone order' => 'Điện thoại',
+        'email order' =>  'Email',
+        'address' => 'Địa chỉ',
+        'total' => 'Tổng tiền',
+        'note' => 'Ghi chú'
+     ],
     'button' => [
         'create order' => 'Create a order',
     ],

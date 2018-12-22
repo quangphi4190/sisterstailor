@@ -13,13 +13,13 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.orders.order.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('orders::orders.button.create order') }}
                     </a>
                 </div>
-            </div>
+            </div> -->
             <div class="box box-primary">
                 <div class="box-header">
                 </div>
@@ -29,17 +29,51 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>STT</th>
+                                <th>{{ trans('orders::orders.title.name order') }}</th>
+                                <th>{{ trans('orders::orders.title.phone order') }}</th>
+                                <th>{{ trans('orders::orders.title.email order') }}</th>
+                                <th>{{ trans('orders::orders.title.address') }}</th>
+                                <th>{{ trans('orders::orders.title.total') }}</th>
+                                <th>{{ trans('orders::orders.title.note') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($orders)): ?>
+                            <?php if (isset($orders)):$i=1 ?>
                             <?php foreach ($orders as $order): ?>
                             <tr>
                                 <td>
+                                    {{$i++}}
+                                </td>
+                                <td>
                                     <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->created_at }}
+                                        {{ $order->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                        {{ $order->sdt }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                        {{ $order->email }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                        {{ $order->address }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                        {{ $order->total }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                        {{ $order->note }}
                                     </a>
                                 </td>
                                 <td>
@@ -53,10 +87,10 @@
                             <?php endif; ?>
                             </tbody>
                             <tfoot>
-                            <tr>
+                            <!-- <tr>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
+                            </tr> -->
                             </tfoot>
                         </table>
                         <!-- /.box-body -->

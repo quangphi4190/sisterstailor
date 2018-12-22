@@ -9,7 +9,7 @@ return [
         'created at' => 'Created at',
         'updated at' => 'Updated at',
         'deleted at' => 'Deleted at',
-        'actions' => 'Actions',
+        'actions' => 'Chức năng',
         'thumbnail' => 'Thumbnail',
     ],
     'tab' => [

@@ -13,13 +13,13 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.orders.order_details.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('orders::order_details.button.create order_details') }}
                     </a>
                 </div>
-            </div>
+            </div> -->
             <div class="box box-primary">
                 <div class="box-header">
                 </div>
@@ -29,17 +29,31 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>STT</th>
+                                <th>{{ trans('orders::order_details.title.product name') }}</th>
+                                <th>{{ trans('orders::order_details.title.quantity') }}</th>
+                                <th>{{ trans('orders::order_details.title.price') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($order_details)): ?>
+                            <?php if (isset($order_details)):$i=1?>
                             <?php foreach ($order_details as $order_details): ?>
                             <tr>
+                                <td>{{$i++}}</td>
                                 <td>
                                     <a href="{{ route('admin.orders.order_details.edit', [$order_details->id]) }}">
-                                        {{ $order_details->created_at }}
+                                        {{ $order_details->product_name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.order_details.edit', [$order_details->id]) }}">
+                                        {{ $order_details->quantity }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.order_details.edit', [$order_details->id]) }}">
+                                        {{ $order_details->price }}
                                     </a>
                                 </td>
                                 <td>
@@ -53,10 +67,10 @@
                             <?php endif; ?>
                             </tbody>
                             <tfoot>
-                            <tr>
+                            <!-- <tr>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
+                            </tr> -->
                             </tfoot>
                         </table>
                         <!-- /.box-body -->
