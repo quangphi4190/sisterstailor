@@ -80,13 +80,14 @@
                                 <th>Ngày đặt</th>
                                 <th>Giờ</th>
                                 <th>{{ trans('thongke::thongketimes.title.date out') }}</th>
+                                <th>Người bán</th>
                                 <th>{{ trans('thongke::thongketimes.title.note') }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php if (isset($thongkes)):$stt=1;   $tongtien=0;?>
                             <?php foreach ($thongkes as $thongke):
-                                 $tongtien = $tongtien + $thongke->amount;
+
                             ?>
                             <tr>
                                 <td align="center"> {{ $stt++ }} </td>
@@ -98,8 +99,9 @@
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
                                 <td> {{ date('H:i', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>
-                                <td> {{ $thongke->note }} </td>      
-                                
+                                <td> {{ $thongke->seller }} </td>
+                                <td> {{ $thongke->note }} </td>
+
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
@@ -111,7 +113,8 @@
                                 <th></th>
                                 <th></th>
                                 <th align="right">Tổng tiền</th>
-                                <th>$ {{ number_format($tongtien,0,',',',')}}</th>
+                                <th>$ 0</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -176,7 +179,39 @@
                         messageTop: '<h4>60 Bạch Đằng</h4><h4>093 555 08 64</h4>',
                         footer: true
                     }
-                ]
+                ],
+                "footerCallback": function ( row, data, start, end, display ) {
+                    api  = this.api(), data;
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function ( i ) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '')*1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    // Total over all pages
+                    // total = api
+                    //     .column(5)
+                    //     .data()
+                    //     .reduce( function (a, b) {
+                    //         return intVal(a) + intVal(b);
+                    //     }, 0 );
+
+                    // Total over this page
+                    pageTotal = api
+                        .column( 5, { page: 'current'} )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+
+                    // Update footer
+                    $( api.column( 5 ).footer() ).html(
+                        '$'+pageTotal
+                    );
+                }
             });
         });
     </script>

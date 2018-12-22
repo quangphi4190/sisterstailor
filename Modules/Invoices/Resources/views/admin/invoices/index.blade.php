@@ -89,18 +89,16 @@
                                 <th>Số tiền</th>
                                 <th>Ngày đặt</th>
                                 <th>Ngày khách rời</th>
+                                <th>Người bán</th>
                                 <th data-sortable="false">Chức năng</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             <?php if (isset($invoices)):
-                            $stt = 1;$tongtien = 0;
+                            $stt = 1;
                             ?>
                             <?php foreach ($invoices as $invoice): ?>
-                            <?php
-                            $tongtien = $tongtien + $invoice->amount;
-                            ?>
                             <tr>
                                 <td align="center">
                                     <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
@@ -129,26 +127,28 @@
                                            value="{{ $invoice->group_code }}">
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{number_format($invoice->amount,0,',',',') }}
-                                    </a>
+
+                                        ${{number_format($invoice->amount,0,',',',') }}
+
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
+
                                         {{ date('d/m/Y', strtotime(str_replace('/', '-', $invoice->order_date))) }}
-                                    </a>
+
                                     <span class="label label-lg label-info">
                                         {{ date('H:i', strtotime(str_replace('/', '-', $invoice->order_date))) }}
 
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
+
                                         {{date('d/m/Y', strtotime(str_replace('/', '-', $invoice->delivery_date))) }}
-                                    </a>
+
                                 </td>
 
-
+                                <td>
+                                    {{$invoice->seller}}
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}"
@@ -166,7 +166,7 @@
                             <tfoot>
                             <tr>
                                 <th colspan="5" style="text-align: right" >Tổng tiền</th>
-                                <th colspan="4" style="text-align: left">$ {{ number_format($tongtien,0,',',',')}}</th>
+                                <th colspan="4" style="text-align: left"></th>
                             </tr>
                             </tfoot>
                         </table>
@@ -224,6 +224,7 @@
     <?php $locale = locale(); ?>
     <script type="text/javascript">
         $(function () {
+            var api;
             $('.data-table').dataTable({
                 "paginate": true,
                 "lengthChange": true,
@@ -234,6 +235,38 @@
                 "order": [[0, "asc"]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+                },
+                "footerCallback": function ( row, data, start, end, display ) {
+                   api  = this.api(), data;
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function ( i ) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '')*1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    // Total over all pages
+                    // total = api
+                    //     .column(5)
+                    //     .data()
+                    //     .reduce( function (a, b) {
+                    //         return intVal(a) + intVal(b);
+                    //     }, 0 );
+
+                    // Total over this page
+                    pageTotal = api
+                        .column( 5, { page: 'current'} )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+
+                    // Update footer
+                    $( api.column( 5 ).footer() ).html(
+                        '$'+pageTotal
+                    );
                 }
             });
         });
