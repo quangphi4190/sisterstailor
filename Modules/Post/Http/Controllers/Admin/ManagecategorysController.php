@@ -9,12 +9,16 @@ use Modules\Post\Http\Requests\CreateManagecategorysRequest;
 use Modules\Post\Http\Requests\UpdateManagecategorysRequest;
 use Modules\Post\Repositories\ManagecategorysRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Post\Entities\Postcategory;
+use DB;
+use Illuminate\Support\Facades\Input;
 
 class ManagecategorysController extends AdminBaseController
 {
     /**
      * @var ManagecategorysRepository
      */
+ 
     private $managecategorys;
 
     public function __construct(ManagecategorysRepository $managecategorys)
@@ -31,9 +35,10 @@ class ManagecategorysController extends AdminBaseController
      */
     public function index()
     {
-        //$managecategorys = $this->managecategorys->all();
-
-        return view('post::admin.managecategorys.index', compact(''));
+        // $managecategorys = $this->managecategorys->all();
+        $managecategorys = Managecategorys::select('post__managecategorys.*','post__postcategories.name as name_postCategory' )
+        ->leftjoin('post__postcategories', 'post__postcategories.id', '=', 'post__managecategorys.category_id')->get();
+        return view('post::admin.managecategorys.index', compact('managecategorys'));
     }
 
     /**
@@ -43,7 +48,9 @@ class ManagecategorysController extends AdminBaseController
      */
     public function create()
     {
-        return view('post::admin.managecategorys.create');
+        $postCategorys = DB::table('post__postcategories')->where('status', 1)->get();
+        $managecategorys = new Managecategorys();
+        return view('post::admin.managecategorys.create',compact('managecategorys','postCategorys'));
     }
 
     /**
@@ -54,6 +61,7 @@ class ManagecategorysController extends AdminBaseController
      */
     public function store(CreateManagecategorysRequest $request)
     {
+        
         $this->managecategorys->create($request->all());
 
         return redirect()->route('admin.post.managecategorys.index')
@@ -68,7 +76,8 @@ class ManagecategorysController extends AdminBaseController
      */
     public function edit(Managecategorys $managecategorys)
     {
-        return view('post::admin.managecategorys.edit', compact('managecategorys'));
+        $status = $managecategorys['status'];
+        return view('post::admin.managecategorys.edit', compact('managecategorys','status'));
     }
 
     /**
@@ -98,5 +107,16 @@ class ManagecategorysController extends AdminBaseController
 
         return redirect()->route('admin.post.managecategorys.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('post::managecategorys.title.managecategorys')]));
+    }
+
+    public function addCategory (){       
+        $inputs = Input::all();
+        $category = new Postcategory();      
+        $category->name = $inputs['category_name'] ? $inputs['category_name'] :'';      
+        $category->status = 1;
+        $category->save();
+
+        $postCategorys = DB::table('post__postcategories')->where('status', 1)->get();
+        die(json_encode($postCategorys));
     }
 }

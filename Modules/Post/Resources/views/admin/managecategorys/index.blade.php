@@ -32,7 +32,6 @@
                                 <th>STT</th>
                                 <th>{{ trans('post::managecategorys.title.name') }}</th>
                                 <th>{{ trans('post::managecategorys.title.post name') }}</th>
-                                <th>{{ trans('post::managecategorys.title.des') }}</th>
                                 <th>{{ trans('post::managecategorys.title.status') }}</th>                                
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
@@ -51,17 +50,12 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.post.managecategorys.edit', [$managecategorys->id]) }}">
-                                        {{ $managecategorys->post_id }}
+                                        {{ $managecategorys->name_postCategory }}
                                     </a>
                                 </td>
-                                <td>
+                               <td>
                                     <a href="{{ route('admin.post.managecategorys.edit', [$managecategorys->id]) }}">
-                                        {{ $managecategorys->des }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.post.managecategorys.edit', [$managecategorys->id]) }}">
-                                        {{ $managecategorys->status }}
+                                        {{ $managecategorys->status ==1 ?'Kích hoạt' : 'Chưa kích hoạt'}}
                                     </a>
                                 </td>
                                 <td>

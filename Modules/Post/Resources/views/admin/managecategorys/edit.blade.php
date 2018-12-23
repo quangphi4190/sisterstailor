@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>
-        {{ trans('post::managecategorys.title.edit managecategorys') }}
+        {{ trans('post::managecategorys.title.edit category') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>

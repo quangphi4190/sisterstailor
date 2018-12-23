@@ -47,14 +47,10 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.post.postcategory.edit', [$postcategory->id]) }}">
-                                        {{ $postcategory->createdstatus }}
+                                        {{ $postcategory->status ==1 ? 'Kích hoạt' :  'Chưa kích hoạt' }}
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="{{ route('admin.post.postcategory.edit', [$postcategory->id]) }}">
-                                        {{ $postcategory->created_at }}
-                                    </a>
-                                </td>
+                               
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('admin.post.postcategory.edit', [$postcategory->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>

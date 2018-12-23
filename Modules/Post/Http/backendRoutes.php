@@ -72,5 +72,8 @@ $router->group(['prefix' =>'/post'], function (Router $router) {
     ]);
 // append
 
-
+    $router->post('managecategorys/addCategory', [
+        'as' => 'admin.post.managecategorys.addCategory',
+        'uses' => 'ManagecategorysController@addCategory'
+    ]);
 });

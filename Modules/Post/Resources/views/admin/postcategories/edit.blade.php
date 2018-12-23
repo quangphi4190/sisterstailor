@@ -22,6 +22,7 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
+                        <input hidden name = "id" value ="<?php echo $postcategory->id?>">
                             @include('post::admin.postcategories.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach

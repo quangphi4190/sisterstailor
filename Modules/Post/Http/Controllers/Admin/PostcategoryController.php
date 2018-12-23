@@ -31,9 +31,9 @@ class PostcategoryController extends AdminBaseController
      */
     public function index()
     {
-        //$postcategories = $this->postcategory->all();
-
-        return view('post::admin.postcategories.index', compact(''));
+        $postcategories = $this->postcategory->all();
+          
+        return view('post::admin.postcategories.index', compact('postcategories'));
     }
 
     /**
@@ -54,7 +54,13 @@ class PostcategoryController extends AdminBaseController
      */
     public function store(CreatePostcategoryRequest $request)
     {
-        $this->postcategory->create($request->all());
+    
+         $this->postcategory->create($request->all());
+        // $postcategory = new Postcategory();
+        // $postcategory->name = $request['name'];      
+        // $postcategory->status = $request['status'];     
+        // $postcategory->save();
+
 
         return redirect()->route('admin.post.postcategory.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('post::postcategories.title.postcategories')]));
@@ -68,7 +74,8 @@ class PostcategoryController extends AdminBaseController
      */
     public function edit(Postcategory $postcategory)
     {
-        return view('post::admin.postcategories.edit', compact('postcategory'));
+        $status =$postcategory->status;
+        return view('post::admin.postcategories.edit', compact('postcategory','status'));
     }
 
     /**
@@ -80,7 +87,11 @@ class PostcategoryController extends AdminBaseController
      */
     public function update(Postcategory $postcategory, UpdatePostcategoryRequest $request)
     {
-        $this->postcategory->update($postcategory, $request->all());
+         $this->postcategory->update($postcategory, $request->all());
+     
+        // $name = $request['name'];
+        // $status = $request['status'];
+        // Postcategory::where('id', $request['id'])->update(array('name'=>$name,'status'=>$status));
 
         return redirect()->route('admin.post.postcategory.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('post::postcategories.title.postcategories')]));

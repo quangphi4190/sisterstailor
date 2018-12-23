@@ -8,10 +8,11 @@ return [
     'title' => [
         'managecategorys' => 'Tin tức',
         'create managecategorys' => 'Thêm mới',
+        'edit category' => 'Chỉnh sửa',
         'name' => 'Tên tiêu đề',
         'post name' => 'Tên danh mục',
         'des' => 'Mô tả',
-        'status' => 'Chỉnh sửa'
+        'status' => 'Trạng thái'
      ],
     'button' => [
         'create managecategorys' => 'Thêm mới',

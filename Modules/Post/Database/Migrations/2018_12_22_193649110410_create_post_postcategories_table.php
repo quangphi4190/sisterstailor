@@ -15,7 +15,8 @@ class CreatePostPostcategoriesTable extends Migration
         Schema::create('post__postcategories', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your fields
+            $table->string('name');
+            $table->increments('status');
             $table->timestamps();
         });
     }
