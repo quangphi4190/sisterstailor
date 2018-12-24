@@ -2,24 +2,24 @@
 
 @section('content-header')
     <h1>
-        {{ trans('orders::orders.title.orders') }}
+        {{ trans('banner::banners.title.banners') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li class="active">{{ trans('orders::orders.title.orders') }}</li>
+        <li class="active">{{ trans('banner::banners.title.banners') }}</li>
     </ol>
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <!-- <div class="row">
+            <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.orders.order.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('orders::orders.button.create order') }}
+                    <a href="{{ route('admin.banner.banner.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                        <i class="fa fa-pencil"></i> {{ trans('banner::banners.button.create banner') }}
                     </a>
                 </div>
-            </div> -->
+            </div>
             <div class="box box-primary">
                 <div class="box-header">
                 </div>
@@ -30,57 +30,57 @@
                             <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>{{ trans('orders::orders.title.name order') }}</th>
-                                <th>{{ trans('orders::orders.title.phone order') }}</th>
-                                <th>{{ trans('orders::orders.title.email order') }}</th>
-                                <th>{{ trans('orders::orders.title.address') }}</th>
-                                <th>{{ trans('orders::orders.title.total') }}</th>
-                                <th>{{ trans('orders::orders.title.note') }}</th>
+                                <th>{{ trans('banner::banners.title.image') }}</th>
+                                <th>{{ trans('banner::banners.title.name') }}</th>
+                                <th>{{ trans('banner::banners.title.description') }}</th>
+                                <th>{{ trans('banner::banners.title.link') }}</th>
+                                <th>{{ trans('banner::banners.title.status') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($orders)):$i=1 ?>
-                            <?php foreach ($orders as $order): ?>
+                            <?php if (isset($banners)): $i=1?>
+                            <?php foreach ($banners as $banner): ?>
+                            @php($image_banners = $banner->files()->where('zone', 'Image_baner')->get())
+                            
                             <tr>
                                 <td>
                                     {{$i++}}
                                 </td>
+                                <td >
+                                    
+                                    @foreach($image_banners as $image)
+                                    <div style="width: 100px; height: 100px;">
+                                        <img class="img-responsive" src="{{$image->path_string}}">
+                                    </div>
+                                    @endforeach
+                                    
+                                </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->name }}
+                                    <a href="{{ route('admin.banner.banner.edit', [$banner->id]) }}">
+                                        {{ $banner->name }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->sdt }}
+                                    <a href="{{ route('admin.banner.banner.edit', [$banner->id]) }}">
+                                         {!!(str_limit(strip_tags($banner->description), 100)) !!}
+                                        
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->email }}
+                                    <a href="{{ route('admin.banner.banner.edit', [$banner->id]) }}">
+                                        {{ $banner->link }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->address }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->total }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->note }}
+                                    <a href="{{ route('admin.banner.banner.edit', [$banner->id]) }}">
+                                        {{ $banner->status == 1?'Đã kích hoạt' : 'Chưa kích hoạt' }}
                                     </a>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.orders.order.view', [$order->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{ route('admin.orders.order.edit', [$order->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.orders.order.destroy', [$order->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.banner.banner.edit', [$banner->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.banner.banner.destroy', [$banner->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -110,7 +110,7 @@
 @section('shortcuts')
     <dl class="dl-horizontal">
         <dt><code>c</code></dt>
-        <dd>{{ trans('orders::orders.title.create order') }}</dd>
+        <dd>{{ trans('banner::banners.title.create banner') }}</dd>
     </dl>
 @stop
 
@@ -119,7 +119,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'c', route: "<?= route('admin.orders.order.create') ?>" }
+                    { key: 'c', route: "<?= route('admin.banner.banner.create') ?>" }
                 ]
             });
         });

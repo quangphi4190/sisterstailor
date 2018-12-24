@@ -12,7 +12,7 @@ class UpdateRoleRequest extends FormRequest
 
         return [
             'name' => 'required',
-            'slug' => 'slug,' . $role['id'] . ',id',
+             'slug' => 'slug,' . $role['id'] . ',id',
         ];
     }
 

@@ -10,6 +10,7 @@
                         <option value="{{$post->id}}">{{$post->name}} </option>
                     <?php }?>
                 </select>
+                
             </div>
          </div>
         <div class="p-2 c-btn-add"><button type="button" style="height: 35px;" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg" id="addCategory" title="Thêm danh mục"><i class="fa fa-plus" aria-hidden="true"></i></button></div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Orders\Events\Handlers;
+namespace Modules\Banner\Events\Handlers;
 
 use Maatwebsite\Sidebar\Group;
 use Maatwebsite\Sidebar\Item;
@@ -8,7 +8,7 @@ use Maatwebsite\Sidebar\Menu;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\User\Contracts\Authentication;
 
-class RegisterOrdersSidebar implements \Maatwebsite\Sidebar\SidebarExtender
+class RegisterBannerSidebar implements \Maatwebsite\Sidebar\SidebarExtender
 {
     /**
      * @var Authentication
@@ -37,32 +37,22 @@ class RegisterOrdersSidebar implements \Maatwebsite\Sidebar\SidebarExtender
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('orders::orders.title.orders'), function (Item $item) {
+            $group->item(trans('banner::banners.title.banners'), function (Item $item) {
                 $item->icon('fa fa-copy');
                 $item->weight(10);
                 $item->authorize(
                      /* append */
                 );
-                $item->item(trans('orders::orders.title.orders'), function (Item $item) {
+                $item->item(trans('banner::banners.title.banners'), function (Item $item) {
                     $item->icon('fa fa-copy');
                     $item->weight(0);
-                    $item->append('admin.orders.order.create');
-                    $item->route('admin.orders.order.index');
+                    $item->append('admin.banner.banner.create');
+                    $item->route('admin.banner.banner.index');
                     $item->authorize(
-                        $this->auth->hasAccess('orders.orders.index')
+                        $this->auth->hasAccess('banner.banners.index')
                     );
                 });
-                // $item->item(trans('orders::order_details.title.order_details'), function (Item $item) {
-                //     $item->icon('fa fa-copy');
-                //     $item->weight(0);
-                //     $item->append('admin.orders.order_details.create');
-                //     $item->route('admin.orders.order_details.index');
-                //     $item->authorize(
-                //         $this->auth->hasAccess('orders.order_details.index')
-                //     );
-                // });
 // append
-
 
             });
         });

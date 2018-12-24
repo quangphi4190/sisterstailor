@@ -27,6 +27,10 @@ $router->group(['prefix' =>'/orders'], function (Router $router) {
         'uses' => 'OrderController@edit',
         'middleware' => 'can:orders.orders.edit'
     ]);
+    $router->get('orders/{order}/view', [
+        'as' => 'admin.orders.order.view',
+        'uses' => 'OrderController@view'
+    ]);
     $router->put('orders/{order}', [
         'as' => 'admin.orders.order.update',
         'uses' => 'OrderController@update',

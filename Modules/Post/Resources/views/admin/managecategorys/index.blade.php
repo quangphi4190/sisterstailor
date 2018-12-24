@@ -55,7 +55,7 @@
                                 </td>
                                <td>
                                     <a href="{{ route('admin.post.managecategorys.edit', [$managecategorys->id]) }}">
-                                        {{ $managecategorys->status ==1 ?'Kích hoạt' : 'Chưa kích hoạt'}}
+                                        {{ $managecategorys->status ==1 ?'Đã kích hoạt' : 'Chưa kích hoạt'}}
                                     </a>
                                 </td>
                                 <td>
@@ -115,7 +115,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "asc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }
