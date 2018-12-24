@@ -25,15 +25,15 @@ class EloquentManagecategorysRepository extends EloquentBaseRepository implement
      * @param  array $data
      * @return mixed
      */
+    
     public function update($managecategorys, $data)
     {
-        $managecategorys->update($managecategorys);
+        $managecategorys->update($data);
 
         event(new ManagecategoryWasUpdated($managecategorys, $data));
 
         return $managecategorys;
     }
-
     public function destroy($model)
     {
         event(new ManagecategoryWasDeleted($model, get_class($model)));

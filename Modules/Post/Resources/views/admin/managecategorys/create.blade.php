@@ -76,11 +76,6 @@
 </div>
 
 @push('js-stack')
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- Optional theme -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 {!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
 {!! Theme::style('css/chosen.css') !!}
     <script type="text/javascript">
@@ -113,13 +108,13 @@
                     category_name: category_name
                 },
                 success: function(data) {              
-                    var $el = $("select#addCategory");
+                    var $el = $("select#category_id");
                         $el.empty();
                         $el.append("<option>Chọn danh mục</option>");
                         data = $.parseJSON(data);
                         let i = 0, l = data.length;
                         for(i; i < l; i++) {
-                            let v = data[i];console.log(v);
+                            let v = data[i];console.log(v.name);
                             $el.append("<option value='" + v.id + "'>" + v.name + "</option>");
                             $('.fom-category').trigger("chosen:updated");
                         }

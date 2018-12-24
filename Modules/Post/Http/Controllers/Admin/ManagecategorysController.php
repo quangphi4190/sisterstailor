@@ -76,8 +76,10 @@ class ManagecategorysController extends AdminBaseController
      */
     public function edit(Managecategorys $managecategorys)
     {
+        $postCategorys = DB::table('post__postcategories')->where('status', 1)->get();
+        $category_id = $managecategorys->category_id;
         $status = $managecategorys['status'];
-        return view('post::admin.managecategorys.edit', compact('managecategorys','status'));
+        return view('post::admin.managecategorys.edit', compact('managecategorys','status','category_id','postCategorys'));
     }
 
     /**
