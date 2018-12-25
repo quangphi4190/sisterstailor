@@ -87,7 +87,7 @@ $status = [
         </div> 
         
         <div class="form-group "><label for="order_date">Ngày đặt hàng</label>
-            <div class='input-group date' id='datetimepicker2'>
+            <div class='input-group date' id='datetimepickerdathang'>
                 <input type='text' class="form-control c-form-date datetime-picker" name="order_date" id="order_date"/>
                 <span class="input-group-addon c-input-addon">
                     <span class="glyphicon glyphicon-calendar c-icon"></span>

@@ -77,15 +77,15 @@
             showTodayButton: true,
             format: 'DD/MM/YYYY',
             sideBySide: true,
-            minDate: new Date("{!! date('Y-m-d') !!}")
+            // minDate: new Date("{!! date('Y-m-d') !!}")
         });
 
         $('#datetimepicker2').datetimepicker({
             defaultDate: new Date(),
             showTodayButton: true,
-            format: 'DD/MM/YYYY HH:mm:ss',
+            format: 'DD/MM/YYYY HH:mm',
             sideBySide: true,
-            minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
+            // minDate: new Date("{!! date('Y-m-d 00:00:00') !!}")
         });
 
     });
