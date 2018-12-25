@@ -167,7 +167,7 @@
             }
 
             var table = $('.data-table').dataTable({
-                "paginate": true,
+                "paginate": false,
                 "lengthChange": true,
                 "filter": true,
                 "sort": true,
