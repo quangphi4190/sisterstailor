@@ -60,7 +60,7 @@ $date = date("d/m/Y H:m:s");
             </div>
             <div class ="col-md-6">
                 <div class="form-group "><label for="delivery_address">Số phòng</label>
-                <input class="form-control" placeholder="Số phòng" name="delivery_address" type="number" id="delivery_address" value="{{$invoice->delivery_address}}"></div>
+                <input class="form-control" placeholder="Số phòng" name="delivery_address" type="text" id="delivery_address" value="{{$invoice->delivery_address}}"></div>
             </div>
         </div>   
 

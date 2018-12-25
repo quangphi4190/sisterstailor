@@ -92,10 +92,10 @@ $status = [
             </div>
             <div class ="col-md-6">
                 <div class="form-group "><label for="delivery_address">Số phòng</label>
-                <input class="form-control" placeholder="Số phòng" name="delivery_address" type="number" id="delivery_address"></div>
+                <input class="form-control" placeholder="Số phòng" name="delivery_address" type="text" id="delivery_address"></div>
             </div>
         </div>   
-        
+
         <div class="form-group "><label for="order_date">Ngày đặt hàng</label>
             <div class='input-group date' id='datetimepickerdathang'>
                 <input type='text' class="form-control c-form-date datetime-picker" name="order_date" id="order_date"/>
