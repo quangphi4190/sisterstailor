@@ -25,8 +25,7 @@
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-40">
                     <div class="title text-center">
-                        <h1 class="mb-10">Shop for Different Categories</h1>
-                        <p>Who are in extremely love with eco friendly system.</p>
+                        <h1 class="mb-10">Danh Mục Sản Phẩm</h1>
                     </div>
                 </div>
             </div>
@@ -39,7 +38,7 @@
                                     <div class="content-overlay"></div>
                                     <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c1.jpg')}}" alt="">
                                     <div class="content-details fadeIn-bottom">
-                                        <h3 class="content-title">Product for Women</h3>
+                                        <h3 class="content-title">Sản Phẩm Của Nữ</h3>
                                     </div>
                                 </a>
                             </div>
@@ -50,7 +49,7 @@
                                     <div class="content-overlay"></div>
                                     <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c2.jpg')}}" alt="">
                                     <div class="content-details fadeIn-bottom">
-                                        <h3 class="content-title">Product for Couple</h3>
+                                        <h3 class="content-title">Sản Phẩm Cặp Đôi</h3>
                                     </div>
                                 </a>
                             </div>
@@ -61,7 +60,7 @@
                                     <div class="content-overlay"></div>
                                     <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c3.jpg')}}" alt="">
                                     <div class="content-details fadeIn-bottom">
-                                        <h3 class="content-title">Shop Now</h3>
+                                        <h3 class="content-title">Tất Cả Sản Phẩm</h3>
                                     </div>
                                 </a>
                             </div>
@@ -74,7 +73,7 @@
                             <div class="content-overlay"></div>
                             <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c4.jpg')}}" alt="">
                             <div class="content-details fadeIn-bottom">
-                                <h3 class="content-title">Product For Men</h3>
+                                <h3 class="content-title">Sản Phẩm Của Nam</h3>
                             </div>
                         </a>
                     </div>

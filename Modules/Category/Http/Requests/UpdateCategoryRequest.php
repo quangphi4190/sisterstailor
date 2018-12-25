@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Products\Http\Requests;
+namespace Modules\Category\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateCategoriesRequest extends BaseFormRequest
+class UpdateCategoryRequest extends BaseFormRequest
 {
     public function rules()
     {

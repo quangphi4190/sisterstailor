@@ -2,7 +2,7 @@
 
 namespace Modules\User\Http\Controllers\Admin;
 
-use Modules\User\Http\Requests\UpdateRoleRequest;
+use Modules\User\Http\Requests\RolesRequest;
 use Modules\User\Permissions\PermissionManager;
 use Modules\User\Repositories\RoleRepository;
 
@@ -29,7 +29,8 @@ class RolesController extends BaseUserModuleController
     public function index()
     {
         $roles = $this->role->all();
-        return view('user::admin.roles.index',compact('roles'));
+
+        return view('user::admin.roles.index', compact('roles'));
     }
 
     /**
@@ -44,10 +45,11 @@ class RolesController extends BaseUserModuleController
 
     /**
      * Store a newly created resource in storage.
-     * @param  UpdateRoleRequest $request
+     *
+     * @param  RolesRequest $request
      * @return Response
      */
-    public function store(UpdateRoleRequest $request)
+    public function store(RolesRequest $request)
     {
         $data = $this->mergeRequestWithPermissions($request);
 
@@ -60,24 +62,27 @@ class RolesController extends BaseUserModuleController
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  int      $id
      * @return Response
      */
     public function edit($id)
     {
-        if (!$role = $this->role->find($id)){
+        if (!$role = $this->role->find($id)) {
             return redirect()->route('admin.user.role.index')
                 ->withError(trans('user::messages.role not found'));
         }
-        return view('user::admin.roles.edit',compact('role'));
+
+        return view('user::admin.roles.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
+     *
      * @param  int          $id
-     * @param  UpdateRoleRequest $request
+     * @param  RolesRequest $request
      * @return Response
      */
-    public function update($id, UpdateRoleRequest $request)
+    public function update($id, RolesRequest $request)
     {
         $data = $this->mergeRequestWithPermissions($request);
 

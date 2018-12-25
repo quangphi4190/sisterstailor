@@ -1,32 +1,5 @@
 url: https://github.com/AsgardCms/Platform
 versions:
-    "3.6.0":
-         changed:
-         - Adding a test the user token is correctly generated
-         - Fix creation of an activated user
-    "3.5.1":
-        changed:
-            - Fix issue 467 id() method checks null instead of false
-    "3.4.0":
-        changed:
-            - Using new <code>remember</code> method in the <code>CacheUserTokenDecorator</code> class
-    "3.2.0":
-        added:
-            - Role views (index, create, edit) have been converted to VueJS components, as a SPA
-            - User views (index, create, edit) have been converted to VueJS components, as a SPA
-            - Adding vuejs component to manage account profile
-            - Adding vuejs component to manage account api keys
-    "3.1.1":
-        added:
-            - Adding new <code>asgard:user:grant-permissions</code> command to grant all module permissions to admin role
-            - Adding new <code>asgard:user:remove-permissions</code> command to remove all permissions of given module from roles and users
-    "3.1.0":
-        added:
-            - Seeding new media.folders permissions on install
-        changed:
-            - Making sure the role slug is unique
-            - Fixed Users Full Name Stored XSS Vulnerability
-            - Explicitly used https to request the users Gravatar icon
     "3.0.0":
         added:
             - <code>logUserIn</code> on the <code>Authentication</code> interface to log a user object in

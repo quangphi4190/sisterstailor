@@ -2,17 +2,17 @@
 
 @section('content-header')
     <h1>
-        {{ trans('products::categories.title.edit categories') }}
+        {{ trans('category::categories.title.edit category') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li><a href="{{ route('admin.products.categories.index') }}">{{ trans('products::categories.title.categories') }}</a></li>
-        <li class="active">{{ trans('products::categories.title.edit categories') }}</li>
+        <li><a href="{{ route('admin.category.category.index') }}">{{ trans('category::categories.title.categories') }}</a></li>
+        <li class="active">{{ trans('category::categories.title.edit category') }}</li>
     </ol>
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.products.categories.update', $categories->id], 'method' => 'put']) !!}
+    {!! Form::open(['route' => ['admin.category.category.update', $category->id], 'method' => 'put']) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -22,13 +22,13 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('products::admin.categories.partials.edit-fields', ['lang' => $locale])
+                            @include('category::admin.categories.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.products.categories.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.category.category.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                     </div>
                 </div>
             </div> {{-- end nav-tabs-custom --}}
@@ -52,7 +52,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'b', route: "<?= route('admin.products.categories.index') ?>" }
+                    { key: 'b', route: "<?= route('admin.category.category.index') ?>" }
                 ]
             });
         });

@@ -2,9 +2,6 @@
 
 namespace Modules\User\Repositories;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
-
 /**
  * Interface RoleRepository
  * @package Modules\User\Repositories
@@ -51,11 +48,4 @@ interface RoleRepository
      * @return mixed
      */
     public function findByName($name);
-
-    /**
-     * Paginating, ordering and searching through pages for server side index table
-     * @param Request $request
-     * @return LengthAwarePaginator
-     */
-    public function serverPaginationFilteringFor(Request $request) : LengthAwarePaginator;
 }
