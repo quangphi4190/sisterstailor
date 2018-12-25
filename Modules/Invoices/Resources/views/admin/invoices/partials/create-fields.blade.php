@@ -76,15 +76,25 @@ $status = [
                     <?php }?>
                 </select>
         </div> 
-        <div class="form-group dropdown">
-            <label for="hotel_id">Khách sạn</label>
-            <select name="hotel_id" id="hotel_id" class="form-control">
-                <option value="0">Khác</option>
-                <?php foreach ($hotels as $hotel) {?>
-                    <option value="{{$hotel->id}}">{{$hotel->name}} </option>
-                <?php }?>
-            </select>
-        </div> 
+       
+
+        <div class="row d-flex">       
+            <div class="col-md-6 p-2">
+                <div class="form-group dropdown">
+                    <label for="hotel_id">Khách sạn</label>
+                    <select name="hotel_id" id="hotel_id" class="form-control">
+                        <option value="0">Khác</option>
+                        <?php foreach ($hotels as $hotel) {?>
+                            <option value="{{$hotel->id}}">{{$hotel->name}} </option>
+                        <?php }?>
+                    </select>
+                </div> 
+            </div>
+            <div class ="col-md-6">
+                <div class="form-group "><label for="delivery_address">Số phòng</label>
+                <input class="form-control" placeholder="Số phòng" name="delivery_address" type="number" id="delivery_address"></div>
+            </div>
+        </div>   
         
         <div class="form-group "><label for="order_date">Ngày đặt hàng</label>
             <div class='input-group date' id='datetimepickerdathang'>
@@ -106,7 +116,7 @@ $status = [
     </div>
     <div class ="col-sm-6">
         {!! Form::normalInput('seller', 'Người bán', $errors) !!}
-        {!! Form::normalInput('product', 'Sản phẩm', $errors) !!}
+       
        
         <div class="form-group ">
             <label for="price">Giá</label>
