@@ -6,11 +6,8 @@ use Cartalyst\Sentinel\Laravel\SentinelServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Events\BuildingSidebar;
-use Modules\Core\Events\LoadingBackendTranslations;
 use Modules\Core\Traits\CanGetSidebarClassForModule;
 use Modules\Core\Traits\CanPublishConfiguration;
-use Modules\User\Console\GrantModulePermissionsCommand;
-use Modules\User\Console\RemoveModulePermissionsCommand;
 use Modules\User\Contracts\Authentication;
 use Modules\User\Entities\UserToken;
 use Modules\User\Events\Handlers\RegisterUserSidebar;
@@ -69,24 +66,6 @@ class UserServiceProvider extends ServiceProvider
             BuildingSidebar::class,
             $this->getSidebarClassForModule('user', RegisterUserSidebar::class)
         );
-        $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            $event->load('users', array_dot(trans('user::users')));
-            $event->load('roles', array_dot(trans('user::roles')));
-        });
-        $this->commands([
-            GrantModulePermissionsCommand::class,
-            RemoveModulePermissionsCommand::class,
-        ]);
-
-        app('router')->bind('role', function ($id) {
-            return app(RoleRepository::class)->find($id);
-        });
-        app('router')->bind('user', function ($id) {
-            return app(UserRepository::class)->find($id);
-        });
-        app('router')->bind('userTokenId', function ($id) {
-            return app(UserTokenRepository::class)->find($id);
-        });
     }
 
     /**

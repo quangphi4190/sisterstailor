@@ -2,8 +2,6 @@
 
 namespace Modules\User\Repositories;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 use Modules\User\Entities\UserInterface;
 
 /**
@@ -80,11 +78,4 @@ interface UserRepository
      * @return mixed
      */
     public function findByCredentials(array $credentials);
-
-    /**
-     * Paginating, ordering and searching through pages for server side index table
-     * @param Request $request
-     * @return LengthAwarePaginator
-     */
-    public function serverPaginationFilteringFor(Request $request) : LengthAwarePaginator;
 }

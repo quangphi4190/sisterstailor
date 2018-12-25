@@ -52,15 +52,6 @@ class RegisterProductsSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('products.products.index')
                     );
                 });
-                $item->item(trans('products::categories.title.categories'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.products.categories.create');
-                    $item->route('admin.products.categories.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('products.categories.index')
-                    );
-                });
 // append
 
 

@@ -164,7 +164,7 @@ class SentinelAuthentication implements Authentication
     {
         $user = $this->user();
 
-        if ($user === false) {
+        if ($user === null) {
             return 0;
         }
 

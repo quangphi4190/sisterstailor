@@ -14,15 +14,3 @@ if (function_exists('current_permission_value') === false) {
         return 0;
     }
 }
-
-if (function_exists('current_permission_value_for_roles') === false) {
-    function current_permission_value_for_roles($model, $permissionTitle, $permissionAction)
-    {
-        $value = array_get($model->permissions, "$permissionTitle.$permissionAction");
-        if ($value === true) {
-            return 1;
-        }
-
-        return -1;
-    }
-}

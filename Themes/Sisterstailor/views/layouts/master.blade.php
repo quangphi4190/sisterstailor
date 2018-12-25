@@ -55,15 +55,15 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li><a href="{{route('homepage')}}">Home</a></li>
-                    <li><a href="#catagory">Category</a></li>
-                    <li><a href="#men">Men</a></li>
-                    <li><a href="#women">Women</a></li>
+                    <li><a href="{{route('homepage')}}">Trang Chủ</a></li>
+                    <li><a href="#catagory">Danh Mục Sản Phẩm</a></li>
+                    <li><a href="#men">Nam</a></li>
+                    <li><a href="#women">Nữ</a></li>
                     <li><a href="#latest">latest</a></li>
                     <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Pages
+                            Trang Khác
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{route('products.index')}}">Category</a>

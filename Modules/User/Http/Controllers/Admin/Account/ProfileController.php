@@ -36,7 +36,9 @@ class ProfileController extends AdminBaseController
      */
     public function edit()
     {
-        return view('user::admin.account.profile.edit');
+        $user = $this->auth->user();
+
+        return view('user::admin.account.profile.edit', compact('user'));
     }
 
     /**

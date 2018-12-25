@@ -2,11 +2,11 @@
 
 @section('content-header')
     <h1>
-        {{ trans('products::categories.title.categories') }}
+        {{ trans('category::categories.title.categories') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li class="active">{{ trans('products::categories.title.categories') }}</li>
+        <li class="active">{{ trans('category::categories.title.categories') }}</li>
     </ol>
 @stop
 
@@ -15,8 +15,8 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.products.categories.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('products::categories.button.create categories') }}
+                    <a href="{{ route('admin.category.category.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                        <i class="fa fa-pencil"></i> {{ trans('category::categories.button.create category') }}
                     </a>
                 </div>
             </div>
@@ -29,35 +29,45 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>STT</th>
+                                <th>Tên Danh Mục Sản Phẩm</th>
+                                <th>Danh Mục Sản Phẩm Cha</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($categories)): ?>
-                            <?php foreach ($categories as $categories): ?>
+                            <?php if (isset($categories)): $stt=1;?>
+                            <?php foreach ($categories as $category): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.products.categories.edit', [$categories->id]) }}">
-                                        {{ $categories->created_at }}
+                                    <a href="{{ route('admin.category.category.edit', [$category->id]) }}">
+                                        {{$stt++}}
                                     </a>
                                 </td>
                                 <td>
+                                    <a href="{{ route('admin.category.category.edit', [$category->id]) }}">
+                                        {{$category->name}}
+                                    </a>
+                                </td>
+                                <td>
+                                    @foreach ($parent as $p)
+                                        @if ($p->id == $category->parent_id)
+                                    <a href="{{ route('admin.category.category.edit', [$category->id]) }}">
+                                        {{$p->name}}
+                                    </a>
+                                        @endif
+                                        @endforeach
+                                </td>
+                                <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.products.categories.edit', [$categories->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.products.categories.destroy', [$categories->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.category.category.edit', [$category->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.category.category.destroy', [$category->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
-                            </tfoot>
                         </table>
                         <!-- /.box-body -->
                     </div>
@@ -75,7 +85,7 @@
 @section('shortcuts')
     <dl class="dl-horizontal">
         <dt><code>c</code></dt>
-        <dd>{{ trans('products::categories.title.create categories') }}</dd>
+        <dd>{{ trans('category::categories.title.create category') }}</dd>
     </dl>
 @stop
 
@@ -84,7 +94,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'c', route: "<?= route('admin.products.categories.create') ?>" }
+                    { key: 'c', route: "<?= route('admin.category.category.create') ?>" }
                 ]
             });
         });
@@ -99,7 +109,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "asc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }

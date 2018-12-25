@@ -35,9 +35,9 @@
                     }
 
                     var html = '<figure data-id="' + data.result.imageableId + '">' + mediaPlaceholder +
-                            '<a class="jsRemoveSimpleLink" href="#" data-id="' + data.result.imageableId + '">' +
-                            '<i class="fa fa-times-circle removeIcon"></i>' +
-                            '</a></figure>';
+                        '<a class="jsRemoveSimpleLink" href="#" data-id="' + data.result.imageableId + '">' +
+                        '<i class="fa fa-times-circle removeIcon"></i>' +
+                        '</a></figure>';
                     window.zoneWrapper.append(html).fadeIn('slow', function() {
                         toggleButton($(this));
                     });
@@ -58,20 +58,20 @@
 
     <div class="jsThumbnailImageWrapper jsSingleThumbnailWrapper">
         <?php if (isset(${$zone}->path)): ?>
-            <figure data-id="{{ ${$zone}->pivot->id }}">
+        <figure data-id="{{ ${$zone}->pivot->id }}">
             <?php if (${$zone}->media_type == 'image'): ?>
-                <img src="{{ Imagy::getThumbnail(${$zone}->path, (isset($thumbnailSize) ? $thumbnailSize : 'mediumThumb')) }}" alt="{{ ${$zone}->alt_attribute }}"/>
+            <img src="{{ Imagy::getThumbnail(${$zone}->path, (isset($thumbnailSize) ? $thumbnailSize : 'mediumThumb')) }}" alt="{{ ${$zone}->alt_attribute }}"/>
             <?php elseif (${$zone}->media_type == 'video'): ?>
-                <video src="{{ ${$zone}->path }}"  controls width="320"></video>
+            <video src="{{ ${$zone}->path }}"  controls width="320"></video>
             <?php elseif (${$zone}->media_type == 'audio'): ?>
-                <audio controls><source src="{{ ${$zone}->path }}" type="{{ ${$zone}->mimetype }}"></audio>
+            <audio controls><source src="{{ ${$zone}->path }}" type="{{ ${$zone}->mimetype }}"></audio>
             <?php else: ?>
-                <i class="fa fa-file" style="font-size: 50px;"></i>
+            <i class="fa fa-file" style="font-size: 50px;"></i>
             <?php endif; ?>
-                <a class="jsRemoveSimpleLink" href="#" data-id="{{ ${$zone}->pivot->id }}">
-                    <i class="fa fa-times-circle removeIcon"></i>
-                </a>
-            </figure>
+            <a class="jsRemoveSimpleLink" href="#" data-id="{{ ${$zone}->pivot->id }}">
+                <i class="fa fa-times-circle removeIcon"></i>
+            </a>
+        </figure>
         <?php endif; ?>
     </div>
 </div>
