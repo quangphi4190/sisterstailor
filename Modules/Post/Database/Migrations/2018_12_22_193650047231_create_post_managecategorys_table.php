@@ -15,7 +15,12 @@ class CreatePostManagecategorysTable extends Migration
         Schema::create('post__managecategorys', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // Your fields
+            $table->string('category_id');
+            $table->string('name');
+            $table->string('description');
+            $table->string('image');
+            $table->string('slug');
+            $table->increments('status');         
             $table->timestamps();
         });
     }

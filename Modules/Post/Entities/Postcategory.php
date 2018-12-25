@@ -11,5 +11,8 @@ class Postcategory extends Model
 
     protected $table = 'post__postcategories';
     public $translatedAttributes = [];
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'status'
+    ];
 }

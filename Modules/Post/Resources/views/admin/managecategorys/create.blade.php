@@ -12,10 +12,10 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.post.managecategorys.store'], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['admin.post.managecategorys.store'], 'method' => 'post','enctype'=>"multipart/form-data"]) !!}
     <div class="row">
         <div class="col-md-12">
-            <div class="nav-tabs-custom">
+            <div class="nav-tabs-custom">                
                 @include('partials.form-tab-headers')
                 <div class="tab-content">
                     <?php $i = 0; ?>
@@ -47,7 +47,37 @@
     </dl>
 @stop
 
+<!-- Model popup add category -->
+<div class="modal fade bd-example-modal-lg" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    <form method ="post" id ="insert_form">
+      <div class="modal-header c-header">
+        <h5 class="modal-title c-text" id="exampleModalLongTitle">Thêm danh mục</h5>
+        <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+        <div class="modal-body">
+            <div class="form-group" >
+                <label for="category_name">Tên danh mục</label>
+                <input placeholder="Tên danh mục" name="category_name" type="text"  id="category_name" value="" class="form-control">
+            </div>
+        </div>
+      
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Thêm mới</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 @push('js-stack')
+{!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
+{!! Theme::style('css/chosen.css') !!}
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({
@@ -64,5 +94,44 @@
                 radioClass: 'iradio_flat-blue'
             });
         });
+    </script>
+     <script type="text/javascript">  
+        $('select[name="category_id"]').chosen({no_results_text: "Không tìm thấy", width: "100%", search_contains:true});
+        $('#addCategory').on('submit',function (e) { 
+            e.preventDefault();
+            var category_name = $('#category_name').val();      
+            $.ajax({
+                type: 'POST',
+                url: route('admin.post.managecategorys.addCategory'),
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    category_name: category_name
+                },
+                success: function(data) {              
+                    var $el = $("select#category_id");
+                        $el.empty();
+                        $el.append("<option>Chọn danh mục</option>");
+                        data = $.parseJSON(data);
+                        let i = 0, l = data.length;
+                        for(i; i < l; i++) {
+                            let v = data[i];console.log(v.name);
+                            $el.append("<option value='" + v.id + "'>" + v.name + "</option>");
+                            $('.fom-category').trigger("chosen:updated");
+                        }
+                            
+                    
+                    swal("Thêm mới thành công!", "", "success");
+                    $('.bd-example-modal-lg').modal('hide');
+                },
+                error: function () {
+                    swal({
+                        title: "Thêm mới khách hàng lỗi",
+                        text: "",
+                        icon: "warning",
+                        button: "Đồng ý",
+                    });
+                }
+            });
+          });      
     </script>
 @endpush

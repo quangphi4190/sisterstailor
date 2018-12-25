@@ -208,3 +208,10 @@ input.icon {
       border-radius: 4px;
   }
   
+
+ .c-btn-add {
+    padding-top: 25px;
+  }
+  .d-display {
+    display: none;
+  }

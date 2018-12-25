@@ -13,6 +13,7 @@
 
 @section('content')
     {!! Form::open(['route' => ['admin.post.postcategory.store'], 'method' => 'post']) !!}
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -21,7 +22,7 @@
                     <?php $i = 0; ?>
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
-                        <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
+                        <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">                     
                             @include('post::admin.postcategories.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach

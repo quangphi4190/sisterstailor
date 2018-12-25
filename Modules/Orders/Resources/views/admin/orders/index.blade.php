@@ -78,6 +78,7 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
+                                        <a href="{{ route('admin.orders.order.view', [$order->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{ route('admin.orders.order.edit', [$order->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.orders.order.destroy', [$order->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
@@ -133,7 +134,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "asc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }

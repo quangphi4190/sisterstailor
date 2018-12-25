@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>
-        {{ trans('post::managecategorys.title.edit managecategorys') }}
+        {{ trans('post::managecategorys.title.edit category') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
@@ -48,6 +48,8 @@
 @stop
 
 @push('js-stack')
+{!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
+{!! Theme::style('css/chosen.css') !!}
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).keypressAction({
@@ -64,5 +66,44 @@
                 radioClass: 'iradio_flat-blue'
             });
         });
+    </script>
+    <script type="text/javascript">  
+    $('select[name="category_id"]').chosen({no_results_text: "Không tìm thấy", width: "100%", search_contains:true});
+    $('#addCategory').on('submit',function (e) { 
+            e.preventDefault();
+            var category_name = $('#category_name').val();      
+            $.ajax({
+                type: 'POST',
+                url: route('admin.post.managecategorys.addCategory'),
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    category_name: category_name
+                },
+                success: function(data) {              
+                    var $el = $("select#category_id");
+                        $el.empty();
+                        $el.append("<option>Chọn danh mục</option>");
+                        data = $.parseJSON(data);
+                        let i = 0, l = data.length;
+                        for(i; i < l; i++) {
+                            let v = data[i];console.log(v.name);
+                            $el.append("<option value='" + v.id + "'>" + v.name + "</option>");
+                            $('.fom-category').trigger("chosen:updated");
+                        }
+                            
+                    
+                    swal("Thêm mới thành công!", "", "success");
+                    $('.bd-example-modal-lg').modal('hide');
+                },
+                error: function () {
+                    swal({
+                        title: "Thêm mới khách hàng lỗi",
+                        text: "",
+                        icon: "warning",
+                        button: "Đồng ý",
+                    });
+                }
+            });
+          });      
     </script>
 @endpush
