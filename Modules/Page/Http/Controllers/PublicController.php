@@ -57,6 +57,7 @@ class PublicController extends BasePublicController
      */
     public function homepage()
     {
+        $countCart =2;
         $page = $this->page->findHomepage();
 
         $this->throw404IfNotFound($page);
@@ -65,7 +66,7 @@ class PublicController extends BasePublicController
 
         $alternate = $this->getAlternateMetaData($page);
 
-        return view($template, compact('page', 'alternate'));
+        return view($template, compact('page', 'alternate','countCart'));
     }
 
     /**
@@ -127,5 +128,9 @@ class PublicController extends BasePublicController
     }
     public function category(){
         return view('Themes/Sisterstailor/views/category');
+    }
+
+    public function addCart(){
+        die('sda');
     }
 }

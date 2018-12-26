@@ -104,7 +104,7 @@
                             <div class="bottom d-flex align-items-center justify-content-center">
                                 <a href="#"><span class="lnr lnr-heart"></span></a>
                                 <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
+                                <a href="#" onclick="addCart(2)" ><span class="lnr lnr-cart"></span></a>
                                 <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
                             </div>
                         </div>
@@ -457,4 +457,26 @@
             </div>
         </div>
     </section>
+
+<script>
+function addCart($cartId) {
+    var cartID =$cartId;
+    $.ajax({
+        type: "POST",
+        url: '{{route('admin.page.page.addCart')}}',
+        data: {
+            _token: '{{ csrf_token() }}',
+            cartID: cartID,            
+                 
+        },
+        success: function(data) {              
+           
+        },
+        error: function () {
+           
+        }
+    });
+   
+}
+</script>
 @stop

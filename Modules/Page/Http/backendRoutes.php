@@ -34,4 +34,8 @@ $router->group(['prefix' => '/page'], function (Router $router) {
         'uses' => 'PageController@destroy',
         'middleware' => 'can:page.pages.destroy',
     ]);
+    $router->post('pages/addCart', [
+        'as' => 'admin.page.page.addCart',
+        'uses' => 'PageController@addCart'
+    ]);
 });

@@ -6854,3 +6854,61 @@ label {
 }
 
 /*# sourceMappingURL=../css/main.map */
+
+.menu-top li.cart:hover {
+  background-color:transparent!important;
+}
+i.fa.fa-cart-plus:hover {
+  color: red;
+}
+.fa-cart-plus {
+  font-size: 1.25rem;
+ }
+ .headerCart_3pLj {
+  position: relative;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  padding: 0 1.2rem;
+  cursor: pointer;
+}
+.headerItem_37vW:last-child {
+  margin-right: 0;
+}
+.headerItem_37vW {
+  margin-right: 2.4rem;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+.icon-large {
+  width: 2rem;
+  height: 2rem;
+}
+.icon-inverse {
+  fill: #972e2e;
+}
+svg {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.badgeNumber_ebbk {
+  position: absolute;
+  top: 0;
+  right: .9rem;
+  min-width: 1.2rem;
+}
+.badge_2k15 {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .6rem;
+  background-color: #f5a623;
+  color: #fff;
+}

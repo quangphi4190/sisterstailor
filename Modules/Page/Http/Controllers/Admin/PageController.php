@@ -7,7 +7,8 @@ use Modules\Page\Entities\Page;
 use Modules\Page\Http\Requests\CreatePageRequest;
 use Modules\Page\Http\Requests\UpdatePageRequest;
 use Modules\Page\Repositories\PageRepository;
-
+use Illuminate\Support\Facades\Input;
+use DB;
 class PageController extends AdminBaseController
 {
     /**
@@ -95,4 +96,19 @@ class PageController extends AdminBaseController
         return redirect()->route('admin.page.page.index')
             ->withSuccess(trans('page::messages.page deleted'));
     }
+
+    public function addCart(){
+        $cartID = Input::get('cartID',''); 
+        $products__categorie = DB::table('products__categories')->select('products__categories.*','products__products.price','products__products.name as productName')->where('products__categories.id', '=' ,$cartID)
+        ->leftjoin('products__products', 'products__products.id', '=', 'products__categories.parent_id')
+        ->first();
+     
+        $minutes = 30;
+        $name_cookie = cookie('name', $products__categorie->name, $minutes);
+        $description_cookie = cookie('description', $products__categorie->description, $minutes);
+        $price_cookie = cookie('price', $products__categorie->price, $minutes);
+        $id = cookie('price', $products__categorie->id, $minutes);
+     
+        die(json_encode($products__categorie));
+     }
 }

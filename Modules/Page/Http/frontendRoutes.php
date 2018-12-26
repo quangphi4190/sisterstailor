@@ -13,3 +13,8 @@ $router->any('{uri}', [
     'as' => 'page',
     'middleware' => config('asgard.page.config.middleware'),
 ])->where('uri', '.*');
+
+//    $router->post('page/addCart', [
+//        'as' => 'page.addCart',
+//        'uses' => 'PublicController@addCart'
+//    ]);
