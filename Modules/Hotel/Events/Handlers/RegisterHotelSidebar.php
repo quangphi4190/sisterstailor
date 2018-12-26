@@ -36,15 +36,15 @@ class RegisterHotelSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
+        $menu->group('Quản lý bán hàng', function (Group $group) {
             $group->item(trans('hotel::hotels.title.hotels'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
+                $item->icon('fa fa-hotel');
+                $item->weight(3);
                 $item->authorize(
                      /* append */
                 );
                 $item->item(trans('hotel::hotels.title.hotelss'), function (Item $item) {
-                    $item->icon('fa fa-copy');
+                    $item->icon('fa fa-hotel');
                     $item->weight(0);
                     $item->append('admin.hotel.hotel.create');
                     $item->route('admin.hotel.hotel.index');

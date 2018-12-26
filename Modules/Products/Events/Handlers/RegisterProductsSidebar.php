@@ -36,15 +36,15 @@ class RegisterProductsSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
+        $menu->group('Website bán hàng', function (Group $group) {
             $group->item(trans('products::products.title.products'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
+                $item->icon('fa fa-product-hunt');
+                $item->weight(1);
                 $item->authorize(
                      /* append */
                 );
                 $item->item(trans('products::products.title.products'), function (Item $item) {
-                    $item->icon('fa fa-copy');
+                    $item->icon('fa fa-product-hunt');
                     $item->weight(0);
                     $item->append('admin.products.products.create');
                     $item->route('admin.products.products.index');
