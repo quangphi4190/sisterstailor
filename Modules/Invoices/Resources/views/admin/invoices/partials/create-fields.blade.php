@@ -120,15 +120,15 @@ $status = [
        
         <div class="form-group ">
             <label for="price">Giá</label>
-            <input placeholder="Giá" name="price" type="number"  id="price" value="0" class="form-control">
+            <input placeholder="Giá" name="price" type="number"  id="price" value="0" step=".01" class="form-control">
         </div>
         <div class="form-group ">
             <label for="discount">Giảm giá</label>
-            <input placeholder="Giảm giá" name="discount" type="number" value="0" id="discount" class="input-calc form-control">
+            <input placeholder="Giảm giá" name="discount" type="number" value="0" step=".01" id="discount" class="input-calc form-control">
         </div>
         <div class="form-group">
             <label for="amount">Thành tiền</label>
-            <input placeholder="Thành tiền" name="amount" type="text" id="amount" value="0" class="form-control" readonly>
+            <input placeholder="Thành tiền" name="amount" type="text" id="amount" step=".01" value="0" class="form-control" readonly>
         </div>
     <!-- {!! Form::normalInput('delivery_address', 'Địa chỉ giao hàng', $errors) !!} -->
     <!-- {!! Form::normalInput('delivery_name', 'Tên người giao hàng', $errors) !!}

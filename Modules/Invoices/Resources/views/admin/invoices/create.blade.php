@@ -106,11 +106,12 @@
 
     <script type="text/javascript">
         // amount
-        $(document).on('change', '.input-calc, #price', function () {
-            price = $('#price').val() ? $('#price').val() : 0;
+        $(document).on('change', '#discount, #price', function () {
+            price =  $('#price').val() ? $('#price').val() : 0;
             discount = $('#discount').val() ? $('#discount').val() : 0;          
-            totalAmount =price-discount;
-            document.getElementById("amount").value = totalAmount;
+            totalAmount =parseFloat(price)-parseFloat(discount);
+            var v = totalAmount.toFixed(2);
+            document.getElementById("amount").value = v;
         });
         // Get Mã đoàn
         $('select[name="tour_guide_id"]').change(function () {                     

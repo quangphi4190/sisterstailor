@@ -103,16 +103,16 @@ $date = date("d/m/Y H:m:s");
 
          <div class="form-group ">
             <label for="price">Giá</label>
-            <input placeholder="Giá" name="price" type="number"  id="price" class="form-control" value ="{{$invoice->price}}">
+            <input placeholder="Giá" name="price" type="number"  id="price" step=".01" class="form-control" value ="{{$invoice->price}}">
         </div>
         <div class="form-group ">
             <label for="discount">Giảm giá</label>
-            <input placeholder="Giảm giá" name="discount" type="number" id="discount" class="input-calc form-control" value ="{{$invoice->discount}}">
+            <input placeholder="Giảm giá" name="discount" type="number" id="discount"  step=".01"  class="input-calc form-control" value ="{{$invoice->discount}}">
         </div>
        
         <div class="form-group">
             <label for="amount">Thành tiền</label>
-            <input placeholder="Thành tiền" name="amount" type="text" readonly id="amount" class="form-control" value="{{$invoice->amount}}">
+            <input placeholder="Thành tiền" name="amount" type="text" readonly id="amount"  step=".01"  class="form-control" value="{{$invoice->amount}}">
         </div>
     </div>
    
