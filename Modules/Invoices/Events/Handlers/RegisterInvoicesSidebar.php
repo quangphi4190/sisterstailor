@@ -36,17 +36,26 @@ class RegisterInvoicesSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('invoices::invoices.title.invoices'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
+        $menu->group('Quản lý bán hàng', function (Group $group) {
+            $group->item('Bán hàng', function (Item $item) {
+                $item->icon('fa fa-list-ul');
+                $item->weight(0);
                 $item->authorize(
                      /* append */
                 );
-                $item->item(trans('invoices::invoices.list resource'), function (Item $item) {
-                    $item->icon('fa fa-copy');
+                $item->item('Tạo mới đơn hàng', function (Item $item) {
+                    $item->icon('fa fa-plus');
                     $item->weight(0);
-                    $item->append('admin.invoices.invoice.create');
+
+                    $item->route('admin.invoices.invoice.create');
+                    $item->authorize(
+                        $this->auth->hasAccess('invoices.invoices.create')
+                    );
+                });
+                $item->item('Danh sách đơn hàng', function (Item $item) {
+                    $item->icon('fa fa-list-ul');
+                    $item->weight(1);
+
                     $item->route('admin.invoices.invoice.index');
                     $item->authorize(
                         $this->auth->hasAccess('invoices.invoices.index')

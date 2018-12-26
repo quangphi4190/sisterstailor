@@ -36,24 +36,15 @@ class RegisterThongkeSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
+        $menu->group('Quản lý bán hàng', function (Group $group) {
             $group->item('Thống kê', function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
+                $item->icon('fa fa-bar-chart');
+                $item->weight(4);
                 $item->authorize(
                      /* append */
                 );
-                // $item->item(trans('thongke::thongkedays.title.thongkedays'), function (Item $item) {
-                //     $item->icon('fa fa-copy');
-                //     $item->weight(0);
-                //     $item->append('admin.thongke.thongkeday.create');
-                //     $item->route('admin.thongke.thongkeday.index');
-                //     $item->authorize(
-                //         $this->auth->hasAccess('thongke.thongkedays.index')
-                //     );
-                // });
                 $item->item('Thống kê bán hàng', function (Item $item) {
-                    $item->icon('fa fa-copy');
+                    $item->icon('fa fa-bar-chart');
                     $item->weight(0);
                     $item->route('admin.thongke.thongketime.index');
                     $item->authorize(
@@ -61,8 +52,8 @@ class RegisterThongkeSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                     );
                 });
                 $item->item('Thống kê doanh thu', function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
+                    $item->icon('fa fa-line-chart');
+                    $item->weight(1);
 
                     $item->route('admin.thongke.thong_ke_doanh_thu');
 

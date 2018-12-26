@@ -36,15 +36,15 @@ class RegisterTourGuideSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
+        $menu->group('Quản lý bán hàng', function (Group $group) {
             $group->item(trans('tourguide::tourguides.title.tourguides'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
+                $item->icon('fa fa-users');
+                $item->weight(2);
                 $item->authorize(
                      /* append */
                 );
                 $item->item(trans('tourguide::tourguides.title.tourguidess'), function (Item $item) {
-                    $item->icon('fa fa-copy');
+                    $item->icon('fa fa-users');
                     $item->weight(0);
                     $item->append('admin.tourguide.tourguide.create');
                     $item->route('admin.tourguide.tourguide.index');
@@ -52,8 +52,6 @@ class RegisterTourGuideSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('tourguide.tourguides.index')
                     );
                 });
-// append
-
             });
         });
 

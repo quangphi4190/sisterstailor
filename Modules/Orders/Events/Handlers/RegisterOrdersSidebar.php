@@ -36,15 +36,15 @@ class RegisterOrdersSidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('orders::orders.title.orders'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
+        $menu->group('Website bán hàng', function (Group $group) {
+            $group->item('Đơn đặt hàng', function (Item $item) {
+                $item->icon('fa fa-list-ol');
+                $item->weight(0);
                 $item->authorize(
                      /* append */
                 );
-                $item->item(trans('orders::orders.title.orders'), function (Item $item) {
-                    $item->icon('fa fa-copy');
+                $item->item('Đơn đặt hàng', function (Item $item) {
+                    $item->icon('fa fa-list-ol');
                     $item->weight(0);
                     $item->append('admin.orders.order.create');
                     $item->route('admin.orders.order.index');
