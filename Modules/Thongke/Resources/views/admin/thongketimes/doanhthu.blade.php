@@ -92,7 +92,7 @@
                                 <td> {{ $thongke->tour_guide_id == 0 ? 'Khách lẻ' : $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
                                 <td> {{ $thongke->seller }} </td>
                                 <td align="right"> $ {{ number_format($thongke->price,0,',',',')}} </td>
-                                <td align="right"> $ {{ number_format($thongke->discount,0,',',',')}} </td>
+                                <td align="right"> $ {{ number_format(floatval($thongke->discount),0,',',',')}} </td>
                                 <td align="right"> $ {{ number_format($thongke->amount,0,',',',')}} </td>
                             </tr>
                             <?php endforeach; ?>
