@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'list resource' => 'List products',
-    'create resource' => 'Create products',
-    'edit resource' => 'Edit products',
-    'destroy resource' => 'Destroy products',
+    'list resource' => 'Danh Sách Sản Phẩm',
+    'create resource' => 'Tạo Mới Sản Phẩm',
+    'edit resource' => 'Chỉnh Sửa Sản Phẩm',
+    'destroy resource' => 'Chỉnh Sửa Sản Phẩm',
     'title' => [
-        'products' => 'Products',
-        'create products' => 'Create a products',
-        'edit products' => 'Edit a products',
+        'products' => 'Sản Phẩm',
+        'create products' => 'Tạo Mới Sản Phẩm',
+        'edit products' => 'Chỉnh Sửa Sản Phẩm',
     ],
     'button' => [
-        'create products' => 'Create a products',
+        'create products' => 'Tạo Mới Sản Phẩm',
     ],
     'table' => [
     ],

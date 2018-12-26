@@ -4,10 +4,10 @@
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
                 <div class="col-first">
-                    <h1>Shop Category page</h1>
+                    <h1>Sản Phẩm</h1>
                     <nav class="d-flex align-items-center justify-content-start">
-                        <a href="index.html">Home<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                        <a href="category.html">Fashon Category</a>
+                        <a href="index.html">Trang Chủ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                        <a href="category.html">Sản Phẩm</a>
                     </nav>
                 </div>
             </div>
@@ -49,222 +49,224 @@
                 <!-- Start Best Seller -->
                 <section class="lattest-product-area pb-40 category-list">
                     <div class="row">
+                        @foreach ($products as $p)
                         <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
                             <div class="content">
                                 <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l5.jpg" alt="">
+                                @foreach($p->files as $file)
+                                    <img class="content-image img-fluid d-block mx-auto" src="{{$file->path}}" alt="">
+                                @endforeach
                                 <div class="content-details fadeIn-bottom">
                                     <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
+                                        <a href="#"><span class="lnr lnr-layers" alt="Chi Tiết Sản Phẩm"></span></a>
+                                        <a href="#"><span class="lnr lnr-cart" alt="Thêm Vào Giỏ Hàng"></span></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
+                                <h5>{{$p->name}}</h5>
+                                <h3>{{number_format($p->price)}} VND</h3>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l6.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l7.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l8.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l6.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l8.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l5.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l7.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l8.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l5.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l6.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
-                            <div class="content">
-                                <div class="content-overlay"></div>
-                                <img class="content-image img-fluid d-block mx-auto" src="img/l8.jpg" alt="">
-                                <div class="content-details fadeIn-bottom">
-                                    <div class="bottom d-flex align-items-center justify-content-center">
-                                        <a href="#"><span class="lnr lnr-heart"></span></a>
-                                        <a href="#"><span class="lnr lnr-layers"></span></a>
-                                        <a href="#"><span class="lnr lnr-cart"></span></a>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price">
-                                <h5>Long Sleeve shirt</h5>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
+                        @endforeach
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l6.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l7.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l8.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l6.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l8.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l5.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l7.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l8.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l5.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l6.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">--}}
+                            {{--<div class="content">--}}
+                                {{--<div class="content-overlay"></div>--}}
+                                {{--<img class="content-image img-fluid d-block mx-auto" src="img/l8.jpg" alt="">--}}
+                                {{--<div class="content-details fadeIn-bottom">--}}
+                                    {{--<div class="bottom d-flex align-items-center justify-content-center">--}}
+                                        {{--<a href="#"><span class="lnr lnr-heart"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-layers"></span></a>--}}
+                                        {{--<a href="#"><span class="lnr lnr-cart"></span></a>--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="price">--}}
+                                {{--<h5>Long Sleeve shirt</h5>--}}
+                                {{--<h3>$150.00</h3>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </section>
                 <!-- End Best Seller -->

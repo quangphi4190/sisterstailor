@@ -2,14 +2,13 @@
 
 
 use Modules\Core\Http\Controllers\BasePublicController;
-use Modules\Products\Repositories\CategoriesRepository;
 use Modules\Products\Repositories\ProductsRepository;
 use Modules\Products\Entities\Products;
 use Modules\Products\Entities\ProductsTranslation;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Input;
 class PublicController extends BasePublicController {
-    private $products, $categories;
+    private $products;
 
     /**
      * @var FooterSliderRepository
@@ -21,28 +20,20 @@ class PublicController extends BasePublicController {
      * @param RoomRepository $offerRepository
      * @param RoomCatRepository $offerCatRepository
      */
-    public function __construct(ProductsRepository $products, CategoriesRepository $categories ) {
+    public function __construct(ProductsRepository $products) {
         parent::__construct();
         $this->products        = $products;
-        $this->categories = $categories;
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index() {
-        return view( 'products::frontend.index');
+        $products = Products::all();
+        return view( 'products::frontend.index',compact('products'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show( $slug ) {
-        $event = Event::where('slug', $slug)->first();
-        $events = $this->events->all();
-        $price = $price = Dining::where('slug', 'nem')->first();
-
-        return view( 'event::event.defail-index', compact( 'event', 'slug','events','price'));
-
-    }
 }

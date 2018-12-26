@@ -3,7 +3,6 @@
 namespace Modules\Media\Entities;
 
 use Dimsav\Translatable\Translatable;
-use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Core\Traits\NamespacedEntity;
 use Modules\Media\Helpers\FileHelper;
@@ -17,7 +16,7 @@ use Modules\Tag\Traits\TaggableTrait;
  * @package Modules\Media\Entities
  * @property \Modules\Media\ValueObjects\MediaPath path
  */
-class File extends Model implements TaggableInterface, Responsable
+class File extends Model implements TaggableInterface
 {
     use Translatable, NamespacedEntity, TaggableTrait;
     /**
@@ -29,8 +28,6 @@ class File extends Model implements TaggableInterface, Responsable
     protected $table = 'media__files';
     public $translatedAttributes = ['description', 'alt_attribute', 'keywords'];
     protected $fillable = [
-        'id',
-        'is_folder',
         'description',
         'alt_attribute',
         'keywords',
@@ -44,13 +41,7 @@ class File extends Model implements TaggableInterface, Responsable
         'folder_id',
     ];
     protected $appends = ['path_string', 'media_type'];
-    protected $casts = ['is_folder' => 'boolean',];
     protected static $entityNamespace = 'asgardcms/media';
-
-    public function parent_folder()
-    {
-        return $this->belongsTo(__CLASS__, 'folder_id');
-    }
 
     public function getPathAttribute($value)
     {
@@ -67,11 +58,6 @@ class File extends Model implements TaggableInterface, Responsable
         return FileHelper::getTypeByMimetype($this->mimetype);
     }
 
-    public function isFolder(): bool
-    {
-        return $this->is_folder;
-    }
-
     public function isImage()
     {
         return in_array(pathinfo($this->path, PATHINFO_EXTENSION), $this->imageExtensions);
@@ -84,18 +70,5 @@ class File extends Model implements TaggableInterface, Responsable
         }
 
         return false;
-    }
-
-    /**
-     * Create an HTTP response that represents the object.
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function toResponse($request)
-    {
-        return response()
-            ->file(public_path($this->path->getRelativeUrl()), [
-                'Content-Type' => $this->mimetype,
-            ]);
     }
 }

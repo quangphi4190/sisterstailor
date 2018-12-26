@@ -15,7 +15,14 @@ class CreateProductsProductsTable extends Migration
         Schema::create('products__products', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('')
+            $table->string('name');
+            $table->string('gallery');
+            $table->string('intro');
+            $table->string('description');
+            $table->string('price');
+            $table->string('price_discount');
+            $table->string('status');
+            $table->integer('category_id');
             // Your fields
             $table->timestamps();
         });

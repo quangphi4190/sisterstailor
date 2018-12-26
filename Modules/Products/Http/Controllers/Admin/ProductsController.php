@@ -3,7 +3,9 @@
 namespace Modules\Products\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Response;
+use Modules\Category\Entities\Category;
 use Modules\Products\Entities\Products;
 use Modules\Products\Http\Requests\CreateProductsRequest;
 use Modules\Products\Http\Requests\UpdateProductsRequest;
@@ -31,9 +33,10 @@ class ProductsController extends AdminBaseController
      */
     public function index()
     {
-        //$products = $this->products->all();
+        $products = $this->products->all();
+        $categories =   Category::all();
 
-        return view('products::admin.products.index', compact(''));
+        return view('products::admin.products.index',compact('products','categories'));
     }
 
     /**
@@ -43,7 +46,9 @@ class ProductsController extends AdminBaseController
      */
     public function create()
     {
-        return view('products::admin.products.create');
+        $products = new Products();
+        $categories =   Category::all();
+        return view('products::admin.products.create',compact('products','categories'));
     }
 
     /**
@@ -68,7 +73,8 @@ class ProductsController extends AdminBaseController
      */
     public function edit(Products $products)
     {
-        return view('products::admin.products.edit', compact('products'));
+        $status = $products->status ? $products->status: '';
+        return view('products::admin.products.edit', compact('products','status'));
     }
 
     /**

@@ -44,16 +44,27 @@ $date = date("d/m/Y H:m:s");
                     <?php }?>
                 </select>
             </div> 
-            <div class="form-group dropdown">
-                <label for="hotel_id">Khách sạn</label>
-                <select name="hotel_id" id="hotel_id" class="form-control">
-                    <option value="">Chọn khách sạn</option>
-                    <?php foreach ($hotels as $hotel) {?>
-                    <option value="{{$hotel->id}}" <?php echo $hotel_id == $hotel->id ? 'selected' : '' ?>  >{{$hotel->name}} </option>
-                    <?php }?>
-                </select>
-            </div> 
-    
+            
+            
+            <div class="row d-flex">       
+            <div class="col-md-6 p-2">
+                <div class="form-group dropdown">
+                    <label for="hotel_id">Khách sạn</label>
+                    <select name="hotel_id" id="hotel_id" class="form-control">
+                        <option value="0">Khác</option>
+                        <?php foreach ($hotels as $hotel) {?>
+                            <option value="{{$hotel->id}}" <?php echo $hotel_id == $hotel->id ? 'selected' : '' ?>  >{{$hotel->name}} </option>
+                        <?php }?>
+                    </select>
+                </div> 
+            </div>
+            <div class ="col-md-6">
+                <div class="form-group "><label for="delivery_address">Số phòng</label>
+                <input class="form-control" placeholder="Số phòng" name="delivery_address" type="text" id="delivery_address" value="{{$invoice->delivery_address}}"></div>
+            </div>
+        </div>   
+
+
             <div class="form-group "><label for="order_date">Ngày đặt hàng</label>
                 <div class='input-group date' id='datetimepicker2'>
                     <input type='text' class="form-control c-form-date datetime-picker" name="order_date" id="order_date" value="{{date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $invoice->order_date)))}}"/>

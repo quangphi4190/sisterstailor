@@ -26,9 +26,13 @@ class CacheUserTokenDecorator extends BaseCacheDecorator implements UserTokenRep
      */
     public function allForUser($userId)
     {
-        $this->remember(function () use ($userId) {
-            return $this->repository->allForUser($userId);
-        });
+        return $this->cache
+            ->tags([$this->entityName, 'global'])
+            ->remember("{$this->locale}.{$this->entityName}.allForUser.{$userId}", $this->cacheTime,
+                function () use ($userId) {
+                    return $this->repository->allForUser($userId);
+                }
+            );
     }
 
     /**

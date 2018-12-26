@@ -61,22 +61,22 @@
     <div class="jsThumbnailImageWrapper">
         <?php $zoneVar = "{$zone}Files"  ?>
         <?php if (isset($$zoneVar) && !$$zoneVar->isEmpty()): ?>
-            <?php foreach ($$zoneVar as $file): ?>
-                <figure data-id="{{ $file->pivot->id }}">
-                    <?php if ($file->media_type == 'image'): ?>
-                    <img src="{{ Imagy::getThumbnail($file->path, (isset($thumbnailSize) ? $thumbnailSize : 'mediumThumb')) }}" alt="{{ $file->alt_attribute }}"/>
-                    <?php elseif ($file->media_type == 'video'): ?>
-                    <video src="{{ $file->path }}"  controls width="320"></video>
-                    <?php elseif ($file->media_type == 'audio'): ?>
-                    <audio controls><source src="{{ $file->path }}" type="{{ $file->mimetype }}"></audio>
-                    <?php else: ?>
-                    <i class="fa fa-file" style="font-size: 50px;"></i>
-                    <?php endif; ?>
-                    <a class="jsRemoveLink" href="#" data-id="{{ $file->pivot->id }}">
-                        <i class="fa fa-times-circle removeIcon"></i>
-                    </a>
-                </figure>
-            <?php endforeach; ?>
+        <?php foreach ($$zoneVar as $file): ?>
+        <figure data-id="{{ $file->pivot->id }}">
+            <?php if ($file->media_type == 'image'): ?>
+            <img src="{{ Imagy::getThumbnail($file->path, (isset($thumbnailSize) ? $thumbnailSize : 'mediumThumb')) }}" alt="{{ $file->alt_attribute }}"/>
+            <?php elseif ($file->media_type == 'video'): ?>
+            <video src="{{ $file->path }}"  controls width="320"></video>
+            <?php elseif ($file->media_type == 'audio'): ?>
+            <audio controls><source src="{{ $file->path }}" type="{{ $file->mimetype }}"></audio>
+            <?php else: ?>
+            <i class="fa fa-file" style="font-size: 50px;"></i>
+            <?php endif; ?>
+            <a class="jsRemoveLink" href="#" data-id="{{ $file->pivot->id }}">
+                <i class="fa fa-times-circle removeIcon"></i>
+            </a>
+        </figure>
+        <?php endforeach; ?>
         <?php endif; ?>
     </div>
 </div>
@@ -85,7 +85,7 @@
         $('.jsThumbnailImageWrapper').on('click', '.jsRemoveLink', function (e) {
             e.preventDefault();
             var imageableId = $(this).data('id'),
-                    pictureWrapper = $(this).parent();
+                pictureWrapper = $(this).parent();
             $.ajax({
                 type: 'POST',
                 url: Asgard.mediaUnlinkUrl,

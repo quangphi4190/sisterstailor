@@ -112,6 +112,7 @@ class InvoiceController extends AdminBaseController
         $invoice->discount = $request['discount'];
         $invoice->payment_type = $request['payment_type'];
         $invoice->delivery_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['delivery_date'])));
+        $invoice->delivery_address = $request['delivery_address'];
         $invoice->status = 1;
         $invoice->is_group = $is_group;
         $invoice->group_code = $request['group_code'];
@@ -168,8 +169,9 @@ class InvoiceController extends AdminBaseController
         $discount = $request['discount'] ? $request['discount']:'';
         $amount = $request['amount'] ?$request['amount']:'';     
         $note = $request['note'] ?$request['note'] :'';     
+        $delivery_address = $request['delivery_address'] ?$request['delivery_address'] :'';   
         // $this->invoice->update($invoice, $request->all());
-        Invoice::where('id', $request['id'])->update(array('is_group'=>$is_group,'customer_id'=>$customer_id,'group_code'=>$group_code,'tour_guide_id'=>$tour_guide_id,'hotel_id'=>$hotel_id,'order_date'=>$order_date,'delivery_date'=>$delivery_date,'payment_type'=>$payment_type,'status' => 1,'note'=> $note,'amount'=> $amount,'discount'=>$discount,'price'=>$price,'product'=>$product,'seller'=>$seller));
+        Invoice::where('id', $request['id'])->update(array('delivery_address'=>$delivery_address,'is_group'=>$is_group,'customer_id'=>$customer_id,'group_code'=>$group_code,'tour_guide_id'=>$tour_guide_id,'hotel_id'=>$hotel_id,'order_date'=>$order_date,'delivery_date'=>$delivery_date,'payment_type'=>$payment_type,'status' => 1,'note'=> $note,'amount'=> $amount,'discount'=>$discount,'price'=>$price,'product'=>$product,'seller'=>$seller));
 
         return redirect()->route('admin.invoices.invoice.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('invoices::invoices.title.invoices')]));
@@ -329,14 +331,44 @@ class InvoiceController extends AdminBaseController
         $tour_guide_id = Input::get('tour_guide_id', ''); 
         $tour_guide = DB::table('tourguide__tourguides')->where('tourguide__tourguides.id', '=' ,$tour_guide_id)->first();
        
-        $orderTour = DB::table('tourguide__tourguides')
-                ->orderBy('id', 'desc')
-                ->get();
-        $maso = "00".$orderTour[0]->id;
+       
+        
         $fullname = $tour_guide->firstname.' '.$tour_guide->lastname;
         $fullname = $this->genUserName($fullname);
-        $code =$fullname.$maso;
-        echo json_encode($code);
+       
+        $orderTour = DB::table('invoices__invoices')->select('group_code as maxNumber')
+        ->where('invoices__invoices.group_code','LIKE',"$fullname%")
+        ->orderBy('invoices__invoices.id', 'DESC')
+        ->first(); 
+                
+        if ($orderTour) {
+            $lastNumber = (int) substr($orderTour->maxNumber, strpos($orderTour->maxNumber, "-") + 1);
+            $newNumber = $lastNumber+1;
+            if ($newNumber < 10) {
+                $acceptNumber =  $fullname.'-00'.$newNumber;
+                echo json_encode($acceptNumber);
+            }
+            else if ($newNumber < 100)
+            {
+                $acceptNumber = $fullname.'-0'.$newNumber;
+                echo json_encode($acceptNumber);
+            }
+            else if($newNumber > 999)
+            {
+                $acceptNumber = $fullname.'-001';
+                echo json_encode($acceptNumber);
+            }
+            else {
+                $acceptNumber = $fullname.'-'.$newNumber;
+                echo json_encode($acceptNumber);
+            }
+         } // nếu khác
+         else {
+            $acceptNumber = $fullname.'-001';
+            echo json_encode($acceptNumber);
+         }
+         
+       
     }
 
     function get_group_info($id, $group_code = ''){

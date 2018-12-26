@@ -29,35 +29,57 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>STT</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Loại Sản Phẩm</th>
+                                <th>Giá</th>
+                                <th>Giảm Giá</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($products)): ?>
-                            <?php foreach ($products as $products): ?>
+                            <?php if (isset($products)): $stt=1; ?>
+                            <?php foreach ($products as $p): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.products.products.edit', [$products->id]) }}">
-                                        {{ $products->created_at }}
+                                    <a href="{{ route('admin.products.products.edit', [$p->id]) }}">
+                                        {{$stt++}}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.products.products.edit', [$p->id]) }}">
+                                        {{$p->name}}
+                                    </a>
+                                </td>
+                                <td>
+                                    @foreach($categories as $c)
+                                        @if ($c->id == $p->category_id)
+                                    <a href="{{ route('admin.products.products.edit', [$p->id]) }}">
+                                        {{$c->name}}
+                                    </a>
+                                        @endif
+                                        @endforeach
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.products.products.edit', [$p->id]) }}">
+                                        {{number_format($p->price)}} VND
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.products.products.edit', [$p->id]) }}">
+                                        {{number_format($p->price_discount)}} VND
                                     </a>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.products.products.edit', [$products->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.products.products.destroy', [$products->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.products.products.edit', [$p->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.products.products.destroy', [$p->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
-                            </tfoot>
                         </table>
                         <!-- /.box-body -->
                     </div>
@@ -99,7 +121,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "asc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }
