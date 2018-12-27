@@ -60,7 +60,7 @@
             price =  $('#price').val() ? $('#price').val() : 0;
             discount = $('#discount').val() ? $('#discount').val() : 0;
             totalAmount =parseFloat(price)-parseFloat(discount);
-            var v = totalAmount.toFixed(2);
+            var v = totalAmount.toFixed(1);
             document.getElementById("amount").value = v;
         });
         // Get Mã đoàn

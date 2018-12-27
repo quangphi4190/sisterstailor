@@ -91,9 +91,9 @@
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>
                                 <td> {{ $thongke->tour_guide_id == 0 ? 'Khách lẻ' : $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
                                 <td> {{ $thongke->seller }} </td>
-                                <td align="right"> $ {{ number_format($thongke->price,2,'.',',')}} </td>
-                                <td align="right"> $ {{ number_format(floatval($thongke->discount),2,'.',',')}} </td>
-                                <td align="right"> $ {{ number_format($thongke->amount,2,'.',',')}} </td>
+                                <td align="right"> $ {{ number_format($thongke->price,1,'.',',')}} </td>
+                                <td align="right"> $ {{ number_format(floatval($thongke->discount),1,'.',',')}} </td>
+                                <td align="right"> $ {{ number_format($thongke->amount,1,'.',',')}} </td>
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
