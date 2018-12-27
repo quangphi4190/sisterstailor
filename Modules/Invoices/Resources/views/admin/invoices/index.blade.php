@@ -128,7 +128,7 @@
                                 </td>
                                 <td>
 
-                                        ${{number_format($invoice->amount,0,',',',') }}
+                                        ${{number_format($invoice->amount,2,',',',') }}
 
                                 </td>
                                 <td>
