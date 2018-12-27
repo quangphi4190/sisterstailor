@@ -35,7 +35,7 @@ class CustomerController extends AdminBaseController
     public function index()
     {
         // $customers = $this->customer->all();
-        $customers = Customer::select('customers__customers.firstname','customers__customers.lastname','customers__customers.gender','customers__customers.mail','customers__customers.phone','countries.name' )
+        $customers = Customer::select('customers__customers.id','customers__customers.firstname','customers__customers.lastname','customers__customers.gender','customers__customers.mail','customers__customers.phone','countries.name' )
         ->leftjoin('countries', 'countries.id', '=', 'customers__customers.country_id')->get();
         return view('customers::admin.customers.index', compact('customers','countries'));
     }
@@ -82,6 +82,7 @@ class CustomerController extends AdminBaseController
      */
     public function edit(Customer $customer)
     {
+     
         $countries = DB::table('countries')->get();
         $states = DB::table('states')->get();
         $cities = DB::table('cities')->get();
