@@ -95,7 +95,7 @@
                                 <td> {{ $thongke->hotel_id == 0 ? 'Khác' : $thongke->name}} </td>
                                 <td> {{ $thongke->tour_guide_id == 0 ? 'Khách lẻ' : $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
                                 <td> {{ $thongke->group_code}} </td>
-                                <td> $ {{ number_format($thongke->amount,2,',',',')}} </td>
+                                <td> $ {{ number_format($thongke->amount,2,'.',',')}} </td>
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
                                 <td> {{ date('H:i', strtotime(str_replace('/', '-', $thongke->order_date)))  }} </td>
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>

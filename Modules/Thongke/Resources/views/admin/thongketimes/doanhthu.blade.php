@@ -20,7 +20,7 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    {!! Form::open(['route' => ['admin.thongke.thongketime.index'], 'method' => 'get']) !!}
+                    {!! Form::open(['route' => ['admin.thongke.thong_ke_doanh_thu'], 'method' => 'get']) !!}
                     <div class="input-date-tk ">
                         <div class="col-md-12">
                             <div class="col-md-3 row d-flex flex-row">
@@ -91,9 +91,9 @@
                                 <td> {{ date('d/m/Y', strtotime(str_replace('/', '-', $thongke->delivery_date)))  }} </td>
                                 <td> {{ $thongke->tour_guide_id == 0 ? 'Khách lẻ' : $thongke->Tfirstname .' '.$thongke->Tlastname}} </td>
                                 <td> {{ $thongke->seller }} </td>
-                                <td align="right"> $ {{ number_format($thongke->price,2,',',',')}} </td>
-                                <td align="right"> $ {{ number_format(floatval($thongke->discount),2,',',',')}} </td>
-                                <td align="right"> $ {{ number_format($thongke->amount,2,',',',')}} </td>
+                                <td align="right"> $ {{ number_format($thongke->price,2,'.',',')}} </td>
+                                <td align="right"> $ {{ number_format(floatval($thongke->discount),2,'.',',')}} </td>
+                                <td align="right"> $ {{ number_format($thongke->amount,2,'.',',')}} </td>
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
