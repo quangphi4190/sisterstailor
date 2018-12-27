@@ -88,10 +88,10 @@ $date = date("d/m/Y H:m:s");
         <div class="form-group dropdown">
             <label for="payment_type">Hình thức thanh toán</label>
             <select name="payment_type" id="payment_type" class="form-control">           
-                <option {{$invoice->delivery_date==='Tiền mặt'?'selected':''}} value="Tiền mặt">Tiền mặt</option>
-                <option value="Thẻ" {{$invoice->delivery_date==='Thẻ'?'selected':''}}>Thẻ</option>
-                <option value="Cả hai" {{$invoice->delivery_date==='Cả hai'?'selected':''}}>Cả hai</option>
-                <option value="Khác" {{$invoice->delivery_date==='Khác'?'selected':''}}>Khác</option>
+                <option {{$invoice->payment_type==='Tiền mặt'?'selected':''}} value="Tiền mặt">Tiền mặt</option>
+                <option value="Thẻ" {{$invoice->payment_type==='Thẻ'?'selected':''}}>Thẻ</option>
+                <option value="Cả hai" {{$invoice->payment_type==='Cả hai'?'selected':''}}>Cả hai</option>
+                <option value="Khác" {{$invoice->payment_type==='Khác'?'selected':''}}>Khác</option>
             </select>
         </div> 
        
