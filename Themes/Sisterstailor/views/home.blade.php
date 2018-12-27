@@ -469,8 +469,9 @@ function addCart($cartId) {
             cartID: cartID,            
                  
         },
-        success: function(data) {              
-           
+        success: function(data) {          
+            let numberCart =1;    
+            $('.badgeNumber_ebbk').html(numberCart);
         },
         error: function () {
            
