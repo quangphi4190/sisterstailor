@@ -36,4 +36,10 @@ class PublicController extends BasePublicController {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+
+     public function detail($id){
+         $countCart =0;
+        $product_detail =Products::where('id', $id)->first();
+        return view( 'products::frontend.detail',compact('product_detail','countCart'));
+     }
 }

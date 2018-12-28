@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 @section('content')
     <section class="banner-area organic-breadcrumb">
@@ -15,7 +16,7 @@
     </section>
     <!-- End Banner Area -->
     {!! Form::open(['route' => ['order.add-orders'], 'method' => 'post']) !!}
-    <div class="container">
+    <div class="container c-body-container">
                 <div class="cart-title">
                     <div class="row">
                         <div class="col-md-2">
