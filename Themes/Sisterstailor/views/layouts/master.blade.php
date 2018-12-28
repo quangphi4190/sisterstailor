@@ -56,7 +56,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li><a href="{{route('homepage')}}">Trang Chủ</a></li>
+                    <li><a href="{{route('homepage')}}">Home</a></li>
                     <li><a href="#catagory">Danh Mục Sản Phẩm</a></li>
                     <li><a href="#men">Nam</a></li>
                     <li><a href="#women">Nữ</a></li>
@@ -67,15 +67,17 @@
                             Trang Khác
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{route('products.index')}}">Category</a>
-                            <a class="dropdown-item" href="single.html">Single</a>
+                        @foreach ($category as $categories)
+                            <a class="dropdown-item" href="{{route('products.index',[$categories->slug])}}">{{$categories->name}}</a>
+                        @endforeach
+                            <!-- <a class="dropdown-item" href="single.html">Single</a>
                             <a class="dropdown-item" href="cart.html">Cart</a>
                             <a class="dropdown-item" href="checkout.html">Checkout</a>
                             <a class="dropdown-item" href="confermation.html">Confermation</a>
                             <a class="dropdown-item" href="login.html">Login</a>
                             <a class="dropdown-item" href="tracking.html">Tracking</a>
                             <a class="dropdown-item" href="generic.html">Generic</a>
-                            <a class="dropdown-item" href="elements.html">Elements</a>
+                            <a class="dropdown-item" href="elements.html">Elements</a> -->
                         </div>
                     </li>
                 </ul>
