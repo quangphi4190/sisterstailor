@@ -97,9 +97,13 @@ class CategoryController extends AdminBaseController
      */
     public function destroy(Category $category)
     {
+        if ($category->id  > '2') {
         $this->category->destroy($category);
 
         return redirect()->route('admin.category.category.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('category::categories.title.categories')]));
+        }
+        return redirect()->route('admin.category.category.index')
+            ->withError('Xóa danh mục sản phẩm thất bại. Xin kiểm tra lại.');
     }
 }

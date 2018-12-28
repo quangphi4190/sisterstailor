@@ -1,5 +1,17 @@
 @extends('layouts.master')
 @section('content')
+    <!-- <div class="banner-slider">        
+            <div class="item-slider"
+                 style="background-image: url('{{asset('themes/sisterstailor/img/header-img.png')}}');background-repeat: no-repeat;background-size: cover;background-position: center center">
+                <div class="banner-text">
+                    <p class="wow fadeInUp">Welcome to</p>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.5s">Flat 75%Off</h2>
+                    <p class="wow fadeInUp" data-wow-delay="1s">It’s Happening <br>
+                        this Season!</p>
+                </div>
+                <div class="banner-backdrop"></div>
+            </div>
+    </div> -->
     <section class="banner-area relative" id="home">
         <div class="container-fluid">
             <div class="row fullscreen align-items-center justify-content-center">
@@ -25,7 +37,8 @@
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-40">
                     <div class="title text-center">
-                        <h1 class="mb-10">Danh Mục Sản Phẩm</h1>
+                        <h1 class="mb-10">Shop for Different Categories</h1>
+					    <p>Who are in extremely love with eco friendly system.</p>
                     </div>
                 </div>
             </div>
@@ -38,7 +51,7 @@
                                     <div class="content-overlay"></div>
                                     <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c1.jpg')}}" alt="">
                                     <div class="content-details fadeIn-bottom">
-                                        <h3 class="content-title">Sản Phẩm Của Nữ</h3>
+                                        <h3 class="content-title">Product for Women</h3>
                                     </div>
                                 </a>
                             </div>
@@ -49,7 +62,7 @@
                                     <div class="content-overlay"></div>
                                     <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c2.jpg')}}" alt="">
                                     <div class="content-details fadeIn-bottom">
-                                        <h3 class="content-title">Sản Phẩm Cặp Đôi</h3>
+                                        <h3 class="content-title">Product for Couple</h3>
                                     </div>
                                 </a>
                             </div>
@@ -60,7 +73,7 @@
                                     <div class="content-overlay"></div>
                                     <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c3.jpg')}}" alt="">
                                     <div class="content-details fadeIn-bottom">
-                                        <h3 class="content-title">Tất Cả Sản Phẩm</h3>
+                                        <h3 class="content-title">Shop Now</h3>
                                     </div>
                                 </a>
                             </div>
@@ -73,7 +86,7 @@
                             <div class="content-overlay"></div>
                             <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c4.jpg')}}" alt="">
                             <div class="content-details fadeIn-bottom">
-                                <h3 class="content-title">Sản Phẩm Của Nam</h3>
+                                <h3 class="content-title">Product For Men</h3>
                             </div>
                         </a>
                     </div>
@@ -91,15 +104,18 @@
                 <div class="menu-content pb-40">
                     <div class="title text-center">
                         <h1 class="text-white mb-10">New realeased Products for Men</h1>
-                        <p class="text-white">Who are in extremely love with eco friendly system.</p>
+						<p class="text-white">Who are in extremely love with eco friendly system.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
+                @foreach ($men as $m)
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
                         <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/l1.jpg')}}" alt="">
+                        @foreach ($m->files()->where('zone','Image')->get() as $filemen)
+                            <img class="content-image img-fluid d-block mx-auto" src="{{$filemen->path}}" alt="">
+                        @endforeach
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
                                 <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -110,64 +126,16 @@
                         </div>
                     </div>
                     <div class="price">
-                        <h5 class="text-white">Long Sleeve shirt</h5>
-                        <h3 class="text-white">$150.00</h3>
+                        <h5 class="text-white">{{$m->name}}</h5>
+                        @if ($m->price_discount == '0')
+                        <h3 class="text-white">$ {{number_format($m->price)}}</h3>
+                        @else
+                            <del class="text-white">$ {{number_format($m->price)}}</del>
+                            <h3 class="text-white">$ {{number_format($m->price_discount)}}</h3>
+                            @endif
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/l2.jpg')}}" alt="">
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="price">
-                        <h5 class="text-white">Long Sleeve shirt</h5>
-                        <h3 class="text-white">$150.00</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/l3.jpg')}}" alt="">
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="price">
-                        <h5 class="text-white">Long Sleeve shirt</h5>
-                        <h3 class="text-white">$150.00</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/l4.jpg')}}" alt="">
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="price">
-                        <h5 class="text-white">Long Sleeve shirt</h5>
-                        <h3 class="text-white">$150.00</h3>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -179,14 +147,17 @@
             <div class="countdown-content pb-40">
                 <div class="title text-center">
                     <h1 class="mb-10">New realeased Products for Women</h1>
-                    <p>Who are in extremely love with eco friendly system.</p>
+							<p>Who are in extremely love with eco friendly system.</p>
                 </div>
             </div>
             <div class="row">
+                @foreach ($women as $w)
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
                         <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/l5.jpg')}}" alt="">
+                        @foreach ($w->files()->where('zone','Image')->get() as $filewomen)
+                            <img class="content-image img-fluid d-block mx-auto" src="{{$filewomen->path}}" alt="">
+                        @endforeach
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
                                 <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -197,64 +168,16 @@
                         </div>
                     </div>
                     <div class="price">
-                        <h5>Long Sleeve shirt</h5>
-                        <h3>$150.00</h3>
+                        <h5>{{$w->name}}</h5>
+                        @if ($w->price_discount == '0')
+                        <h3>{{number_format($w->price)}}</h3>
+                            @else
+                            <del style="color:black;">$ {{number_format($w->price)}}</del>
+                            <h3>$ {{number_format($w->price_discount)}}</h3>
+                            @endif
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/l6.jpg')}}" alt="">
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="price">
-                        <h5>Long Sleeve shirt</h5>
-                        <h3>$150.00</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/l7.jpg')}}" alt="">
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="price">
-                        <h5>Long Sleeve shirt</h5>
-                        <h3>$150.00</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 single-product">
-                    <div class="content">
-                        <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/l8.jpg')}}" alt="">
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="price">
-                        <h5>Long Sleeve shirt</h5>
-                        <h3>$150.00</h3>
-                    </div>
-                </div>
+                    @endforeach
             </div>
         </div>
     </section>

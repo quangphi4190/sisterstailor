@@ -7,6 +7,13 @@ use Modules\Core\Http\Controllers\BasePublicController;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Entities\Page;
 use Modules\Page\Repositories\PageRepository;
+use Modules\Category\Repositories\CategoryRepository;
+use Modules\Category\Entities\Category;
+use Modules\Products\Repositories\ProductsRepository;
+use Modules\Products\Entities\Products;
+use Modules\Advertisements\Repositories\AdvertisementRepository;
+use Modules\Banner\Repositories\BannerRepository;
+
 
 class PublicController extends BasePublicController
 {
@@ -55,7 +62,7 @@ class PublicController extends BasePublicController
     /**
      * @return \Illuminate\View\View
      */
-    public function homepage()
+    public function homepage(ProductsRepository $productsrepoitory,AdvertisementRepository $advertisementRepository,BannerRepository $bannerRepository)
     {
         $countCart =2;
         $page = $this->page->findHomepage();
@@ -65,8 +72,15 @@ class PublicController extends BasePublicController
         $template = $this->getTemplateForPage($page);
 
         $alternate = $this->getAlternateMetaData($page);
+        $categoryMen = Category::where('parent_id','1')->pluck('id');
+        $categoryWomen = Category::where('parent_id','2')->pluck('id');  
 
-        return view($template, compact('page', 'alternate','countCart'));
+        $women   = Products::whereIn('category_id',$categoryWomen)->Orwhere('category_id','2')->orderBy('id','DESC')->take(4)->get();
+        $men     = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id','1')->orderBy('id','DESC')->take(4)->get();
+        $adver = $advertisementRepository->all();
+        $banner = $bannerRepository->all();
+
+        return view($template, compact('page', 'alternate','countCart','men','women','adver','banner'));
     }
 
     /**

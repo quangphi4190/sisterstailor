@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/ion.rangeSlider.skinFlat.css')}}" />
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/slick-theme.css')}}">    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 </head>
 <body>
 
@@ -55,15 +59,15 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li><a href="{{route('homepage')}}">Trang Chủ</a></li>
-                    <li><a href="#catagory">Danh Mục Sản Phẩm</a></li>
-                    <li><a href="#men">Nam</a></li>
-                    <li><a href="#women">Nữ</a></li>
-                    <li><a href="#latest">latest</a></li>
+                <li><a href="#home">Home</a></li>
+								<li><a href="#catagory">Category</a></li>
+								<li><a href="#men">Men</a></li>
+								<li><a href="#women">Women</a></li>
+								<li><a href="#latest">latest</a></li>
                     <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Trang Khác
+                            Pages
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{route('products.index')}}">Category</a>
@@ -183,6 +187,11 @@
 <script src="{{asset('themes/sisterstailor/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/main.js')}}"></script>
+<script src="{{asset('themes/sisterstailor/js/all.js')}}"></script>
+<script src="{{asset('themes/sisterstailor/js/slick.min.js')}}"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 </body>
 </html>

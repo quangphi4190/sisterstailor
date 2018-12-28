@@ -35,7 +35,6 @@ class ProductsController extends AdminBaseController
     {
         $products = $this->products->all();
         $categories =   Category::all();
-
         return view('products::admin.products.index',compact('products','categories'));
     }
 

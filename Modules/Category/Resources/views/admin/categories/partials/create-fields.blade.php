@@ -6,7 +6,9 @@
         <select id="parent_id" name="parent_id" class="form-control">
             <option value="">Chọn Loại Sản Phẩm</option>
             @foreach($parent as $p)
+                @if ($p->id <= '2')
                 <option value="{{$p->id}}">{{$p->name}}</option>
+                @endif
             @endforeach
         </select>
     </div>

@@ -14,4 +14,7 @@ class Products extends Model
     public $translatedAttributes = [];
     protected $fillable = ['name','gallery','intro','description','price','price_discount','status','category_id'];
     protected $with = ['files'];
+    public function category(){
+        return $this->belongsTo('Modules\Category\Entities\Category','category_id');
+    }
 }

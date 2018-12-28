@@ -12,4 +12,7 @@ class Category extends Model
     protected $table = 'category__categories';
     public $translatedAttributes = [];
     protected $fillable = ['name','parent_id','description','status'];
+    public function products(){
+        return $this->hasMany('Modules\Products\Entities\Products','category_id','id');
+    }
 }
