@@ -6916,3 +6916,25 @@ svg {
   padding-right: 70px;
   margin-left: 100px!important;
 }
+.content-image {
+    width: 100%;
+    min-height: 350px!important;
+}
+.bottom a {
+  display: inline-block;
+  width: 50%!important;
+  line-height: 40px;
+  text-align: center;
+}
+
+.organic-breadcrumb-c {
+  padding-top: 100px;
+}
+
+.c-body-container {
+  margin-top: 30px;
+}
+
+.mr-b60 {
+  margin-bottom: 30px;
+}

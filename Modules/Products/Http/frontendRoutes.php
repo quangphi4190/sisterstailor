@@ -7,3 +7,8 @@ Route::get('/products/{slug}',[
    'as' =>  'products.index',
     'uses'  =>  'PublicController@index'
 ]);
+
+ $router->get('product/{id}/detail', [
+    'as' => 'product.detail',
+    'uses' => 'PublicController@detail'
+]);
