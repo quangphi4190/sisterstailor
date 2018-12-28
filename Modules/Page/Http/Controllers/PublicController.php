@@ -70,7 +70,7 @@ class PublicController extends BasePublicController
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
-
+        $category = Category::where('id','1')->orwhere('id','2')->get();
         $alternate = $this->getAlternateMetaData($page);
         $categoryMen = Category::where('parent_id','1')->pluck('id');
         $categoryWomen = Category::where('parent_id','2')->pluck('id');  
@@ -80,7 +80,7 @@ class PublicController extends BasePublicController
         $adver = $advertisementRepository->all();
         $banner = $bannerRepository->all();
 
-        return view($template, compact('page', 'alternate','countCart','men','women','adver','banner'));
+        return view($template, compact('page', 'alternate','countCart','men','women','adver','banner','category'));
     }
 
     /**

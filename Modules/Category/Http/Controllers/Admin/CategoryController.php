@@ -56,7 +56,20 @@ class CategoryController extends AdminBaseController
      */
     public function store(CreateCategoryRequest $request)
     {
-        $this->category->create($request->all());
+        $data = $request->all();
+        $slug = str_slug($data['name']);
+        $exist = $category = Category::where('slug', $slug)->first();
+        if ($exist != null) {
+            $id = 1;
+            $slug = $slug . '-' . $id;
+            while ($category = Category::where('slug', $slug)->first() != null) {
+                $id++;
+                $slug = $slug . '-' . $id;
+            }
+        }
+
+        $data['slug'] = $slug;
+        $this->category->create($data);
 
         return redirect()->route('admin.category.category.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('category::categories.title.categories')]));

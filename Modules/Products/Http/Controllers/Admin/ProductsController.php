@@ -58,6 +58,20 @@ class ProductsController extends AdminBaseController
      */
     public function store(CreateProductsRequest $request)
     {
+        $data = $request->all();
+        $slug = str_slug($data['name']);
+        $exist = $category = Category::where('slug', $slug)->first();
+        if ($exist != null) {
+            $id = 1;
+            $slug = $slug . '-' . $id;
+            while ($category = Category::where('slug', $slug)->first() != null) {
+                $id++;
+                $slug = $slug . '-' . $id;
+            }
+        }
+
+
+        $data['slug'] = $slug;
         $this->products->create($request->all());
 
         return redirect()->route('admin.products.products.index')
