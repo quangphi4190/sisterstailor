@@ -35,7 +35,7 @@ class CustomerController extends AdminBaseController
     public function index()
     {
         // $customers = $this->customer->all();
-        $customers = Customer::select('customers__customers.firstname','customers__customers.lastname','customers__customers.gender','customers__customers.mail','customers__customers.phone','countries.name' )
+        $customers = Customer::select('customers__customers.id','customers__customers.firstname','customers__customers.lastname','customers__customers.gender','customers__customers.mail','customers__customers.phone','countries.name' )
         ->leftjoin('countries', 'countries.id', '=', 'customers__customers.country_id')->get();
         return view('customers::admin.customers.index', compact('customers','countries'));
     }
@@ -59,6 +59,7 @@ class CustomerController extends AdminBaseController
      */
     public function store(CreateCustomerRequest $request)
     {
+        
         // $this->customer->create($request->all());
         $custumer = new Customer();
         $name = explode(' ', $request['fullname']);
@@ -82,6 +83,7 @@ class CustomerController extends AdminBaseController
      */
     public function edit(Customer $customer)
     {
+     
         $countries = DB::table('countries')->get();
         $states = DB::table('states')->get();
         $cities = DB::table('cities')->get();
@@ -105,8 +107,17 @@ class CustomerController extends AdminBaseController
      */
     public function update(Customer $customer, UpdateCustomerRequest $request)
     {
-      
-        $this->customer->update($customer, $request->all());
+        $name = explode(' ', $request['fullname']);
+        $lastname = $name[count($name) - 1];;
+        $firstname = str_replace($name[count($name) - 1],'',$request['fullname']);
+        $mail = $request['mail'] ? $request['mail'] :'';
+        $phone = $request['phone'] ? $request['phone'] :'';
+        $gender = $request['gender']? $request['gender'] :'';
+        $status = 1;
+        $country_id = $request['country_id'] ? $request['country_id']:'';
+        Customer::where('id', $request['id'])->update(array('lastname'=>$lastname,'firstname'=>$firstname,'mail'=>$mail,'phone'=>$phone,'gender'=>$gender,'country_id'=>$country_id,'status'=>$status));
+
+        // $this->customer->update($customer, $request->all());
 
         return redirect()->route('admin.customers.customer.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('customers::customers.title.customers')]));
