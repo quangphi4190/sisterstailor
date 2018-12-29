@@ -177,9 +177,6 @@
     <?php $locale = locale(); ?>
     <script type="text/javascript">
         $(function () {
-
-
-
             function addCommas(nStr)
             {
                 nStr += '';
@@ -235,7 +232,7 @@
                         .data()
                         .reduce( function (a, b) {
                             return intVal(a) + intVal(b);
-                        }, 0 );
+                        }, 0 ).toFixed(1);
 
                     // Update footer
                     $( api.column( 5 ).footer() ).html(
