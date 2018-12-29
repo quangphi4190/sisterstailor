@@ -322,21 +322,45 @@
 			</div>
 			<div class="col-xl-3 col-lg-4 col-md-5">
 				<div class="sidebar-categories">
-					<div class="head">Men</div>
+					<div class="head">Men<span class="number" style="color:#f41068;margin-left:5%;">{{$soluongMen}}</span></div>
 					<ul class="main-categories">				
-					@foreach ($childrenMen as $men)											
-							<li class="main-nav-list"><a href="{{route('products.index',[$men->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$men->name}}</a></li>
+					<?php $sl = 0;
+						foreach ($nameMen as $m){							
+							$tong =0;
+							for ($i=0;$i<=$soluongMen;$i++){
+								if (isset($productsWomen[$i])){
+									if ($m->id == $productsMen[$i]['category_id']){
+										$tong++;
+									}
+								}
+								
+							}
+							?>
 						
-					@endforeach	
+																			
+						<li class="main-nav-list"><a href="{{route('products.index',[$m->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$m->name}}<span class="number" style="color:#f41068">{{$tong}}</span></a></li>	
+						<?php }?>	
 					</ul>
 				</div>
 				<div class="sidebar-categories">
-					<div class="head">WoMen</a></div>
-					<ul class="main-categories">				
-					@foreach ($childrenWomen as $women)											
-							<li class="main-nav-list"><a href="{{route('products.index',[$women->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$women->name}}</a></li>
+					<div class="head">WoMen<span class="number" style="color:#f41068;margin-left:5%;">{{$soluongWomen}}</span></a></div>
+					<ul class="main-categories">
+					<?php 
+						foreach ($nameWomen as $w){							
+							$tong =0;
+							for ($i=0;$i<=$soluongWomen;$i++){
+								if (isset($productsWomen[$i])){
+									if ($w->id == $productsWomen[$i]['category_id']){
+										$tong++;
+									}
+								}
+								
+							}
+							?>
 						
-					@endforeach	
+																			
+						<li class="main-nav-list"><a href="{{route('products.index',[$w->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$w->name}}<span class="number" style="color:#f41068">{{$tong}}</span></a></li>	
+						<?php }?>				
 					</ul>
 				</div>
 			</div>

@@ -36,17 +36,24 @@ class PublicController extends BasePublicController {
         
         // dd($soluongproduct_detail);
         $categoryMen = Category::where('parent_id',$slug->id)->pluck('id');
-        $childrenMen = Category::where('parent_id','1')->get();
-        $childrenWomen = Category::where('parent_id','2')->get();
         $nameCategory = Category::where('parent_id',$slug->id)->get();
         $category = Category::where('id','1')->orwhere('id','2')->get();
         $product_detail = Products::where('category_id',$slug->id)->get();
         $soluongproduct_detail = $product_detail->count();
         $products   = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->get();
-        // dd($products);
-        $soluongproducts =   Products::whereIn('category_id',$categoryMen)->count();  
-        // $men     = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id','1')->orderBy('id','DESC')->take(4)->get();
-        return view( 'products::frontend.index',compact('products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
+        $soluongproducts =   Products::whereIn('category_id',$categoryMen)->count();
+        //Menu right
+        $childrenMen = Category::where('parent_id','1')->pluck('id');
+        $childrenWomen = Category::where('parent_id','2')->pluck('id');
+        $nameMen = Category::where('parent_id','1')->get();
+        $nameWomen = Category::where('parent_id','2')->get();
+        $productsMen = Products::whereIn('category_id',$childrenMen)->Orwhere('category_id','1')->get();
+        $soluongMen = $productsMen->count();
+        // dd($soluongMen);
+        $productsWomen = Products::whereIn('category_id',$childrenWomen)->Orwhere('category_id','2')->get();
+        $soluongWomen = $productsWomen->count();
+
+        return view( 'products::frontend.index',compact('nameMen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
     }
 
     /**
