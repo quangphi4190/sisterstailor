@@ -57,14 +57,14 @@
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li><a href="{{route('homepage')}}">Home</a></li>
-                    <li><a href="#catagory">Danh Mục Sản Phẩm</a></li>
-                    <li><a href="#men">Nam</a></li>
-                    <li><a href="#women">Nữ</a></li>
+                    <li><a href="#catagory">Category</a></li>
+                    <li><a href="#men">Men</a></li>
+                    <li><a href="#women">Woman</a></li>
                     <li><a href="#latest">latest</a></li>
                     <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Trang Khác
+                            Pages
                         </a>
                         <div class="dropdown-menu">
                         @foreach ($category as $categories)

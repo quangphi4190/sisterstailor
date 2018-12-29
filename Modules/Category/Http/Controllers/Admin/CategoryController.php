@@ -67,7 +67,6 @@ class CategoryController extends AdminBaseController
                 $slug = $slug . '-' . $id;
             }
         }
-
         $data['slug'] = $slug;
         $this->category->create($data);
 

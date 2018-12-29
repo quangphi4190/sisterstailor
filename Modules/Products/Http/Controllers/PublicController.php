@@ -32,15 +32,21 @@ class PublicController extends BasePublicController {
     public function index($slug) {
         $countCart =0;
         $slug = Category::where('slug',$slug)->first();
-        $categoryMen = Category::where('parent_id',$slug->id)->pluck('id');
-        $nameCategory = Category::where('parent_id',$slug->id);
-        $category = Category::where('id','1')->orwhere('id','2')->get();
         
-        // $categoryWomen = Category::where('parent_id','2')->pluck('id');  
-
-        $products   = Products::whereIn('category_id',$categoryMen)->orderBy('id','DESC')->get();
+        
+        // dd($soluongproduct_detail);
+        $categoryMen = Category::where('parent_id',$slug->id)->pluck('id');
+        $childrenMen = Category::where('parent_id','1')->get();
+        $childrenWomen = Category::where('parent_id','2')->get();
+        $nameCategory = Category::where('parent_id',$slug->id)->get();
+        $category = Category::where('id','1')->orwhere('id','2')->get();
+        $product_detail = Products::where('category_id',$slug->id)->get();
+        $soluongproduct_detail = $product_detail->count();
+        $products   = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->get();
+        // dd($products);
+        $soluongproducts =   Products::whereIn('category_id',$categoryMen)->count();  
         // $men     = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id','1')->orderBy('id','DESC')->take(4)->get();
-        return view( 'products::frontend.index',compact('products','countCart','nameCategory','category'));
+        return view( 'products::frontend.index',compact('products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
     }
 
     /**
