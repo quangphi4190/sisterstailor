@@ -195,7 +195,7 @@
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
-                        }, 0);
+                        }, 0).toFixed(1);;
 
                     // Update footer
                     $(api.column(7).footer()).html(
@@ -206,7 +206,7 @@
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
-                        }, 0);
+                        }, 0).toFixed(1);;
 
                     // Update footer
                     $(api.column(8).footer()).html(
@@ -217,7 +217,7 @@
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
-                        }, 0);
+                        }, 0).toFixed(1);
 
                     // Update footer
                     $(api.column(9).footer()).html(
