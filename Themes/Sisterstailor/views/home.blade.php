@@ -140,7 +140,7 @@
                     <div class="content">
                         <div class="content-overlay"></div>
                         @foreach ($m->files()->where('zone','Image')->get() as $filemen)
-                            <img class="content-image img-fluid d-block mx-auto" src="{{$filemen->path}}" alt="">
+                            <img class="content-image img-fluid d-block mx-auto xx" src="{{$filemen->path}}" alt="">
                         @endforeach
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">

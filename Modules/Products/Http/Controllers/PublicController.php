@@ -63,7 +63,15 @@ class PublicController extends BasePublicController {
 
      public function detail($id){
          $countCart =0;
-        $product_detail =Products::where('id', $id)->first();
-        return view( 'products::frontend.detail',compact('product_detail','countCart'));
+        $product_detail =Products::select('products__products.*','category__categories.name as categoryName')
+            ->leftjoin('category__categories', 'category__categories.id', '=', 'products__products.category_id')
+            ->where('products__products.id', $id)
+            ->first();
+        $category = Category::whereIn('id', [1, 2])->get();
+        $category_for_ids = Products::select('products__products.*','category__categories.name as categoryName')
+            ->leftjoin('category__categories', 'category__categories.id', '=', 'products__products.category_id')
+            ->where('products__products.category_id', $product_detail->category_id)
+            ->get();
+        return view( 'products::frontend.detail',compact('product_detail','countCart','category','category_for_ids'));
      }
 }

@@ -8,6 +8,7 @@ use Modules\Orders\Repositories\OrderRepository;
 use Modules\Orders\Entities\Order;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Input;
+use Modules\Category\Entities\Category;
 
 class PublicController extends BasePublicController {
     private $orders;
@@ -30,7 +31,8 @@ class PublicController extends BasePublicController {
      */
     public function index() {
      $countCart =3;
-      return view( 'orders::client.index',compact('countCart'));
+     $category = Category::whereIn('id', [1, 2])->get();
+      return view( 'orders::client.index',compact('countCart','category'));
     }
 
     /**
