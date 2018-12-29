@@ -103,6 +103,7 @@
 							</div>
 						</div>
 						@endforeach
+						<div>{{$products->links()}}</div>
 						
 						@endif
 						<!-- <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
@@ -303,26 +304,25 @@
 								<h3>$150.00</h3>
 							</div>
 						</div> -->
+						
 					</div>
 				</section>
 				<!-- End Best Seller -->
 				<!-- Start Filter Bar -->
-				<div class="filter-bar d-flex flex-wrap align-items-center">
-					<div class="pagination">
-						<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-						<a href="#" class="active">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-						<a href="#">6</a>
-						<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-					</div>
+				@if ($soluongproducts == 0)
+				<div class="content">
+					{{$product_detail->links()}}
 				</div>
+				@else
+				<div class="content">
+					{{$products->links()}}
+				</div>
+				@endif
 				<!-- End Filter Bar -->
 			</div>
 			<div class="col-xl-3 col-lg-4 col-md-5">
 				<div class="sidebar-categories">
-					<div class="head">Men<span class="number" style="color:#f41068;margin-left:5%;">{{$soluongMen}}</span></div>
+					<div class="head">Men<span class="number" style="color:#f41068;margin-left:5%;">({{$soluongMen}})</span></div>
 					<ul class="main-categories">				
 					<?php $sl = 0;
 						foreach ($nameMen as $m){							
@@ -338,12 +338,12 @@
 							?>
 						
 																			
-						<li class="main-nav-list"><a href="{{route('products.index',[$m->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$m->name}}<span class="number" style="color:#f41068">{{$tong}}</span></a></li>	
+						<li class="main-nav-list"><a href="{{route('products.index',[$m->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$m->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>	
 						<?php }?>	
 					</ul>
 				</div>
 				<div class="sidebar-categories">
-					<div class="head">WoMen<span class="number" style="color:#f41068;margin-left:5%;">{{$soluongWomen}}</span></a></div>
+					<div class="head">WoMen<span class="number" style="color:#f41068;margin-left:5%;">({{$soluongWomen}})</span></a></div>
 					<ul class="main-categories">
 					<?php 
 						foreach ($nameWomen as $w){							
@@ -359,7 +359,7 @@
 							?>
 						
 																			
-						<li class="main-nav-list"><a href="{{route('products.index',[$w->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$w->name}}<span class="number" style="color:#f41068">{{$tong}}</span></a></li>	
+						<li class="main-nav-list"><a href="{{route('products.index',[$w->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$w->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>	
 						<?php }?>				
 					</ul>
 				</div>

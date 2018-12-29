@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/style.css')}}">
 </head>
 <body>
 
@@ -41,7 +42,8 @@
                     <li><a href="mailto:support@colorlib.com">support@colorlib.com</a></li>
                 </ul>
                 <ul class="list">                   
-                    <li><a href="#">login</a></li>
+                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="#">Sign In</a></li>
                 </ul>
             </div>            
         </div>
@@ -59,7 +61,7 @@
                     <li><a href="{{route('homepage')}}">Home</a></li>
                     <li><a href="#catagory">Category</a></li>
                     <li><a href="#men">Men</a></li>
-                    <li><a href="#women">Woman</a></li>
+                    <li><a href="#women">Women</a></li>
                     <li><a href="#latest">latest</a></li>
                     <!-- Dropdown -->
                     <li class="dropdown">
