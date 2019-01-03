@@ -70,7 +70,7 @@
                         </a>
                         <div class="dropdown-menu">
                         @foreach ($category as $categories)
-                            <a class="dropdown-item" href="{{route('products.index',[$categories->slug])}}">{{$categories->name}}</a>
+                            <a class="dropdown-item"  href="{{route('products.index',[$categories->slug])}}">{{$categories->name}}</a>
                         @endforeach
                             <!-- <a class="dropdown-item" href="single.html">Single</a>
                             <a class="dropdown-item" href="cart.html">Cart</a>
@@ -189,5 +189,17 @@
 <script src="{{asset('themes/sisterstailor/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/main.js')}}"></script>
 
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('select[name="slug"]').change(function(){ 
+                var url = '{{route("products.product.get_slug")}}';
+				var token = '{{ csrf_token() }}';
+				$.post(url,{slug:$(this).val(), _token:token},function(data){
+					$('.product-defail').html(data);
+                    
+				});
+			});
+		});
+	</script>
 </body>
 </html>

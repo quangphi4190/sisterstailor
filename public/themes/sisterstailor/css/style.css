@@ -10,3 +10,9 @@
 .pagination li a {
     color: #222222;
 }
+.category a {
+    color: #222222 !important;
+}
+.category a:hover {
+    color:#f41068  !important;
+}

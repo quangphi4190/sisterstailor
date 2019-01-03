@@ -31,7 +31,10 @@ class PublicController extends BasePublicController {
      */
     public function index($slug) {
         $countCart =0;
+        $defen = $slug;
+        
         $slug = Category::where('slug',$slug)->first();
+        
         
         
         // dd($soluongproduct_detail);
@@ -54,7 +57,7 @@ class PublicController extends BasePublicController {
         $productsWomen = Products::whereIn('category_id',$childrenWomen)->Orwhere('category_id','2')->get();
         $soluongWomen = $productsWomen->count();
 
-        return view( 'products::frontend.index',compact('nameMen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
+        return view( 'products::frontend.index',compact('nameMen','defen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
     }
 
     /**
@@ -65,5 +68,17 @@ class PublicController extends BasePublicController {
          $countCart =0;
         $product_detail =Products::where('id', $id)->first();
         return view( 'products::frontend.detail',compact('product_detail','countCart'));
+     }
+     public function get_slug(){
+        $slug = Input::get('slug','');
+        if ($slug == 'men' || $slug == 'women'){
+            $category = Category::where('category__categories.slug',$slug)->pluck('id');
+            $childecategory = Category::whereIn('parent_id',$category)->pluck('id');
+            $products = Products::whereIn('category_id',$childecategory)->OrWhere('category_id',$category)->get();
+        } else{
+        $category = Category::where('category__categories.slug',$slug)->get();
+        $products = Products::where('category_id',$category['0']['id'])->get();
+        }
+        return view( 'products::frontend.show-listdata',compact('products'));
      }
 }

@@ -12,3 +12,7 @@ Route::get('/products/{slug}',[
     'as' => 'product.detail',
     'uses' => 'PublicController@detail'
 ]);
+Route::post('/products/product/get_slug',[
+    'as'    =>  'products.product.get_slug',
+    'uses'  =>  'PublicController@get_slug'
+]);
