@@ -210,6 +210,8 @@ class InvoiceController extends AdminBaseController
         $strlable .= '</div>';
 
         return $strlable;
+        // return view('invoices::admin.invoices.show-data', compact('customer'));
+
     }
 
     public function get_info (){ 

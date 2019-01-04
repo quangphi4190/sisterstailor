@@ -49,7 +49,7 @@ $status = [
 </div>
 <div class = "row">
     <div class ="col-sm-6">
-          <div name ="customerID" class="c-customer"></div>
+          <div name ="customerID" class="c-customer" id="showInfo"></div>
     </div>
 </div>
 <div class = "row">

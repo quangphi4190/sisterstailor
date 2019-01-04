@@ -294,6 +294,7 @@
             $.post(url, {customer_id:$(this).val(), _token:token }, function(data){
                 $('div[name="customerID"]').html(data);
                 $('div[name="customerID"]').trigger("chosen:updated");
+                // $("#showInfo").html(data);
                        
             });
         });

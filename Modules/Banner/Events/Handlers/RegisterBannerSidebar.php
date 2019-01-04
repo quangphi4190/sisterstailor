@@ -38,13 +38,13 @@ class RegisterBannerSidebar implements \Maatwebsite\Sidebar\SidebarExtender
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
             $group->item(trans('banner::banners.title.banners'), function (Item $item) {
-                $item->icon('fa fa-copy');
+                $item->icon('fa fa-picture-o');
                 $item->weight(10);
                 $item->authorize(
                      /* append */
                 );
                 $item->item(trans('banner::banners.title.banners'), function (Item $item) {
-                    $item->icon('fa fa-copy');
+                    $item->icon('fa fa-picture-o');
                     $item->weight(0);
                     $item->append('admin.banner.banner.create');
                     $item->route('admin.banner.banner.index');
