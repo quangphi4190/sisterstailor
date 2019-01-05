@@ -143,6 +143,10 @@ $router->group(['prefix' =>'/thongke'], function (Router $router) {
         'as' => 'admin.thongke.thong_ke_doanh_thu',
         'uses' => 'ThongketimeController@thong_ke_doanh_thu',
     ]);
+    $router->get('khach-doan', [
+        'as' => 'admin.thongke.khach_doan',
+        'uses' => 'ThongketimeController@khachdoan',
+    ]);
     $router->get('get-tour-guide/{group_code}', [
         'as' => 'admin.thongke.get_tour_guide',
         'uses' => 'ThongketimeController@get_tour_guide',
