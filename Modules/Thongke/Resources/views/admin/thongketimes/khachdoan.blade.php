@@ -82,7 +82,6 @@
                                 <th>Giờ</th>
                                 <th>{{ trans('thongke::thongketimes.title.date out') }}</th>
                                 <th>Người bán</th>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -113,7 +112,6 @@
                                 <th></th>
                                 <th align="right">Tổng tiền</th>
                                 <th>$ 0</th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
