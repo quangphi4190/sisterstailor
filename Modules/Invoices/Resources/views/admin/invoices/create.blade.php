@@ -59,14 +59,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-     
+
         <div class="modal-body">
             @include('customers::admin.customers.partials.create-fields', ['lang' => $locale])
         </div>
-      
+
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Thêm mới</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
       </div>
       </form>
     </div>
@@ -82,14 +82,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-     
+
         <div class="modal-body">
-         
+
         </div>
-      
+
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" data-dismiss="modal">Cập nhật</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
       </div>
       </form>
     </div>
@@ -101,24 +101,28 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-{!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
-{!! Theme::style('css/chosen.css') !!}
+<!-- <script src="https://www.jqueryscript.net/demo/Do-Math-Within-Input-jQuery-Abacus/assets/js/jquery.abacus.min.js"></script> -->
+<script src="https://www.jqueryscript.net/demo/jQuery-Plugin-To-Create-Formula-based-Calculation-Inputs-Formula/jquery.formula.js"></script>
 
+{!! Theme::script('vendor/jquery/chosen.jquery.js') !!}
+{!! Theme::style('css/chosen.css') !!}
     <script type="text/javascript">
+
+        // $('#price').abacus();
         // amount
         $(document).on('change', '#discount, #price', function () {
             price =  $('#price').val() ? $('#price').val() : 0;
-            discount = $('#discount').val() ? $('#discount').val() : 0;          
+            discount = $('#discount').val() ? $('#discount').val() : 0;
             totalAmount =parseFloat(price)-parseFloat(discount);
             var v = totalAmount.toFixed(1);
             document.getElementById("amount").value = v;
         });
         // Get Mã đoàn
-        $('select[name="tour_guide_id"]').change(function () {                     
+        $('select[name="tour_guide_id"]').change(function () {
             var url= route('admin.invoices.invoices.get_tour_guide_id');
             var token = '{{ csrf_token() }}';
            var group_code =$('#group_code');
-            $.post(url, {tour_guide_id:$(this).val(), _token:token }, function(data){               
+            $.post(url, {tour_guide_id:$(this).val(), _token:token }, function(data){
                 data = $.parseJSON(data);
                 group_code.val(data);
             });
@@ -143,9 +147,10 @@
 
     });
     </script>
+
 <!-- add custumer -->
   <script type="text/javascript">
-   $('#insert_form').on('submit',function (e) { 
+   $('#insert_form').on('submit',function (e) {
        e.preventDefault();
     var fullname = $('#fullname').val();
     var mail = $('#mail').val();
@@ -157,13 +162,13 @@
         url: route('admin.invoices.invoices.inser_form'),
         data: {
             _token: '{{ csrf_token() }}',
-            fullname: fullname,            
+            fullname: fullname,
             mail: mail,
             phone: phone,
-            gender: gender,           
-            country_id: country_id      
+            gender: gender,
+            country_id: country_id
         },
-        success: function(data) {              
+        success: function(data) {
             var $el = $("select#customer_id");
                 $el.empty();
                 $el.append("<option>Chọn khách hàng</option>");
@@ -174,8 +179,8 @@
                   $el.append("<option value='" + v.id + "'>" + v.firstname +' '+ v.lastname+ "</option>");
                   $('.blah').trigger("chosen:updated");
                 }
-                     
-               
+
+
             swal("Thêm mới thành công!", "", "success");
             $('.bd-example-modal-lg').modal('hide');
         },
@@ -188,14 +193,14 @@
             });
         }
     });
-   
-    
-    });      
+
+
+    });
   </script>
   <!-- edit custormer -->
   <script type="text/javascript">
-   $('#edit_form').on('submit',function (e) { 
-       e.preventDefault();   
+   $('#edit_form').on('submit',function (e) {
+       e.preventDefault();
     var id = $('#edit_form').find('input[name="id"]').val();
    var fullname = $('#edit_form').find('input[name="fullname"]').val();
    var mail = $('#edit_form').find('input[name="mail"]').val();
@@ -203,16 +208,16 @@
    var gender = $('#edit_form').find('input[name="gender"]').val();
    var country_id = $('#edit_form').find('input[name="country_id"]').val();
    $.ajax({
-        type: 'POST',        
+        type: 'POST',
         url: route('admin.invoices.invoices.edit_form'),
         data: {
             _token: '{{ csrf_token() }}',
             id: id,
-            fullname: fullname,            
+            fullname: fullname,
             mail: mail,
             phone: phone,
-            gender: gender,           
-            country_id: country_id          
+            gender: gender,
+            country_id: country_id
         },
         success: function(data) {
             swal("Cập nhật thông tin khách hàng thành công!", "", "success");
@@ -227,13 +232,13 @@
             });
         }
     });
-    
-   
-    
-    });      
+
+
+
+    });
   </script>
   <script type="text/javascript">
-    
+
     // view info
      $('#viewInfoCusomer').click(function () {
         // lấy id
@@ -257,7 +262,7 @@
                 $('.modalInfo').modal('show');
             });
         }
-        
+
     });
 
     // editInfoCusomer
@@ -285,17 +290,17 @@
     });
     // get id custumer
     $('select[name="customer_id"]').change(function () {
-              $('.c-customer').addClass('info-cusomer');             
+              $('.c-customer').addClass('info-cusomer');
             var url= route('admin.invoices.invoices.get_id_customer');
             var token = '{{ csrf_token() }}';
             val = $(this).val();
             let view_customer = val;
-            $('.view-customer').val(view_customer);    
+            $('.view-customer').val(view_customer);
             $.post(url, {customer_id:$(this).val(), _token:token }, function(data){
                 $('div[name="customerID"]').html(data);
                 $('div[name="customerID"]').trigger("chosen:updated");
                 // $("#showInfo").html(data);
-                       
+
             });
         });
 
@@ -318,14 +323,14 @@
         });
     </script>
 
-    <script type="text/javascript">  
+    <script type="text/javascript">
     $('select[name="customer_id"], select[name="tour_guide_id"], select[name="hotel_id"],select[name="country_id"], select[name="state_id"], select[name="city_id"]').chosen({no_results_text: "Không tìm thấy", width: "100%", search_contains:true});
 
     $('select[name="country_id"]').change(function () {
             var url= route('admin.customers.customer.get_id');
             var token = '{{ csrf_token() }}';
 
-            $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Select State', }, function(data){                
+            $.post(url, {country_id:$(this).val(), _token:token, emptyOption:'Select State', }, function(data){
                 $('select[name="state_id"]').html(data);
                 $('select[name="state_id"]').trigger("chosen:updated");
             });
@@ -335,10 +340,10 @@
         var url= route('admin.customers.customer.get_id_state');
         var token = '{{ csrf_token() }}';
 
-        $.post(url, {state_id:$(this).val(), _token:token, emptyOption:'Select City', }, function(data){            
+        $.post(url, {state_id:$(this).val(), _token:token, emptyOption:'Select City', }, function(data){
             $('select[name="city_id"]').html(data);
             $('select[name="city_id"]').trigger("chosen:updated");
         });
-    });     
+    });
     </script>
 @endpush
