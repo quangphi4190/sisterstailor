@@ -88,7 +88,7 @@ LEFT JOIN tourguide__tourguides ON tour_guide_id = tourguide__tourguides.id
 LEFT JOIN hotel__hotels ON hotel_id = hotel__hotels.id 
 WHERE group_code!=\'\'';
 
-        $lastQuery = 'GROUP BY customer_id 
+        $lastQuery = ' GROUP BY customer_id 
 ORDER BY order_date ASC;';
 
 
