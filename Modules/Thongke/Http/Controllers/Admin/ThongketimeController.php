@@ -65,7 +65,7 @@ class ThongketimeController extends AdminBaseController
         if ($hotelId) {
             $thongkes = $thongkes->where('invoices__invoices.hotel_id', $hotelId);
         }
-        $thongkes = $thongkes->groupBy('invoices__invoices.group_code', 'invoices__invoices.customer_id')->get();
+        $thongkes = $thongkes->get();
         return view('thongke::admin.thongketimes.index', compact('thongkes', 'fromDate', 'toDate', 'hotelId', 'tourguideId', 'hotels', 'tourguides'));
     }
 
