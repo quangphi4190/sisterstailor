@@ -102,9 +102,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <!-- <script src="https://www.jqueryscript.net/demo/Do-Math-Within-Input-jQuery-Abacus/assets/js/jquery.abacus.min.js"></script> -->
-<script src="https://www.jqueryscript.net/demo/jQuery-Plugin-To-Create-Formula-based-Calculation-Inputs-Formula/jquery.formula.js"></script>
+
 
 {!! Theme::script('vendor/jquery/chosen.jquery.js') !!}
+{!! Theme::script('js/jquery.formula.js') !!}
 {!! Theme::style('css/chosen.css') !!}
     <script type="text/javascript">
 
