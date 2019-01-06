@@ -112,7 +112,7 @@ class InvoiceController extends AdminBaseController
         $invoice->hotel_id = $request['hotel_id'];
         $invoice->order_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['order_date'])));
         $invoice->product = $request['product'];
-        $invoice->price = $request['amount']- $request['discount'];
+        $invoice->price = $request['amount'] + $request['discount'];
         $invoice->discount = $request['discount'];
         $invoice->payment_type = $request['payment_type'];
         $invoice->delivery_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['delivery_date'])));
@@ -157,7 +157,7 @@ class InvoiceController extends AdminBaseController
      */
     public function update(Invoice $invoice, UpdateInvoiceRequest $request)
     {
-        
+       
         $invoice = Invoice::find($request['id']);
         $is_group = isset($request['is_group'])? 1 : 0;  
         $customer_id = $request['customer_id'] ? $request['customer_id']:'';
@@ -169,7 +169,7 @@ class InvoiceController extends AdminBaseController
         $payment_type = $request['payment_type'] ? $request['payment_type'] :'';
         $seller = $request['seller'] ? $request['seller']: '';    
         $product = $request['product'] ? $request['product'] :'';    
-        $price = $request['price'] ? $request['amount'] - $request['discount'] : '';    
+        $price = $request['price'] ? $request['amount'] + $request['discount'] : '';    
         $discount = $request['discount'] ? $request['discount']:'';
         $amount = $request['amount'] ?$request['amount']:'';     
         $note = $request['note'] ?$request['note'] :'';     
