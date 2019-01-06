@@ -15,6 +15,7 @@ use Modules\Customers\Entities\Customer;
 use Illuminate\Support\Facades\Input;
 use Modules\Customers\Http\Requests\CreateCustomerRequest;
 use Modules\Tourguide\Repositories\TourGuideRepository;
+use Illuminate\Support\Facades\Redirect;
 
 class InvoiceController extends AdminBaseController
 {
@@ -57,12 +58,16 @@ class InvoiceController extends AdminBaseController
         ;
        
         if ($fromDate && $toDate) {
+            Input::session()->put('fromDate', $fromDate);
+            Input::session()->put('toDate', $toDate);
             $invoices = $invoices->whereBetween(DB::raw("DATE_FORMAT(invoices__invoices.order_date,'%Y-%m-%d')"), array($fromDate, $toDate));  
         }
         if ($tourguideId) {
+            Input::session()->put('tourguideId', $tourguideId);
             $invoices = $invoices->where('invoices__invoices.tour_guide_id', $tourguideId );
         }
         if($hotelId) {
+            Input::session()->put('hotelId', $hotelId);
             $invoices = $invoices->where('invoices__invoices.hotel_id',$hotelId);
         }
         $invoices =$invoices->get();
@@ -99,8 +104,7 @@ class InvoiceController extends AdminBaseController
     { 
        
         // $this->invoice->create($request->all());
-        $is_group = Input::get('is_group',null);
-
+        $is_group = Input::get('is_group',null);        
         $is_group = ($is_group) ? 1 : 0;
         $invoice = new Invoice();
         $invoice->customer_id = $request['customer_id'];
@@ -108,7 +112,7 @@ class InvoiceController extends AdminBaseController
         $invoice->hotel_id = $request['hotel_id'];
         $invoice->order_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['order_date'])));
         $invoice->product = $request['product'];
-        $invoice->price = $request['price'];
+        $invoice->price = $request['amount']- $request['discount'];
         $invoice->discount = $request['discount'];
         $invoice->payment_type = $request['payment_type'];
         $invoice->delivery_date = date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $request['delivery_date'])));
@@ -132,7 +136,7 @@ class InvoiceController extends AdminBaseController
      * @return Response
      */
     public function edit(Invoice $invoice)
-    { 
+    {         
         $customers_select = Customer::select('customers__customers.id','customers__customers.lastname','customers__customers.address','customers__customers.phone','customers__customers.firstname')->get();
         $tourguides = DB::table('tourguide__tourguides')->get();
         $hotels = DB::table('hotel__hotels')->get();
@@ -165,7 +169,7 @@ class InvoiceController extends AdminBaseController
         $payment_type = $request['payment_type'] ? $request['payment_type'] :'';
         $seller = $request['seller'] ? $request['seller']: '';    
         $product = $request['product'] ? $request['product'] :'';    
-        $price = $request['price'] ? $request['price'] : '';    
+        $price = $request['price'] ? $request['amount'] - $request['discount'] : '';    
         $discount = $request['discount'] ? $request['discount']:'';
         $amount = $request['amount'] ?$request['amount']:'';     
         $note = $request['note'] ?$request['note'] :'';     
@@ -173,8 +177,14 @@ class InvoiceController extends AdminBaseController
         // $this->invoice->update($invoice, $request->all());
         Invoice::where('id', $request['id'])->update(array('delivery_address'=>$delivery_address,'is_group'=>$is_group,'customer_id'=>$customer_id,'group_code'=>$group_code,'tour_guide_id'=>$tour_guide_id,'hotel_id'=>$hotel_id,'order_date'=>$order_date,'delivery_date'=>$delivery_date,'payment_type'=>$payment_type,'status' => 1,'note'=> $note,'amount'=> $amount,'discount'=>$discount,'price'=>$price,'product'=>$product,'seller'=>$seller));
 
-        return redirect()->route('admin.invoices.invoice.index')
-            ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('invoices::invoices.title.invoices')]));
+        // return redirect()->route('admin.invoices.invoice.index')
+        //     ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('invoices::invoices.title.invoices')]));
+        $fromDate = date('d/m/Y', strtotime(str_replace('/', '-', Input::session()->get('fromDate'))));
+        $toDate = date('d/m/Y', strtotime(str_replace('/', '-', Input::session()->get('toDate'))));
+        return redirect('backend/invoices/invoices?fromDate='.$fromDate
+                .'&toDate='.$toDate
+                .'&tour_guide_id='.Input::session()->get('tourguideId')
+                .'&hotel_id='.Input::session()->get('hotelId'))->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('invoices::invoices.title.invoices')]));;
     }
 
     /**
