@@ -11,6 +11,7 @@ use Modules\Category\Repositories\CategoryRepository;
 use Modules\Category\Entities\Category;
 use Modules\Products\Repositories\ProductsRepository;
 use Modules\Products\Entities\Products;
+use Modules\Advertisements\Entities\Advertisement;
 use Modules\Advertisements\Repositories\AdvertisementRepository;
 use Modules\Banner\Repositories\BannerRepository;
 
@@ -77,8 +78,13 @@ class PublicController extends BasePublicController
 
         $women   = Products::whereIn('category_id',$categoryWomen)->Orwhere('category_id','2')->orderBy('id','DESC')->take(4)->get();
         $men     = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id','1')->orderBy('id','DESC')->take(4)->get();
-        $adver = $advertisementRepository->all();
+        $adver = Advertisement::orderBy('id','DES')->get();
+        // foreach ($adver as $key => $value){
+        //     dd($key);
+        // }
+        
         $banner = $bannerRepository->all();
+        // dd($banner);
 
         return view($template, compact('page', 'alternate','countCart','men','women','adver','banner','category'));
     }

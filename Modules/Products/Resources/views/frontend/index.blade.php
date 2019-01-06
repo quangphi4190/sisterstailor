@@ -107,9 +107,7 @@
 									@endif
 							</div>
 						</div>
-						@endforeach
-						<div>{{$products->links()}}</div>
-						
+						@endforeach						
 						@endif						
 					</div>
 				</section>

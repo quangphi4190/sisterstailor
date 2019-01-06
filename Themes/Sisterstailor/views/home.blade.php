@@ -1,60 +1,31 @@
 @extends('layouts.master')
 @section('content')
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="{{asset('themes/sisterstailor/img/header-img.png')}}" alt="First slide">
-        <!-- <div class="carousel-caption d-none d-md-block">
-            <h5>...</h5>
-            <p>...</p>
-        </div> -->
-    </div>
-    <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('themes/sisterstailor/img/header-img.png')}}" alt="Second slide">
-        <!-- <div class="carousel-caption d-none d-md-block">
-            <h5>...</h5>
-            <p>...</p>
-        </div> -->
-    </div>
-    <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('themes/sisterstailor/img/header-img.png')}}" alt="Third slide">
-        <!-- <div class="carousel-caption d-none d-md-block">
-            <h5>...</h5>
-            <p>...</p>
-        </div> -->
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-    <!-- <section class="banner-area relative" id="home">
-        <div class="container-fluid">
-            <div class="row fullscreen align-items-center justify-content-center">
-                <div class="col-lg-6 col-md-12 d-flex align-self-end img-right no-padding">
-                    <img class="img-fluid" src="{{asset('themes/sisterstailor/img/header-img.png')}}" alt="">
-                </div>
-                <div class="banner-content col-lg-6 col-md-12">
-                    <h1 class="title-top"><span>Flat</span> 75%Off</h1>
-                    <h1 class="text-uppercase">
-                        It’s Happening <br>
-                        this Season!
-                    </h1>
-                    <button class="primary-btn text-uppercase"><a href="#">Purchase Now</a></button>
-                </div>
-            </div>
+<section class="banner-area relative" id="home">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+    @foreach ($banner as $banne)
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" class="{{$loop->first ? 'active':''}}"></li>
+    @endforeach
+    </ol>
+    <div class="carousel-inner">
+    @foreach ($banner as $banne)
+        <div class="carousel-item {{$loop->first ? 'active':''}}">
+        @foreach ($banne->files()->where('zone','Image_baner')->get() as $file)
+            <img class="d-block w-100" src="{{$file->path}}" alt="First slide">
+            @endforeach
         </div>
-    </section> -->
+        @endforeach
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    </div>
+</section>
     <!-- End banner Area -->
 
     <!-- Start category Area -->
@@ -71,52 +42,70 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 mb-10">
                     <div class="row category-bottom">
+                        @foreach ($adver as $key => $value)
+                        @if ($key == '0')
                         <div class="col-lg-6 col-md-6 mb-30">
                             <div class="content">
                                 <a href="#" target="_blank">
                                     <div class="content-overlay"></div>
-                                    <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c1.jpg')}}" alt="">
-                                    <div class="content-details fadeIn-bottom">
+                                    @foreach ($value->files()->where('zone','image_advertisement')->get() as $file)
+                                        <img class="content-image img-fluid d-block mx-auto" src="{{$file->path}}" alt="">
+                                    @endforeach
+                                        <div class="content-details fadeIn-bottom">
                                         <h3 class="content-title">Product for Women</h3>
                                     </div>
                                 </a>
                             </div>
                         </div>
+                        @elseif($key == '1')
                         <div class="col-lg-6 col-md-6 mb-30">
                             <div class="content">
                                 <a href="#" target="_blank">
                                     <div class="content-overlay"></div>
-                                    <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c2.jpg')}}" alt="">
+                                    @foreach ($value->files()->where('zone','image_advertisement')->get() as $file)
+                                        <img class="content-image img-fluid d-block mx-auto" src="{{$file->path}}" alt="">
+                                    @endforeach                                    
                                     <div class="content-details fadeIn-bottom">
                                         <h3 class="content-title">Product for Couple</h3>
                                     </div>
                                 </a>
                             </div>
                         </div>
+                        @elseif ($key == '2')
                         <div class="col-lg-12">
                             <div class="content">
                                 <a href="#" target="_blank">
                                     <div class="content-overlay"></div>
-                                    <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c3.jpg')}}" alt="">
+                                    <img class="content-image img-fluid d-block mx-auto" src="http://localhost/sisterstailor/public/assets/media/test2.png" alt="">
                                     <div class="content-details fadeIn-bottom">
                                         <h3 class="content-title">Shop Now</h3>
                                     </div>
                                 </a>
                             </div>
                         </div>
+                        @endif
+                        @endforeach
+                        
+                        
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 mb-10">
+            </div>
+            <div class="row">
+                @foreach ($adver as $key => $value1)
+                @if ($key == '3')
+                <div class="col">
                     <div class="content">
                         <a href="#" target="_blank">
                             <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="{{asset('themes/sisterstailor/img/c4.jpg')}}" alt="">
+                                <img class="content-image img-fluid d-block mx-auto" src="http://localhost/sisterstailor/public/assets/media/test2.png" alt="">
                             <div class="content-details fadeIn-bottom">
                                 <h3 class="content-title">Product For Men</h3>
                             </div>
                         </a>
                     </div>
                 </div>
+                @endif
+                @endforeach
             </div>
         </div>
     </section>

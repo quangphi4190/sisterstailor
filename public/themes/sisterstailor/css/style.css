@@ -16,3 +16,10 @@
 .category a:hover {
     color:#f41068  !important;
 }
+.carousel-item img {
+    min-height: 40em;
+    max-height: 40em;
+}
+.content-image {
+    max-height: 350px;
+}
