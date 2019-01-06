@@ -43,9 +43,15 @@ class RegisterThongkeSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->authorize(
                      /* append */
                 );
-                $item->item('Thống kê bán hàng', function (Item $item) {
+                $item->item('Thống kê theo đoàn', function (Item $item) {
                     $item->icon('fa fa-bar-chart');
                     $item->weight(0);
+                    $item->route('admin.thongke.khach_doan');
+
+                });
+                $item->item('Thống kê bán hàng', function (Item $item) {
+                    $item->icon('fa fa-bar-chart');
+                    $item->weight(1);
                     $item->route('admin.thongke.thongketime.index');
                     $item->authorize(
                         $this->auth->hasAccess('thongke.thongketimes.index')
@@ -53,7 +59,7 @@ class RegisterThongkeSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 });
                 $item->item('Thống kê doanh thu', function (Item $item) {
                     $item->icon('fa fa-line-chart');
-                    $item->weight(1);
+                    $item->weight(2);
 
                     $item->route('admin.thongke.thong_ke_doanh_thu');
 

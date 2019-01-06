@@ -38,13 +38,13 @@ class RegisterPostSidebar implements \Maatwebsite\Sidebar\SidebarExtender
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
             $group->item(trans('post::postcategories.post'), function (Item $item) {
-                $item->icon('fa fa-copy');
+                $item->icon('fa fa-newspaper-o');
                 $item->weight(10);
                 $item->authorize(
                      /* append */
                 );
                 $item->item(trans('post::postcategories.title.postcategories'), function (Item $item) {
-                    $item->icon('fa fa-copy');
+                    $item->icon('fa fa-id-card-o');
                     $item->weight(0);
                     $item->append('admin.post.postcategory.create');
                     $item->route('admin.post.postcategory.index');
@@ -53,7 +53,7 @@ class RegisterPostSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                     );
                 });
                 $item->item(trans('post::managecategorys.title.managecategorys'), function (Item $item) {
-                    $item->icon('fa fa-copy');
+                    $item->icon('fa fa-newspaper-o');
                     $item->weight(0);
                     $item->append('admin.post.managecategorys.create');
                     $item->route('admin.post.managecategorys.index');

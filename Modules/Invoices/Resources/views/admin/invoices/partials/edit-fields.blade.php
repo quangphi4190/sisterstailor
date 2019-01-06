@@ -76,7 +76,7 @@ $date = date("d/m/Y H:m:s");
             <div class="form-group ">
         <label for="order_date">Ngày khách rời</label>
             <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control c-form-date datetime-picker" name="delivery_date" id="delivery_date" value="{{date('d/m/Y H:i:s', strtotime(str_replace('/', '-', $invoice->delivery_date)))}}"/>
+                <input type='text' class="form-control c-form-date datetime-picker" name="delivery_date" id="delivery_date" value="{{date('d/m/Y', strtotime(str_replace('/', '-', $invoice->delivery_date)))}}"/>
                 <span class="input-group-addon c-input-addon">
                     <span class="glyphicon glyphicon-calendar c-icon"></span>
                 </span>
@@ -103,16 +103,20 @@ $date = date("d/m/Y H:m:s");
 
          <div class="form-group ">
             <label for="price">Giá</label>
-            <input placeholder="Giá" name="price" type="number"  id="price" step=".01" class="form-control" value ="{{$invoice->price}}">
+            <!-- <input placeholder="Giá" name="price" type="number"  id="price" step=".01" class="form-control" value ="{{$invoice->price}}"> -->
+            <input type="text" class="form-control" name="price" step=".01" data-variavel="price"  value ="{{$invoice->price}}"  >
+
         </div>
         <div class="form-group ">
             <label for="discount">Giảm giá</label>
-            <input placeholder="Giảm giá" name="discount" type="number" id="discount"  step=".01"  class="input-calc form-control" value ="{{$invoice->discount}}">
+            <!-- <input placeholder="Giảm giá" name="discount" type="number" id="discount"  step=".01"  class="input-calc form-control" value ="{{$invoice->discount}}"> -->
+            <input type="text" class="form-control" name="discount" data-variavel="discount" value="{{$invoice->discount}}" step=".01">
         </div>
        
         <div class="form-group">
             <label for="amount">Thành tiền</label>
-            <input placeholder="Thành tiền" name="amount" type="text" readonly id="amount"  step=".01"  class="form-control" value="{{$invoice->amount}}">
+            <!-- <input placeholder="Thành tiền" name="amount" type="text" readonly id="amount"  step=".01"  class="form-control" value="{{$invoice->amount}}"> -->
+            <input type="text" class="form-control" name="amount" data-formula="#price# - #discount#" step=".01" value="{{$invoice->amount}}" readonly>
         </div>
     </div>
    

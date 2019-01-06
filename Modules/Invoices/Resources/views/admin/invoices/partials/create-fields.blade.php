@@ -49,7 +49,7 @@ $status = [
 </div>
 <div class = "row">
     <div class ="col-sm-6">
-          <div name ="customerID" class="c-customer"></div>
+          <div name ="customerID" class="c-customer" id="showInfo"></div>
     </div>
 </div>
 <div class = "row">
@@ -120,15 +120,18 @@ $status = [
        
         <div class="form-group ">
             <label for="price">Giá</label>
-            <input placeholder="Giá" name="price" type="number"  id="price" value="0" step=".01" class="form-control">
+            <!-- <input placeholder="Giá" name="price" type="number"  id="price" value="0" step=".01" class="form-control"> -->
+            <input type="text" class="form-control" name="price" value="0" step=".01" data-variavel="price"   >
         </div>
         <div class="form-group ">
             <label for="discount">Giảm giá</label>
-            <input placeholder="Giảm giá" name="discount" type="number" value="0" step=".01" id="discount" class="input-calc form-control">
+            <!-- <input placeholder="Giảm giá" name="discount" type="number" value="0" step=".01" id="discount" class="input-calc form-control"> -->
+            <input type="text" class="form-control" name="discount" data-variavel="discount" value="0" step=".01">
         </div>
         <div class="form-group">
             <label for="amount">Thành tiền</label>
-            <input placeholder="Thành tiền" name="amount" type="text" id="amount" step=".01" value="0" class="form-control" readonly>
+            <!-- <input placeholder="Thành tiền" name="amount" type="text" id="amount" step=".01" value="0" class="form-control" readonly> -->
+            <input type="text" class="form-control" name="amount" data-formula="#price# - #discount#" step=".01" value="0" readonly>
         </div>
     <!-- {!! Form::normalInput('delivery_address', 'Địa chỉ giao hàng', $errors) !!} -->
     <!-- {!! Form::normalInput('delivery_name', 'Tên người giao hàng', $errors) !!}
