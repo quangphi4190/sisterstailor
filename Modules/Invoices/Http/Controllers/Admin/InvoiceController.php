@@ -185,6 +185,8 @@ class InvoiceController extends AdminBaseController
                 .'&toDate='.$toDate
                 .'&tour_guide_id='.Input::session()->get('tourguideId')
                 .'&hotel_id='.Input::session()->get('hotelId'))->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('invoices::invoices.title.invoices')]));;
+    
+         Input::session()->flush();
     }
 
     /**
