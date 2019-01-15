@@ -41,10 +41,10 @@ class PublicController extends BasePublicController {
         $categoryMen = Category::where('parent_id',$slug->id)->pluck('id');
         $nameCategory = Category::where('parent_id',$slug->id)->get();
         $category = Category::where('id','1')->orwhere('id','2')->get();
-        $product_detail = Products::where('category_id',$slug->id)->paginate(9);
+        $product_detail = Products::where('category_id',$slug->id)->paginate(12);
         // dd($product_detail);
         $soluongproduct_detail = $product_detail->count();
-        $products   = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->paginate(9);
+        $products   = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->paginate(12);
         $soluongproducts =   Products::whereIn('category_id',$categoryMen)->count();
         //Menu right
         $childrenMen = Category::where('parent_id','1')->pluck('id');

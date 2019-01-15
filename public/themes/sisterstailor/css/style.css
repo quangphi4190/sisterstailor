@@ -1,8 +1,11 @@
 .pagination .active,.pagination .disabled {
-    width: 11%;
+    width: 3em;
     color: #f41068;
     line-height: 2.9em;
     border: 1px solid #eee;
+}
+.pagination {
+    margin:auto;
 }
 .pagination .active span,.pagination .disabled span {
     margin-left: 18px;

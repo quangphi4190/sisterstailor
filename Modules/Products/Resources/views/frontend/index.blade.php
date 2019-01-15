@@ -36,17 +36,18 @@
 						</select>
 					</form>
 					</div>
-					<div class="sorting mr-auto">
+					<!-- <div class="sorting mr-auto">
 						<select>
 							<option value="6">Show 6</option>
 							<option value="12">Show 12</option>
 							<option value="18">Show 18</option>
 						</select>
-					</div>
+					</div> -->
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
+				<div class="container">
 					<div class="row product-defail">
 					@if ($soluongproducts == 0 && $soluongproduct_detail == 0)
 					<div class="content">
@@ -109,19 +110,24 @@
 						</div>
 						@endforeach						
 						@endif						
+					</div>				
+					@if ($soluongproducts == 0)
+				<div class="container">
+				<div class="row">
+					{{$product_detail->links()}}
 					</div>
+				</div>
+				@else
+				<div class="container">
+				<div class="row">
+					{{$products->links()}}
+					</div>
+				</div>
+				@endif				
 				</section>
 				<!-- End Best Seller -->
 				<!-- Start Filter Bar -->
-				@if ($soluongproducts == 0)
-				<div class="content">
-					{{$product_detail->links()}}
-				</div>
-				@else
-				<div class="content">
-					{{$products->links()}}
-				</div>
-				@endif
+				
 				<!-- End Filter Bar -->
 			</div>
 			<div class="col-xl-3 col-lg-4 col-md-5">

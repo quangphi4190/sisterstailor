@@ -188,7 +188,6 @@
 <script src="{{asset('themes/sisterstailor/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/main.js')}}"></script>
-
 <script type="text/javascript">
 		$(document).ready(function(){
 			$('select[name="slug"]').change(function(){ 
