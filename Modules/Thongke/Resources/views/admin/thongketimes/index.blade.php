@@ -200,20 +200,6 @@
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 },
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'print',
-                        messageTop: function () {
-                            return get_info();
-                        },
-                        footer: true,
-                        exportOptions: {
-                            columns: '1,2,5,6,7,8,9'
-                        },
-                        text:'In danh sách theo mã đoàn'
-                    }
-                ],
                 "footerCallback": function ( row, data, start, end, display ) {
                     api  = this.api(), data;
 
