@@ -52,10 +52,71 @@ class RegisterProductsSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('products.products.index')
                     );
                 });
-// append
-
-
+                $item->item(trans('category::categories.title.categories'), function (Item $item) {
+                    $item->icon('fa fa-delicious');
+                    $item->weight(0);
+                    $item->append('admin.category.category.create');
+                    $item->route('admin.category.category.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('category.categories.index')
+                    );
+                });
             });
+            $group->item(trans('post::postcategories.post'), function (Item $item) {
+                $item->icon('fa fa-newspaper-o');
+                $item->weight(10);
+                $item->authorize(
+                );
+                $item->item(trans('post::postcategories.title.postcategories'), function (Item $item) {
+                    $item->icon('fa fa-id-card-o');
+                    $item->weight(0);
+                    $item->append('admin.post.postcategory.create');
+                    $item->route('admin.post.postcategory.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('post.postcategories.index')
+                    );
+                });
+                $item->item(trans('post::managecategorys.title.managecategorys'), function (Item $item) {
+                    $item->icon('fa fa-newspaper-o');
+                    $item->weight(0);
+                    $item->append('admin.post.managecategorys.create');
+                    $item->route('admin.post.managecategorys.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('post.managecategorys.index')
+                    );
+                });
+            });
+            $group->item(trans('advertisements::advertisements.title.advertisements'), function (Item $item) {
+                $item->icon('fa fa-life-ring');
+                $item->weight(10);
+                $item->authorize(
+                );
+                $item->item(trans('advertisements::advertisements.title.advertisements'), function (Item $item) {
+                    $item->icon('fa fa-life-ring');
+                    $item->weight(0);
+                    $item->append('admin.advertisements.advertisement.create');
+                    $item->route('admin.advertisements.advertisement.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('advertisements.advertisements.index')
+                    );
+                });
+            });
+            $group->item(trans('banner::banners.title.banners'), function (Item $item) {
+                $item->icon('fa fa-picture-o');
+                $item->weight(10);
+                $item->authorize(
+                );
+                $item->item(trans('banner::banners.title.banners'), function (Item $item) {
+                    $item->icon('fa fa-picture-o');
+                    $item->weight(0);
+                    $item->append('admin.banner.banner.create');
+                    $item->route('admin.banner.banner.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('banner.banners.index')
+                    );
+                });
+            });
+
         });
 
         return $menu;

@@ -38,19 +38,16 @@
         <div class="menu-top container">
             <div class="d-flex justify-content-between align-items-center">
                 <ul class="list">
-                    <li><a href="tel:+12312-3-1209">+12312-3-1209</a></li>
-                    <li><a href="mailto:support@colorlib.com">support@colorlib.com</a></li>
+                    <li><a href="tel:+84905 911 432">+84905 911 432</a></li>
+                    <li><a href="http://facebook.com/sisterstailor">support@colorlib.com</a></li>
                 </ul>
-                <ul class="list">                   
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#">Sign In</a></li>
-                </ul>
+
             </div>            
         </div>
     </div>
     <nav class="navbar navbar-expand-lg  navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{route('homepage')}}">
                 <img src="{{asset('themes/sisterstailor/img/logo.png')}}" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -195,7 +192,6 @@
 				var token = '{{ csrf_token() }}';
 				$.post(url,{slug:$(this).val(), _token:token},function(data){
 					$('.product-defail').html(data);
-                    
 				});
 			});
 		});

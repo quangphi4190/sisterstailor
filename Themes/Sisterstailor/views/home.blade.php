@@ -34,8 +34,7 @@
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-40">
                     <div class="title text-center">
-                        <h1 class="mb-10">Shop for Different Categories</h1>
-					    <p>Who are in extremely love with eco friendly system.</p>
+                        <h1 class="mb-10">Featured Products</h1>
                     </div>
                 </div>
             </div>
@@ -183,7 +182,7 @@
                         </div>
                     </div>
                     <div class="price">
-                        <h5>{{$w->name}}</h5>
+                        <h5><a href="">{{$w->name}}</a></h5>
                         @if ($w->price_discount == '0')
                         <h3>{{number_format($w->price)}}</h3>
                             @else

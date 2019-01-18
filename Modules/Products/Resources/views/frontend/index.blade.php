@@ -55,6 +55,7 @@
 					</div>
 						@elseif ($soluongproducts == 0)
 					@foreach ($product_detail as $p)
+						@if ($p->status == '1')
 						<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
 							<div class="content">
 								<div class="content-overlay"></div>
@@ -80,9 +81,11 @@
 									@endif
 							</div>
 						</div>
+								@endif
 						@endforeach
 						@else
 						@foreach ($products as $t)
+							@if ($t->status == '1')
 						<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
 							<div class="content">
 								<div class="content-overlay"></div>
@@ -108,6 +111,7 @@
 									@endif
 							</div>
 						</div>
+								@endif
 						@endforeach						
 						@endif						
 					</div>				

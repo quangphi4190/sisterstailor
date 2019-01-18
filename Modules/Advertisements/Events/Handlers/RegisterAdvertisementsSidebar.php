@@ -36,26 +36,24 @@ class RegisterAdvertisementsSidebar implements \Maatwebsite\Sidebar\SidebarExten
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('advertisements::advertisements.title.advertisements'), function (Item $item) {
-                $item->icon('fa fa-life-ring');
-                $item->weight(10);
-                $item->authorize(
-                     /* append */
-                );
-                $item->item(trans('advertisements::advertisements.title.advertisements'), function (Item $item) {
-                    $item->icon('fa fa-life-ring');
-                    $item->weight(0);
-                    $item->append('admin.advertisements.advertisement.create');
-                    $item->route('admin.advertisements.advertisement.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('advertisements.advertisements.index')
-                    );
-                });
-// append
-
-            });
-        });
+//        $menu->group(trans('core::sidebar.content'), function (Group $group) {
+//            $group->item(trans('advertisements::advertisements.title.advertisements'), function (Item $item) {
+//                $item->icon('fa fa-life-ring');
+//                $item->weight(10);
+//                $item->authorize(
+//                /* append */
+//                );
+//                $item->item(trans('advertisements::advertisements.title.advertisements'), function (Item $item) {
+//                    $item->icon('fa fa-life-ring');
+//                    $item->weight(0);
+//                    $item->append('admin.advertisements.advertisement.create');
+//                    $item->route('admin.advertisements.advertisement.index');
+//                    $item->authorize(
+//                        $this->auth->hasAccess('advertisements.advertisements.index')
+//                    );
+//                });
+//            });
+//        });
 
         return $menu;
     }

@@ -54,8 +54,23 @@ class PostcategoryController extends AdminBaseController
      */
     public function store(CreatePostcategoryRequest $request)
     {
-    
+
+        $data = $request->all();
+        $slug = str_slug($data['name']);
+        $exist = $post = Postcategory::where('slug', $slug)->first();
+        if ($exist != null) {
+            $id = 1;
+            $slug = $slug . '-' . $id;
+            while ($post = Postcategory::where('slug', $slug)->first() != null) {
+                $id++;
+                $slug = $slug . '-' . $id;
+            }
+        }
+
+
+        $data['slug'] = $slug;
          $this->postcategory->create($request->all());
+
         // $postcategory = new Postcategory();
         // $postcategory->name = $request['name'];      
         // $postcategory->status = $request['status'];     

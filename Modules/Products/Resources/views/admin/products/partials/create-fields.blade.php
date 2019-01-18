@@ -1,6 +1,6 @@
 <div class="box-body">
-    @mediaSingle('Image', $products)
-    @mediaMultiple('Image_Other', $products)
+    @mediaSingle('Hình Ảnh', $products)
+    @mediaMultiple('Hình Ảnh Khác', $products)
     {!! Form::normalInput('name', 'Tên Sản Phẩm', $errors) !!}
     <div class="form-group dropdown">
         <label for="state_id">Loại Sản Phẩm</label>
@@ -12,8 +12,15 @@
         </select>
     </div>
     {!! Form::normalInput('intro', 'Giới Thiệu Sản Phẩm', $errors) !!}
-    {!! Form::normalInput('gallery', 'Bộ Sưu Tập', $errors) !!}
+    {{--{!! Form::normalInput('gallery', 'Bộ Sưu Tập', $errors) !!}--}}
     {!! Form::normalTextarea('description', 'Nội Dung', $errors) !!}
-    {!! Form::normalInput('price', 'Giá (VND)', $errors) !!}
-    {!! Form::normalInput('price_discount', 'Giảm Giá (VND)', $errors) !!}
+    {!! Form::normalInput('price', 'Đơn Giá ($)', $errors) !!}
+    {!! Form::normalInput('price_discount', 'Giá Khuyến Mãi ($)', $errors) !!}
+    <div class="form-group dropdown">
+        <label for="status">Trạng thái</label>
+        <select id="status" name="status" class="form-control">
+            <option value="1">Kích hoạt</option>
+            <option value="2">Chưa kích hoạt</option>
+        </select>
+    </div>
 </div>

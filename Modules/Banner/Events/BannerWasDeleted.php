@@ -18,7 +18,7 @@ class BannerWasDeleted implements DeletingMedia
     public function __construct($bannerId, $banner)
     {
         $this->banner = $banner;
-        $this->id = $id;
+        $this->id = $bannerId;
     }
 
     /**

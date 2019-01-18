@@ -36,26 +36,26 @@ class RegisterCategorySidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('category::categories.title.categories'), function (Item $item) {
-                $item->icon('fa fa-delicious');
-                $item->weight(10);
-                $item->authorize(
-                     /* append */
-                );
-                $item->item(trans('category::categories.title.categories'), function (Item $item) {
-                    $item->icon('fa fa-delicious');
-                    $item->weight(0);
-                    $item->append('admin.category.category.create');
-                    $item->route('admin.category.category.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('category.categories.index')
-                    );
-                });
-// append
-
-            });
-        });
+//        $menu->group(trans('core::sidebar.content'), function (Group $group) {
+//            $group->item(trans('category::categories.title.categories'), function (Item $item) {
+//                $item->icon('fa fa-delicious');
+//                $item->weight(10);
+//                $item->authorize(
+//                     /* append */
+//                );
+////                $item->item(trans('category::categories.title.categories'), function (Item $item) {
+////                    $item->icon('fa fa-delicious');
+////                    $item->weight(0);
+////                    $item->append('admin.category.category.create');
+////                    $item->route('admin.category.category.index');
+////                    $item->authorize(
+////                        $this->auth->hasAccess('category.categories.index')
+////                    );
+////                });
+//// append
+//
+//            });
+//        });
 
         return $menu;
     }

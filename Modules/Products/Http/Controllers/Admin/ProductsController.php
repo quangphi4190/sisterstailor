@@ -87,7 +87,9 @@ class ProductsController extends AdminBaseController
     public function edit(Products $products)
     {
         $status = $products->status ? $products->status: '';
-        return view('products::admin.products.edit', compact('products','status'));
+        $category = Category::where('id',$products->category_id)->get();
+        dd($category);die();
+        return view('products::admin.products.edit', compact('products','status','category'));
     }
 
     /**
