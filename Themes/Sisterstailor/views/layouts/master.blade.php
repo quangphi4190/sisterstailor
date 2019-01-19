@@ -56,29 +56,58 @@
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li><a href="{{route('homepage')}}">Home</a></li>
-                    <li><a href="#catagory">Category</a></li>
-                    <li><a href="#men">Men</a></li>
-                    <li><a href="#women">Women</a></li>
-                    <li><a href="#latest">latest</a></li>
-                    <!-- Dropdown -->
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Pages
-                        </a>
-                        <div class="dropdown-menu">
-                        @foreach ($category as $categories)
-                            <a class="dropdown-item"  href="{{route('products.index',[$categories->slug])}}">{{$categories->name}}</a>
-                        @endforeach
-                            <!-- <a class="dropdown-item" href="single.html">Single</a>
-                            <a class="dropdown-item" href="cart.html">Cart</a>
-                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                            <a class="dropdown-item" href="confermation.html">Confermation</a>
-                            <a class="dropdown-item" href="login.html">Login</a>
-                            <a class="dropdown-item" href="tracking.html">Tracking</a>
-                            <a class="dropdown-item" href="generic.html">Generic</a>
-                            <a class="dropdown-item" href="elements.html">Elements</a> -->
-                        </div>
+                    {{--<li class="dropdown">--}}
+                        {{--<a class="dropdown-toggle" id="navbardrop1" data-toggle="dropdown" href="#catagory">Category</a>--}}
+                        {{--<div class="dropdown-menu">--}}
+                            {{--@foreach ($othercategory as $other)--}}
+                                {{--<a class="dropdown-item"  href="{{route('products.index',[$other->slug])}}">{{$other->name}}</a>--}}
+                            {{--@endforeach--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+                    <li class="dropdown menu-mobile">
+                        <a class="page-scroll dropdown-toggle" href="#catagory"
+                           data-toggle="dropdown">Category<b class="caret"></b></a>
+                        <ul class="dropdown-menu menu-li">
+                            @foreach($othercategory as $other)
+                                <li class="dropdown-item"><a href="{{route('products.index',[$other->slug])}}" class="btn-modal-about">{{$other->name }}</a></li>
+                            @endforeach
+                        </ul>
                     </li>
+                    {{--<li>--}}
+                        {{--<a href="#men">Men</a>--}}
+
+                    {{--</li>--}}
+                    {{--<li><a href="#women">Women</a></li>--}}
+                    <li class="dropdown menu-mobile">
+                        <a class="page-scroll dropdown-toggle" href="#men"
+                           data-toggle="dropdown">Men<b class="caret"></b></a>
+                        <ul class="dropdown-menu menu-li">
+                            @foreach($nameMen as $mencate)
+                                <li class="dropdown-item"><a href="{{route('products.index',[$mencate->slug])}}" class="btn-modal-about">{{$mencate->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="dropdown menu-mobile">
+                        <a class="page-scroll dropdown-toggle" href="#women"
+                           data-toggle="dropdown">Women<b class="caret"></b></a>
+                        <ul class="dropdown-menu menu-li">
+                            @foreach($nameWomen as $womencate)
+                                <li class="dropdown-item"><a href="{{route('products.index',[$womencate->slug])}}" class="btn-modal-about">{{$womencate->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li><a href="#latest">News</a></li>
+                    <li><a href="#latest">Contact</a></li>
+                    <!-- Dropdown -->
+                    {{--<li class="dropdown menu-mobile">--}}
+                        {{--<a class="page-scroll dropdown-toggle" href="#catagory"--}}
+                           {{--data-toggle="dropdown">Category<b class="caret"></b></a>--}}
+                        {{--<ul class="dropdown-menu menu-li">--}}
+                            {{--@foreach($othercategory as $other)--}}
+                                {{--<li class="dropdown-item"><a href="{{route('products.index',[$other->slug])}}" class="btn-modal-about">{{$other->name }}</a></li>--}}
+                            {{--@endforeach--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                 </ul>
                 <div class="headerItem_37vW">
                 <a class="headerCart_3pLj" href="{{url('/orders')}}">

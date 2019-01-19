@@ -58,7 +58,9 @@ class CategoryController extends AdminBaseController
     {
         $data = $request->all();
         $slug = str_slug($data['name']);
+
         $exist = $category = Category::where('slug', $slug)->first();
+
         if ($exist != null) {
             $id = 1;
             $slug = $slug . '-' . $id;
@@ -68,6 +70,7 @@ class CategoryController extends AdminBaseController
             }
         }
         $data['slug'] = $slug;
+
         $this->category->create($data);
 
         return redirect()->route('admin.category.category.index')

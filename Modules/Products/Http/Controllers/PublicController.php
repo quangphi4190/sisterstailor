@@ -34,6 +34,10 @@ class PublicController extends BasePublicController {
         $defen = $slug;
         
         $slug = Category::where('slug',$slug)->first();
+        $othercategory = Category::whereNotIn('id',[1,2])->where('parent_id',Null)->get();
+        $othercategoryId = Category::whereNotIn('id',[1,2])->where('parent_id',Null)->pluck('id');
+        $productother = Products::whereIn('category_id',$othercategoryId)->get();
+        $soluongproductsother = $productother->count();
         
         
         
@@ -54,10 +58,12 @@ class PublicController extends BasePublicController {
         $productsMen = Products::whereIn('category_id',$childrenMen)->Orwhere('category_id','1')->get();
         $soluongMen = $productsMen->count();
         // dd($soluongMen);
+
+
         $productsWomen = Products::whereIn('category_id',$childrenWomen)->Orwhere('category_id','2')->get();
         $soluongWomen = $productsWomen->count();
 
-        return view( 'products::frontend.index',compact('slug','nameMen','defen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
+        return view( 'products::frontend.index',compact('soluongproductsother','productother','othercategory','slug','nameMen','defen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
     }
 
     /**

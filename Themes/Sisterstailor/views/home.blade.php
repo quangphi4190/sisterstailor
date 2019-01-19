@@ -48,10 +48,8 @@
                         @endforeach
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
+                                <a href="{{route('product.detail',$fea->slug)}}"><span class="lnr lnr-layers"></span></a>
+                                <a href="#" onclick="addCart(2)"><span class="lnr lnr-cart"></span></a>
                             </div>
                         </div>
                     </div>
@@ -94,7 +92,7 @@
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
                                 <!-- <a href="#"><span class="lnr lnr-heart"></span></a> -->
-                                <a href="{{ route('product.detail', [$m->id]) }}"><span class="lnr lnr-layers"></span></a>
+                                <a href="{{ route('product.detail', [$m->slug]) }}"><span class="lnr lnr-layers"></span></a>
                                 <a href="#" onclick="addCart(2)" ><span class="lnr lnr-cart"></span></a>
                                 <!-- <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a> -->
                             </div>
@@ -136,10 +134,8 @@
                         @endforeach
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
+                                <a href="{{route('product.detail', [$w->slug])}}"><span class="lnr lnr-layers"></span></a>
+                                <a href="#" onclick="addCart(2)"><span class="lnr lnr-cart"></span></a>
                             </div>
                         </div>
                     </div>

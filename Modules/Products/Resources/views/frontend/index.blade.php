@@ -44,7 +44,7 @@
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
 				<div class="container">
-					<div class="row product-defail">
+					<div id="products" class="row product-defail">
 					@if ($soluongproducts == 0 && $soluongproduct_detail == 0)
 					<div class="content">
 						<h3 style="text-algin:center;">Không có sản phẩm nào</h3>
@@ -60,10 +60,8 @@
 									@endforeach
 								<div class="content-details fadeIn-bottom">
 									<div class="bottom d-flex align-items-center justify-content-center">
-										<a href="#"><span class="lnr lnr-heart"></span></a>
-										<a href="#"><span class="lnr lnr-layers"></span></a>
-										<a href="#"><span class="lnr lnr-cart"></span></a>
-										<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
+										<a href="{{route('product.detail',[$p->slug])}}"><span class="lnr lnr-layers"></span></a>
+										<a href="#" onclick="addCart(2)"><span class="lnr lnr-cart"></span></a>
 									</div>
 								</div>
 							</div>
@@ -90,10 +88,8 @@
 									@endforeach
 								<div class="content-details fadeIn-bottom">
 									<div class="bottom d-flex align-items-center justify-content-center">
-										<a href="#"><span class="lnr lnr-heart"></span></a>
-										<a href="#"><span class="lnr lnr-layers"></span></a>
-										<a href="#"><span class="lnr lnr-cart"></span></a>
-										<a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
+										<a href="{{route('product.detail',[$t->slug])}}"><span class="lnr lnr-layers"></span></a>
+										<a href="#" onclick="addCart(2)"><span class="lnr lnr-cart"></span></a>
 									</div>
 								</div>
 							</div>
@@ -132,43 +128,60 @@
 			</div>
 			<div class="col-xl-3 col-lg-4 col-md-5">
 				<div class="sidebar-categories">
-					<div class="head category"><a href="<?php echo $category['0']['id'] == 1 ? route('products.index',$category['0']['slug']):'' ?>" >Men</a><span class="number" style="color:#f41068;margin-left:5%;">({{$soluongMen}})</span></div>
-					<ul class="main-categories">				
-					<?php $sl = 0;
-						foreach ($nameMen as $m){							
-							$tong =0;
-							for ($i=0;$i<=$soluongMen;$i++){
-								if (isset($productsWomen[$i])){
-									if ($m->id == $productsMen[$i]['category_id']){
-										$tong++;
-									}
-								}								
-							}
-							?>		
-																			
-						<li class="main-nav-list"><a href="{{route('products.index',[$m->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$m->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>	
-						<?php }?>	
-					</ul>
-				</div>
-				<div class="sidebar-categories">
-					<div class="head category"><a href="<?php echo $category['1']['id'] == 2 ? route('products.index',$category['1']['slug']):'' ?>" >WoMen</a><span class="number" style="color:#f41068;margin-left:5%;">({{$soluongWomen}})</span></a></div>
+					<div class="head">Categories</div>
 					<ul class="main-categories">
-					<?php 
-						foreach ($nameWomen as $w){							
-							$tong =0;
-							for ($i=0;$i<=$soluongWomen;$i++){
-								if (isset($productsWomen[$i])){
-									if ($w->id == $productsWomen[$i]['category_id']){
-										$tong++;
-									}
-								}
-								
-							}
-							?>
-						
-																			
-						<li class="main-nav-list"><a href="{{route('products.index',[$w->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$w->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>	
-						<?php }?>				
+						<li class="main-nav-list"><a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable"><span class="lnr lnr-arrow-right"></span>Men<span class="number">{{$soluongMen}}</span></a>
+							<ul class="collapse" id="fruitsVegetable" data-toggle="collapse" aria-expanded="false" aria-controls="fruitsVegetable">
+                                <?php $sl = 0;
+                                foreach ($nameMen as $m){
+                                $tong =0;
+                                for ($i=0;$i<=$soluongMen;$i++){
+                                    if (isset($productsWomen[$i])){
+                                        if ($m->id == $productsMen[$i]['category_id']){
+                                            $tong++;
+                                        }
+                                    }
+                                }
+                                ?>
+								<li class="main-nav-list"><a href="{{route('products.index',[$m->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$m->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>
+                                <?php }?>
+							</ul>
+						</li>
+
+						<li class="main-nav-list"><a data-toggle="collapse" href="#meatFish" aria-expanded="false" aria-controls="meatFish"><span class="lnr lnr-arrow-right"></span>Women<span class="number">{{$soluongWomen}}</span></a>
+							<ul class="collapse" id="meatFish" data-toggle="collapse" aria-expanded="false" aria-controls="meatFish">
+                                <?php
+                                foreach ($nameWomen as $w){
+                                $tong =0;
+                                for ($i=0;$i<$soluongWomen;$i++){
+                                    if (isset($productsWomen[$i])){
+                                        if ($w->id == $productsWomen[$i]['category_id']){
+                                            $tong++;
+                                        }
+                                    }
+                                }
+                                ?>
+								<li class="main-nav-list"><a href="{{route('products.index',[$w->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$w->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>
+                                <?php }?>
+							</ul>
+						</li>
+						<li class="main-nav-list"><a data-toggle="collapse" href="#cooking" aria-expanded="false" aria-controls="cooking"><span class="lnr lnr-arrow-right"></span>Other Category<span class="number">{{$soluongproductsother}}</span></a>
+							<ul class="collapse" id="cooking" data-toggle="collapse" aria-expanded="false" aria-controls="cooking">
+                                <?php
+                                foreach ($othercategory as $other){
+                                $tong =0;
+                                for ($i=0;$i<$soluongproductsother;$i++){
+                                    if (isset($productother[$i])){
+                                        if ($other->id == $productother[$i]['category_id']){
+                                            $tong++;
+                                        }
+                                    }
+                                }
+                                ?>
+								<li class="main-nav-list"><a href="{{route('products.index',[$other->slug])}}" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$other->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>
+                                <?php }?>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>
