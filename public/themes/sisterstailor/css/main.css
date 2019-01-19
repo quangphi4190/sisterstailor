@@ -6922,7 +6922,7 @@ svg {
 }
 .bottom a {
   display: inline-block;
-  width: 50%!important;
+  width: 100%!important;
   line-height: 40px;
   text-align: center;
 }

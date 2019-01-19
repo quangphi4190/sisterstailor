@@ -57,32 +57,35 @@
                 <?php }?>
             </div>
             <div class="col-lg-6 mg-t20">
-                <div class="quick-view-content">
-                    <div class="top">
-                        <h3 class="head">{{$product_detail->name}}</h3>
-                        <div class="price d-flex align-items-center"><span class="lnr lnr-tag"></span> <span class="ml-10">${{$product_detail->price}}</span></div>
-                        <div class="category">Category: <span>{{$product_detail->categoryName}}</span></div>
-                    <!-- <div class="available">Availibility: <span>In Stock</span></div> -->
-                    </div>
-                    <div class="middle">
-                        <p class="content"><?php echo $product_detail->description?></p>
-                    </div>
-                    <div >
-                        <div class="quantity-container d-flex align-items-center mt-15">
-                            Quantity:
-                            <input type="text" class="quantity-amount ml-15" value="1" />
-                            <div class="arrow-btn d-inline-flex flex-column">
-                                <button class="increase arrow" type="button" title="Increase Quantity"><span class="lnr lnr-chevron-up"></span></button>
-                                <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
+                <form method ="post" id ="order_form">
+                    <div class="quick-view-content">
+                        <div class="top">
+                            <h3 class="head">{{$product_detail->name}}</h3>
+                            <div class="price d-flex align-items-center"><span class="lnr lnr-tag"></span> <span class="ml-10">${{$product_detail->price}}</span></div>
+                            <div class="category">Category: <span>{{$product_detail->categoryName}}</span></div>
+                        <!-- <div class="available">Availibility: <span>In Stock</span></div> -->
+                        </div>
+                        <div class="middle">
+                            <p class="content"><?php echo $product_detail->description?></p>
+                        </div>
+                        <div >
+                            <div class="quantity-container d-flex align-items-center mt-15">
+                                Quantity:
+                                <input type="text" class="quantity-amount ml-15" value="1" name="quantity"/>
+                                <div class="arrow-btn d-inline-flex flex-column">
+                                    <button class="increase arrow" type="button" title="Increase Quantity"><span class="lnr lnr-chevron-up"></span></button>
+                                    <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
+                                </div>
+                            </div>
+                            <div class="d-flex mt-20">
+                                <button type="submit" class="view-btn color-2"><span>Add to Cart</span></button>
                             </div>
                         </div>
-                        <div class="d-flex mt-20">
-                            <a href="#" class="view-btn color-2"><span>Add to Cart</span></a>
-                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
+
     </div>
     <hr>
     <section class="pb-100">
@@ -113,9 +116,9 @@
 
 
 </div>
-    
 
-<script>
+
+<script type="text/javascript">
     var slideIndex = 1;
     showSlides(slideIndex);
 
@@ -145,5 +148,40 @@
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
         captionText.innerHTML = dots[slideIndex-1].alt;
-    }</script>
+    }
+
+    function addCart($cartId) {
+        var cartID =$cartId;
+        var quantity = $('.quantity').val();alert(quantity);
+        $.ajax({
+            type: "POST",
+            url: '{{route('admin.page.page.addCart')}}',
+            data: {
+                _token: '{{ csrf_token() }}',
+                cartID: cartID,
+
+            },
+            success: function(data) {
+                let numberCart =1;
+                $('.badgeNumber_ebbk').html(numberCart);
+            },
+            error: function () {
+
+            }
+        });
+
+    }
+
+   </script>
+
 @stop
+@push('js-stack')
+<script type="text/javascript">
+    $('#order_form').on('submit',function (e) {
+        e.preventDefault();
+
+    });
+
+</script>
+
+@endpush
