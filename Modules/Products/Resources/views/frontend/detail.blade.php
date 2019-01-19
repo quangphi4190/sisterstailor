@@ -74,7 +74,7 @@
                     <!-- <div class="available">Availibility: <span>In Stock</span></div> -->
                     </div>
                     <div class="middle">
-                        <p class="content"><?php echo $product_detail->intro?></p>
+                        <p class="content"><?php echo $product_detail->intro;?></p>
                     </div>
                     <div >
                         <div class="quantity-container d-flex align-items-center mt-15">
@@ -85,22 +85,10 @@
                                 <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
                             </div>
                         </div>
-                        <div class="middle">
-                            <p class="content"><?php echo $product_detail->description?></p>
-                        </div>
-                        <div >
-                            <div class="quantity-container d-flex align-items-center mt-15">
-                                Quantity:
-                                <input type="text" class="quantity-amount ml-15" value="1" name="quantity"/>
-                                <div class="arrow-btn d-inline-flex flex-column">
-                                    <button class="increase arrow" type="button" title="Increase Quantity"><span class="lnr lnr-chevron-up"></span></button>
-                                    <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
-                                </div>
-                            </div>
-                            <div class="d-flex mt-20">
-                                <button type="submit" class="view-btn color-2"><span>Add to Cart</span></button>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="d-flex mt-20">
+                        <button type="submit" class="view-btn color-2"><span>Add to Cart</span></button>
+                    </div>
                     </div>
                 </form>
             </div>
@@ -119,10 +107,10 @@
 
                         <div class="single-search-product d-flex">
                             @foreach ($category_for_id->files()->where('zone','Image')->get() as $fileID)
-                                <a href="{{ route('product.detail', [$category_for_id->id]) }}"><img class="h80" src="{!! $fileID->path !!}" alt=""></a>
+                                <a href="{{ route('product.detail', [$category_for_id->slug]) }}"><img class="h80" title="View detail" src="{!! $fileID->path !!}" alt=""></a>
                             @endforeach
                             <div class="desc">
-                                <a href="{{ route('product.detail', [$category_for_id->id]) }}" class="title">{{$category_for_id->name}}</a>
+                                <a href="{{ route('product.detail', [$category_for_id->slug]) }}" class="title" title="View detail">{{$category_for_id->name}}</a>
                                 <div class="price"><span class="lnr lnr-tag"></span> ${{$category_for_id->price}}</div>
                             </div>
                         </div>

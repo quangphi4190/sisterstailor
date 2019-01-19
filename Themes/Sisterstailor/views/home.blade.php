@@ -42,21 +42,13 @@
                 @foreach ($featured as $fea)
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
-                        <div class="content-overlay"></div>
-                        @foreach ($fea->files()->where('zone','Hình Ảnh')->get() as $files)
+                        <a title="View detail product" href="{{ route('product.detail', [$fea->slug]) }}"><div class="content-overlay"></div></a>
+                        @foreach ($fea->files()->where('zone','Hình ảnh')->get() as $files)
                             <img class="content-image img-fluid d-block mx-auto" src="{{$files->path}}" alt="">
                         @endforeach
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                            </div>
-                        </div>
                     </div>
                     <div class="price">
-                        <h5><a class="name-products" href="{{route('product.detail',$fea->slug)}}" >{{$fea->name}}</a></h5>
+                        <h5><a title="View detail product" class="name-products" href="{{route('product.detail',$fea->slug)}}" >{{$fea->name}}</a></h5>
                         @if ($fea->price_discount == '0')
                             <h3>{{number_format($fea->price)}}</h3>
                         @else
@@ -87,21 +79,13 @@
                     @if ($m->status == '1')
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
-                        <div class="content-overlay"></div>
+                        <a title="View detail product" href="{{ route('product.detail', [$m->slug]) }}"><div class="content-overlay"></div></a>
                         @foreach ($m->files()->where('zone','Image')->get() as $filemen)
                             <img class="content-image img-fluid d-block mx-auto xx" src="{{$filemen->path}}" alt="">
                         @endforeach
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <!-- <a href="#"><span class="lnr lnr-heart"></span></a> -->
-                                <a href="{{ route('product.detail', [$m->id]) }}"><span class="lnr lnr-layers"></span></a>
-                                <!-- <a href="#" onclick="addCart(2)" ><span class="lnr lnr-cart"></span></a> -->
-                                <!-- <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a> -->
-                            </div>
-                        </div>
                     </div>
                     <div class="price">
-                        <h5 class="text-white"><a style="color: white" href="{{route('product.detail',$m->slug)}}">{{$m->name}}</a></h5>
+                        <h5 class="text-white"><a title="View detail product" style="color: white" href="{{route('product.detail',$m->slug)}}">{{$m->name}}</a></h5>
                         @if ($m->price_discount == '0')
                         <h3 class="text-white">$ {{number_format($m->price)}}</h3>
                         @else
@@ -130,21 +114,13 @@
                     @if ($w->status == '1')
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
-                        <div class="content-overlay"></div>
+                        <a title="View detail" class="name-products" href="{{route('product.detail',$w->slug)}}"><div class="content-overlay"></div></a>
                         @foreach ($w->files()->where('zone','Image')->get() as $filewomen)
                             <img class="content-image img-fluid d-block mx-auto" src="{{$filewomen->path}}" alt="">
                         @endforeach
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="#"><span class="lnr lnr-heart"></span></a>
-                                <a href="#"><span class="lnr lnr-layers"></span></a>
-                                <a href="#"><span class="lnr lnr-cart"></span></a>
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>
-                            </div>
-                        </div>
                     </div>
                     <div class="price">
-                        <h5><a class="name-products" href="{{route('product.detail',$w->slug)}}">{{$w->name}}</a></h5>
+                        <h5><a title="View detail" class="name-products" href="{{route('product.detail',$w->slug)}}">{{$w->name}}</a></h5>
                         @if ($w->price_discount == '0')
                         <h3>{{number_format($w->price)}}</h3>
                             @else

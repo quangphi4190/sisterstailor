@@ -8,7 +8,7 @@ Route::get('/category/{slug}',[
     'uses'  =>  'PublicController@index'
 ]);
 
- $router->get('product/{slug}', [
+ $router->get('category-detail/{slug}', [
     'as' => 'product.detail',
     'uses' => 'PublicController@detail'
 ]);
