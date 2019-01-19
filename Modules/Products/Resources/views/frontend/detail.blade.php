@@ -6,11 +6,7 @@
                 <div class="container">
                     <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
                         <div class="col-first">
-                            <h1>Product details</h1>
-                             <nav class="d-flex align-items-center justify-content-start">
-                                <a href="index.html">Home<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                <a href="single.html">Product details</a>
-                            </nav>
+                            <h1>{{$product_detail->name}}</h1>
                         </div>
                     </div>
                 </div>
@@ -57,13 +53,37 @@
                 <?php }?>
             </div>
             <div class="col-lg-6 mg-t20">
-                <form method ="post" id ="order_form">
-                    <div class="quick-view-content">
-                        <div class="top">
-                            <h3 class="head">{{$product_detail->name}}</h3>
-                            <div class="price d-flex align-items-center"><span class="lnr lnr-tag"></span> <span class="ml-10">${{$product_detail->price}}</span></div>
-                            <div class="category">Category: <span>{{$product_detail->categoryName}}</span></div>
-                        <!-- <div class="available">Availibility: <span>In Stock</span></div> -->
+                <form method ="post" id ="order_form">                    
+                <div class="quick-view-content">
+                    <div class="top">
+                        <h3 class="head">{{$product_detail->name}}</h3>
+                        @if ($product_detail->price_discount > '0')
+                        <div class="price d-flex align-items-center">
+                            <span class="lnr lnr-tag"></span>
+                            <span class="ml-10">${{$product_detail->price_discount}}</span>
+                            <del style="margin-left: 0.5em">${{$product_detail->price}}</del>
+                        </div>
+                            @else
+                            <div class="price d-flex align-items-center">
+                                <span class="lnr lnr-tag"></span>
+                                <span class="ml-10">${{$product_detail->price}}</span>
+                            </div>
+                        @endif
+                        <div class="category">Category: <span><a href="{{route('products.index',$categoryProducts->slug)}}">{{$product_detail->categoryName}}</a></span>
+                        </div>
+                    <!-- <div class="available">Availibility: <span>In Stock</span></div> -->
+                    </div>
+                    <div class="middle">
+                        <p class="content"><?php echo $product_detail->intro?></p>
+                    </div>
+                    <div >
+                        <div class="quantity-container d-flex align-items-center mt-15">
+                            Quantity:
+                            <input type="text" class="quantity-amount ml-15" value="1" />
+                            <div class="arrow-btn d-inline-flex flex-column">
+                                <button class="increase arrow" type="button" title="Increase Quantity"><span class="lnr lnr-chevron-up"></span></button>
+                                <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
+                            </div>
                         </div>
                         <div class="middle">
                             <p class="content"><?php echo $product_detail->description?></p>
@@ -91,7 +111,7 @@
     <section class="pb-100">
         <div class="container">
             <div class="organic-section-title text-center">
-                <h3>Most Searched Products</h3>
+                <h3>Related Products</h3>
             </div>
             <div class="row mt-30">
                 @foreach ($category_for_ids as $category_for_id)

@@ -41,10 +41,10 @@ class PublicController extends BasePublicController {
         $categoryMen = Category::where('parent_id',$slug->id)->pluck('id');
         $nameCategory = Category::where('parent_id',$slug->id)->get();
         $category = Category::where('id','1')->orwhere('id','2')->get();
-        $product_detail = Products::where('category_id',$slug->id)->paginate(9);
+        $product_detail = Products::where('category_id',$slug->id)->paginate(12);
         // dd($product_detail);
         $soluongproduct_detail = $product_detail->count();
-        $products   = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->paginate(9);
+        $products   = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->paginate(12);
         $soluongproducts =   Products::whereIn('category_id',$categoryMen)->count();
         //Menu right
         $childrenMen = Category::where('parent_id','1')->pluck('id');
@@ -57,25 +57,28 @@ class PublicController extends BasePublicController {
         $productsWomen = Products::whereIn('category_id',$childrenWomen)->Orwhere('category_id','2')->get();
         $soluongWomen = $productsWomen->count();
 
-        return view( 'products::frontend.index',compact('nameMen','defen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
+        return view( 'products::frontend.index',compact('slug','nameMen','defen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
 
-     public function detail($id){
+     public function detail($slug){
          $countCart =0;
         $product_detail =Products::select('products__products.*','category__categories.name as categoryName')
             ->leftjoin('category__categories', 'category__categories.id', '=', 'products__products.category_id')
-            ->where('products__products.id', $id)
+            ->where('products__products.slug', $slug)
             ->first();
+        $categoryProducts = Category::where('id',$product_detail->category_id)->first();
         $category = Category::whereIn('id', [1, 2])->get();
         $category_for_ids = Products::select('products__products.*','category__categories.name as categoryName')
             ->leftjoin('category__categories', 'category__categories.id', '=', 'products__products.category_id')
             ->where('products__products.category_id', $product_detail->category_id)
+            ->orderBy('id','DESC')
+            ->take(8)
             ->get();
-        return view( 'products::frontend.detail',compact('product_detail','countCart','category','category_for_ids'));
+        return view( 'products::frontend.detail',compact('categoryProducts','product_detail','countCart','category','category_for_ids'));
      }
      public function get_slug(){
         $slug = Input::get('slug','');

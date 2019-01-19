@@ -69,9 +69,12 @@ class ProductsController extends AdminBaseController
                 $slug = $slug . '-' . $id;
             }
         }
-
-
         $data['slug'] = $slug;
+        $price = $data['price'];
+        $disprice = $data['price_discount'];
+        if ($price <= $disprice){
+            return redirect()->back()->withErrors('Giá khuyến mãi phải thấp hơn Đơn giá,vui lòng kiểm tra lại');
+        }
         $this->products->create($request->all());
 
         return redirect()->route('admin.products.products.index')
@@ -87,7 +90,8 @@ class ProductsController extends AdminBaseController
     public function edit(Products $products)
     {
         $status = $products->status ? $products->status: '';
-        return view('products::admin.products.edit', compact('products','status'));
+        $category = Category::where('id',$products->category_id)->get();
+        return view('products::admin.products.edit', compact('products','status','category'));
     }
 
     /**
@@ -99,6 +103,13 @@ class ProductsController extends AdminBaseController
      */
     public function update(Products $products, UpdateProductsRequest $request)
     {
+        $data = $request->all();
+        $price = $data['price'];
+        $disprice = $data['price_discount'];
+        if ($price <= $disprice){
+            return redirect()->back()->withErrors('Giá khuyến mãi phải thấp hơn Đơn giá,vui lòng kiểm tra lại');
+        }
+
         $this->products->update($products, $request->all());
 
         return redirect()->route('admin.products.products.index')

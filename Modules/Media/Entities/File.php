@@ -71,4 +71,8 @@ class File extends Model implements TaggableInterface
 
         return false;
     }
+    public function isFolder(): bool
+    {
+        return $this->is_folder;
+    }
 }

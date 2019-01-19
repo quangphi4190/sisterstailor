@@ -11,6 +11,7 @@ use Modules\Category\Repositories\CategoryRepository;
 use Modules\Category\Entities\Category;
 use Modules\Products\Repositories\ProductsRepository;
 use Modules\Products\Entities\Products;
+use Modules\Advertisements\Entities\Advertisement;
 use Modules\Advertisements\Repositories\AdvertisementRepository;
 use Modules\Banner\Repositories\BannerRepository;
 
@@ -73,14 +74,20 @@ class PublicController extends BasePublicController
         $category = Category::where('id','1')->orwhere('id','2')->get();
         $alternate = $this->getAlternateMetaData($page);
         $categoryMen = Category::where('parent_id','1')->pluck('id');
-        $categoryWomen = Category::where('parent_id','2')->pluck('id');  
+        $categoryWomen = Category::where('parent_id','2')->pluck('id');
+        $featured = Products::where('featured','1')->where('status','1')->orderBy('id','DESC')->take(12)->get();
 
         $women   = Products::whereIn('category_id',$categoryWomen)->Orwhere('category_id','2')->orderBy('id','DESC')->take(4)->get();
         $men     = Products::whereIn('category_id',$categoryMen)->Orwhere('category_id','1')->orderBy('id','DESC')->take(4)->get();
-        $adver = $advertisementRepository->all();
+        $adver = Advertisement::orderBy('id','DES')->get();
+        // foreach ($adver as $key => $value){
+        //     dd($key);
+        // }
+        
         $banner = $bannerRepository->all();
+        // dd($banner);
 
-        return view($template, compact('page', 'alternate','countCart','men','women','adver','banner','category'));
+        return view($template, compact('page', 'alternate','countCart','men','women','adver','banner','category','featured'));
     }
 
     /**

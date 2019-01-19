@@ -1,8 +1,11 @@
 .pagination .active,.pagination .disabled {
-    width: 11%;
+    width: 3em;
     color: #f41068;
     line-height: 2.9em;
     border: 1px solid #eee;
+}
+.pagination {
+    margin:auto;
 }
 .pagination .active span,.pagination .disabled span {
     margin-left: 18px;
@@ -15,4 +18,23 @@
 }
 .category a:hover {
     color:#f41068  !important;
+}
+.carousel-item img {
+    min-height: 40em;
+    max-height: 40em;
+}
+.content-image {
+    max-height: 350px;
+}
+.name-products {
+    color: #f52cdc;
+}
+.name-products:hover {
+    color: #f6463d;
+}
+.footer-des{
+    line-height: 0.5em;
+}
+.section-gap {
+    padding: 50px 0;
 }

@@ -304,7 +304,7 @@
 
                     // Update footer
                     $( api.column( 5 ).footer() ).html(
-                        '$'+addCommas(pageTotal)
+                        '$'+addCommas(pageTotal.toFixed(1))
                     );
                 }
             });

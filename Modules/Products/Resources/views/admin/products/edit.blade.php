@@ -14,6 +14,13 @@
 @section('content')
     {!! Form::open(['route' => ['admin.products.products.update', $products->id], 'method' => 'put']) !!}
     <div class="row">
+        @if(count($errors)>0)
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $err)
+                    {{$err}}
+                @endforeach
+            </div>
+        @endif
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 @include('partials.form-tab-headers')

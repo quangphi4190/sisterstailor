@@ -8,11 +8,7 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center">
 				<div class="col-first">
-					<h1>Shop Category page</h1>
-					<nav class="d-flex align-items-center justify-content-start">
-						<a href="{{route('homepage')}}">Home<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-						<a href="#">Fashon Category</a>
-					</nav>
+					<h1>Shop Fashion {{$slug->name}}</h1>
 				</div>
 			</div>
 		</div>
@@ -36,17 +32,18 @@
 						</select>
 					</form>
 					</div>
-					<div class="sorting mr-auto">
+					<!-- <div class="sorting mr-auto">
 						<select>
 							<option value="6">Show 6</option>
 							<option value="12">Show 12</option>
 							<option value="18">Show 18</option>
 						</select>
-					</div>
+					</div> -->
 				</div>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
+				<div class="container">
 					<div class="row product-defail">
 					@if ($soluongproducts == 0 && $soluongproduct_detail == 0)
 					<div class="content">
@@ -54,6 +51,7 @@
 					</div>
 						@elseif ($soluongproducts == 0)
 					@foreach ($product_detail as $p)
+						@if ($p->status == '1')
 						<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
 							<div class="content">
 								<div class="content-overlay"></div>
@@ -79,9 +77,11 @@
 									@endif
 							</div>
 						</div>
+								@endif
 						@endforeach
 						@else
 						@foreach ($products as $t)
+							@if ($t->status == '1')
 						<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
 							<div class="content">
 								<div class="content-overlay"></div>
@@ -107,23 +107,27 @@
 									@endif
 							</div>
 						</div>
-						@endforeach
-						<div>{{$products->links()}}</div>
-						
+								@endif
+						@endforeach						
 						@endif						
+					</div>				
+					@if ($soluongproducts == 0)
+				<div class="container">
+				<div class="row">
+					{{$product_detail->links()}}
 					</div>
+				</div>
+				@else
+				<div class="container">
+				<div class="row">
+					{{$products->links()}}
+					</div>
+				</div>
+				@endif				
 				</section>
 				<!-- End Best Seller -->
 				<!-- Start Filter Bar -->
-				@if ($soluongproducts == 0)
-				<div class="content">
-					{{$product_detail->links()}}
-				</div>
-				@else
-				<div class="content">
-					{{$products->links()}}
-				</div>
-				@endif
+				
 				<!-- End Filter Bar -->
 			</div>
 			<div class="col-xl-3 col-lg-4 col-md-5">
@@ -172,123 +176,6 @@
 	</div>
 
 	<!-- Start Most Search Product Area -->
-	<section class="section-half">
-		<div class="container">
-			<div class="organic-section-title text-center">
-				<h3>Most Searched Products</h3>
-			</div>
-			<div class="row mt-30">
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r1.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Blueberry</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r2.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Cabbage</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $189.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r3.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Raspberry</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $189.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r4.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Kiwi</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $189.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r5.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore Bell Pepper</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $120.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r6.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Blackberry</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $120.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r7.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Brocoli</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $120.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r8.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Carrot</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $120.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r9.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Strawberry</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r10.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Prixma MG2 Light Inkjet</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $240.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r11.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Cherry</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $240.00 <del>$340.00</del></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<div class="single-search-product d-flex">
-						<a href="#"><img src="img/r12.jpg" alt=""></a>
-						<div class="desc">
-							<a href="#" class="title">Pixelstore fresh Beans</a>
-							<div class="price"><span class="lnr lnr-tag"></span> $240.00 <del>$340.00</del></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 	<!-- End Most Search Product Area -->
 	
 	<!-- start footer Area -->
