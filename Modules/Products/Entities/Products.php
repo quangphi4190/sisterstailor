@@ -12,9 +12,11 @@ class Products extends Model
 
     protected $table = 'products__products';
     public $translatedAttributes = [];
-    protected $fillable = ['name','gallery','intro','description','price','price_discount','status','category_id'];
+    protected $fillable = ['name', 'gallery', 'intro', 'description', 'price', 'price_discount', 'status', 'category_id'];
     protected $with = ['files'];
-    public function category(){
-        return $this->belongsTo('Modules\Category\Entities\Category','category_id');
+
+    public function category()
+    {
+        return $this->belongsTo('Modules\Category\Entities\Category', 'category_id');
     }
 }

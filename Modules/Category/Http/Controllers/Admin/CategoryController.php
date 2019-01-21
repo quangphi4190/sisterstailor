@@ -44,7 +44,7 @@ class CategoryController extends AdminBaseController
      */
     public function create()
     {
-        $parent = Category::all();
+        $parent = Category::where('parent_id',Null)->get();
         return view('category::admin.categories.create',compact('parent'));
     }
 

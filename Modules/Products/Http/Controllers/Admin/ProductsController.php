@@ -35,6 +35,7 @@ class ProductsController extends AdminBaseController
     {
         $products = $this->products->all();
         $categories =   Category::all();
+
         return view('products::admin.products.index',compact('products','categories'));
     }
 
@@ -46,8 +47,19 @@ class ProductsController extends AdminBaseController
     public function create()
     {
         $products = new Products();
-        $categories =   Category::all();
-        return view('products::admin.products.create',compact('products','categories'));
+        $categories =   Category::where('parent_id',Null)->get();
+        $categoriesChidren = Category::where('parent_id',Null)->pluck('id');
+        $categoryAll = Category::whereIn('parent_id',$categoriesChidren)->get();
+        $check = $categories;
+
+        foreach ($categories as $key => $childer){
+            $check[$key]['child'] = $this->check($childer->id);
+        }
+        return view('products::admin.products.create',compact('products','categories','categoryAll','categoryOther'));
+    }
+    public function check($id){
+        $soluong = Category::where('parent_id',$id)->get()->count();
+        return $soluong > 0;
     }
 
     /**

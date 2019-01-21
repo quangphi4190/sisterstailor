@@ -15,4 +15,7 @@ class Category extends Model
     public function products(){
         return $this->hasMany('Modules\Products\Entities\Products','category_id','id');
     }
+    public function subcategory() {
+        $this->belongsTo('Modules\Category\Entities\Category');
+    }
 }
