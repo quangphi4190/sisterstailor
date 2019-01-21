@@ -86,7 +86,7 @@
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
                         <a title="View detail product" href="{{ route('product.detail', [$m->slug]) }}"><div class="content-overlay"></div></a>
-                        @foreach ($m->files()->where('zone','Image')->get() as $filemen)
+                        @foreach ($m->files()->where('zone','Hình Ảnh')->get() as $filemen)
                             <img class="content-image img-fluid d-block mx-auto xx" src="{{$filemen->path}}" alt="">
                         @endforeach
                         <div class="content-details fadeIn-bottom">
@@ -129,7 +129,7 @@
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
                         <a title="View detail" class="name-products" href="{{route('product.detail',$w->slug)}}"><div class="content-overlay"></div></a>
-                        @foreach ($w->files()->where('zone','Image')->get() as $filewomen)
+                        @foreach ($w->files()->where('zone','Hình Ảnh')->get() as $filewomen)
                             <img class="content-image img-fluid d-block mx-auto" src="{{$filewomen->path}}" alt="">
                         @endforeach
                         <div class="content-details fadeIn-bottom">

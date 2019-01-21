@@ -45,6 +45,7 @@ class ProductsController extends AdminBaseController
      */
     public function create()
     {
+
         $products = new Products();
         $categories =   Category::all();
         return view('products::admin.products.create',compact('products','categories'));

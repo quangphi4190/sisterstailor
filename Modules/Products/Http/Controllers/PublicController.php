@@ -70,6 +70,10 @@ class PublicController extends BasePublicController {
 
      public function detail($slug){
          $countCart =0;
+         $othercategory = Category::whereNotIn('id',[1,2])->where('parent_id',Null)->get();
+         $nameMen = Category::where('parent_id','1')->get();
+         $nameWomen = Category::where('parent_id','2')->get();
+
         $product_detail =Products::select('products__products.*','category__categories.name as categoryName')
             ->leftjoin('category__categories', 'category__categories.id', '=', 'products__products.category_id')
             ->where('products__products.slug', $slug)
@@ -82,7 +86,7 @@ class PublicController extends BasePublicController {
             ->orderBy('id','DESC')
             ->take(8)
             ->get();
-        return view( 'products::frontend.detail',compact('categoryProducts','product_detail','countCart','category','category_for_ids'));
+        return view( 'products::frontend.detail',compact('nameMen','nameWomen','othercategory','categoryProducts','product_detail','countCart','category','category_for_ids'));
      }
      public function get_slug(){
         $slug = Input::get('slug','');
