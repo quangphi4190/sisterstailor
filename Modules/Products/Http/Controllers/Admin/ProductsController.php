@@ -88,7 +88,7 @@ class ProductsController extends AdminBaseController
         if ($price <= $disprice){
             return redirect()->back()->withErrors('Giá khuyến mãi phải thấp hơn Đơn giá,vui lòng kiểm tra lại');
         }
-        $this->products->create($request->all());
+        $this->products->create($data);
 
         return redirect()->route('admin.products.products.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('products::products.title.products')]));

@@ -100,4 +100,5 @@ class PublicController extends BasePublicController {
         }
         return view( 'products::frontend.show-listdata',compact('products'));
      }
+
 }
