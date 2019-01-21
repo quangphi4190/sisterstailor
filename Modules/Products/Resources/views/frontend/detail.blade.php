@@ -6,11 +6,7 @@
                 <div class="container">
                     <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
                         <div class="col-first">
-                            <h1>Product details</h1>
-                             <nav class="d-flex align-items-center justify-content-start">
-                                <a href="index.html">Home<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                <a href="single.html">Product details</a>
-                            </nav>
+                            <h1>{{$product_detail->name}}</h1>
                         </div>
                     </div>
                 </div>
@@ -57,15 +53,28 @@
                 <?php }?>
             </div>
             <div class="col-lg-6 mg-t20">
+                <form method ="post" id ="order_form">                    
                 <div class="quick-view-content">
                     <div class="top">
                         <h3 class="head">{{$product_detail->name}}</h3>
-                        <div class="price d-flex align-items-center"><span class="lnr lnr-tag"></span> <span class="ml-10">${{$product_detail->price}}</span></div>
-                        <div class="category">Category: <span>{{$product_detail->categoryName}}</span></div>
+                        @if ($product_detail->price_discount > '0')
+                        <div class="price d-flex align-items-center">
+                            <span class="lnr lnr-tag"></span>
+                            <span class="ml-10">${{$product_detail->price_discount}}</span>
+                            <del style="margin-left: 0.5em">${{$product_detail->price}}</del>
+                        </div>
+                            @else
+                            <div class="price d-flex align-items-center">
+                                <span class="lnr lnr-tag"></span>
+                                <span class="ml-10">${{$product_detail->price}}</span>
+                            </div>
+                        @endif
+                        <div class="category">Category: <span><a href="{{route('products.index',$categoryProducts->slug)}}">{{$product_detail->categoryName}}</a></span>
+                        </div>
                     <!-- <div class="available">Availibility: <span>In Stock</span></div> -->
                     </div>
                     <div class="middle">
-                        <p class="content"><?php echo $product_detail->description?></p>
+                        <p class="content"><?php echo $product_detail->intro;?></p>
                     </div>
                     <div >
                         <div class="quantity-container d-flex align-items-center mt-15">
@@ -76,19 +85,21 @@
                                 <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
                             </div>
                         </div>
-                        <div class="d-flex mt-20">
-                            <a href="#" class="view-btn color-2"><span>Add to Cart</span></a>
-                        </div>
                     </div>
-                </div>
+                    <div class="d-flex mt-20">
+                        <button type="submit" class="view-btn color-2"><span>Add to Cart</span></button>
+                    </div>
+                    </div>
+                </form>
             </div>
         </div>
+
     </div>
     <hr>
     <section class="pb-100">
         <div class="container">
             <div class="organic-section-title text-center">
-                <h3>Most Searched Products</h3>
+                <h3>Related Products</h3>
             </div>
             <div class="row mt-30">
                 @foreach ($category_for_ids as $category_for_id)
@@ -96,10 +107,10 @@
 
                         <div class="single-search-product d-flex">
                             @foreach ($category_for_id->files()->where('zone','Image')->get() as $fileID)
-                                <a href="{{ route('product.detail', [$category_for_id->id]) }}"><img class="h80" src="{!! $fileID->path !!}" alt=""></a>
+                                <a href="{{ route('product.detail', [$category_for_id->slug]) }}"><img class="h80" title="View detail" src="{!! $fileID->path !!}" alt=""></a>
                             @endforeach
                             <div class="desc">
-                                <a href="{{ route('product.detail', [$category_for_id->id]) }}" class="title">{{$category_for_id->name}}</a>
+                                <a href="{{ route('product.detail', [$category_for_id->slug]) }}" class="title" title="View detail">{{$category_for_id->name}}</a>
                                 <div class="price"><span class="lnr lnr-tag"></span> ${{$category_for_id->price}}</div>
                             </div>
                         </div>
@@ -113,9 +124,9 @@
 
 
 </div>
-    
 
-<script>
+
+<script type="text/javascript">
     var slideIndex = 1;
     showSlides(slideIndex);
 
@@ -145,5 +156,40 @@
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
         captionText.innerHTML = dots[slideIndex-1].alt;
-    }</script>
+    }
+
+    function addCart($cartId) {
+        var cartID =$cartId;
+        var quantity = $('.quantity').val();alert(quantity);
+        $.ajax({
+            type: "POST",
+            url: '{{route('admin.page.page.addCart')}}',
+            data: {
+                _token: '{{ csrf_token() }}',
+                cartID: cartID,
+
+            },
+            success: function(data) {
+                let numberCart =1;
+                $('.badgeNumber_ebbk').html(numberCart);
+            },
+            error: function () {
+
+            }
+        });
+
+    }
+
+   </script>
+
 @stop
+@push('js-stack')
+<script type="text/javascript">
+    $('#order_form').on('submit',function (e) {
+        e.preventDefault();
+
+    });
+
+</script>
+
+@endpush

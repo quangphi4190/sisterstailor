@@ -28,4 +28,11 @@
             <option value="2">Chưa kích hoạt</option>
         </select>
     </div>
+    <div class="form-group dropdown">
+        <label for="status">Sản Phẩm nổi bật</label>
+        <select id="featured" name="featured" class="form-control">
+            <option value="1">Kích hoạt</option>
+            <option value="0">Chưa kích hoạt</option>
+        </select>
+    </div>
 </div>

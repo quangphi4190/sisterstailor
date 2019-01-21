@@ -26,3 +26,41 @@
 .content-image {
     max-height: 350px;
 }
+.name-products {
+    color: #f52cdc;
+}
+.name-products:hover {
+    color: #f6463d;
+}
+.footer-des{
+    line-height: 0.5em;
+}
+.section-gap {
+    padding: 50px 0;
+}
+.img-list {
+    max-width: 100px!important;
+    height: 100px!important;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 8px;
+    transition: all 0.4s ease;
+    width: 100px;
+}
+.img-list:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+.pd-r10 {
+    padding-right: 10px;
+}
+.f-size {
+    font-size: 24px;
+    font-weight: bold;
+}
+.pd-l20 {
+    padding-left: 20px;
+}
+.pd-t10 {
+    padding-top: 10px;
+}

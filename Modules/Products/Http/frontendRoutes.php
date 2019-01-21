@@ -3,12 +3,12 @@
 use Illuminate\Routing\Router;
 /** @var Router $router */
 
-Route::get('/products/{slug}',[
+Route::get('/category/{slug}',[
    'as' =>  'products.index',
     'uses'  =>  'PublicController@index'
 ]);
 
- $router->get('product/{id}/detail', [
+ $router->get('category-detail/{slug}', [
     'as' => 'product.detail',
     'uses' => 'PublicController@detail'
 ]);

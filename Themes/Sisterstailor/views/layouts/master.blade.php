@@ -56,29 +56,58 @@
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li><a href="{{route('homepage')}}">Home</a></li>
-                    <li><a href="#catagory">Category</a></li>
-                    <li><a href="#men">Men</a></li>
-                    <li><a href="#women">Women</a></li>
-                    <li><a href="#latest">latest</a></li>
-                    <!-- Dropdown -->
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Pages
-                        </a>
-                        <div class="dropdown-menu">
-                        @foreach ($category as $categories)
-                            <a class="dropdown-item"  href="{{route('products.index',[$categories->slug])}}">{{$categories->name}}</a>
-                        @endforeach
-                            <!-- <a class="dropdown-item" href="single.html">Single</a>
-                            <a class="dropdown-item" href="cart.html">Cart</a>
-                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                            <a class="dropdown-item" href="confermation.html">Confermation</a>
-                            <a class="dropdown-item" href="login.html">Login</a>
-                            <a class="dropdown-item" href="tracking.html">Tracking</a>
-                            <a class="dropdown-item" href="generic.html">Generic</a>
-                            <a class="dropdown-item" href="elements.html">Elements</a> -->
-                        </div>
+                    {{--<li class="dropdown">--}}
+                        {{--<a class="dropdown-toggle" id="navbardrop1" data-toggle="dropdown" href="#catagory">Category</a>--}}
+                        {{--<div class="dropdown-menu">--}}
+                            {{--@foreach ($othercategory as $other)--}}
+                                {{--<a class="dropdown-item"  href="{{route('products.index',[$other->slug])}}">{{$other->name}}</a>--}}
+                            {{--@endforeach--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+                    <li class="dropdown menu-mobile">
+                        <a class="page-scroll dropdown-toggle" href="#catagory"
+                           data-toggle="dropdown">Category<b class="caret"></b></a>
+                        <ul class="dropdown-menu menu-li">
+                            @foreach($othercategory as $other)
+                                <li class="dropdown-item"><a href="{{route('products.index',[$other->slug])}}" class="btn-modal-about">{{$other->name }}</a></li>
+                            @endforeach
+                        </ul>
                     </li>
+                    {{--<li>--}}
+                        {{--<a href="#men">Men</a>--}}
+
+                    {{--</li>--}}
+                    {{--<li><a href="#women">Women</a></li>--}}
+                    <li class="dropdown menu-mobile">
+                        <a class="page-scroll dropdown-toggle" href="#men"
+                           data-toggle="dropdown">Men<b class="caret"></b></a>
+                        <ul class="dropdown-menu menu-li">
+                            @foreach($nameMen as $mencate)
+                                <li class="dropdown-item"><a href="{{route('products.index',[$mencate->slug])}}" class="btn-modal-about">{{$mencate->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="dropdown menu-mobile">
+                        <a class="page-scroll dropdown-toggle" href="#women"
+                           data-toggle="dropdown">Women<b class="caret"></b></a>
+                        <ul class="dropdown-menu menu-li">
+                            @foreach($nameWomen as $womencate)
+                                <li class="dropdown-item"><a href="{{route('products.index',[$womencate->slug])}}" class="btn-modal-about">{{$womencate->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li><a href="#latest">News</a></li>
+                    <li><a href="#latest">Contact</a></li>
+                    <!-- Dropdown -->
+                    {{--<li class="dropdown menu-mobile">--}}
+                        {{--<a class="page-scroll dropdown-toggle" href="#catagory"--}}
+                           {{--data-toggle="dropdown">Category<b class="caret"></b></a>--}}
+                        {{--<ul class="dropdown-menu menu-li">--}}
+                            {{--@foreach($othercategory as $other)--}}
+                                {{--<li class="dropdown-item"><a href="{{route('products.index',[$other->slug])}}" class="btn-modal-about">{{$other->name }}</a></li>--}}
+                            {{--@endforeach--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                 </ul>
                 <div class="headerItem_37vW">
                 <a class="headerCart_3pLj" href="{{url('/orders')}}">
@@ -101,74 +130,23 @@
 <!-- start footer Area -->
 <footer class="footer-area section-gap">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>About Us</h6>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Newsletter</h6>
-                    <p>Stay update with our latest</p>
-                    <div class="" id="mc_embed_signup">
-
-                        <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-
-                            <div class="d-flex flex-row">
-
-                                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-
-
-                                <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                                </div>
-
-                                <!-- <div class="col-lg-4 col-md-4">
-                                    <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-                                </div>  -->
-                            </div>
-                            <div class="info"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget mail-chimp">
-                    <h6 class="mb-20">Instragram Feed</h6>
-                    <ul class="instafeed d-flex flex-wrap">
-                        <li><img src="{{asset('themes/sisterstailor/img/i1.jpg')}}" alt=""></li>
-                        <li><img src="{{asset('themes/sisterstailor/img/i2.jpg')}}" alt=""></li>
-                        <li><img src="{{asset('themes/sisterstailor/img/i3.jpg')}}" alt=""></li>
-                        <li><img src="{{asset('themes/sisterstailor/img/i4.jpg')}}" alt=""></li>
-                        <li><img src="{{asset('themes/sisterstailor/img/i5.jpg')}}" alt=""></li>
-                        <li><img src="{{asset('themes/sisterstailor/img/i6.jpg')}}" alt=""></li>
-                        <li><img src="{{asset('themes/sisterstailor/img/i7.jpg')}}" alt=""></li>
-                        <li><img src="{{asset('themes/sisterstailor/img/i8.jpg')}}" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Follow Us</h6>
-                    <p>Let us be social</p>
-                    <div class="footer-social d-flex align-items-center">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-
+            <div class="footer-des">
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            <p class="footer-text m-0">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+            {{--<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>--}}
+                <h2 style="color:#777777">Sisters Tailor</h2>
+            </br>
+                <address>Add: 60 Bach Dang St, Hoi An, Quang Nam, Viet Nam</address>
+                </br>
+                <p>Tel: +84905 911 432</p>
+            </br>
+                <p>Web: <a class="name-products" href="{{route('homepage')}}">http://sisterstailor.com</a></p>
+                </br>
+                <p>Fb: <a class="name-products" href="https://www.facebook.com/sisterstailor">https://www.facebook.com/sisterstailor</a></p>
+            </br>
+                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </p>
+
+            </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </div>
     </div>
