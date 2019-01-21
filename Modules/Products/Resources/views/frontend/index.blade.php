@@ -35,15 +35,20 @@
                 <section class="lattest-product-area pb-40 category-list">
                     <div class="container">
                         <div class="row product-defail list-c" hidden>
+                            @if ($soluongproducts === 0)
+                            <div class="content">
+                                <h3 style="text-algin:center;">Không có sản phẩm nào</h3>
+                            </div>
+                            @else
                             @foreach ($products as $t)
                                 <div class="col-lg-12">
                                     <div class="single-search-product d-flex">
-                                        @foreach ($t->files()->where('zone','Image')->get() as $file)
-                                            <a title="View detail" href="{{ route('product.detail', [$t->slug]) }}" ><img class="img-list" src="{{$file->path}}" alt=""></a>
+                                        @foreach ($t->files()->where('zone','Hình Ảnh')->get() as $file)
+                                            <a title="View detail" href="{{ route('product.detail',[$t->slug])}}" ><img class="img-list" src="{{$file->path}}" alt=""></a>
                                         @endforeach
 
                                         <div class="price pd-l20">
-                                            <a href="{{ route('product.detail', [$t->slug]) }}" class="title" title="View detail">
+                                            <a href="{{ route('product.detail',[$t->slug])}}" class="title" title="View detail">
                                                 <h5>{{$t->name}}</h5>
                                             </a>
                                             @if ($t->price_discount == '0')
@@ -60,14 +65,15 @@
                                 </div>
 
                             @endforeach
+                                @endif
 
                         </div>
                     </div>
                     <div class="container">
                         <div class="row product-defail gird-c">
-                            @if (sizeof($products) < 0 )
+                            @if ($soluongproducts === 0)
                                 <div class="content">
-                                    <h3 style="text-algin:center;">Không có s?n ph?m nào</h3>
+                                    <h3 style="text-algin:center;">Không có sản phẩm nào</h3>
                                 </div>
                             @else
                                 @foreach ($products as $t)
@@ -75,7 +81,7 @@
                                         <div class="content">
                                             <a href="{{ route('product.detail', [$t->slug]) }}" title="View detail" >
                                                 <div class="content-overlay"></div>
-                                                @foreach ($t->files()->where('zone','Image')->get() as $file)
+                                                @foreach ($t->files()->where('zone','Hình Ảnh')->get() as $file)
                                                     <img class="content-image img-fluid d-block mx-auto" src="{{$file->path}}" alt="">
                                                 @endforeach
                                             </a>
@@ -97,16 +103,9 @@
                                 @endforeach
                             @endif
                         </div>
-
-                        @if ($soluongproducts == 0)
-                            <div class="container">
-                                <div class="row">{{$product_detail->links()}}</div>
-                            </div>
-                        @else
                             <div class="container">
                                 <div class="row">{{$products->links()}}</div>
                             </div>
-                        @endif
                     </div>
                 </section>
                 <!-- End Best Seller -->
@@ -128,7 +127,7 @@
                                     }
                                 }
                                 ?>
-                                <li class="main-nav-list"><a href="{{route('products.index',$m->slug)}}"><span class="lnr lnr-arrow-right"></span>{{$m->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>
+                                <li class="main-nav-list"><a href="{{route('products.index',$m->slug)}}" target="_blank"><span class="lnr lnr-arrow-right"></span>{{$m->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>
                                 <?php }?>
                             </ul>
                         </li>

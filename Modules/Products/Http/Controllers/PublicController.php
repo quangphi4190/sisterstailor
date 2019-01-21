@@ -47,7 +47,7 @@ class PublicController extends BasePublicController {
         // dd($product_detail);
         $soluongproduct_detail = $product_detail->count();
         $products   = Products::where('status',1)->whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->paginate(12);
-        $soluongproducts =   Products::whereIn('category_id',$categoryMen)->count();
+        $soluongproducts =   Products::where('category_id',$slug->id)->count();
         //Menu right
         $childrenMen = Category::where('parent_id','1')->pluck('id');
         $childrenWomen = Category::where('parent_id','2')->pluck('id');
