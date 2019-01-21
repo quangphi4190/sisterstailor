@@ -20,6 +20,7 @@
     <!--
     CSS
     ============================================= -->
+    @yield('link')
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/linearicons.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/nice-select.css')}}">
@@ -96,8 +97,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li><a href="#latest">News</a></li>
-                    <li><a href="#latest">Contact</a></li>
+                    <li><a href="{{route('contact.contacts')}}">Contact</a></li>
                     <!-- Dropdown -->
                     {{--<li class="dropdown menu-mobile">--}}
                         {{--<a class="page-scroll dropdown-toggle" href="#catagory"--}}

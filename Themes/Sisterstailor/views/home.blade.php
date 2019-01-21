@@ -46,12 +46,6 @@
                         @foreach ($fea->files()->where('zone','Hình ảnh')->get() as $files)
                             <img class="content-image img-fluid d-block mx-auto" src="{{$files->path}}" alt="">
                         @endforeach
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="{{route('product.detail',$fea->slug)}}"><span class="lnr lnr-layers"></span></a>
-                                <a href="#" onclick="addCart(2)"><span class="lnr lnr-cart"></span></a>
-                            </div>
-                        </div>
                     </div>
                     <div class="price">
                         <h5><a title="View detail product" class="name-products" href="{{route('product.detail',$fea->slug)}}" >{{$fea->name}}</a></h5>
@@ -89,14 +83,6 @@
                         @foreach ($m->files()->where('zone','Hình Ảnh')->get() as $filemen)
                             <img class="content-image img-fluid d-block mx-auto xx" src="{{$filemen->path}}" alt="">
                         @endforeach
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <!-- <a href="#"><span class="lnr lnr-heart"></span></a> -->
-                                <a href="{{ route('product.detail', [$m->slug]) }}"><span class="lnr lnr-layers"></span></a>
-                                <a href="#" onclick="addCart(2)" ><span class="lnr lnr-cart"></span></a>
-                                <!-- <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a> -->
-                            </div>
-                        </div>
                     </div>
                     <div class="price">
                         <h5 class="text-white"><a title="View detail product" style="color: white" href="{{route('product.detail',$m->slug)}}">{{$m->name}}</a></h5>
@@ -132,12 +118,6 @@
                         @foreach ($w->files()->where('zone','Hình Ảnh')->get() as $filewomen)
                             <img class="content-image img-fluid d-block mx-auto" src="{{$filewomen->path}}" alt="">
                         @endforeach
-                        <div class="content-details fadeIn-bottom">
-                            <div class="bottom d-flex align-items-center justify-content-center">
-                                <a href="{{route('product.detail', [$w->slug])}}"><span class="lnr lnr-layers"></span></a>
-                                <a href="#" onclick="addCart(2)"><span class="lnr lnr-cart"></span></a>
-                            </div>
-                        </div>
                     </div>
                     <div class="price">
                         <h5><a title="View detail" class="name-products" href="{{route('product.detail',$w->slug)}}">{{$w->name}}</a></h5>
