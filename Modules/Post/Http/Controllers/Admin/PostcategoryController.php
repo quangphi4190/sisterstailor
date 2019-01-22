@@ -9,7 +9,8 @@ use Modules\Post\Http\Requests\CreatePostcategoryRequest;
 use Modules\Post\Http\Requests\UpdatePostcategoryRequest;
 use Modules\Post\Repositories\PostcategoryRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
-
+use Illuminate\Support\Facades\Input;
+use DB;
 class PostcategoryController extends AdminBaseController
 {
     /**
@@ -118,11 +119,23 @@ class PostcategoryController extends AdminBaseController
      * @param  Postcategory $postcategory
      * @return Response
      */
-    public function destroy(Postcategory $postcategory)
+    public function destroy(post__postcategories $postcategory)
     {
         $this->postcategory->destroy($postcategory);
 
         return redirect()->route('admin.post.postcategory.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('post::postcategories.title.postcategories')]));
+    }
+
+    public function checkSlug(){
+        $date = date('d-m-Y');
+        $inputs = Input::all();
+        $check= DB::table('post__postcategories')->where('status', 1)->where('slug',$inputs['slug'])->first();
+        if ($check) {
+            $slug =$check->slug.'-'.$date;
+            die(json_encode($slug));
+        } else {
+            die(json_encode(1));
+        }
     }
 }

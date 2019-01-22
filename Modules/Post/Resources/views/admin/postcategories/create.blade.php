@@ -22,7 +22,7 @@
                     <?php $i = 0; ?>
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
-                        <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">                     
+                        <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
                             @include('post::admin.postcategories.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
@@ -65,5 +65,90 @@
                 radioClass: 'iradio_flat-blue'
             });
         });
+
+        /* convet slug */
+        function convertToSlug( str ) {
+
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
+
+            // remove accents, swap ñ for n, etc
+            var from = "àáäâèéëêệìíïîòóöôùúüûñçộđươợếẳứếăạọũảậễầểấờừờớẻắ·/_,:;";
+            var to   = "aaaaeeeeeiiiioooouuuuncoduooeaueaaouaaeaeaouooea------";
+            for (var i=0, l=from.length ; i<l ; i++) {
+                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
+
+
+            $.ajax({
+                type: 'POST',
+                url: route('admin.post.postcategories.checkSlug'),
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    slug: str
+                },
+                success: function(data) {
+                    if(data == 1){
+                        $('#slug-text').val(str);
+                    }else {
+                        data = $.parseJSON(data);
+                        $('#slug-text').val(data);
+                    }
+
+                },
+                error: function () {
+
+                }
+            });
+
+
+            //return str;
+        }
+
+        function convertToSlug( str ) {
+
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
+
+            // remove accents, swap ñ for n, etc
+            var from = "àáäâèéëêệìíïîòóöôùúüûñçộđươợếẳứếăạọũảậễầểấờừờớẻắoã·/_,:;";
+            var to   = "aaaaeeeeeiiiioooouuuuncoduooeaueaaouaaeaeaouooeaoa------";
+            for (var i=0, l=from.length ; i<l ; i++) {
+                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
+
+            var slug = $('#slug-text').val();
+            $.ajax({
+                type: 'POST',
+                url: route('admin.post.postcategories.checkSlug'),
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    slug: str
+                },
+                success: function(data) {
+                    if(data == 1){
+                        $('#slug-text').val(str);
+                    }else {
+                        data = $.parseJSON(data);
+                        $('#slug-text').val(data);
+                    }
+
+                },
+                error: function () {
+
+                }
+            });
+
+
+            //return str;
+        }
     </script>
 @endpush

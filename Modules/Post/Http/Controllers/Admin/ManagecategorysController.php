@@ -121,4 +121,15 @@ class ManagecategorysController extends AdminBaseController
         $postCategorys = DB::table('post__postcategories')->where('status', 1)->get();
         die(json_encode($postCategorys));
     }
+     public function checkSlug(){
+        $date = date('d-m-Y');
+         $inputs = Input::all();
+         $check= DB::table('post__managecategorys')->where('status', 1)->where('slug',$inputs['slug'])->first();
+         if ($check) {
+             $slug =$check->slug.'-'.$date;
+             die(json_encode($slug));
+         } else {
+             die(json_encode(1));
+         }
+     }
 }
