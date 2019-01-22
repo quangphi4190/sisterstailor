@@ -13,13 +13,13 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
                     <a href="{{ route('admin.contact.contact.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('contact::contacts.button.create contact') }}
                     </a>
                 </div>
-            </div>
+            </div> -->
             <div class="box box-primary">
                 <div class="box-header">
                 </div>
@@ -29,22 +29,47 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>STT</th>
+                                <th>Họ và Tên</th>
+                                <th>Số Điện Thoại</th>
+                                <th>E-Mail</th>
+                                <th>Nội Dung</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($contacts)): ?>
+                            <?php if (isset($contacts)): $stt=1; ?>
                             <?php foreach ($contacts as $contact): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}">
-                                        {{ $contact->created_at }}
-                                    </a>
+                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
+                                        {{$stt++}}
+                                    <!-- </a> -->
+                                </td>
+                                <td>
+                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
+                                        {{$contact->first_name . $contact->last_name}}
+                                    <!-- </a> -->
+                                </td>
+                                <td>
+                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
+                                        {{$contact->phone}}
+                                    <!-- </a> -->
+                                </td>
+                            
+                                <td>
+                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
+                                        {{$contact->email}}
+                                    <!-- </a> -->
+                                </td>
+                                <td>
+                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
+                                        {{$contact->description}}
+                                    <!-- </a> -->
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a> -->
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.contact.contact.destroy', [$contact->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
@@ -52,12 +77,6 @@
                             <?php endforeach; ?>
                             <?php endif; ?>
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr>
-                            </tfoot>
                         </table>
                         <!-- /.box-body -->
                     </div>
@@ -99,7 +118,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "asc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }

@@ -31,9 +31,9 @@ class ContactController extends AdminBaseController
      */
     public function index()
     {
-        //$contacts = $this->contact->all();
+        $contacts = $this->contact->all();
 
-        return view('contact::admin.contacts.index', compact(''));
+        return view('contact::admin.contacts.index', compact('contacts'));
     }
 
     /**
