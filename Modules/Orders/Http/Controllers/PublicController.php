@@ -30,7 +30,7 @@ class PublicController extends BasePublicController {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index() {
-     $countCart =3;
+     $countCart =0;
      $category = Category::whereIn('id', [1, 2])->get();
       return view( 'orders::client.index',compact('countCart','category'));
     }

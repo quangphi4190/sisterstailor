@@ -64,3 +64,20 @@
 .pd-t10 {
     padding-top: 10px;
 }
+.mg-b50 {
+    margin-bottom: 50px;
+}
+.w-img {
+    width: 200px;
+    max-width: 200px!important;
+}
+.active-menu {
+    color: #f41068!important;
+    font-weight: bold;
+}
+.cl-h {
+    color: #007bff;
+}
+.mg-b10 {
+    margin-bottom: 10px!important;
+}

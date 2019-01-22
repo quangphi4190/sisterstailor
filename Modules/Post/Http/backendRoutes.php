@@ -76,4 +76,14 @@ $router->group(['prefix' =>'/post'], function (Router $router) {
         'as' => 'admin.post.managecategorys.addCategory',
         'uses' => 'ManagecategorysController@addCategory'
     ]);
+
+    $router->post('managecategorys/checkSlug', [
+        'as' => 'admin.post.managecategorys.checkSlug',
+        'uses' => 'ManagecategorysController@checkSlug'
+    ]);
+
+    $router->post('postcategories/checkSlug', [
+        'as' => 'admin.post.postcategories.checkSlug',
+        'uses' => 'PostcategoryController@checkSlug'
+    ]);
 });

@@ -60,6 +60,7 @@
                     <li><a href="#men">Men</a></li>
                     <li><a href="#women">Women</a></li>
                     <li><a href="#latest">latest</a></li>
+                    <li><a href="{{route('news')}}">News</a></li>
                     <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

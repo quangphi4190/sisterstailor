@@ -71,7 +71,7 @@
                 <div class="menu-content pb-40">
                     <div class="title text-center">
                         <h1 class="text-white mb-10">New realeased Products for Men</h1>
-                    </div>
+                    </div>Featured Products
                 </div>
             </div>
             <div class="row">

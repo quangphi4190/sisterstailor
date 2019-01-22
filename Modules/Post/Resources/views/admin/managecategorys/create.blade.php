@@ -132,6 +132,51 @@
                     });
                 }
             });
-          });      
+          });
+
+        /* convet slug */
+        function convertToSlug( str ) {
+
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
+
+            // remove accents, swap ñ for n, etc
+            var from = "àáäâèéëêệìíïîòóöôùúüûñçộđươợếẳứếăạọũảậễầểấờừờớẻắ·/_,:;";
+            var to   = "aaaaeeeeeiiiioooouuuuncoduooeaueaaouaaeaeaouooea------";
+            for (var i=0, l=from.length ; i<l ; i++) {
+                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
+
+            var slug = $('#slug-text').val();
+            $.ajax({
+                type: 'POST',
+                url: route('admin.post.managecategorys.checkSlug'),
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    slug: str
+                },
+                success: function(data) {console.log('21312321');
+                    if(data == 1){
+                        $('#slug-text').val(str);
+                    }else {
+                        data = $.parseJSON(data);
+                        $('#slug-text').val(data);
+                    }
+
+                },
+                error: function () {
+
+                }
+            });
+
+
+            //return str;
+        }
+
     </script>
+
 @endpush

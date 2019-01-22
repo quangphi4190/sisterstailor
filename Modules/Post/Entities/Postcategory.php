@@ -13,6 +13,7 @@ class Postcategory extends Model
     public $translatedAttributes = [];
     protected $fillable = [
         'name',
+        'slug',
         'status'
     ];
 }
