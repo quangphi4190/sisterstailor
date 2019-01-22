@@ -35,6 +35,7 @@ class ProductsController extends AdminBaseController
     {
         $products = $this->products->all();
         $categories =   Category::all();
+
         return view('products::admin.products.index',compact('products','categories'));
     }
 
@@ -45,9 +46,21 @@ class ProductsController extends AdminBaseController
      */
     public function create()
     {
+
         $products = new Products();
-        $categories =   Category::all();
-        return view('products::admin.products.create',compact('products','categories'));
+        $categories =   Category::where('parent_id',Null)->get();
+        $categoriesChidren = Category::where('parent_id',Null)->pluck('id');
+        $categoryAll = Category::whereIn('parent_id',$categoriesChidren)->get();
+        $check = $categories;
+
+        foreach ($categories as $key => $childer){
+            $check[$key]['child'] = $this->check($childer->id);
+        }
+        return view('products::admin.products.create',compact('products','categories','categoryAll','categoryOther'));
+    }
+    public function check($id){
+        $soluong = Category::where('parent_id',$id)->get()->count();
+        return $soluong > 0;
     }
 
     /**
@@ -75,7 +88,7 @@ class ProductsController extends AdminBaseController
         if ($price <= $disprice){
             return redirect()->back()->withErrors('Giá khuyến mãi phải thấp hơn Đơn giá,vui lòng kiểm tra lại');
         }
-        $this->products->create($request->all());
+        $this->products->create($data);
 
         return redirect()->route('admin.products.products.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('products::products.title.products')]));
