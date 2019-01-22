@@ -14,8 +14,8 @@
     <!-- End banner Area -->
 
     <!-- Start category Area -->
-<?php $img = $product_detail->files()->where('zone','Image')->first();?>
-<?php $img_other = $product_detail->files()->where('zone','Image_Other')->first();?>
+<?php $img = $product_detail->files()->where('zone','Hình Ảnh')->first();?>
+<?php $img_other = $product_detail->files()->where('zone','Hình Ảnh Khác')->first();?>
 <!-- Container for the image gallery -->
 <div class="container mr-b60">
     <div class="product-quick-view">
@@ -106,7 +106,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
 
                         <div class="single-search-product d-flex">
-                            @foreach ($category_for_id->files()->where('zone','Image')->get() as $fileID)
+                            @foreach ($category_for_id->files()->where('zone','Hình Ảnh')->get() as $fileID)
                                 <a href="{{ route('product.detail', [$category_for_id->slug]) }}"><img class="h80" title="View detail" src="{!! $fileID->path !!}" alt=""></a>
                             @endforeach
                             <div class="desc">
