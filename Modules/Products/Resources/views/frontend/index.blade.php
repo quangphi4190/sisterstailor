@@ -18,7 +18,7 @@
                 <div class="filter-bar d-flex flex-wrap align-items-center">
                     <a onclick="girdFunction()"class="grid-btn active"><i class="fa fa-th" aria-hidden="true"></i></a>
                     <a class="list-btn" onclick="listFunction()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
-                    <div class="sorting">
+                    <!-- <div class="sorting">
                         <form method="post"  >
                             <select name="slug">
                                 <option value="{{$defen}}">All Products</option>
@@ -28,7 +28,7 @@
                                 @endforeach
                             </select>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- End Filter Bar -->
                 <!-- Start Best Seller -->

@@ -23,13 +23,14 @@
     @yield('link')
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/linearicons.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/nice-select.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/nice-select.css')}}"> -->
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/ion.rangeSlider.css')}}" />
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/ion.rangeSlider.skinFlat.css')}}" />
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('themes/sisterstailor/css/style.css')}}">
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 </head>
 <body>
 
@@ -112,6 +113,7 @@
 </header>
 <!-- End Header Area -->
 @yield('content')
+@include('sweetalert::alert')
 <!-- start banner Area -->
 
 <!-- End brand Area -->

@@ -43,9 +43,9 @@ class PublicController extends BasePublicController {
         $categoryMen = Category::where('parent_id',$slug->id)->pluck('id');
         $nameCategory = Category::where('parent_id',$slug->id)->get();
         $category = Category::where('id','1')->orwhere('id','2')->get();
-        $product_detail = Products::where('category_id',$slug->id)->where('status',1)->paginate(12);
+        // $product_detail = Products::where('category_id',$slug->id)->where('status',1)->paginate(12);
         // dd($product_detail);
-        $soluongproduct_detail = $product_detail->count();
+        // $soluongproduct_detail = $product_detail->count();
         $products   = Products::where('status',1)->whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->paginate(12);
         $soluongproducts =   Products::where('category_id',$slug->id)->count();
         //Menu right
@@ -53,15 +53,15 @@ class PublicController extends BasePublicController {
         $childrenWomen = Category::where('parent_id','2')->pluck('id');
         $nameMen = Category::where('parent_id','1')->get();
         $nameWomen = Category::where('parent_id','2')->get();
-        $productsMen = Products::whereIn('category_id',$childrenMen)->Orwhere('category_id','1')->get();
+        $productsMen = Products::where('status',1)->whereIn('category_id',$childrenMen)->Orwhere('category_id','1')->get();
         $soluongMen = $productsMen->count();
         // dd($soluongMen);
 
 
-        $productsWomen = Products::whereIn('category_id',$childrenWomen)->Orwhere('category_id','2')->get();
+        $productsWomen = Products::where('status',1)->whereIn('category_id',$childrenWomen)->Orwhere('category_id','2')->get();
         $soluongWomen = $productsWomen->count();
 
-        return view( 'products::frontend.index',compact('soluongproductsother','productother','othercategory','slug','nameMen','defen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproduct_detail','soluongproducts','countCart','nameCategory','category','product_detail'));
+        return view( 'products::frontend.index',compact('soluongproductsother','productother','othercategory','slug','nameMen','defen','soluongWomen','productsWomen','soluongMen','productsMen','nameWomen','products','childrenWomen','childrenMen','soluongproducts','countCart','nameCategory','category'));
     }
 
     /**
