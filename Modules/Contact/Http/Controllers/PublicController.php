@@ -43,7 +43,7 @@ class PublicController extends BasePublicController
 
     public function postContact(CreateContactRequest $request){
         $this->contact->create($request->all());
-        alert()->success('Góp Ý Thành Công', 'Successfully')->autoClose(100000);
+        alert()->success('Cảm Ơn Góp Ý Của Bạn', 'Successfully')->autoClose(100000);
         return redirect('/');
     }
 }

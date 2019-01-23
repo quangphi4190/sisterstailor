@@ -114,8 +114,12 @@
                 <div class="sidebar-categories">
                     <div class="head">Categories</div>
                     <ul class="main-categories">
-                        <li class="main-nav-list"><a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable"><span class="lnr lnr-arrow-right"></span>Men<span class="number">{{$soluongMen}}</span></a>
-                            <ul class="collapse" id="fruitsVegetable" data-toggle="collapse" aria-expanded="false" aria-controls="fruitsVegetable">
+                    @foreach ($category as $Men)
+                    @if ($Men->id == 1)
+                        <li class="main-nav-list category-defail"><a href="{{route('products.index',$Men->slug)}}">Men<span class="number">{{$soluongMen}}</span></a>
+                    @endif
+                    @endforeach   
+                            <ul id="fruitsVegetable">
                                 <?php $sl = 0;
                                 foreach ($nameMen as $m){
                                 $tong =0;
@@ -131,13 +135,16 @@
                                 <?php }?>
                             </ul>
                         </li>
-
-                        <li class="main-nav-list"><a data-toggle="collapse" href="#meatFish" aria-expanded="false" aria-controls="meatFish"><span class="lnr lnr-arrow-right"></span>Women<span class="number">{{$soluongWomen}}</span></a>
-                            <ul class="collapse" id="meatFish" data-toggle="collapse" aria-expanded="false" aria-controls="meatFish">
+                    @foreach ($category as $Women) 
+                        @if ($Women->id == 2)                   
+                        <li class="main-nav-list category-defail"><a href="{{route('products.index',$Women->slug)}}" >Women<span class="number">{{$soluongWomen}}</span></a>
+                        @endif
+                    @endforeach    
+                            <ul id="meatFish">
                                 <?php
                                 foreach ($nameWomen as $w){
                                 $tong =0;
-                                for ($i=0;$i<$soluongWomen;$i++){
+                                for ($i=0;$i<=$soluongWomen;$i++){
                                     if (isset($productsWomen[$i])){
                                         if ($w->id == $productsWomen[$i]['category_id']){
                                             $tong++;
@@ -149,8 +156,8 @@
                                 <?php }?>
                             </ul>
                         </li>
-                        <li class="main-nav-list"><a data-toggle="collapse" href="#cooking" aria-expanded="false" aria-controls="cooking"><span class="lnr lnr-arrow-right"></span>Other Category<span class="number">{{$soluongproductsother}}</span></a>
-                            <ul class="collapse" id="cooking" data-toggle="collapse" aria-expanded="false" aria-controls="cooking">
+                        <li class="main-nav-list category-defail"><a data-toggle="collapse" href="#cooking" aria-expanded="false" aria-controls="cooking" >Other Category<span class="number">{{$soluongproductsother}}</span></a>
+                            <ul id="cooking">
                                 <?php
                                 foreach ($othercategory as $other){
                                 $tong =0;

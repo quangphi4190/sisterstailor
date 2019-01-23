@@ -81,3 +81,9 @@
 .mg-b10 {
     margin-bottom: 10px!important;
 }
+.category-defail>a {
+    font-size: 1.2em!important;
+}
+.sidebar-categories .head {
+    font-size: 20px !important;
+}

@@ -47,7 +47,7 @@ class ProductsController extends AdminBaseController
     public function create()
     {
 
-        $products = new Products();
+//        $products = new Products();
         $categories =   Category::where('parent_id',Null)->get();
         $categoriesChidren = Category::where('parent_id',Null)->pluck('id');
         $categoryAll = Category::whereIn('parent_id',$categoriesChidren)->get();
@@ -56,7 +56,7 @@ class ProductsController extends AdminBaseController
         foreach ($categories as $key => $childer){
             $check[$key]['child'] = $this->check($childer->id);
         }
-        return view('products::admin.products.create',compact('products','categories','categoryAll','categoryOther'));
+        return view('products::admin.products.create',compact('categories','categoryAll','categoryOther'));
     }
     public function check($id){
         $soluong = Category::where('parent_id',$id)->get()->count();
@@ -102,9 +102,17 @@ class ProductsController extends AdminBaseController
      */
     public function edit(Products $products)
     {
+        $categories =   Category::where('parent_id',Null)->get();
+        $categoriesChidren = Category::where('parent_id',Null)->pluck('id');
+        $categoryAll = Category::whereIn('parent_id',$categoriesChidren)->get();
+        $check = $categories;
+
+        foreach ($categories as $key => $childer){
+            $check[$key]['child'] = $this->check($childer->id);
+        }
         $status = $products->status ? $products->status: '';
-        $category = Category::where('id',$products->category_id)->get();
-        return view('products::admin.products.edit', compact('products','status','category'));
+        $category = Category::where('id',$products->category_id)->first();
+        return view('products::admin.products.edit', compact('categoryAll','categories','products','status','category'));
     }
 
     /**
