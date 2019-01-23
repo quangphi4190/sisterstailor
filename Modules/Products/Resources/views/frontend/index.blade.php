@@ -156,7 +156,7 @@
                                 <?php }?>
                             </ul>
                         </li>
-                        <li class="main-nav-list category-defail"><a data-toggle="collapse" href="#cooking" aria-expanded="false" aria-controls="cooking" >Other Category<span class="number">{{$soluongproductsother}}</span></a>
+                        <li class="main-nav-list category-defail"><a href="" aria-expanded="false" aria-controls="cooking" >Other Category<span class="number">{{$soluongproductsother}}</span></a>
                             <ul id="cooking">
                                 <?php
                                 foreach ($othercategory as $other){
