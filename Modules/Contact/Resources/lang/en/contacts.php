@@ -6,7 +6,7 @@ return [
     'edit resource' => 'Edit contacts',
     'destroy resource' => 'Destroy contacts',
     'title' => [
-        'contacts' => 'Góp Ý Khách Hàng',
+        'contacts' => 'Liên Hệ Khách Hàng',
         'create contact' => 'Create a contact',
         'edit contact' => 'Edit a contact',
     ],

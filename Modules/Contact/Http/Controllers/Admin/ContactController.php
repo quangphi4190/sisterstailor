@@ -4,6 +4,7 @@ namespace Modules\Contact\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
 use Modules\Contact\Entities\Contact;
 use Modules\Contact\Http\Requests\CreateContactRequest;
 use Modules\Contact\Http\Requests\UpdateContactRequest;
@@ -98,5 +99,11 @@ class ContactController extends AdminBaseController
 
         return redirect()->route('admin.contact.contact.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('contact::contacts.title.contacts')]));
+    }
+
+    public function get_info(){
+        $contactId = Input::get('id','');
+        $contact = Contact::where('id',$contactId)->first();
+        return view('contact::admin.contacts.modal-info-contact',compact('contact'));
     }
 }

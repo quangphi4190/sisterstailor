@@ -37,6 +37,10 @@ $router->group(['prefix' =>'/contact'], function (Router $router) {
         'uses' => 'ContactController@destroy',
         'middleware' => 'can:contact.contacts.destroy'
     ]);
+    $router->post('contact/get_info',[
+        'as'    =>  'contact.get_info',
+        'uses'  =>  'ContactController@get_info'
+    ]);
 // append
 
 });

@@ -41,7 +41,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <ul class="list">
                     <li><a href="tel:+84905 911 432">+84905 911 432</a></li>
-                    <li><a href="http://facebook.com/sisterstailor">support@colorlib.com</a></li>
+                    <li><a href="http://facebook.com/sisterstailor">facebook.com/sisterstailor</a></li>
                 </ul>
 
             </div>            
@@ -50,7 +50,7 @@
     <nav class="navbar navbar-expand-lg  navbar-light">
         <div class="container">
             <a class="navbar-brand" href="{{route('homepage')}}">
-                <img src="{{asset('themes/sisterstailor/img/logo.png')}}" alt="">
+                <img src="{{asset('themes/sisterstailor/img/logo_st.png')}}" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -59,15 +59,6 @@
                 <ul class="navbar-nav">
                     <li><a href="{{route('homepage')}}">Home</a></li>
                     <!-- Dropdown -->
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Pages
-                        </a>
-                        <div class="dropdown-menu">
-                        @foreach ($category as $categories)
-                            <a class="dropdown-item"  href="{{route('products.index',[$categories->slug])}}">{{$categories->name}}</a>
-                        @endforeach
-                        </div>
                     <li class="dropdown menu-mobile">
                         <a class="page-scroll dropdown-toggle" href="#catagory"
                            data-toggle="dropdown">Category<b class="caret"></b></a>
@@ -154,16 +145,5 @@
 <script src="{{asset('themes/sisterstailor/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/main.js')}}"></script>
-<script type="text/javascript">
-		$(document).ready(function(){
-			$('select[name="slug"]').change(function(){ 
-                var url = '{{route("products.product.get_slug")}}';
-				var token = '{{ csrf_token() }}';
-				$.post(url,{slug:$(this).val(), _token:token},function(data){
-					$('.product-defail').html(data);
-				});
-			});
-		});
-	</script>
 </body>
 </html>

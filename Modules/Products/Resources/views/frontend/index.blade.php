@@ -5,7 +5,7 @@
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
                 <div class="col-first">
-                    <h1>Shop Fashion {{$slug->name}}</h1>
+                    <h1>Category {{$slug->name}}</h1>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                         <div class="row product-defail list-c" hidden>
                             @if ($soluongproducts === 0)
                             <div class="content">
-                                <h3 style="text-algin:center;">Không có sản phẩm nào</h3>
+                                <h3 style="text-algin:center;">No Products</h3>
                             </div>
                             @else
                             @foreach ($products as $t)
@@ -73,7 +73,7 @@
                         <div class="row product-defail gird-c">
                             @if ($soluongproducts === 0)
                                 <div class="content">
-                                    <h3 style="text-algin:center;">Không có sản phẩm nào</h3>
+                                    <h3 style="text-algin:center;">No Products</h3>
                                 </div>
                             @else
                                 @foreach ($products as $t)

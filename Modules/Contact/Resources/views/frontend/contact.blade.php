@@ -59,7 +59,7 @@
                 <div class="container-contact100-form-btn">
                     <button class="contact100-form-btn" type="submit">
 						<span>
-							Submit
+							Send
 							<i class="fa fa-arrow-right" aria-hidden="true"></i>
 						</span>
                     </button>
