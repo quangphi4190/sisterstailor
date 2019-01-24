@@ -37,24 +37,24 @@ use Modules\Post\Entities\Managecategorys;
 
                 </section>
                 <!-- End Best Seller -->
+                <?php if(sizeof($listCategorys)>0){?>
                     <div class="billing-form mg-b50">
                         <div class="row">
                             <div class="col-12">
                                 <div class="order-wrapper mt-50">
                                     <h3 class="billing-title mb-10">News with categories</h3>
                                     <div class="order-list">
-                                        <?php if($listCategorys){?>
-                                            <?php foreach ($listCategorys as $list){?>
-                                                <div class="d-flex justify-content-between">
-                                                    <a href="{{ route('slugCategory.detail', [$list->slug]) }}" title="{{$list->name}}" class="circle arrow"><span class="lnr lnr-arrow-right"></span> {{$list->name}}</a>
-                                                </div>
-                                            <?php }?>
+                                        <?php foreach ($listCategorys as $list){?>
+                                            <div class="d-flex justify-content-between">
+                                                <a href="{{ route('slugCategory.detail', [$list->slug]) }}" title="{{$list->name}}" class="circle arrow"><span class="lnr lnr-arrow-right"></span> {{$list->name}}</a>
+                                            </div>
                                         <?php }?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                <?php }?>
                 </div>
 
 
