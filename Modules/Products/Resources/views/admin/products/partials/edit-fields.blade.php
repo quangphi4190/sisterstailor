@@ -6,13 +6,26 @@
         <label for="state_id">Loại Sản Phẩm</label>
         <select id="category_id" name="category_id" class="form-control">
             <option value="{{$products->category_id}}">{{$category->name}}</option>
-            @foreach($categories as $c)
-                <option value="{{$c->id}}"<?php echo $c->child == true ? 'disabled' : '' ?> >{{$c->name}}</option>
-                @foreach($categoryAll as $all)
-                    @if ($all->parent_id == $c->id)
-                        <option value="{{$all->id}}">--{{$all->name}}</option>
-                    @endif
-                @endforeach
+            <option value=""disabled >Men</option>
+            @foreach($categoriesMen as $c)
+            @if ($c->id == $products->category_id)
+            @else
+            <option value="{{$c->id}}">--{{$c->name}}</option>
+            @endif
+            @endforeach
+            <option value=""disabled >Women</option>
+            @foreach($categoriesWomen as $w)
+            @if ($w->id == $products->category_id)
+            @else
+            <option value="{{$w->id}}">--{{$w->name}}</option>
+            @endif
+            @endforeach
+            <option value=""disabled >Other</option>
+            @foreach($categoriesOrther as $o)
+            @if ($o->id == $products->category_id)
+            @else
+            <option value="{{$o->id}}">--{{$o->name}}</option>
+            @endif
             @endforeach
         </select>
     </div>
