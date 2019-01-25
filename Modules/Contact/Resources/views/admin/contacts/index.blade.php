@@ -33,6 +33,7 @@
                                 <th>Họ và Tên</th>
                                 <th>Số Điện Thoại</th>
                                 <th>E-Mail</th>
+                                <th>Thời Gian Gửi</th>
                                 <th>Trạng Thái</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
@@ -42,15 +43,10 @@
                             <?php foreach ($contacts as $contact): ?>
                             <tr>
                                 <td>
-                                    {{--<a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}">--}}
                                         {{$stt++}}
-                                    {{--</a>--}}
-
                                 </td>
                                 <td>
-                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
                                         {{$contact->first_name . $contact->last_name}}
-                                    <!-- </a> -->
                                 </td>
                                 <td>
                                     <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
@@ -62,6 +58,9 @@
                                     <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
                                         {{$contact->email}}
                                     <!-- </a> -->
+                                </td>
+                                <td>
+                                    {{date_format($contact->created_at,"H:i:s d/m/Y")}}
                                 </td>
                                 <td>
                                 @if ($contact->status == 2)
