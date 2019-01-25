@@ -33,7 +33,7 @@
                                 <th>Họ và Tên</th>
                                 <th>Số Điện Thoại</th>
                                 <th>E-Mail</th>
-                                <th>Nội Dung</th>
+                                <th>Trạng Thái</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -64,9 +64,11 @@
                                     <!-- </a> -->
                                 </td>
                                 <td>
-                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
-                                        {{$contact->description}}
-                                    <!-- </a> -->
+                                @if ($contact->status == 2)
+                                    Đã Xem
+                                    @else
+                                    Chưa Xem
+                                    @endif                                    
                                 </td>
                                 <td>
                                     <div class="btn-group">
@@ -116,22 +118,6 @@
             $('.modalInfo').modal('show');
         });
     };
-
-        // view info
-        // $('#viewInfoCusomer').click(function () {
-        //     // lấy id
-        //     var url= route('admin.invoices.invoice.modal-info-customer');
-        //     var id = $('.view-customer').val();
-        //     alert(id);
-            {{--var token = '{{ csrf_token() }}';--}}
-            {{--$.post(url,{'id':id,'_token':token}, function(data) {--}}
-            {{--$('.modalInfo .modal-body').html(data);--}}
-
-            {{--$('.modalInfo .modal-body').show();--}}
-            {{--$('.modalInfo').modal('show');--}}
-            {{--});--}}
-
-        // });
         </script>
 @stop
 

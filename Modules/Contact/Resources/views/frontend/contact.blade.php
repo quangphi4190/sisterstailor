@@ -55,7 +55,7 @@
                     <textarea id="message" class="input100" name="description" placeholder="Please enter your comments..."></textarea>
                     <span class="focus-input100"></span>
                 </div>
-
+                <input type="hidden" name="status" value="1" hidden>   
                 <div class="container-contact100-form-btn">
                     <button class="contact100-form-btn" type="submit">
 						<span>

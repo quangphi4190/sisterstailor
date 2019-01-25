@@ -101,9 +101,14 @@ class ContactController extends AdminBaseController
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('contact::contacts.title.contacts')]));
     }
 
-    public function get_info(){
+    public function get_info(Contact $contact, UpdateContactRequest $request){
         $contactId = Input::get('id','');
-        $contact = Contact::where('id',$contactId)->first();
-        return view('contact::admin.contacts.modal-info-contact',compact('contact'));
+        $contactdefail = Contact::where('id',$contactId)->first();
+        $update = Contact::findorFail($contactId);
+        $data = $request->all();
+        $data['status'] = '2';
+        $this->contact->update($update, $data);
+        
+        return view('contact::admin.contacts.modal-info-contact',compact('contactdefail'));
     }
 }

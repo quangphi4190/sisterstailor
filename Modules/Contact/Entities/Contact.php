@@ -11,5 +11,5 @@ class Contact extends Model
 
     protected $table = 'contact__contacts';
     public $translatedAttributes = [];
-    protected $fillable = ['first_name','last_name','address','email','phone','description'];
+    protected $fillable = ['first_name','last_name','address','email','phone','description','status'];
 }
