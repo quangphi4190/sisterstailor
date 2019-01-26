@@ -14,7 +14,8 @@ return [
         'email order' =>  'Email',
         'address' => 'Địa chỉ',
         'total' => 'Tổng tiền',
-        'note' => 'Ghi chú'
+        'note' => 'Ghi chú',
+        'date_order' => 'Ngày đặt hàng'
      ],
     'button' => [
         'create order' => 'Create a order',

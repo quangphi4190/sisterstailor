@@ -36,50 +36,62 @@
                                 <th>{{ trans('orders::orders.title.address') }}</th>
                                 <th>{{ trans('orders::orders.title.total') }}</th>
                                 <th>{{ trans('orders::orders.title.note') }}</th>
+                                <th>{{ trans('orders::orders.title.date_order') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($orders)):$i=1 ?>
-                            <?php foreach ($orders as $order): ?>
+                            <?php if (isset($orders)):$i=1;$total =0; ?>
+                            <?php foreach ($orders as $order):
+
+                            $total = $total + $order->total;
+                            ?>
                             <tr>
                                 <td>
                                     {{$i++}}
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
                                         {{ $order->name }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
                                         {{ $order->sdt }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
                                         {{ $order->email }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
+                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
                                         {{ $order->address }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->total }}
+                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                        ${{number_format($order->total,1,'.',',') }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.edit', [$order->id]) }}">
-                                        {{ $order->note }}
+                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                        {{ $order->notes }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                        {{ date('d/m/Y', strtotime(str_replace('/', '-', $order->created_at)))  }}
+                                        <span class="label label-lg label-info">
+                                        {{ date('H:i', strtotime(str_replace('/', '-', $order->created_at))) }}
+                                        </span>
                                     </a>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.orders.order.view', [$order->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{ route('admin.orders.order.edit', [$order->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <button type="button" class="btn btn-secondary" onclick="detailOrders({{$order->id}})"><i class="fa fa-eye" aria-hidden="true">
+                                            </i></button>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.orders.order.destroy', [$order->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
@@ -87,12 +99,12 @@
                             <?php endforeach; ?>
                             <?php endif; ?>
                             </tbody>
-                            <tfoot>
-                            <!-- <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
-                            </tr> -->
-                            </tfoot>
+                            {{--<tfoot>--}}
+                                {{--<tr>--}}
+                                    {{--<th colspan="5" class="text-right">Tổng tiền</th>--}}
+                                    {{--<th colspan="3" class="text-left"></th>--}}
+                                {{--</tr>--}}
+                            {{--</tfoot>--}}
                         </table>
                         <!-- /.box-body -->
                     </div>
@@ -102,8 +114,37 @@
         </div>
     </div>
     @include('core::partials.delete-modal')
+    <script type="text/javascript">
+        function detailOrders($id){
+            var token = '{{ csrf_token() }}';
+            var orderID = $id;
+            var url= route('order.view_detail')
+            $.post(url,{'id':orderID,'_token':token}, function(data) {
+                $('.modalInfo .modal-body').html(data);
+                $('.modalInfo .modal-body').show();
+                $('.modalInfo').modal('show');
+            });
+        };
+    </script>
 @stop
 
+<div class="modal fade modalInfo" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header c-header">
+                <h5 class="modal-title c-text" id="exampleModalLongTitle">Chi tiết đơn hàng</h5>
+                <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section('footer')
     <a data-toggle="modal" data-target="#keyboardShortcutsModal"><i class="fa fa-keyboard-o"></i></a> &nbsp;
 @stop

@@ -5,11 +5,12 @@ namespace Modules\Orders\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Orders\Entities\Order;
+use Modules\Orders\Entities\Order_details;
 use Modules\Orders\Http\Requests\CreateOrderRequest;
 use Modules\Orders\Http\Requests\UpdateOrderRequest;
 use Modules\Orders\Repositories\OrderRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
-
+use Illuminate\Support\Facades\Input;
 class OrderController extends AdminBaseController
 {
     /**
@@ -31,9 +32,9 @@ class OrderController extends AdminBaseController
      */
     public function index()
     {
-        //$orders = $this->order->all();
+        $orders = $this->order->all();
 
-        return view('orders::admin.orders.index', compact(''));
+        return view('orders::admin.orders.index', compact('orders'));
     }
 
     /**
@@ -98,5 +99,15 @@ class OrderController extends AdminBaseController
 
         return redirect()->route('admin.orders.order.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('orders::orders.title.orders')]));
+    }
+
+    public function view_detail(){
+        $orderId = Input::get('id','');
+        $order = Order::where('id',$orderId)->first();
+        $order_defails = Order_details::select('orders__orders.*','orders__order_details.*','products__products.name as nameProduct')->where('order_id',$orderId)
+            ->leftjoin('orders__orders', 'orders__orders.id', '=', 'orders__order_details.order_id')
+            ->leftjoin('products__products', 'products__products.id', '=', 'orders__order_details.product_id')->get();
+
+        return view('orders::admin.orders.modal-view-detail',compact('order','order_defails'));
     }
 }
