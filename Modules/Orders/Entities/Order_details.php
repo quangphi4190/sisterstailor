@@ -11,5 +11,5 @@ class Order_details extends Model
 
     protected $table = 'orders__order_details';
     public $translatedAttributes = [];
-    protected $fillable = [];
+    protected $fillable = ['id','product_id','price','quantity'];
 }

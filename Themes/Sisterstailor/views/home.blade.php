@@ -140,27 +140,4 @@
     <!-- End Count Down Area -->
 
     <!-- Start related-product Area -->
-
-<script>
-function addCart($cartId) {
-    var cartID =$cartId;
-    $.ajax({
-        type: "POST",
-        url: '{{route('admin.page.page.addCart')}}',
-        data: {
-            _token: '{{ csrf_token() }}',
-            cartID: cartID,            
-                 
-        },
-        success: function(data) {          
-            let numberCart =1;    
-            $('.badgeNumber_ebbk').html(numberCart);
-        },
-        error: function () {
-           
-        }
-    });
-   
-}
-</script>
 @stop

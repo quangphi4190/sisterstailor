@@ -95,7 +95,7 @@
                     <svg viewBox="0 0 24 24" width="1em" height="1em" class="undefined icon-large icon-inverse">
                         <path fill-rule="evenodd" d="M8 18c-1.104 0-1.99.895-1.99 2 0 1.104.886 2 1.99 2a2 2 0 0 0 0-4m10 0c-1.104 0-1.99.895-1.99 2 0 1.104.886 2 1.99 2a2 2 0 0 0 0-4M4 2H1.999v1.999H4l3.598 7.588-1.353 2.451A2 2 0 0 0 8 17h12v-2H8.423a.249.249 0 0 1-.249-.25l.03-.121L9.102 13h7.449c.752 0 1.408-.415 1.75-1.029l3.574-6.489A1 1 0 0 0 21 3.999H6.213l-.406-.854A1.997 1.997 0 0 0 4 2">
                         </path>
-                    </svg><span class="badge_2k15 badgeNumber_ebbk">{{$countCart}}</span>
+                    </svg><span class="badge_2k15 badgeNumber_ebbk">0</span>
                 </a>
             </div>
             </div>
@@ -145,5 +145,13 @@
 <script src="{{asset('themes/sisterstailor/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/main.js')}}"></script>
+<script>
+    $(document).ready(function () {
+        $.get('{{route('order.get_cart')}}', function (data) {
+            $('.badgeNumber_ebbk').text(data.total);
+        });
+    })
+</script>
+@stack('js')
 </body>
 </html>
