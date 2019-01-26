@@ -42,7 +42,7 @@ class PublicController extends BasePublicController {
         $categoryMen = Category::where('parent_id',$slug->id)->pluck('id');
         $nameCategory = Category::where('parent_id',$slug->id)->get();
         $products   = Products::where('status',1)->whereIn('category_id',$categoryMen)->Orwhere('category_id',$slug->id)->orderBy('id','DESC')->paginate(12);
-        $soluongproducts =   Products::where('category_id',$slug->id)->count();
+        $soluongproducts =  $products->count();
         //Menu right
         $childrenMen = Category::where('parent_id','1')->pluck('id');
         $childrenWomen = Category::where('parent_id','2')->pluck('id');
@@ -67,6 +67,7 @@ class PublicController extends BasePublicController {
             ->leftjoin('category__categories', 'category__categories.id', '=', 'products__products.category_id')
             ->where('products__products.slug', $slug)
             ->first();
+
         $categoryProducts = Category::where('id',$product_detail->category_id)->first();
         $category_for_ids = Products::select('products__products.*','category__categories.name as categoryName')
             ->leftjoin('category__categories', 'category__categories.id', '=', 'products__products.category_id')
