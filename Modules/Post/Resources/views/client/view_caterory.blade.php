@@ -70,9 +70,10 @@ use Modules\Post\Entities\Managecategorys;
                     <ul class="main-categories">
                         <?php
                         foreach ($danhmuctintucs as $danhmuc){
+
                             $total = Managecategorys::where('category_id',$danhmuc['id'])->count();
                             ?>
-                        <li class="main-nav-list" ><a href="{{route('news.category',[$danhmuc->slug])}}" alt="_blank" class="<?php echo $getCategory->id == $danhmuc['id'] ? 'active-menu':''?>"  ><span class="lnr lnr-arrow-right"></span>{{$danhmuc->name}}<span class="number" style="color:#f41068">({{$total}})</span></a></li>
+                        <li class="main-nav-list" ><a href="{{route('news.category',[$danhmuc->slug])}}"  class="<?php echo $getCategory->id == $danhmuc['id'] ? 'active-menu':''?>"  ><span class="lnr lnr-arrow-right"></span>{{$danhmuc->name}}<span class="number" style="color:#f41068">({{$total}})</span></a></li>
                         <?php }?>
                     </ul>
                 </div>

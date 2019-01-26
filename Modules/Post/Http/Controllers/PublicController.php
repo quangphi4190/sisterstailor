@@ -8,74 +8,80 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Input;
 use Modules\Post\Repositories\ManagecategorysRepository;
 use Modules\Category\Entities\Category;
-class PublicController extends BasePublicController {
+
+class PublicController extends BasePublicController
+{
     private $news;
-   
+
     /**
      * @var FooterSliderRepository
      *
-
      * PublicController constructor.
      *
      * @param RoomRepository $managecategorysRepository
      */
-    public function __construct(ManagecategorysRepository $news) {
+    public function __construct(ManagecategorysRepository $news)
+    {
         parent::__construct();
-        $this->news        = $news;
+        $this->news = $news;
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index() {
-     $countCart =0;
-        $news =Managecategorys::select('post__managecategorys.*','post__postcategories.name as categoryName','post__postcategories.slug as slugCategory')
-        ->leftjoin('post__postcategories', 'post__postcategories.id', '=', 'post__managecategorys.category_id')
-         ->paginate(10)->appends(Input::except('page'));;
-     $category = Category::whereIn('id', [1, 2])->get();
-     $othercategory = Category::whereNotIn('id',[1,2])->where('parent_id',Null)->get();
-     $danhmuctintucs =Postcategory::all();
-    $nameMen = Category::where('parent_id','1')->get();
-    $nameWomen = Category::where('parent_id','2')->get();
-
-      return view( 'post::client.index',compact('news','category','countCart','danhmuctintucs','othercategory','nameMen','nameWomen'));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function category_detail($slug){
-        $countCart =0;
-        $getCategory = Postcategory::select('id','name')->where('slug',$slug)->first();
-        $categorys =Managecategorys::select('post__managecategorys.*','post__postcategories.name as categoryName')
+    public function index()
+    {
+        $countCart = 0;
+        $news = Managecategorys::select('post__managecategorys.*', 'post__postcategories.name as categoryName', 'post__postcategories.slug as slugCategory')
             ->leftjoin('post__postcategories', 'post__postcategories.id', '=', 'post__managecategorys.category_id')
-            ->where('post__managecategorys.category_id',$getCategory->id)
-            ->get();
-        $nameMen = Category::where('parent_id','1')->get();
-        $nameWomen = Category::where('parent_id','2')->get();
+            ->paginate(10)->appends(Input::except('page'));;
         $category = Category::whereIn('id', [1, 2])->get();
-        $othercategory = Category::whereNotIn('id',[1,2])->where('parent_id',Null)->get();
-        $danhmuctintucs =Postcategory::all();
-         return view( 'post::client.view_caterory',compact('categorys','category','countCart','danhmuctintucs','getCategory','othercategory','nameMen','nameWomen'));
+        $othercategory = Category::whereNotIn('id', [1, 2])->where('parent_id', Null)->get();
+        $danhmuctintucs = Postcategory::all();
+        $nameMen = Category::where('parent_id', '1')->get();
+        $nameWomen = Category::where('parent_id', '2')->get();
+
+        return view('post::client.index', compact('news', 'category', 'countCart', 'danhmuctintucs', 'othercategory', 'nameMen', 'nameWomen'));
     }
 
-    public function slugCategory($slug) {
-        $countCart =0;
-        $new_detail = Managecategorys::select('post__managecategorys.*','post__postcategories.id as IdCategory' ,'post__postcategories.slug as SlugCategory' ,'post__postcategories.name as categoryName')
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function category_detail($slug)
+    {
+        $countCart = 0;
+        $getCategory = Postcategory::select('id', 'name')->where('slug', $slug)->first();
+        $categorys = Managecategorys::select('post__managecategorys.*', 'post__postcategories.name as categoryName')
             ->leftjoin('post__postcategories', 'post__postcategories.id', '=', 'post__managecategorys.category_id')
-            ->where('post__managecategorys.slug',$slug)->first();
-        $listCategorys = Postcategory::select('post__managecategorys.name','post__managecategorys.slug')
+            ->where('post__managecategorys.category_id', $getCategory->id)
+            ->get();
+        $nameMen = Category::where('parent_id', '1')->get();
+        $nameWomen = Category::where('parent_id', '2')->get();
+        $category = Category::whereIn('id', [1, 2])->get();
+        $othercategory = Category::whereNotIn('id', [1, 2])->where('parent_id', Null)->get();
+        $danhmuctintucs = Postcategory::all();
+        return view('post::client.view_caterory', compact('categorys', 'category', 'countCart', 'danhmuctintucs', 'getCategory', 'othercategory', 'nameMen', 'nameWomen'));
+    }
+
+    public function slugCategory($slug)
+    {
+        $countCart = 0;
+        $new_detail = Managecategorys::select('post__managecategorys.*', 'post__postcategories.id as IdCategory', 'post__postcategories.slug as SlugCategory', 'post__postcategories.name as categoryName')
+            ->leftjoin('post__postcategories', 'post__postcategories.id', '=', 'post__managecategorys.category_id')
+            ->where('post__managecategorys.slug', $slug)->first();
+        $listCategorys = Postcategory::select('post__managecategorys.name', 'post__managecategorys.slug')
             ->leftjoin('post__managecategorys', 'post__managecategorys.category_id', '=', 'post__postcategories.id')
-            ->where('post__postcategories.id',$new_detail->category_id)
+            ->where('post__postcategories.id', $new_detail->category_id)
             ->whereNotIn('post__managecategorys.id', [$new_detail->id])
             ->limit(5)->get();
         $category = Category::whereIn('id', [1, 2])->get();
-        $nameMen = Category::where('parent_id','1')->get();
-        $nameWomen = Category::where('parent_id','2')->get();
-        $danhmuctintucs =Postcategory::all();
-        $othercategory = Category::whereNotIn('id',[1,2])->where('parent_id',Null)->get();
-        return view( 'post::client.detail',compact('new_detail','category','countCart','danhmuctintucs','listCategorys','othercategory','nameMen','nameWomen'));
+        $nameMen = Category::where('parent_id', '1')->get();
+        $nameWomen = Category::where('parent_id', '2')->get();
+        $danhmuctintucs = Postcategory::all();
+        $othercategory = Category::whereNotIn('id', [1, 2])->where('parent_id', Null)->get();
+        return view('post::client.detail', compact('new_detail', 'category', 'countCart', 'danhmuctintucs', 'listCategorys', 'othercategory', 'nameMen', 'nameWomen'));
     }
+
     public function getSlug($slug)
     {
         if (!$slug) return '';

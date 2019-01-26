@@ -67,7 +67,7 @@ use Modules\Post\Entities\Managecategorys;
                         foreach ($danhmuctintucs as $danhmuc){
                             $total = Managecategorys::where('category_id',$danhmuc['id'])->count();
                             ?>
-                        <li class="main-nav-list"><a href="#" alt="_blank" ><span class="lnr lnr-arrow-right"></span>{{$danhmuc->name}}<span class="number" style="color:#f41068">({{$total}})</span></a></li>
+                            <li class="main-nav-list" ><a href="{{route('news.category',[$danhmuc->slug])}}"  ><span class="lnr lnr-arrow-right"></span>{{$danhmuc->name}}<span class="number" style="color:#f41068">({{$total}})</span></a></li>
                         <?php }?>
                     </ul>
                 </div>

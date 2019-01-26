@@ -115,14 +115,17 @@ class ProductsController extends AdminBaseController
      */
     public function update(Products $products, UpdateProductsRequest $request)
     {
+
         $data = $request->all();
+        $data['featured'] = intval($data['featured']);
+
         $price = $data['price'];
         $disprice = $data['price_discount'];
         if ($price <= $disprice){
             return redirect()->back()->withErrors('Giá khuyến mãi phải thấp hơn Đơn giá,vui lòng kiểm tra lại');
         }
 
-        $this->products->update($products, $request->all());
+        $this->products->update($products, $data);
 
         return redirect()->route('admin.products.products.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('products::products.title.products')]));
