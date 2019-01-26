@@ -145,5 +145,6 @@
 <script src="{{asset('themes/sisterstailor/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('themes/sisterstailor/js/main.js')}}"></script>
+@stack('js')
 </body>
 </html>

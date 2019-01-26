@@ -7,6 +7,7 @@ $(document).ready(function(){
 	header_height 		 = $(".default-header").height(),
 	header_height_static = $(".site-header.static").outerHeight(),
 	fitscreen 			 = window_height - header_height;
+	//add cart
 
 
 	$(".fullscreen").css("height", window_height)
