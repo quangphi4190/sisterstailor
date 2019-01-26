@@ -86,7 +86,7 @@
                             <div>
                                 <div class="quantity-container d-flex align-items-center mt-15">
                                     Quantity:
-                                    <input type="text" class="quantity-amount ml-15" value="1"/>
+                                    <input type="text" id="quantity" class="quantity-amount ml-15" value="1"/>
                                     <div class="arrow-btn d-inline-flex flex-column">
                                         <button class="increase arrow" type="button" title="Increase Quantity"><span
                                                     class="lnr lnr-chevron-up"></span></button>
