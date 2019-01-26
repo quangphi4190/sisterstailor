@@ -159,6 +159,10 @@ input.icon {
     position: absolute;
     display: none;
 }
+.mystyle{
+    width: 100%!important;
+}
+
 .containera input:checked ~ .checkmark:after {
     display: block;
   }
@@ -215,6 +219,7 @@ input.icon {
   .d-display {
     display: none;
   }
+
 .label {
     display: inline;
     padding: .2em .6em .3em;
@@ -255,3 +260,4 @@ input.icon {
     margin-top: 30px;
     background: #f9fafc;
 }
+
