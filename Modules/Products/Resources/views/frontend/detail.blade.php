@@ -4,10 +4,8 @@
 
 <section class="banner-area organic-breadcrumb">
                 <div class="container">
-                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
-                        <div class="col-first">
+                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center">                        
                             <h1>{{$product_detail->name}}</h1>
-                        </div>
                     </div>
                 </div>
             </section>

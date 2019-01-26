@@ -136,7 +136,8 @@
                             </ul>
                         </li>
                     @foreach ($category as $Women) 
-                        @if ($Women->id == 2)                   
+                        @if ($Women->id == 2)
+                                           
                         <li class="main-nav-list category-defail"><a href="{{route('products.index',$Women->slug)}}" >Women<span class="number">{{$soluongWomen}}</span></a>
                         @endif
                     @endforeach    
