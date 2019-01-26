@@ -50,7 +50,7 @@
                     <div class="price">
                         <h5><a title="View detail product" class="name-products" href="{{route('product.detail',$fea->slug)}}" >{{$fea->name}}</a></h5>
                         @if ($fea->price_discount == '0')
-                            <h3>{{number_format($fea->price)}}</h3>
+                            <h3>$ {{number_format($fea->price)}}</h3>
                         @else
                             <del style="color:black;">$ {{number_format($fea->price)}}</del>
                             <h3>$ {{number_format($fea->price_discount)}}</h3>
@@ -122,7 +122,7 @@
                     <div class="price">
                         <h5><a title="View detail" class="name-products" href="{{route('product.detail',$w->slug)}}">{{$w->name}}</a></h5>
                         @if ($w->price_discount == '0')
-                        <h3>{{number_format($w->price)}}</h3>
+                        <h3>$ {{number_format($w->price)}}</h3>
                             @else
                             <del style="color:black;">$ {{number_format($w->price)}}</del>
                             <h3>$ {{number_format($w->price_discount)}}</h3>

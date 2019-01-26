@@ -4,8 +4,10 @@
 
 <section class="banner-area organic-breadcrumb">
                 <div class="container">
-                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center">                        
+                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
+                        <div class="col-first">
                             <h1>{{$product_detail->name}}</h1>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -58,8 +60,8 @@
                         @if ($product_detail->price_discount > '0')
                         <div class="price d-flex align-items-center">
                             <span class="lnr lnr-tag"></span>
-                            <span class="ml-10">${{$product_detail->price_discount}}</span>
-                            <del style="margin-left: 0.5em">${{$product_detail->price}}</del>
+                            <span class="ml-10">${{number_format($product_detail->price_discount,2,",",".")}}</span>
+                            <del style="margin-left: 0.5em">${{number_format($product_detail->price,2,",",".")}}</del>
                         </div>
                             @else
                             <div class="price d-flex align-items-center">
