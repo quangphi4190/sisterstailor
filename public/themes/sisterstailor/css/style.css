@@ -126,3 +126,12 @@
 .breadcrumb-banner {
     padding: 30px 0 30px 0;
 }
+.product-item .img-fluid{
+    width: 100px;
+}
+.quantity-container .arrow-btn{
+    background: rgb(235, 235, 228) !important;
+}
+.disabled-arrow{
+    background: rgb(235, 235, 228) !important;
+}

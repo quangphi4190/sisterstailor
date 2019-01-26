@@ -66,7 +66,6 @@ class PublicController extends BasePublicController
      */
     public function homepage(ProductsRepository $productsrepoitory,AdvertisementRepository $advertisementRepository,BannerRepository $bannerRepository)
     {
-        $countCart =2;
         $page = $this->page->findHomepage();
 
         $this->throw404IfNotFound($page);

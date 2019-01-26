@@ -30,7 +30,6 @@ class PublicController extends BasePublicController {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($slug) {
-        $countCart =0;
         $defen = $slug;
         
         $slug = Category::where('slug',$slug)->first();
@@ -62,7 +61,7 @@ class PublicController extends BasePublicController {
      */
 
      public function detail($slug){
-         $countCart =0;
+
         $product_detail =Products::select('products__products.*','category__categories.name as categoryName')
             ->leftjoin('category__categories', 'category__categories.id', '=', 'products__products.category_id')
             ->where('products__products.slug', $slug)
