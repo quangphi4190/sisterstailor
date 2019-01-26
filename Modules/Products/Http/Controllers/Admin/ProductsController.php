@@ -102,7 +102,11 @@ class ProductsController extends AdminBaseController
         $categoriesWomen =   Category::where('parent_id',2)->get();
         $categoriesOrther    =   Category::where('parent_id',Null)->whereNotIn('id',[1,2])->get();
         $status = $products->status ? $products->status: '';
-        $category = Category::where('id',$products->category_id)->first();
+        if ($products->category_id != null){
+            $category = Category::where('id',$products->category_id)->first();
+        } else  {
+            $category = "Chọn Sản Phẩm";
+        }
         return view('products::admin.products.edit', compact('categoriesOrther','categoriesMen','categoriesWomen','products','status','category'));
     }
 

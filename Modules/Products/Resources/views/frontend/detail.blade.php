@@ -69,8 +69,13 @@
                                 <span class="ml-10">${{$product_detail->price}}</span>
                             </div>
                         @endif
+                        @if ($product_detail->category_id != null)
                         <div class="category">Category: <span><a href="{{route('products.index',$categoryProducts->slug)}}">{{$product_detail->categoryName}}</a></span>
                         </div>
+                        @else
+                        <div class="category">Category: <span></span>
+                        </div>
+                        @endif
                     <!-- <div class="available">Availibility: <span>In Stock</span></div> -->
                     </div>
                     <div class="middle">

@@ -5,7 +5,11 @@
     <div class="form-group dropdown">
         <label for="state_id">Loại Sản Phẩm</label>
         <select id="category_id" name="category_id" class="form-control">
-            <option value="{{$products->category_id}}">{{$category->name}}</option>
+            @if ($products->category_id != Null)
+            <option value="{{$products->category_id}}">{{$category->name}}</option>                
+            @else
+            <option value="">{{$category}}</option>
+            @endif
             <option value=""disabled >Men</option>
             @foreach($categoriesMen as $c)
             @if ($c->id == $products->category_id)
