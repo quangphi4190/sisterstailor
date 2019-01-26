@@ -113,7 +113,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                <div class="dropdown">
+                                <div class="dropdown mystyle">
                                     <select name="hotel_id" id="hotel_id" class="form-control fom-category" data-id="{{$invoice->id}}">
                                     @if ($invoice->hotel_id == 0)
                                         <option value="">Khác</option>
