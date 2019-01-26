@@ -92,6 +92,10 @@ class PublicController extends BasePublicController
             ]);
             $total += ($detail->price * $detail->quantity);
         }
+        $cookie_name = 'orders';
+        unset($_COOKIE[$cookie_name]);
+
+        $res = setcookie($cookie_name, '[]', time() - 3600);
         alert()->success('Successfully', 'Thank you. Your order has been received.')->autoClose(2000);
         return redirect(route('homepage'));
     }
