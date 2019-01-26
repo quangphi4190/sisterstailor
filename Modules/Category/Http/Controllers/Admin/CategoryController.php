@@ -5,6 +5,7 @@ namespace Modules\Category\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Category\Entities\Category;
+use Modules\Products\Entities\Products;
 use Modules\Category\Http\Requests\CreateCategoryRequest;
 use Modules\Category\Http\Requests\UpdateCategoryRequest;
 use Modules\Category\Repositories\CategoryRepository;
@@ -110,15 +111,19 @@ class CategoryController extends AdminBaseController
      * @param  Category $category
      * @return Response
      */
+
+
     public function destroy(Category $category)
     {
-        if ($category->id  > '2') {
+        $products = Products::where('category_id',$category->id)->get()->count();
+        if ($category->id  > '2' && $products == 0) {
         $this->category->destroy($category);
 
         return redirect()->route('admin.category.category.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('category::categories.title.categories')]));
         }
         return redirect()->route('admin.category.category.index')
-            ->withError('Xóa danh mục sản phẩm thất bại. Xin kiểm tra lại.');
+            ->withError('Xóa danh mục sản phẩm thất bại. Vẫn còn sản phẩm trong danh mục hoặc là danh mục mặc định. Xin kiểm tra lại.');
     }
+    
 }
