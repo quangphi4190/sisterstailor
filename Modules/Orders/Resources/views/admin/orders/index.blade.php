@@ -51,42 +51,40 @@
                                     {{$i++}}
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                    <a class="cursor_p" onclick="detailOrders({{$order->id}})">
                                         {{ $order->name }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                    <a class="cursor_p" onclick="detailOrders({{$order->id}})">
                                         {{ $order->sdt }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                    <a class="cursor_p" onclick="detailOrders({{$order->id}})">
                                         {{ $order->email }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                    <a class="cursor_p" onclick="detailOrders({{$order->id}})">
                                         {{ $order->address }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                    <a class="cursor_p" onclick="detailOrders({{$order->id}})">
                                         ${{number_format($order->total,1,'.',',') }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
+                                    <a class="cursor_p" onclick="detailOrders({{$order->id}})">
                                         {{ $order->notes }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.order.view', [$order->id]) }}">
-                                        {{ date('d/m/Y', strtotime(str_replace('/', '-', $order->created_at)))  }}
-                                        <span class="label label-lg label-info">
-                                        {{ date('H:i', strtotime(str_replace('/', '-', $order->created_at))) }}
-                                        </span>
-                                    </a>
+                                    {{ date('d/m/Y', strtotime(str_replace('/', '-', $order->created_at)))  }}
+                                    <span class="label label-lg label-info">
+                                    {{ date('H:i', strtotime(str_replace('/', '-', $order->created_at))) }}
+                                    </span>
                                 </td>
                                 <td>
                                     <div class="btn-group">

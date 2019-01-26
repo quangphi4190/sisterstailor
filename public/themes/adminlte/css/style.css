@@ -261,3 +261,6 @@ input.icon {
     background: #f9fafc;
 }
 
+.cursor_p {
+    cursor: pointer;
+}
