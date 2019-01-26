@@ -116,6 +116,22 @@ class RegisterProductsSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                     );
                 });
             });
+            $group->item(trans('contact::contacts.title.contacts'), function (Item $item) {
+                $item->icon('fa fa-compress');
+                $item->weight(10);
+                $item->authorize(
+                     /* append */
+                );
+                $item->item(trans('contact::contacts.title.contacts'), function (Item $item) {
+                    $item->icon('fa fa-compress');
+                    $item->weight(0);
+                    $item->append('admin.contact.contact.create');
+                    $item->route('admin.contact.contact.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('contact.contacts.index')
+                    );
+                });
+            });
 
         });
 

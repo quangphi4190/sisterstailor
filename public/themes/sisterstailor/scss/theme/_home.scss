@@ -62,7 +62,7 @@
 	line-height: 28px;
 	padding: 0 30px;
 	color:$white;
-	border:1px solid #transparent;
+	border:1px solid transparent;
 	font-size: .8em;
 	text-align: center;
 	text-decoration: none;
@@ -288,16 +288,9 @@
 	  -moz-transition: all 0.4s ease-in-out 0s;
 	  transition: all 0.4s ease-in-out 0s;
 	}
-
-	.content-overlay{
-		margin:20px;
-	}
-
 	.content:hover .content-overlay{
 	  opacity: .8;
 	}
-
-
 	.content-details {
 	  position: absolute;
 	  text-align: center;

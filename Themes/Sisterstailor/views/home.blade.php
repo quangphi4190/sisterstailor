@@ -42,7 +42,7 @@
                 @foreach ($featured as $fea)
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
-                        <a title="View detail product" href="{{ route('product.detail', [$fea->slug]) }}"><div class="content-overlay"></div></a>
+                        <a title="View detail product" href="{{ route('product.detail', [$fea->slug]) }}"><div class="content-myoverlay"></div></a>
                         @foreach ($fea->files()->where('zone','Hình ảnh')->get() as $files)
                             <img class="content-image img-fluid d-block mx-auto" src="{{$files->path}}" alt="">
                         @endforeach

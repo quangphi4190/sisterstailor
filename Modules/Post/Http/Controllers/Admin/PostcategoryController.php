@@ -119,7 +119,7 @@ class PostcategoryController extends AdminBaseController
      * @param  Postcategory $postcategory
      * @return Response
      */
-    public function destroy(post__postcategories $postcategory)
+    public function destroy(Postcategory $postcategory)
     {
         $this->postcategory->destroy($postcategory);
 

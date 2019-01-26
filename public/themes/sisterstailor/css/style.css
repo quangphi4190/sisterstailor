@@ -90,3 +90,32 @@
 .contact-p p {
     width: 20em;
 }
+.category-area .content .content-myoverlay {
+    position: absolute;
+	  left: 0;
+	  top: 0;
+	  bottom: 0;
+	  right: 0;
+	  opacity: 0;
+	  -webkit-transition: all 0.4s ease-in-out 0s;
+	  -moz-transition: all 0.4s ease-in-out 0s;
+	  transition: all 0.4s ease-in-out 0s;
+}
+.content:hover .content-myoverlay{
+    opacity: .8;
+  }
+.content .content-myoverlay {
+    background-color: #f41068;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+#home {
+    margin-top: 80px;
+}

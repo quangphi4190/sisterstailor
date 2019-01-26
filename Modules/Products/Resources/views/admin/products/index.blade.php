@@ -71,12 +71,12 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.products.products.edit', [$p->id]) }}">
-                                        {{number_format($p->price)}} VND
+                                        {{$p->price}} $
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.products.products.edit', [$p->id]) }}">
-                                        {{number_format($p->price_discount)}} VND
+                                        {{$p->price_discount}} $
                                     </a>
                                 </td>
                                 <td>
