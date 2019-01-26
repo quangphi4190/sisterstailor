@@ -82,6 +82,10 @@ $router->group(['prefix' =>'/invoices'], function (Router $router) {
         'as' => 'admin.invoices.paid',
         'uses' => 'InvoiceController@paid'
     ]);
+    $router->post('update_hotel',[
+        'as'    =>  'admin.invoices.update_hotel',
+        'uses'  =>  'InvoiceController@updateHotel'
+    ]);
 // append
 
 });

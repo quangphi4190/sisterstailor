@@ -159,6 +159,10 @@ input.icon {
     position: absolute;
     display: none;
 }
+.dropdown{
+    width: 100%!important;
+}
+
 .containera input:checked ~ .checkmark:after {
     display: block;
   }
@@ -215,3 +219,5 @@ input.icon {
   .d-display {
     display: none;
   }
+
+  

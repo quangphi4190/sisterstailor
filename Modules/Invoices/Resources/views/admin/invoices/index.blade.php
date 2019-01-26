@@ -113,9 +113,19 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="hotel_{{$invoice->id}}" href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
-                                        {{ $invoice->hotel_id == 0 ? 'Khác' :$invoice->name }}
-                                    </a>
+                                <div class="dropdown">
+                                    <select name="hotel_id" id="hotel_id" class="form-control fom-category" data-id="{{$invoice->id}}">
+                                    @if ($invoice->hotel_id == 0)
+                                        <option value="">Khác</option>
+                                        @else
+                                        <option value="{{$invoice->hotel_id}}">{{$invoice->name}}</option>
+                                        @endif
+                                        @foreach ($hotels as $hotel)
+                                        <option value="{{$hotel->id}}">{{$hotel->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>                                    
+                                        <!-- {{ $invoice->hotel_id == 0 ? 'Khác' :$invoice->name }} -->                                    
                                 </td>
                                 <td>
                                     <a class="tour_guide_{{$invoice->id}}" href="{{ route('admin.invoices.invoice.edit', [$invoice->id]) }}">
@@ -202,6 +212,9 @@
 @stop
 
 @push('js-stack')
+{!! Theme::script('vendor/jquery/chosen.jquery.js') !!}    
+{!! Theme::style('css/chosen.css') !!}
+{!! Theme::script('js/jquery.formula.js') !!}
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- Optional theme -->
     <link rel="stylesheet"
@@ -326,5 +339,21 @@
             });
 
         });
+    </script>
+    <script type="text/javascript">
+        $('select[name="hotel_id"]').chosen({no_results_text: "Không tìm thấy", width: "100%", search_contains:true});
+        $('select[name="hotel_id"]').change(function(){
+            var id = $(this).val();
+            var invoId = $(this).data('id');
+            var url = '{{route("admin.invoices.update_hotel")}}';
+            var token = '{{ csrf_token() }}';
+            $.post(url, {'id':id,'invoId':invoId,'_token':token}, function(data){               
+                if(data){
+                        swal("Cập nhật thông tin khách sạn thành công!", "", "success");  
+                 }else{
+                            swal("Cập nhật thông tin khách sạn that bại!", "", "success"); 
+            };
+        });
+    });
     </script>
 @endpush

@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Hotel\Repositories\HotelRepository;
 use Modules\Invoices\Entities\Invoice;
+use Modules\Hotel\Entities\Hotel;
 use Modules\Invoices\Http\Requests\CreateInvoiceRequest;
 use Modules\Invoices\Http\Requests\UpdateInvoiceRequest;
 use Modules\Invoices\Repositories\InvoiceRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use DB;
+use RealRashid\SweetAlert\Facades\Alert;
+use Modules\Hotel\Http\Requests\UpdateHotelRequest;
 use Modules\Customers\Entities\Customer;
 use Illuminate\Support\Facades\Input;
 use Modules\Customers\Http\Requests\CreateCustomerRequest;
@@ -43,6 +46,7 @@ class InvoiceController extends AdminBaseController
     public function index()
     {
         // $invoices = $this->invoice->all();
+        $hotels = Hotel::all();
         $fromDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('fromDate', date('Y-m-d', time())))));
         $toDate = date('Y-m-d', strtotime(str_replace('/', '-', Input::get('toDate', date('Y-m-d')))));
         $tourguideId =Input::get('tour_guide_id', '');
@@ -71,7 +75,7 @@ class InvoiceController extends AdminBaseController
             $invoices = $invoices->where('invoices__invoices.hotel_id',$hotelId);
         }
         $invoices =$invoices->get();
-        return view('invoices::admin.invoices.index', compact('invoices','fromDate','toDate','tourguides','tourguideId','hotels','hotelId'));
+        return view('invoices::admin.invoices.index', compact('hotels','invoices','fromDate','toDate','tourguides','tourguideId','hotels','hotelId'));
     }
 
     /**
@@ -463,5 +467,18 @@ class InvoiceController extends AdminBaseController
         ]);
         die();
 
+    }
+
+    public function updateHotel(Invoice $invoice, UpdateInvoiceRequest $request){
+        $id = Input::get('id','');
+        $invoId = Input::get('invoId','');
+        $update = Invoice::findorFail($invoId);
+        if ($update == null){
+            json_encode(false);die();
+        }
+        $data = $request->all();
+        $data['hotel_id'] = $id;
+        $this->invoice->update($update, $data);
+        echo json_encode(true);die();
     }
 }
