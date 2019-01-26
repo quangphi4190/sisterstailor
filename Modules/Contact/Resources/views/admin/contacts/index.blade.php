@@ -33,7 +33,8 @@
                                 <th>Họ và Tên</th>
                                 <th>Số Điện Thoại</th>
                                 <th>E-Mail</th>
-                                <th>Nội Dung</th>
+                                <th>Thời Gian Gửi</th>
+                                <th>Trạng Thái</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -42,14 +43,10 @@
                             <?php foreach ($contacts as $contact): ?>
                             <tr>
                                 <td>
-                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
                                         {{$stt++}}
-                                    <!-- </a> -->
                                 </td>
                                 <td>
-                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
                                         {{$contact->first_name . $contact->last_name}}
-                                    <!-- </a> -->
                                 </td>
                                 <td>
                                     <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
@@ -63,13 +60,19 @@
                                     <!-- </a> -->
                                 </td>
                                 <td>
-                                    <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}"> -->
-                                        {{$contact->description}}
-                                    <!-- </a> -->
+                                    {{date_format($contact->created_at,"H:i:s d/m/Y")}}
+                                </td>
+                                <td>
+                                @if ($contact->status == 2)
+                                    Đã Xem
+                                    @else
+                                    Chưa Xem
+                                    @endif                                    
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <!-- <a href="{{ route('admin.contact.contact.edit', [$contact->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a> -->
+                                        <button type="button" id="viewInfoCusomer" class="btn btn-secondary h-btn" onclick="viewDetail({{$contact->id}})"><i class="fa fa-eye" aria-hidden="true">
+                                            </i></button>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.contact.contact.destroy', [$contact->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
@@ -85,7 +88,36 @@
             </div>
         </div>
     </div>
+    <div class="modal fade modalInfo" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header c-header">
+                    <h5 class="modal-title c-text" id="exampleModalLongTitle">Chi Tiết Liên Hệ</h5>
+                    <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @include('core::partials.delete-modal')
+    <script type="text/javascript">
+    function viewDetail($id){
+        var token = '{{ csrf_token() }}';
+        var contactid = $id;
+        var url= route('contact.get_info')
+        $.post(url,{'id':contactid,'_token':token}, function(data) {
+            $('.modalInfo .modal-body').html(data);
+            $('.modalInfo .modal-body').show();
+            $('.modalInfo').modal('show');
+        });
+    };
+        </script>
 @stop
 
 @section('footer')
@@ -125,4 +157,21 @@
             });
         });
     </script>
+    {{--<script type="text/javascript">--}}
+
+        {{--// view info--}}
+        {{--$('#viewInfoCusomer').click(function () {--}}
+            {{--// lấy id--}}
+            {{--var url= route('admin.invoices.invoice.modal-info-customer');--}}
+            {{--var id = $(this).val();--}}
+            {{--alert(id);--}}
+                {{--var token = '{{ csrf_token() }}';--}}
+                {{--$.post(url,{'id':id,'_token':token}, function(data) {--}}
+                    {{--$('.modalInfo .modal-body').html(data);--}}
+
+                    {{--$('.modalInfo .modal-body').show();--}}
+                    {{--$('.modalInfo').modal('show');--}}
+                {{--});--}}
+
+        {{--});--}}
 @endpush

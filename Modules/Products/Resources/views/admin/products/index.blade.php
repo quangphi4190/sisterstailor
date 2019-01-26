@@ -30,6 +30,7 @@
                             <thead>
                             <tr>
                                 <th>STT</th>
+                                <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
                                 <th>Loại Sản Phẩm</th>
                                 <th>Giá</th>
@@ -40,11 +41,19 @@
                             <tbody>
                             <?php if (isset($products)): $stt=1; ?>
                             <?php foreach ($products as $p): ?>
+                            @php($image_products = $p->files()->where('zone', 'Hình Ảnh')->get())
                             <tr>
                                 <td>
                                     <a href="{{ route('admin.products.products.edit', [$p->id]) }}">
                                         {{$stt++}}
                                     </a>
+                                </td>
+                                <td>
+                                    @foreach($image_products as $image)
+                                    <div style="width: 100px; height: 100px;">
+                                        <img style="width: 100%; height:100%" class="img-responsive" src="{{$image->path}}">
+                                    </div>
+                                    @endforeach
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.products.products.edit', [$p->id]) }}">

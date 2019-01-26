@@ -51,7 +51,7 @@
                                     
                                     @foreach($image_banners as $image)
                                     <div style="width: 100px; height: 100px;">
-                                        <img class="img-responsive" src="{{$image->path_string}}">
+                                        <img style="width: 100%; height:100%" class="img-responsive" src="{{$image->path_string}}">
                                     </div>
                                     @endforeach
                                     

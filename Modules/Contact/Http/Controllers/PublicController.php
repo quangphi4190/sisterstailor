@@ -34,16 +34,12 @@ class PublicController extends BasePublicController
 
     public function index(){
         $countCart =0;
-        $othercategory = Category::whereNotIn('id',[1,2])->where('parent_id',Null)->get();
-        $nameMen = Category::where('parent_id','1')->get();
-        $nameWomen = Category::where('parent_id','2')->get();
-        $category = Category::where('id','1')->orwhere('id','2')->get();
-        return view('contact::frontend.contact',compact('countCart','othercategory','nameMen','nameWomen','category'));
+        return view('contact::frontend.contact',compact('countCart'));
     }
 
     public function postContact(CreateContactRequest $request){
         $this->contact->create($request->all());
-        alert()->success('Cảm Ơn Góp Ý Của Bạn', 'Successfully')->autoClose(100000);
+        alert()->success('Thanks For Contacting', 'Successfully')->autoClose(2000);
         return redirect('/');
     }
 }
