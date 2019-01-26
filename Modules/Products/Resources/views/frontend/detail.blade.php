@@ -70,70 +70,80 @@
                                     <span class="ml-10">${{$product_detail->price}}</span>
                                 </div>
                             @endif
-                            <div class="category">Category: <span><a
-                                            href="{{route('products.index',$categoryProducts->slug)}}">{{$product_detail->categoryName}}</a></span>
+
+                            @if ($product_detail->category_id != null)
+                                <div class="category">Category: <span><a
+                                                href="{{route('products.index',$categoryProducts->slug)}}">{{$product_detail->categoryName}}</a></span>
+                                </div>
+                            @else
+                                <div class="category">Category: <span></span>
+                                </div>
+                            @endif
+
+                            <div class="middle">
+                                <p class="content"><?php echo $product_detail->intro;?></p>
                             </div>
-                            <!-- <div class="available">Availibility: <span>In Stock</span></div> -->
-                        </div>
-                        <div class="middle">
-                            <p class="content"><?php echo $product_detail->intro;?></p>
-                        </div>
-                        <div>
-                            <div class="quantity-container d-flex align-items-center mt-15">
-                                Quantity:
-                                <input type="text" class="quantity-amount ml-15" id="quantity" value="1"/>
-                                <div class="arrow-btn d-inline-flex flex-column">
-                                    <button class="increase arrow" type="button" title="Increase Quantity"><span
-                                                class="lnr lnr-chevron-up"></span></button>
-                                    <button class="decrease arrow" type="button" title="Decrease Quantity"><span
-                                                class="lnr lnr-chevron-down"></span></button>
+                            <div>
+                                <div class="quantity-container d-flex align-items-center mt-15">
+                                    Quantity:
+                                    <input type="text" class="quantity-amount ml-15" value="1"/>
+                                    <div class="arrow-btn d-inline-flex flex-column">
+                                        <button class="increase arrow" type="button" title="Increase Quantity"><span
+                                                    class="lnr lnr-chevron-up"></span></button>
+                                        <button class="decrease arrow" type="button" title="Decrease Quantity"><span
+                                                    class="lnr lnr-chevron-down"></span></button>
+                                    </div>
+                                </div>
+                                <div class="d-flex mt-20">
+                                    <button type="button" id="btn-add-cart" class="view-btn color-2">
+                                        <span>Add to Cart</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex mt-20">
-                            <button type="button" id="btn-add-cart" class="view-btn color-2"><span>Add to Cart</span>
-                            </button>
+                    </div>
+
+                </div>
+                <hr>
+                <section class="pb-100">
+                    <div class="container">
+                        <div class="organic-section-title text-center">
+                            <h3>Related Products</h3>
+                        </div>
+                        <div class="row mt-30">
+                            @foreach ($category_for_ids as $category_for_id)
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+
+                                    <div class="single-search-product d-flex">
+                                        @foreach ($category_for_id->files()->where('zone','Hình Ảnh')->get() as $fileID)
+                                            <a href="{{ route('product.detail', [$category_for_id->slug]) }}"><img
+                                                        class="h80"
+                                                        title="View detail"
+                                                        src="{!! $fileID->path !!}"
+                                                        alt=""></a>
+                                        @endforeach
+                                        <div class="desc">
+                                            <a href="{{ route('product.detail', [$category_for_id->slug]) }}"
+                                               class="title"
+                                               title="View detail">{{$category_for_id->name}}</a>
+                                            <div class="price"><span class="lnr lnr-tag"></span>
+                                                ${{$category_for_id->price}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
+                </section>
+
+
             </div>
 
         </div>
-        <hr>
-        <section class="pb-100">
-            <div class="container">
-                <div class="organic-section-title text-center">
-                    <h3>Related Products</h3>
-                </div>
-                <div class="row mt-30">
-                    @foreach ($category_for_ids as $category_for_id)
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-
-                            <div class="single-search-product d-flex">
-                                @foreach ($category_for_id->files()->where('zone','Hình Ảnh')->get() as $fileID)
-                                    <a href="{{ route('product.detail', [$category_for_id->slug]) }}"><img class="h80"
-                                                                                                           title="View detail"
-                                                                                                           src="{!! $fileID->path !!}"
-                                                                                                           alt=""></a>
-                                @endforeach
-                                <div class="desc">
-                                    <a href="{{ route('product.detail', [$category_for_id->slug]) }}" class="title"
-                                       title="View detail">{{$category_for_id->name}}</a>
-                                    <div class="price"><span class="lnr lnr-tag"></span> ${{$category_for_id->price}}
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-
-
     </div>
-
 
     <script type="text/javascript">
         var slideIndex = 1;

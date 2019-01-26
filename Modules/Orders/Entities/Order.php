@@ -11,5 +11,5 @@ class Order extends Model
 
     protected $table = 'orders__orders';
     public $translatedAttributes = [];
-    protected $fillable = [];
+    protected $fillable = ['id','name','sdt', 'email', 'address','total','notes','status'];
 }

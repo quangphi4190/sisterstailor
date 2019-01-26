@@ -129,9 +129,23 @@
 .product-item .img-fluid{
     width: 100px;
 }
-.quantity-container .arrow-btn{
+/*
+.cart-single-item .quantity-container .arrow-btn{
     background: rgb(235, 235, 228) !important;
 }
 .disabled-arrow{
     background: rgb(235, 235, 228) !important;
+}
+*/
+.list-row .cl-1{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.list-row .cl-2{
+   margin: 0 10px;
+}
+.list-row .cl-3{
+    width: 50px;
+    text-align: right;
 }

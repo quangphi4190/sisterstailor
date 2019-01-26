@@ -18,12 +18,20 @@ $router->group(['prefix' =>'/orders'], function (Router $router) {
         'as' => 'order.get_cart',
         'uses' => 'PublicController@get_cart'
     ]);
-    $router->get('/get-cart', [
-        'as' => 'order.get_cart',
-        'uses' => 'PublicController@get_cart'
+    $router->get('/update-cart', [
+        'as' => 'order.update_cart',
+        'uses' => 'PublicController@update_cart'
     ]);
     $router->get('/get-cart', [
         'as' => 'order.get_cart',
         'uses' => 'PublicController@get_cart'
+    ]);
+    $router->get('/checkout', [
+        'as' => 'order.checkout',
+        'uses' => 'PublicController@checkout'
+    ]);
+    $router->post('/confirm', [
+        'as' => 'order.confirm',
+        'uses' => 'PublicController@confirm_order'
     ]);
 });
