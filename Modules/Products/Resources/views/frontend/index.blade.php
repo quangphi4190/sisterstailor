@@ -116,61 +116,38 @@
                     <ul class="main-categories">
                     @foreach ($category as $Men)
                     @if ($Men->id == 1)
-                        <li class="main-nav-list category-defail"><a href="{{route('products.index',$Men->slug)}}">Men<span class="number">{{$soluongMen}}</span></a>
+                        <li class="main-nav-list category-defail"><a href="{{route('products.index',$Men->slug)}}">Men</a>
                     @endif
                     @endforeach   
                             <ul id="fruitsVegetable">
                                 <?php $sl = 0;
                                 foreach ($nameMen as $m){
-                                $tong =0;
-                                for ($i=0;$i<=$soluongMen;$i++){
-                                    if (isset($productsWomen[$i])){
-                                        if ($m->id == $productsMen[$i]['category_id']){
-                                            $tong++;
-                                        }
-                                    }
-                                }
                                 ?>
-                                <li class="main-nav-list"><a href="{{route('products.index',$m->slug)}}" target="_blank"><span class="lnr lnr-arrow-right"></span>{{$m->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>
+                                <li class="main-nav-list"><a href="{{route('products.index',$m->slug)}}" ><span class="lnr lnr-arrow-right"></span>{{$m->name}}</a></li>
                                 <?php }?>
                             </ul>
                         </li>
                     @foreach ($category as $Women) 
                         @if ($Women->id == 2)
-                                           
-                        <li class="main-nav-list category-defail"><a href="{{route('products.index',$Women->slug)}}" >Women<span class="number">{{$soluongWomen}}</span></a>
+
+                        <li class="main-nav-list category-defail"><a href="{{route('products.index',$Women->slug)}}" >Women</a>
                         @endif
                     @endforeach    
                             <ul id="meatFish">
                                 <?php
                                 foreach ($nameWomen as $w){
-                                $tong =0;
-                                for ($i=0;$i<=$soluongWomen;$i++){
-                                    if (isset($productsWomen[$i])){
-                                        if ($w->id == $productsWomen[$i]['category_id']){
-                                            $tong++;
-                                        }
-                                    }
-                                }
+                                
                                 ?>
-                                <li class="main-nav-list"><a href="{{route('products.index',$w->slug)}}" alt="_blank"><span class="lnr lnr-arrow-right"></span>{{$w->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>
+                                <li class="main-nav-list"><a href="{{route('products.index',$w->slug)}}" ><span class="lnr lnr-arrow-right"></span>{{$w->name}}</a></li>
                                 <?php }?>
                             </ul>
                         </li>
-                        <li class="main-nav-list category-defail"><a href="" aria-expanded="false" aria-controls="cooking" >Other Category<span class="number">{{$soluongproductsother}}</span></a>
+                        <li class="main-nav-list category-defail"><a href="" aria-expanded="false" aria-controls="cooking" >Other Category</a>
                             <ul id="cooking">
                                 <?php
                                 foreach ($othercategory as $other){
-                                $tong =0;
-                                for ($i=0;$i<$soluongproductsother;$i++){
-                                    if (isset($productother[$i])){
-                                        if ($other->id == $productother[$i]['category_id']){
-                                            $tong++;
-                                        }
-                                    }
-                                }
                                 ?>
-                                <li class="main-nav-list"><a href="{{route('products.index',$other->slug)}}" ><span class="lnr lnr-arrow-right"></span>{{$other->name}}<span class="number" style="color:#f41068">({{$tong}})</span></a></li>
+                                <li class="main-nav-list"><a href="{{route('products.index',$other->slug)}}" ><span class="lnr lnr-arrow-right"></span>{{$other->name}}</a></li>
                                 <?php }?>
                             </ul>
                         </li>
