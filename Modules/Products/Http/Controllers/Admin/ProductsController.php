@@ -68,11 +68,11 @@ class ProductsController extends AdminBaseController
     {
         $data = $request->all();
         $slug = str_slug($data['name']);
-        $exist = $category = Category::where('slug', $slug)->first();
+        $exist = $products = Products::where('slug', $slug)->first();
         if ($exist != null) {
             $id = 1;
             $slug = $slug . '-' . $id;
-            while ($category = Category::where('slug', $slug)->first() != null) {
+            while ($products = Products::where('slug', $slug)->first() != null) {
                 $id++;
                 $slug = $slug . '-' . $id;
             }

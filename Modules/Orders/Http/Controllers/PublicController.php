@@ -57,6 +57,10 @@ class PublicController extends BasePublicController
                 'price'=>$product->price_discount>0?$product->price_discount:$product->price
             ];
         }
+        
+        foreach ($data as $key => $value){
+
+        }
         $orders = json_encode($data);
 
         setcookie('orders', $orders, time() + 10*24*3600);
