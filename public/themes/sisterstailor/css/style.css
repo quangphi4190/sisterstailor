@@ -20,8 +20,7 @@
     color:#f41068  !important;
 }
 .carousel-item img {
-    min-height: 40em;
-    max-height: 40em;
+    height: auto;
 }
 .content-image {
     max-height: 350px;
