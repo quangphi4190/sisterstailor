@@ -189,10 +189,10 @@
             var quantity = $('#quantity').val();
             $.get('{{route('order.add_cart')}}' + '?product={{$product_detail->id}}&quantity=' + quantity, function (data) {
                 if (data.success) {
-                    alert('Add to cart successfully');
+                    swal("Add to cart successfully!", "", "success");
                     $('.badgeNumber_ebbk').text(data.total);
                 } else {
-                    alert('Add to cart failed. Please try again later');
+                    swal("Add to cart failed. Please try again!", "", "error");
                 }
             }, 'json')
         });

@@ -82,16 +82,20 @@ class PublicController extends BasePublicController
             return redirect(route('homepage'));
         }
         $order = $this->orders->create($request->except('_token'));
-        $total = 0;
-        foreach ($data as $key => $value) {
-            $product = $this->products->find($key);
-            $detail = $this->order_detail->create([
-                'product_id' => $key,
-                'quantity' => $data[$key]->quantity,
-                'price' => $product->price_discount > 0 ? $product->price_discount : $product->price,
-            ]);
-            $total += ($detail->price * $detail->quantity);
-        }
+            if($order){
+                $total = 0;
+                foreach ($data as $key => $value) {
+                    $product = $this->products->find($key);
+                    $detail = $this->order_detail->create([
+                        'order_id' => $order->id,
+                        'product_id' => $key,
+                        'quantity' => $data[$key]->quantity,
+                        'price' => $product->price_discount > 0 ? $product->price_discount : $product->price,
+                    ]);
+                    $total += ($detail->price * $detail->quantity);
+                }
+            }
+
         $cookie_name = 'orders';
         unset($_COOKIE[$cookie_name]);
 

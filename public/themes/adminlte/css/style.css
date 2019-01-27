@@ -220,4 +220,47 @@ input.icon {
     display: none;
   }
 
-  
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+.billing-title {
+    border-bottom: 1px solid #ddd;
+    line-height: 1.3em;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+.order-db {
+    color: #222222;
+    font-weight: 600;
+}
+
+.order-rable tr td {
+    width: 50%;
+}
+.billing-title.pl-15 {
+    padding-left: 0px;
+}
+.mg-t-25 {
+    margin-top: -25px;
+}
+.billing-order {
+    margin-top: 30px;
+    background: #f9fafc;
+}
+
+.cursor_p {
+    cursor: pointer;
+}

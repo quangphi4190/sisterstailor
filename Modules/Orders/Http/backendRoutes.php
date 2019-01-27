@@ -74,6 +74,11 @@ $router->group(['prefix' =>'/orders'], function (Router $router) {
         'uses' => 'Order_detailsController@destroy',
         'middleware' => 'can:orders.order_details.destroy'
     ]);
+
+    $router->post('orders/view_detail',[
+        'as'    =>  'order.view_detail',
+        'uses'  =>  'OrderController@view_detail'
+    ]);
 // append
 
 

@@ -148,7 +148,7 @@
                                     <span class="label label-lg label-info">
                                         {{ date('H:i', strtotime(str_replace('/', '-', $invoice->order_date))) }}
 
-                                    </span>
+                                    </span>message
                                 </td>
                                 <td>
 
