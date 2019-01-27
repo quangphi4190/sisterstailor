@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <section class="banner-area relative" id="home">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
     <ol class="carousel-indicators">
     @foreach ($banner as $banne)
         <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" class="{{$loop->first ? 'active':''}}"></li>
