@@ -105,46 +105,44 @@
 
                 </div>
                 <hr>
-                <section class="pb-100">
-                    <div class="container">
-                        <div class="organic-section-title text-center">
-                            <h3>Related Products</h3>
-                        </div>
-                        <div class="row mt-30">
-                            @foreach ($category_for_ids as $category_for_id)
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-
-                                    <div class="single-search-product d-flex">
-                                        @foreach ($category_for_id->files()->where('zone','Hình Ảnh')->get() as $fileID)
-                                            <a href="{{ route('product.detail', [$category_for_id->slug]) }}"><img
-                                                        class="h80"
-                                                        title="View detail"
-                                                        src="{!! $fileID->path !!}"
-                                                        alt=""></a>
-                                        @endforeach
-                                        <div class="desc">
-                                            <a href="{{ route('product.detail', [$category_for_id->slug]) }}"
-                                               class="title"
-                                               title="View detail">{{$category_for_id->name}}</a>
-                                            <div class="price"><span class="lnr lnr-tag"></span>
-                                                ${{$category_for_id->price}}
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </section>
 
 
             </div>
 
         </div>
     </div>
+    <section class="pb-100 pt-100">
+        <div class="container">
+            <div class="organic-section-title text-center">
+                <h3>Related Products</h3>
+            </div>
+            <div class="row mt-30">
+                @foreach ($category_for_ids as $category_for_id)
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-search-product d-flex">
+                            @foreach ($category_for_id->files()->where('zone','Hình Ảnh')->get() as $fileID)
+                                <a href="{{ route('product.detail', [$category_for_id->slug]) }}"><img
+                                            class="h80"
+                                            title="View detail"
+                                            src="{!! $fileID->path !!}"
+                                            alt=""></a>
+                            @endforeach
+                            <div class="desc">
+                                <a href="{{ route('product.detail', [$category_for_id->slug]) }}"
+                                   class="title"
+                                   title="View detail">{{$category_for_id->name}}</a>
+                                <div class="price"><span class="lnr lnr-tag"></span>
+                                    ${{$category_for_id->price}}
+                                </div>
+                            </div>
+                        </div>
 
+
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
     <script type="text/javascript">
         var slideIndex = 1;
         showSlides(slideIndex);
