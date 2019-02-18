@@ -51,13 +51,14 @@
                                             <a href="{{ route('product.detail',[$t->slug])}}" class="title" title="View detail">
                                                 <h5>{{$t->name}}</h5>
                                             </a>
-                                            @if ($t->price_discount == '0')
-                                                <h3>$ {{$t->price}}</h3>
-                                            @else
+                                            @if ($t->price_discount > '0')
                                                 <div class="d-flex align-items-center pd-t10">
                                                     <h3 class="pd-r10">$ {{$t->price_discount}}</h3>
                                                     <del class="f-size">$ {{$t->price}}</del>
                                                 </div>
+
+                                            @else
+                                                <h3>$ {{$t->price}}</h3>
                                             @endif
 
                                         </div>
@@ -90,13 +91,14 @@
                                             <a href="{{ route('product.detail', [$t->slug]) }}" class="title" title="View detail">
                                                 <h5>{{$t->name}}</h5>
                                             </a>
-                                            @if ($t->price_discount == '0')
-                                                <h3>$ {{$t->price}}</h3>
-                                            @else
+                                            @if ($t->price_discount > '0')
                                                 <div class="d-flex align-items-center">
                                                     <h3 class="pd-r10">$ {{$t->price_discount}}</h3>
                                                     <del class="f-size">$ {{$t->price}}</del>
                                                 </div>
+
+                                            @else
+                                                <h3>$ {{$t->price}}</h3>
                                             @endif
                                         </div>
                                     </div>

@@ -49,11 +49,12 @@
                     </div>
                     <div class="price">
                         <h5><a title="View detail product" class="name-products" href="{{route('product.detail',$fea->slug)}}" >{{$fea->name}}</a></h5>
-                        @if ($fea->price_discount == '0')
-                            <h3>$ {{number_format($fea->price)}}</h3>
-                        @else
+                        @if ($fea->price_discount > '0')
                             <del style="color:black;">$ {{number_format($fea->price)}}</del>
                             <h3>$ {{number_format($fea->price_discount)}}</h3>
+
+                        @else
+                            <h3>$ {{number_format($fea->price)}}</h3>
                         @endif
                     </div>
                 </div>
@@ -86,11 +87,12 @@
                     </div>
                     <div class="price">
                         <h5 class="text-white"><a title="View detail product" style="color: white" href="{{route('product.detail',$m->slug)}}">{{$m->name}}</a></h5>
-                        @if ($m->price_discount == '0')
-                        <h3 class="text-white">$ {{number_format($m->price)}}</h3>
-                        @else
+                        @if ($m->price_discount > '0')
                             <del class="text-white">$ {{number_format($m->price)}}</del>
                             <h3 class="text-white">$ {{number_format($m->price_discount)}}</h3>
+
+                        @else
+                            <h3 class="text-white">$ {{number_format($m->price)}}</h3>
                             @endif
                     </div>
                 </div>
@@ -121,11 +123,12 @@
                     </div>
                     <div class="price">
                         <h5><a title="View detail" class="name-products" href="{{route('product.detail',$w->slug)}}">{{$w->name}}</a></h5>
-                        @if ($w->price_discount == '0')
-                        <h3>$ {{number_format($w->price)}}</h3>
-                            @else
+                        @if ($w->price_discount > '0')
                             <del style="color:black;">$ {{number_format($w->price)}}</del>
                             <h3>$ {{number_format($w->price_discount)}}</h3>
+
+                            @else
+                            <h3>$ {{number_format($w->price)}}</h3>
                             @endif
                     </div>
                 </div>
